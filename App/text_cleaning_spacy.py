@@ -1,6 +1,6 @@
 import spacy
 import re
-from typing import List
+from typing import List, Dict, Tuple
 
 try:
     nlp = spacy.load("en_core_web_sm")
@@ -10,72 +10,139 @@ except OSError:
     download("en_core_web_sm")
     nlp = spacy.load("en_core_web_sm")
 
-# a lot of valuable information is lost here, but it's a good start
-# TODO: add more sophisticated text cleaning, try to keep as much valuable information as possible
-# i.e. technical skills, education, experience, tools, etc.
-def clean_text(text: str) -> str:
+def extract_sections(text: str) -> Dict[str, str]:
     """
-    Clean and normalize text using spaCy. Removes headers, personal names, emails and normalizes text.
+    Extract different sections from the resume based on headers.
     
     Args:
-        text (str): Input text to clean
+        text (str): Raw resume text
         
     Returns:
-        str: Cleaned and normalized text with headers, names and emails removed, and a dict of removed items
+        dict: Dictionary with headers as keys and section content as values
     """
-    removed_items = {
-        'emails': [],
-        'person_names': [],
-        'headers': [],
-        'punctuation': []
+    # Common resume section headers
+    headers = [
+        'EDUCATION', 'EMPLOYMENT', 'EXPERIENCE', 'TECHNICAL EXPERIENCE',
+        'SKILLS', 'PROJECTS', 'AWARDS', 'LANGUAGES', 'ADDITIONAL EXPERIENCE',
+        'PERSONAL INFORMATION'
+    ]
+    
+    sections = {}
+    current_header = None
+    current_content = []
+    
+    for line in text.split('\n'):
+        line = line.strip()
+        if not line:
+            continue
+            
+        # Check if line is a header
+        if any(header in line.upper() for header in headers):
+            if current_header:
+                sections[current_header] = '\n'.join(current_content)
+                current_content = []
+            current_header = line.upper()
+        else:
+            if current_header:
+                current_content.append(line)
+    
+    # Add the last section
+    if current_header and current_content:
+        sections[current_header] = '\n'.join(current_content)
+        
+    return sections
+
+def clean_text(text: str) -> Tuple[str, dict]:
+    """
+    Clean and normalize resume text while preserving important information.
+    
+    Args:
+        text (str): Input resume text
+        
+    Returns:
+        tuple: (cleaned text, dict of removed items and extracted information)
+    """
+    metadata = {
+        'personal_info': {},
+        'removed_items': {
+            'emails': [],
+            'phone_numbers': [],
+            'person_names': [],
+            'locations': [],
+            'dates': [],
+            'urls': []
+        },
+        'extracted_skills': set(),
+        'sections': {}
     }
     
-    # Remove extra whitespace and normalize
-    text = re.sub(r'\s+', ' ', text.strip())
+    # Extract sections
+    sections = extract_sections(text)
+    metadata['sections'] = sections
+    
+    # Remove personal information section
+    if 'PERSONAL INFORMATION' in sections:
+        text = text.replace(sections['PERSONAL INFORMATION'], '')
     
     # Remove email addresses
     emails = re.findall(r'\S+@\S+\.\S+', text)
-    removed_items['emails'].extend(emails)
+    metadata['removed_items']['emails'].extend(emails)
     text = re.sub(r'\S+@\S+\.\S+', '', text)
+    
+    # Remove phone numbers
+    phone_pattern = r'(?:\+\d{1,3}[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}'
+    phones = re.findall(phone_pattern, text)
+    metadata['removed_items']['phone_numbers'].extend(phones)
+    text = re.sub(phone_pattern, '', text)
     
     # Process with spaCy
     doc = nlp(text)
     
-    # Clean tokens
+    # Technical skills patterns
+    skill_patterns = [
+        r'python|java|c\+\+|javascript|sql|html|css|docker|kubernetes|aws|azure|git|react|angular|vue|node\.js',
+        r'machine learning|deep learning|artificial intelligence|data science|cloud computing|devops|agile|scrum',
+        r'mysql|postgresql|mongodb|redis|elasticsearch|kafka|spark|hadoop|tensorflow|pytorch|scikit-learn'
+    ]
+    
     cleaned_tokens = []
     for token in doc:
-        # Track punctuation
-        if token.is_punct:
-            removed_items['punctuation'].append(token.text)
-            continue
-            
-        # Track person names    
-        if token.ent_type_ == 'PERSON':
-            removed_items['person_names'].append(token.text)
-            continue
-            
-        # Track headers
-        header_words = ['education', 'experience', 'skills', 
-                       'employment', 'awards', 'languages',
-                       'technical', 'additional']
-        if (token.text.lower() in header_words or 
-            (token.text.isupper() and len(token.text) > 2)):
-            removed_items['headers'].append(token.text)
-            continue
-            
-        if token.is_space:
+        # Extract entities
+        if token.ent_type_:
+            if token.ent_type_ == 'PERSON':
+                metadata['removed_items']['person_names'].append(token.text)
+                continue
+            elif token.ent_type_ == 'GPE' or token.ent_type_ == 'LOC':
+                metadata['removed_items']['locations'].append(token.text)
+                continue
+            elif token.ent_type_ == 'DATE':
+                metadata['removed_items']['dates'].append(token.text)
+                continue
+        
+        # Extract technical skills
+        token_lower = token.text.lower()
+        for pattern in skill_patterns:
+            if re.search(pattern, token_lower):
+                metadata['extracted_skills'].add(token_lower)
+        
+        # Skip unwanted tokens
+        if (token.is_punct or token.is_space or 
+            token.like_num or len(token.text) <= 1):
             continue
         
-        # Normalize token (lowercase, remove extra spaces)
+        # Normalize and add token
         cleaned_token = token.text.lower().strip()
         if cleaned_token:
             cleaned_tokens.append(cleaned_token)
     
-    return ' '.join(cleaned_tokens), removed_items
+    # Convert skills set to list for JSON serialization
+    metadata['extracted_skills'] = list(metadata['extracted_skills'])
+    
+    return ' '.join(cleaned_tokens), metadata
 
 def extract_entities(text: str) -> dict:
     """
-    Extract named entities from text using spaCy.
+    Extract named entities from text using spaCy with focus on resume-relevant entities.
     
     Args:
         text (str): Input text to process
@@ -84,11 +151,17 @@ def extract_entities(text: str) -> dict:
         dict: Dictionary of entity types and their values
     """
     doc = nlp(text)
-    entities = {}
+    entities = {
+        'SKILL': [],
+        'ORG': [],
+        'DATE': [],
+        'GPE': [],
+        'DEGREE': [],
+        'LANGUAGE': []
+    }
     
     for ent in doc.ents:
-        if ent.label_ not in entities:
-            entities[ent.label_] = []
-        entities[ent.label_].append(ent.text)
+        if ent.label_ in entities:
+            entities[ent.label_].append(ent.text)
     
     return entities

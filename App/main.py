@@ -1,6 +1,6 @@
 from resume_parsing import parse_resume_pdf
 from text_cleaning_spacy import clean_text, extract_entities
-from App.text_classification_transformers import classify_text
+from text_classification_transformers import classify_text
 import streamlit as st
 import tempfile
 import os
@@ -43,11 +43,21 @@ def parse_resume_pdf_transformers(tmp_path: str):
     content = temporary_test_file
     elements = temporary_test_file
 
-    # Clean the text
-    result = classify_text(content)
+    # Clean the text and get metadata
+    cleaned_text, metadata = clean_text(content)
 
+    # Use the cleaned text for classification
+    result = classify_text(cleaned_text)
+
+    # Display results
+    st.write("Classification Results:")
     for item in result:
         st.write(f"{item}: {result[item]}")
+    
+    st.write("\nExtracted Metadata:")
+    st.write("Skills:", metadata['extracted_skills'])
+    st.write("Sections found:", list(metadata['sections'].keys()))
+    st.write("Entities removed:", metadata['removed_items'])
 
 
 def streamlit_display():
