@@ -1,8 +1,54 @@
 from resume_parsing import parse_resume_pdf
-from text_cleaning import clean_text, extract_entities
+from text_cleaning_spacy import clean_text, extract_entities
+from App.text_classification_transformers import classify_text
 import streamlit as st
 import tempfile
 import os
+
+with open("outputs/outDeepseek.txt", "r", encoding="utf-8") as file:
+    temporary_test_file = file.read()
+
+def parse_resume_pdf_spacy(tmp_path: str):# Process the resume
+    # content, elements = parse_resume_pdf(tmp_path, "outputs/out3.txt")
+    content = temporary_test_file
+    elements = temporary_test_file
+
+    # Clean the text
+    cleaned_text, removed_items = clean_text(content)
+
+    # Extract entities
+    entities = extract_entities(cleaned_text)
+    
+    # Display the parsed content
+    st.write("Parsed Resume Content:")
+    st.write(content)
+
+    # Display the elements
+    st.write("Elements:")
+    st.write(elements)
+
+    # Display the cleaned text
+    st.write("Cleaned Text:")
+    st.write(cleaned_text)
+
+    # Display the removed items
+    st.write("Removed Items:")
+    st.write(removed_items)
+
+    # Display the entities
+    st.write("Entities:")
+    st.write(entities)
+
+def parse_resume_pdf_transformers(tmp_path: str):
+    content = temporary_test_file
+    elements = temporary_test_file
+
+    # Clean the text
+    result = classify_text(content)
+
+    for item in result:
+        st.write(f"{item}: {result[item]}")
+
 
 def streamlit_display():
     st.title("Resume Parser")
@@ -16,35 +62,10 @@ def streamlit_display():
             tmp_file.write(uploaded_file.getvalue())
             tmp_path = tmp_file.name
         
-        # Process the resume
-        content, elements = parse_resume_pdf(tmp_path, "outputs/out3.txt")
-
-        # Clean the text
-        cleaned_text, removed_items = clean_text(content)
-
-        # Extract entities
-        entities = extract_entities(cleaned_text)
+        #parse_resume_pdf_spacy(tmp_path)
         
-        # Display the parsed content
-        st.write("Parsed Resume Content:")
-        st.write(content)
+        parse_resume_pdf_transformers(tmp_path)
 
-        # Display the elements
-        st.write("Elements:")
-        st.write(elements)
-
-        # Display the cleaned text
-        st.write("Cleaned Text:")
-        st.write(cleaned_text)       
-
-        # Display the removed items
-        st.write("Removed Items:")
-        st.write(removed_items)
-
-        # Display the entities
-        st.write("Entities:")
-        st.write(entities)
-        
         # Clean up the temporary file
         os.unlink(tmp_path)
 
