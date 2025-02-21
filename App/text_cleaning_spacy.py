@@ -1,6 +1,8 @@
 import spacy
 import re
-from typing import List, Dict, Tuple
+from icecream import ic
+from typing import List, Dict, Tuple    
+from display_spacy import display_spacy
 
 try:
     nlp = spacy.load("en_core_web_sm")
@@ -10,46 +12,63 @@ except OSError:
     download("en_core_web_sm")
     nlp = spacy.load("en_core_web_sm")
 
-def extract_sections(text: str) -> Dict[str, str]:
+def extract_sections(text: str) -> Dict[str, Dict[str, List[str]]]:
     """
-    Extract different sections from the resume based on headers.
+    Extract different sections from the resume based on formatting rules:
+    - All uppercase without indentation = Header
+    - Not uppercase without indentation = Additional information
+    - Any indentation = Content
     
     Args:
         text (str): Raw resume text
         
     Returns:
-        dict: Dictionary with headers as keys and section content as values
+        dict: Dictionary with headers as keys and nested dictionaries containing
+             additional_info and content
     """
-    # Common resume section headers
-    headers = [
-        'EDUCATION', 'EMPLOYMENT', 'EXPERIENCE', 'TECHNICAL EXPERIENCE',
-        'SKILLS', 'PROJECTS', 'AWARDS', 'LANGUAGES', 'ADDITIONAL EXPERIENCE',
-        'PERSONAL INFORMATION'
-    ]
-    
     sections = {}
     current_header = None
+    current_additional_info = []
     current_content = []
     
     for line in text.split('\n'):
+        original_line = line
         line = line.strip()
-        if not line:
+        
+        if not line:  # Skip empty lines
             continue
-            
-        # Check if line is a header
-        if any(header in line.upper() for header in headers):
+        
+        # Check indentation (count leading spaces)
+        indentation = len(original_line) - len(original_line.lstrip())
+        
+        # Check if line is a header (all uppercase, no indentation)
+        if line.isupper() and indentation == 0:
+            # Save previous section if it exists
             if current_header:
-                sections[current_header] = '\n'.join(current_content)
-                current_content = []
-            current_header = line.upper()
-        else:
-            if current_header:
-                current_content.append(line)
+                sections[current_header] = {
+                    'additional_info': current_additional_info,
+                    'content': current_content
+                }
+            # Start new section
+            current_header = line
+            current_additional_info = []
+            current_content = []
+        
+        # If line has indentation, it's content
+        elif indentation > 0:
+            current_content.append(line)
+        
+        # If line has no indentation but isn't all uppercase, it's additional info
+        elif current_header:
+            current_additional_info.append(line)
     
     # Add the last section
-    if current_header and current_content:
-        sections[current_header] = '\n'.join(current_content)
-        
+    if current_header:
+        sections[current_header] = {
+            'additional_info': current_additional_info,
+            'content': current_content
+        }
+    
     return sections
 
 def clean_text(text: str) -> Tuple[str, dict]:
@@ -76,13 +95,31 @@ def clean_text(text: str) -> Tuple[str, dict]:
         'sections': {}
     }
     
-    # Extract sections
+    # Extract sections with the new structure
     sections = extract_sections(text)
     metadata['sections'] = sections
     
     # Remove personal information section
     if 'PERSONAL INFORMATION' in sections:
-        text = text.replace(sections['PERSONAL INFORMATION'], '')
+        personal_info = sections['PERSONAL INFORMATION']
+        # Remove both additional info and content from personal information
+        for info in personal_info['additional_info']:
+            text = text.replace(info, '')
+        for content in personal_info['content']:
+            text = text.replace(content, '')
+    
+    # Prepare text for cleaning by combining relevant parts
+    processed_text = []
+    for header, section_data in sections.items():
+        if header != 'PERSONAL INFORMATION':
+            # Add header
+            processed_text.append(header)
+            # Add additional info
+            processed_text.extend(section_data['additional_info'])
+            # Add content
+            processed_text.extend(section_data['content'])
+    
+    text = ' '.join(processed_text)
     
     # Remove email addresses
     emails = re.findall(r'\S+@\S+\.\S+', text)
@@ -97,6 +134,8 @@ def clean_text(text: str) -> Tuple[str, dict]:
     
     # Process with spaCy
     doc = nlp(text)
+
+    display_spacy(doc)
     
     # Technical skills patterns
     skill_patterns = [

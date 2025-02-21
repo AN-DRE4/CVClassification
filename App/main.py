@@ -54,10 +54,20 @@ def parse_resume_pdf_transformers(tmp_path: str):
     for item in result:
         st.write(f"{item}: {result[item]}")
     
-    st.write("\nExtracted Metadata:")
-    st.write("Skills:", metadata['extracted_skills'])
-    st.write("Sections found:", list(metadata['sections'].keys()))
-    st.write("Entities removed:", metadata['removed_items'])
+    st.write("\nExtracted Resume Structure:")
+    for header, section_data in metadata['sections'].items():
+        st.write(f"\n{header}")
+        if section_data['additional_info']:
+            st.write("Additional Information:")
+            for info in section_data['additional_info']:
+                st.write(f"  - {info}")
+        if section_data['content']:
+            st.write("Content:")
+            for content in section_data['content']:
+                st.write(f"    {content}")
+    
+    st.write("\nExtracted Skills:", metadata['extracted_skills'])
+    st.write("Removed Personal Information:", metadata['removed_items'])
 
 
 def streamlit_display():
