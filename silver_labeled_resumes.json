@@ -1,0 +1,408 @@
+[
+    {
+        "resume_id": "CVs\\batch_1\\10001_Arghya_Das (1).txt",
+        "extracted_info": {
+            "education": [
+                {
+                    "degree": "BTech",
+                    "institution": "Dumkal Institute of Engineering & Tech",
+                    "graduation_date": "2009"
+                }
+            ],
+            "work_experience": [
+                {
+                    "company": "Wipro Technologies",
+                    "title": "Project Engineer",
+                    "start_date": "January 2011",
+                    "end_date": "May 2023",
+                    "duration": 12.5,
+                    "responsibilities": [
+                        "Developing master page and home page.",
+                        "Develop page layouts.",
+                        "Developed custom webparts using C#.NET and ASP.NET using Visual Studio 2010.",
+                        "Implemented SharePoint's Out of box generic search control.",
+                        "Developing static pages and some static webparts.",
+                        "SharePoint Out of Box controls -- implementation.",
+                        "SharePoint ribbon control customization and implementation.",
+                        "Developed the whole site's look and feel alone from HTML prototype to SharePoint site."
+                    ]
+                },
+                {
+                    "company": "Wipro BPO Ltd.",
+                    "title": "Technical Associate",
+                    "start_date": "N\/A",
+                    "end_date": "N\/A",
+                    "duration": "N\/A",
+                    "responsibilities": []
+                }
+            ],
+            "skills": {
+                "Technical skills": [
+                    {
+                        "duration": 3.5,
+                        "skills": [
+                            "Dot Net Framework 1.0, 2.0, 3.0, 3.5\/4.0",
+                            "Visual Studio Dot Net (2003, 2005, 2008, 2010)",
+                            "C#.NET",
+                            "ADO.NET",
+                            "ASP.NET",
+                            "HTML",
+                            "CSS",
+                            "JavaScript"
+                        ]
+                    },
+                    {
+                        "duration": 1,
+                        "skills": [
+                            "Microsoft SharePoint 2010"
+                        ]
+                    },
+                    {
+                        "duration": 3,
+                        "skills": [
+                            "MS SQL SERVER 2005\/2008"
+                        ]
+                    }
+                ],
+                "Soft skills": [
+                    "Communication",
+                    "Teamwork",
+                    "Problem Solving"
+                ]
+            }
+        }
+    },
+    {
+        "resume_id": "CVs\\batch_1\\10002_Pooja_Darji.txt",
+        "extracted_info": {
+            "education": [
+                {
+                    "degree": "B.C.A.",
+                    "institution": "Gujarat uni",
+                    "graduation_date": "2012"
+                },
+                {
+                    "degree": "H.S.C",
+                    "institution": "G.S.H.E.B.",
+                    "graduation_date": "2009"
+                },
+                {
+                    "degree": "S.S.C",
+                    "institution": "G.S.E.B.",
+                    "graduation_date": "2007"
+                }
+            ],
+            "work_experience": [
+                {
+                    "company": "Steamlite Sales Pvt Ltd",
+                    "title": "SEO and CS",
+                    "start_date": "N\/A",
+                    "end_date": "N\/A",
+                    "duration": "1.5",
+                    "responsibilities": [
+                        "Off-Page Optimization: Directory submission, Social Bookmarking, Article submission, Forum Posting, Content Writing, Classified ad, Blogs Submission, Comment Posting, Forum Discussion, Classified",
+                        "SEO Tools Used: Google Adwords, Google Analytics, Page Rank Checker Tool, Google Webmaster Tool"
+                    ]
+                }
+            ],
+            "skills": {
+                "Technical skills": [
+                    {
+                        "duration": 1.5,
+                        "skills": [
+                            "VB.NET",
+                            "SQL Server 2005",
+                            "Google Adwords",
+                            "Google Analytics",
+                            "Page Rank Checker Tool",
+                            "Google Webmaster Tool"
+                        ]
+                    },
+                    {
+                        "duration": "N\/A",
+                        "skills": [
+                            "C",
+                            "C++",
+                            "ASP.NET",
+                            "HTML",
+                            "ORACLE 8i",
+                            "MS-ACCESS"
+                        ]
+                    }
+                ],
+                "Soft skills": [
+                    "Communication",
+                    "Teamwork",
+                    "Problem Solving"
+                ]
+            }
+        }
+    },
+    {
+        "resume_id": "CVs\\batch_1\\10005_Sachin_Jadhav.txt",
+        "extracted_info": {
+            "education": [
+                {
+                    "degree": "Master in Computer Science (M.Sc.)",
+                    "institution": "Pune University",
+                    "graduation_date": "2010"
+                },
+                {
+                    "degree": "Bachelor in Computer Science (B.Sc.)",
+                    "institution": "Pune University",
+                    "graduation_date": "2008"
+                }
+            ],
+            "work_experience": [
+                {
+                    "company": "Mastercard Technology",
+                    "title": "Senior System Engineer",
+                    "start_date": "July 2016",
+                    "end_date": "October 2023",
+                    "duration": 7,
+                    "responsibilities": [
+                        "Working in Change\/Release management with L2 support to cover all Problem\/Incident tickets.",
+                        "Monitoring the platform through Splunk, Dynatrace and investigating issues.",
+                        "Coordinating with vendor for development activities.",
+                        "Representing change into Change Advisory Board and obtaining approvals.",
+                        "Implementation of code on production and UAT environment."
+                    ]
+                },
+                {
+                    "company": "Nihilent Technologies",
+                    "title": "System Analyst",
+                    "start_date": "June 2013",
+                    "end_date": "June 2016",
+                    "duration": 3,
+                    "responsibilities": [
+                        "Change\/Release manager with L2 support to cover all Problem\/Incident tickets.",
+                        "Investigating issues and resolving them with the help of L3 Support.",
+                        "Coordinating with vendor for development activities.",
+                        "Deployment\/Implementation Engineer for UAT and production environment."
+                    ]
+                },
+                {
+                    "company": "eClerx Services Pvt Ltd",
+                    "title": "Data Analyst",
+                    "start_date": "June 2011",
+                    "end_date": "May 2012",
+                    "duration": 1,
+                    "responsibilities": [
+                        "Extracting data from Sales Force CRM tool.",
+                        "Involved in Sales and Marketing for Lead Life, Lead analysis, and Marketing Strategies.",
+                        "Creation of reports and dashboards for business understanding."
+                    ]
+                }
+            ],
+            "skills": {
+                "Technical skills": [
+                    {
+                        "duration": 7,
+                        "skills": [
+                            "Linux",
+                            "Oracle",
+                            "Shell",
+                            "Java",
+                            "SQL"
+                        ]
+                    },
+                    {
+                        "duration": 3,
+                        "skills": [
+                            "PL\/SQL",
+                            "Solaris",
+                            "Web sphere",
+                            "Glassfish"
+                        ]
+                    },
+                    {
+                        "duration": 1,
+                        "skills": [
+                            "Salesforce",
+                            "Windows"
+                        ]
+                    },
+                    {
+                        "duration": "N\/A",
+                        "skills": [
+                            "Splunk",
+                            "Toad",
+                            "Jira",
+                            "Rally",
+                            "GSM",
+                            "SQL Developer"
+                        ]
+                    }
+                ],
+                "Soft skills": [
+                    "Communication",
+                    "Teamwork",
+                    "Client Management",
+                    "Crisis Handling",
+                    "Interpersonal Skills"
+                ]
+            }
+        }
+    },
+    {
+        "resume_id": "CVs\\batch_1\\10018_NITIN_JAIN.txt",
+        "extracted_info": {
+            "education": [
+                {
+                    "degree": "MBA (Finance)",
+                    "institution": "Prestige Institute of Management, Gwalior Jiwaji University",
+                    "graduation_date": "2009"
+                },
+                {
+                    "degree": "PGDCA",
+                    "institution": "Maips College, Gwalior Jiwaji University",
+                    "graduation_date": "2008"
+                },
+                {
+                    "degree": "B.Com (Honour\u2019s)",
+                    "institution": "MLB College of Excellence, Gwalior Jiwaji University",
+                    "graduation_date": "2005"
+                }
+            ],
+            "work_experience": [
+                {
+                    "company": "Genpact India Gurgaon",
+                    "title": "Process Associate (Wells Fargo bank project)",
+                    "start_date": "July 2011",
+                    "end_date": "October 2023",
+                    "duration": 12.5,
+                    "responsibilities": [
+                        "Prepare the report on the excel",
+                        "Review financial data and research on that",
+                        "Find the claim and issue the claim amount to the customer through visa",
+                        "Reverse the NSF, OD and ITF Fees",
+                        "Work on software like FDR, HOGAN, DAT, ETRAN",
+                        "Check the credit limit and the type of account",
+                        "Prepare fraud report and questionnaire",
+                        "Calculate the risk"
+                    ]
+                },
+                {
+                    "company": "CA Agarwal Gajendra & Associate Gwalior",
+                    "title": "Office Assistant",
+                    "start_date": "January 2010",
+                    "end_date": "April 2011",
+                    "duration": 1.5,
+                    "responsibilities": [
+                        "Tally Accounting",
+                        "Voucher preparation",
+                        "Checking of Daily Expense Report",
+                        "Bank Reconciliation Statement"
+                    ]
+                }
+            ],
+            "skills": {
+                "Technical skills": [
+                    {
+                        "duration": 12.5,
+                        "skills": [
+                            "Excel",
+                            "FDR",
+                            "HOGAN",
+                            "DAT",
+                            "ETRAN",
+                            "Tally"
+                        ]
+                    },
+                    {
+                        "duration": 1.5,
+                        "skills": [
+                            "Tally"
+                        ]
+                    },
+                    {
+                        "duration": "N\/A",
+                        "skills": [
+                            "MS Word",
+                            "MS PowerPoint",
+                            "Internet"
+                        ]
+                    }
+                ],
+                "Soft skills": [
+                    "Communication",
+                    "Teamwork",
+                    "Problem Solving"
+                ]
+            }
+        }
+    },
+    {
+        "resume_id": "CVs\\batch_1\\10019_SANTOSH_KUMAR_DHAL (1).txt",
+        "extracted_info": {
+            "education": [
+                {
+                    "degree": "B.Tech",
+                    "institution": "Raajdhani Engineering College",
+                    "graduation_date": "2014"
+                }
+            ],
+            "work_experience": [
+                {
+                    "company": "IKONTEL Solutions Pvt Ltd",
+                    "title": "Software Engineer",
+                    "start_date": "November 2016",
+                    "end_date": "June 2018",
+                    "duration": 1.5,
+                    "responsibilities": [
+                        "Redesigned Contact-Us div.",
+                        "Implemented \u2018i am not a robot\u2019 captcha in Contact-Us div.",
+                        "Designed Carousel.",
+                        "Tested websites for cross browser compatibility and fixing bugs and errors.",
+                        "Designing and developing websites on ASP.NET framework.",
+                        "Designing UX for Transcription portal using adobe illustrator.",
+                        "Designing and implementing user interface (UI) using HTML5, CSS, Bootstrap and JavaScript.",
+                        "Designing icon using Adobe illustrator.",
+                        "Create validation for login page (Both user and admin).",
+                        "Designing Admin and User UI.",
+                        "Create master page.",
+                        "Built dynamically generated dropdown lists using Ajax jQuery UI.",
+                        "Testing websites for cross browser compatibility and fixing bugs and errors.",
+                        "Test all page functionality using functional testing."
+                    ]
+                }
+            ],
+            "skills": {
+                "Technical skills": [
+                    {
+                        "duration": 1.5,
+                        "skills": [
+                            "ASP.NET",
+                            "C#",
+                            "HTML5",
+                            "CSS",
+                            "JavaScript",
+                            "AJAX",
+                            "IIS 7.0",
+                            "Visual Studio 2015",
+                            "Visual Studio 2017",
+                            "Microsoft SQL Server"
+                        ]
+                    },
+                    {
+                        "duration": 1.5,
+                        "skills": [
+                            "Adobe Photoshop",
+                            "Adobe Illustrator",
+                            "Adobe Spark",
+                            "Notepad++",
+                            "Eclipse",
+                            "Sublime Text",
+                            "Brackets",
+                            "WYSIWYG Web Builder"
+                        ]
+                    }
+                ],
+                "Soft skills": [
+                    "Good Analytical Skills",
+                    "Ability to learn new technologies and tools"
+                ]
+            }
+        }
+    }
+]
