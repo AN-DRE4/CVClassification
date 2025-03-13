@@ -1,6 +1,7 @@
 import spacy
 import re
 from spacy.tokens import Doc, Span
+import pandas as pd
 
 # Load spaCy for tokenization
 nlp = spacy.load("en_core_web_lg")
@@ -60,6 +61,7 @@ def find_spans(doc, text):
 
 # Apply to all silver data
 labeled_docs = []
+silver_df = pd.read_json('silver_labeled_resumes.json')
 for _, row in silver_df.iterrows():
     doc = create_labeled_spans(row['resume_text'], row['extracted_info'])
     labeled_docs.append(doc)

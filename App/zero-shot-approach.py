@@ -118,7 +118,7 @@ for resume in tqdm(resumes_subset):
     if extracted_info:
         processed_data.append({
             'resume_id': resume['id'],
-            #'resume_text': resume['text'],
+            'resume_text': resume['text'],
             'extracted_info': extracted_info
         })
 

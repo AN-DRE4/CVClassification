@@ -39,10 +39,10 @@
             "skills": {
                 "Technical skills": [
                     {
-                        "duration": 3.5,
+                        "duration": 4,
                         "skills": [
-                            "Dot Net Framework 1.0, 2.0, 3.0, 3.5\/4.0",
-                            "Visual Studio Dot Net (2003, 2005, 2008, 2010)",
+                            "Dot Net Framework",
+                            "Visual Studio Dot Net",
                             "C#.NET",
                             "ADO.NET",
                             "ASP.NET",
@@ -60,7 +60,7 @@
                     {
                         "duration": 3,
                         "skills": [
-                            "MS SQL SERVER 2005\/2008"
+                            "MS SQL SERVER"
                         ]
                     }
                 ],
@@ -111,7 +111,7 @@
                         "duration": 1.5,
                         "skills": [
                             "VB.NET",
-                            "SQL Server 2005",
+                            "SQL",
                             "Google Adwords",
                             "Google Analytics",
                             "Page Rank Checker Tool",
@@ -123,7 +123,6 @@
                         "skills": [
                             "C",
                             "C++",
-                            "ASP.NET",
                             "HTML",
                             "ORACLE 8i",
                             "MS-ACCESS"
@@ -133,7 +132,7 @@
                 "Soft skills": [
                     "Communication",
                     "Teamwork",
-                    "Problem Solving"
+                    "Content Writing"
                 ]
             }
         }
@@ -164,7 +163,7 @@
                         "Working in Change\/Release management with L2 support to cover all Problem\/Incident tickets.",
                         "Monitoring the platform through Splunk, Dynatrace and investigating issues.",
                         "Coordinating with vendor for development activities.",
-                        "Representing change into Change Advisory Board and obtaining approvals.",
+                        "Representing change into Change Advisory Board and obtaining necessary approvals.",
                         "Implementation of code on production and UAT environment."
                     ]
                 },
@@ -200,10 +199,17 @@
                         "duration": 7,
                         "skills": [
                             "Linux",
-                            "Oracle",
-                            "Shell",
                             "Java",
-                            "SQL"
+                            "Shell",
+                            "Oracle",
+                            "SQL",
+                            "Splunk",
+                            "Toad",
+                            "Jira",
+                            "Rally",
+                            "GSM",
+                            "SQL Developer",
+                            "Salesforce"
                         ]
                     },
                     {
@@ -218,28 +224,21 @@
                     {
                         "duration": 1,
                         "skills": [
-                            "Salesforce",
-                            "Windows"
-                        ]
-                    },
-                    {
-                        "duration": "N\/A",
-                        "skills": [
-                            "Splunk",
-                            "Toad",
-                            "Jira",
-                            "Rally",
-                            "GSM",
-                            "SQL Developer"
+                            "HTML",
+                            "XML"
                         ]
                     }
                 ],
                 "Soft skills": [
-                    "Communication",
-                    "Teamwork",
+                    "Incident Management",
+                    "Problem Management",
+                    "Release Management",
+                    "Change Management",
+                    "Configuration Management",
                     "Client Management",
                     "Crisis Handling",
-                    "Interpersonal Skills"
+                    "Communication",
+                    "Teamwork"
                 ]
             }
         }
@@ -312,16 +311,14 @@
                     {
                         "duration": 1.5,
                         "skills": [
-                            "Tally"
-                        ]
-                    },
-                    {
-                        "duration": "N\/A",
-                        "skills": [
                             "MS Word",
                             "MS PowerPoint",
                             "Internet"
                         ]
+                    },
+                    {
+                        "duration": "N\/A",
+                        "skills": []
                     }
                 ],
                 "Soft skills": [
@@ -381,12 +378,7 @@
                             "IIS 7.0",
                             "Visual Studio 2015",
                             "Visual Studio 2017",
-                            "Microsoft SQL Server"
-                        ]
-                    },
-                    {
-                        "duration": 1.5,
-                        "skills": [
+                            "Microsoft SQL Server",
                             "Adobe Photoshop",
                             "Adobe Illustrator",
                             "Adobe Spark",
@@ -400,7 +392,9 @@
                 ],
                 "Soft skills": [
                     "Good Analytical Skills",
-                    "Ability to learn new technologies and tools"
+                    "Communication",
+                    "Teamwork",
+                    "Problem Solving"
                 ]
             }
         }
