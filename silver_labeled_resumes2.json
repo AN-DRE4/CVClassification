@@ -1,0 +1,408 @@
+[
+    {
+        "resume_id": "CVs\\batch_1\\10001_Arghya_Das (1).txt",
+        "resume_text": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nArghya Das\nMy Profile\n\nPROJECT ENGINEER, Band- B1, DEVELOPER-L2\nPersonal Details:\n\n\nName : Arghya Das\n\nMail ID: arg234@gmail.com \/ arghya.das1@wipro.com\n\n\nContact No: +91-9972364371\/9474869936\n\nCurrent Location Bangalore, KARNATAKA, India\n\nWork Experience Summary:\nTotal Experience 01 Years 06 months\nCurrent Employer: \nWipro Technologies (Jan 2011 till date) \n\nDesignation: Project Engineer (Microsoft SharePoint 2010 Developer)\n\nFirst Employer: \nWipro BPO ltd. as Technical Associate\n\n\n\n*(Appointment Letter and resignation letter as proof of employment &  exp.)\nTechnical Experience Summary:\nAcquired Skills (Top 10 Skills):\n\tSkill Name\n\tNo. of Months\n\n\tMicrosoft SharePoint 2010\n\t1 yr \n\n\tDot Net Framework 1.0, 2.0, 3.0, 3.5\/4.0\n\t3 Yr 04months\n\n\tVisual Studio Dot Net (2003,2005,2008,2010)\n\t3 Yr 04months\n\n\tMS SQL SERVER 2005\/2008\n\t3yrs\n\n\tC#.NET\n\t3 Yr 04months\n\n\tADO.NET\n\t3 Yr 04months\n\n\tASP.NET\n\t3 Yr 04months\n\n\tHTML\n\t3 Yr 04months\n\n\tCSS\n\t3 Yr 04months\n\n\tJavaScript\n\t1 yr\n\n\nProject Details:\n1. FTSE (Expected go live: July 2012)\n\tStart Date 19-Aug-2011\n\tTeam Size 25\n\n\tEnd Date   30-June-2012\n\tPeriod in Months   10\n\n\tRole     DEVELOPER \u2013 L2\n\tOnsite Duration(Months)  0\n\n\tProject Description\n\t\u2022 The project is meant to redesign the entire website in order to achieve:\nImproved Efficiency: Make the website more efficient for both seasoned and unseasoned users by making it easier to access the contents quicker and with more accuracy.\nImproved Access to Product & Service Details: The website should ensure that the user can easily search for an index, access more details about an index and get all the information about the FTSE services.\nBranding and Lead Generation: The website should aid the efforts of the marketing team in establishing FTSE as the leading index provider. The website should provide a rich user experience which in turn would lead to frequent visits and eventually lead generation.\nResearch Information: The website should provide comprehensive content on research and publications from FTSE. The website in its later phases should provide advanced research, analytics and related services.\n\n\tResponsibilities\n\n\/ Contributions\n\t\u2022 Developing master page and home page.\n\u2022 Develop page layouts.\n\u2022 Developed custom webparts using C#.NET and ASP.NET using visual studio2010\n\u2022 Implemented sharepoint's Out of box generic search control.\n\u2022 Developing static pages and some static webparts.\n\u2022 sharepoint Out of Box controls -- implementation.\n\u2022 sharepoint ribbon control customization and implementation.\n\u2022 Developed the whole site's look and feel alone from HTML prototype to sharepoint site.\n\n\n\tUsed Skills :\n\tDuration (Months)\n\n\tSharepoint\n\t10 months\n\n\tC#-ASP.NET\n\t10 months\n\n\tHTML\n\t10 months\n\n\tCSS\n\t10 months\n\n\tJavascript\n\t10 months\n\n\nEducation Details:\n\tEducation\n\tSpecialization\n\tYear of Graduation\n\tInstitution\/University\n\n\tBTech\n\tECE\n\t2009\n\tDumkal Institute of Engineering &\n\nTech\n\n\nCertification done:\nDatabase and Windows Application Development (DWAD) from NIIT. Using C#.Net, Visual Studio2008,ASP.Net 3.5, ADO.Net, MS SQL Server 2005\/2008 in the year 2010-2011.\nPassport Details:\n\tIssue Date\n\tExpiry Date\n\tIssue Country\n\tIssue Authority\n\tCountry Of Birth\n\n\t20-Sep-2010\n\t19-Sep-2020\n\tIndia\n\tMINISTRY OF\n\nEXTERNAL AFFIRS\n\tIndia\n\n\nForeign Languages:\n\tLanguage\n\tProficiency Level\n\n\tENGLISH\n\tProficient\n\n\nDeclaration:\nI Arghya Das working do here by declare that the information given above My Profile is true and correct to best of my knowledge.\n\nDate: 05-May-2012\n\n\n\n\n\n\nThanks and regards,\n\nArghya Das\n\nWipro Technologies\n",
+        "extracted_info": {
+            "education": [
+                {
+                    "degree": "BTech",
+                    "institution": "Dumkal Institute of Engineering & Tech",
+                    "graduation_date": "2009"
+                }
+            ],
+            "work_experience": [
+                {
+                    "company": "Wipro Technologies",
+                    "title": "Project Engineer (Microsoft SharePoint 2010 Developer)",
+                    "start_date": "January 2011",
+                    "end_date": "October 2023",
+                    "duration": 12.5,
+                    "responsibilities": [
+                        "Developing master page and home page.",
+                        "Develop page layouts.",
+                        "Developed custom webparts using C#.NET and ASP.NET using Visual Studio 2010.",
+                        "Implemented SharePoint's Out of box generic search control.",
+                        "Developing static pages and some static webparts.",
+                        "SharePoint Out of Box controls -- implementation.",
+                        "SharePoint ribbon control customization and implementation.",
+                        "Developed the whole site's look and feel alone from HTML prototype to SharePoint site."
+                    ],
+                    "technical_skills": [
+                        "Microsoft SharePoint 2010",
+                        "C#.NET",
+                        "ASP.NET",
+                        "HTML",
+                        "CSS",
+                        "JavaScript",
+                        "Dot Net Framework",
+                        "Visual Studio",
+                        "MS SQL Server"
+                    ],
+                    "soft_skills": [
+                        "Teamwork",
+                        "Problem Solving",
+                        "Communication"
+                    ]
+                },
+                {
+                    "company": "Wipro BPO Ltd.",
+                    "title": "Technical Associate",
+                    "start_date": "N\/A",
+                    "end_date": "N\/A",
+                    "duration": "N\/A",
+                    "responsibilities": "N\/A",
+                    "technical_skills": "N\/A",
+                    "soft_skills": "N\/A"
+                }
+            ],
+            "extra_skills": {
+                "Technical skills": [
+                    "Database and Windows Application Development (DWAD)",
+                    "ADO.NET"
+                ],
+                "Soft skills": [
+                    "Proficient in English"
+                ]
+            }
+        }
+    },
+    {
+        "resume_id": "CVs\\batch_1\\10002_Pooja_Darji.txt",
+        "resume_text": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n                                 CURRICULUM VITAE                                                   \n\n                                 Curriculum Vitae                                          \n         \n\nPooja Darji\n\nCAREER OBJECTIVE:\n\nTo Obtain a Challenging Position As a \u201cSoftware Engineer\u201d, In a Growth Oriented Company, Where I Can Fully Utilize My Skills While Contributing, For The Benefits Of My Organization And Other Workmates.\n\nEDUCATION QUALIFICATION:\n\n\tEducation\n\tBoard \/ University\n\tYear Of Passing\n\tPercentage\n\n\tB.C.A.\n\tGujarat uni\n\t2012\n\t65.55%\n\n\tH.S.C\n\tG.S.H.E.B.\n\t2009\n\t71.14%\n\n\tS.S.C\n\tG.S.E.B.\n\t2007\n\t60.00%\n\n\nTECHNICAL SKILLS:\n\n\tOperating System\n\tWindows Dos\/98\/2000\/XP\n\n\tProgramming Languages\n\tC, C++,VB.NET,ASP.NET,HTML\n\n\tFront \u2013 End Application\n\tVB.NET\n\n\tDatabase\n\tORACLE 8i, MS-ACESS,  SQL MS-Access\n\n\tWeb Technologies\n\tHTML,XHTML\n\n\nPROJECT: 1\n\n\tProject Title\n\tTwo wheeler auto motion\n\n\tDevelop For\n\tYamaha showrooms\n\n\tSemester\n\tT.Y.B.C.A\n\n\tSkill Used\n\tVB.NET,SQL Server 2005\n\n\nPERSONAL PROFILE:\n\n         \n\n                                                                                     \n\nEXPERIENCE:\n\n1)  1.6  Year   Experience in an SEO  (Search Engine optimization)  And CS at Steamlite Sales Pvt Ltd  Base.\n\nSEO Ker Skills\n\nOff-Page Optimization:\n\n\u00b7 Directory submission\n\n\u00b7 Social Bookmarking\n\n\u00b7 Article submission\n\n\u00b7 Forum Posting.\n\n\u00b7 Content Writing\n\n\u00b7 Classified ad\n\n\u00b7 Blogs Submission\n\n\u00b7 Comment Posting \n\n\u00b7 Forum Discussion\n\n\u00b7 Classified\n\nSEO Tools Used:\n\n\u00b7 Google Adwords\n\n\u00b7 Google Analytics \n\n\u00b7 Page Rank Checker Tool\n\n\u00b7 Google Webmaster Tool\n\nDECLARATION:\n\nI Hereby Declare That The Above Mentioned Information is True To The Best Of My Knowledge.\n\nYour Faithfully,\n\n\n\n\n\n\n\n\n\n\n\n       Pooja Darji\nFull Name\ufffd\nDarji Pooja\ufffd\n\ufffd\nFather Name\ufffd\nMahesh bhai\ufffd\n\ufffd\nDate of Birth\ufffd\n3rd   Aug 1987\ufffd\n\ufffd\nNationality\ufffd\nIndian\ufffd\n\ufffd\nGender\ufffd\nFemale\ufffd\n\ufffd\nLanguages Known\ufffd\n1) English 2) Hindi 3) Gujarati\ufffd\n\ufffd\nContact No\ufffd\n8734897900\ufffd\n\ufffd\nMailing Address\ufffd\nL-22\/329,geeta appt, opp.laxminagar flat,ranip,ahmedabad\ufffd\n\ufffd\nE-Mail ID\ufffd\n\ufffd HYPERLINK \"mailto:Darjipooja3638@gmail.com\" \ufffdDarjipooja3638@gmail.com\ufffd\ufffd\n\ufffd\nHobbies\ufffd\nReading, cooking.\ufffd\n\ufffd\n \n\n\n\n\n\n",
+        "extracted_info": {
+            "education": [
+                {
+                    "degree": "B.C.A.",
+                    "institution": "Gujarat uni",
+                    "graduation_date": "2012"
+                },
+                {
+                    "degree": "H.S.C",
+                    "institution": "G.S.H.E.B.",
+                    "graduation_date": "2009"
+                },
+                {
+                    "degree": "S.S.C",
+                    "institution": "G.S.E.B.",
+                    "graduation_date": "2007"
+                }
+            ],
+            "work_experience": [
+                {
+                    "company": "Steamlite Sales Pvt Ltd",
+                    "title": "SEO and CS",
+                    "start_date": "N\/A",
+                    "end_date": "N\/A",
+                    "duration": "N\/A",
+                    "responsibilities": [
+                        "Off-Page Optimization",
+                        "Directory submission",
+                        "Social Bookmarking",
+                        "Article submission",
+                        "Forum Posting",
+                        "Content Writing",
+                        "Classified ad",
+                        "Blogs Submission",
+                        "Comment Posting",
+                        "Forum Discussion",
+                        "Classified"
+                    ],
+                    "technical_skills": [
+                        "Google Adwords",
+                        "Google Analytics",
+                        "Page Rank Checker Tool",
+                        "Google Webmaster Tool"
+                    ],
+                    "soft_skills": []
+                }
+            ],
+            "extra_skills": {
+                "Technical skills": [
+                    "C",
+                    "C++",
+                    "VB.NET",
+                    "ASP.NET",
+                    "HTML",
+                    "ORACLE 8i",
+                    "MS-ACCESS",
+                    "SQL MS-Access",
+                    "HTML",
+                    "XHTML"
+                ],
+                "Soft skills": [
+                    "Reading",
+                    "Cooking"
+                ]
+            }
+        }
+    },
+    {
+        "resume_id": "CVs\\batch_1\\10005_Sachin_Jadhav.txt",
+        "resume_text": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVALLABH KALAGI\n\nSachin Jadhav\nE-mail: sachinjadhav58@gmail.com\nPhone: 9561199772\nCareer Objective:\n\n\nTo take on the challenges as a Lead Engineer in the field of Information Technology. Willing to work as a key player in challenging & creative environment growing with the organization and working with the cutting edge technologies.\n\nProfessional Summary:\n\n\u00b7 Total 5+ Years of experience in IT industry and worked on Application\/Production Implementation, Support & Maintenance projects.\n\n\u00b7 Incident\/Problem Management, Release management, Change management and Configuration management which includes L2 Support.\n\n\u00b7 Currently working in level2 support and co-ordinate with L3 support for bug fixing post production release activities.\n\n\u00b7 Co-ordinate with business to collect requirements\/enhancements needed in application and work with L3 teams to get them on boarded within required timelines. \n\n\u00b7 Implementation of code on production and UAT environment.\n\u00b7 Perform impact analysis if any and provide the proper recovery plan and highlight the risks to business team.\n\n\u00b7 Good knowledge of banking\/payment domain and ITIL concept.\n\u00b7 Hands on experience on Linux operating system, Oracle database, and shell scripting.\n\u00b7 Excellent experience in client management and crisis handling.\n\u00b7 Good team player with decent communication and interpersonal skills.\n\nWork Experience Summary:\n\u00b7 Working as Senior System Engineer with Mastercard Technology Pune from July 2016 to till date.\n\n\u00b7 Worked as System Analyst with Nihilent Technologies, Pune from June 2013 to June 2016. \n\n\u00b7 Worked as Data Analyst with eClerx services, Pune from June 2011 to May 2012.\n\nEducation Summary:\n\u00b7 Master in Computer Science (M.Sc.) from Pune University in 2010 with 64%\n\u00b7 Bachelor in Computer Science (B.Sc.) from Pune University in 2008 with 63%\n\nTechnical Skills:\nOperating Systems\n\n: Linux, Solaris, Windows\nProgramming Languages\n: Java, Shell, HTML, XML\n\nDatabase\n\n\n: Oracle, SQL\nDomain Knowledge\n: Payments and Banking\nOther Tools\n: Splunk, Toad, Jira, Rally, GSM, SQL Developer, Sales force   \nOnsite Exposure:\n\nDuring November 2013 travelled to Cape Town, South Africa for the Visa - MTN SI partnership. Objective is to understand the business engagement between Visa & MTN and provide support the MTN mobile money business independently from the Nihilent\u2019s offshore development center.\nDuring January 2016 to March 2016 travelled to Kingdom of Lesotho, For the Visa mobile money platform upgrade to new version of product. Worked as Deployment\/implementation engineer for upgrading the client UAT, Production and DR environment and co-ordinator between offshore team and client.\n\nProfessional Projects Summary:\nOrganization: Mastercard Technology\nProject Name\n: Mastercom\/EMS\n    Description \n: Mastercom is an application which basically handles the dispute between the issuer (Customer) and acquirer (Banks) Based on the documentation from both parties. This is called as Dispute resolution Management.\n\n\nEMS is an Expert Monitoring System which keeps the track of every transaction done through the card and keeps the score for the same in Database. With the help of this Data transactions are monitored for declines or fraud that can take place and the same is avoided.\n\n    Client Name\n: Banks throughout the world. \n\n    Duration of project: July 2016 to till date\n    Environment\n: Applications are deployed on Linux servers and JBoss is used as web service. Oracle database is used for capturing the data.\n\n    Role\n: Working in Change\/Release management with L2 support to cover all Problem\/Incident tickets. Monitoring the platform through Splunk, Dynatrace and investigating the same and get it resolved with the help of L3 Support. Coordinate with vendor for development activities. Represent change into Change Advisory Board and get the approvals of necessary stakeholders. Implementation of code on production and UAT environment\nOrganization: Nihilent Technologies\n Project Name\n: Visa Mobile Money Services \n Description \n: The project was to introduce the money transactions through Mobile without the internet connectivity in South Africa continent which allows customer from remote area where banks are not easily available to do the financial transaction which includes money transfer\/withdraw from retailer\/merchants, mobile recharge and electricity\/water bill payment.\nClient Name\n\n: Banks and Mobile network provider from South Africa continent.\n\nDuration of project\n: 3 Years\n\nEnvironment\n\n: PL\/SQL, Solaris, Web sphere, Glassfish\n\nRole\n: Change\/Release manager with L2 support to cover all Problem\/Incident tickets. Investigating the same and get them resolved with the help of L3 Support. Coordinate with vendor for development activities. Deployment\/Implementation Engineer to implement project on UAT and production environment.\nOrganization: eClerx Services Pvt Ltd\nProject Name\n: US SMB Campaign and Analytics Support\n Description \n: This project was to highlighting the key factors of the business through designing frequent reports to help clients understand current business trend against various segments, regions, countries, product & product categories, companies & business channels, etc.\nClient Name\n\n: Dell Inc\n\nDuration of project\n: 11 Months\nEnvironment\n\n: Sales force, Oracle, Windows\nRole\n: Worked as Data Analyst to extract data from Sales Force CRM tool. Involved in Sales and Marketing for Lead Life, Lead analysis, Marketing Strategies. Knowledge of Salesforce.Com in fundamental of Sales and Marketing in Lead Management, Account Management, Campaign Management and Forecast strategies. Creation of reports and dashboards according to requirement by business people in Sales & Marketing department to understand the business numbers for the US region.\nPersonal Profile:  \n\nDate of Birth\n\n\n: 08 August 1987\nMarital Status\n\n: Married\nNationality\n\n\n: Indian\n\nPassport Number\n\n: J4275662\nLanguages known\n\n: English, Marathi, Hindi.\n\nPermanent Address\n: House No.496, Patil Wasti, Near Water Tank,\n\n\n  A\/P-Nere, Taluka-Mulashi, District-Pune,\n\n\n\n  Pincode-411033\nDeclaration:\n\n\n\nI hereby declare that the above stated information is true to the best of my knowledge.\n\n\n\n\n\n\n\n\n\n                                 (Sachin Jadhav)\n",
+        "extracted_info": {
+            "education": [
+                {
+                    "degree": "Master in Computer Science (M.Sc.)",
+                    "institution": "Pune University",
+                    "graduation_date": "2010"
+                },
+                {
+                    "degree": "Bachelor in Computer Science (B.Sc.)",
+                    "institution": "Pune University",
+                    "graduation_date": "2008"
+                }
+            ],
+            "work_experience": [
+                {
+                    "company": "Mastercard Technology",
+                    "title": "Senior System Engineer",
+                    "start_date": "July 2016",
+                    "end_date": "October 2023",
+                    "duration": 7,
+                    "responsibilities": [
+                        "Working in Change\/Release management with L2 support to cover all Problem\/Incident tickets.",
+                        "Monitoring the platform through Splunk, Dynatrace and investigating the same and get it resolved with the help of L3 Support.",
+                        "Coordinate with vendor for development activities.",
+                        "Represent change into Change Advisory Board and get the approvals of necessary stakeholders.",
+                        "Implementation of code on production and UAT environment."
+                    ],
+                    "technical_skills": [
+                        "Linux",
+                        "Oracle",
+                        "Splunk",
+                        "Dynatrace",
+                        "JBoss"
+                    ],
+                    "soft_skills": [
+                        "Client management",
+                        "Crisis handling",
+                        "Team player",
+                        "Communication",
+                        "Interpersonal skills"
+                    ]
+                },
+                {
+                    "company": "Nihilent Technologies",
+                    "title": "System Analyst",
+                    "start_date": "June 2013",
+                    "end_date": "June 2016",
+                    "duration": 3,
+                    "responsibilities": [
+                        "Change\/Release manager with L2 support to cover all Problem\/Incident tickets.",
+                        "Investigating the same and get them resolved with the help of L3 Support.",
+                        "Coordinate with vendor for development activities.",
+                        "Deployment\/Implementation Engineer to implement project on UAT and production environment."
+                    ],
+                    "technical_skills": [
+                        "PL\/SQL",
+                        "Solaris",
+                        "Web sphere",
+                        "Glassfish"
+                    ],
+                    "soft_skills": [
+                        "Client management",
+                        "Crisis handling",
+                        "Team player",
+                        "Communication",
+                        "Interpersonal skills"
+                    ]
+                },
+                {
+                    "company": "eClerx Services Pvt Ltd",
+                    "title": "Data Analyst",
+                    "start_date": "June 2011",
+                    "end_date": "May 2012",
+                    "duration": 1,
+                    "responsibilities": [
+                        "Extract data from Sales Force CRM tool.",
+                        "Involved in Sales and Marketing for Lead Life, Lead analysis, Marketing Strategies.",
+                        "Creation of reports and dashboards according to requirement by business people in Sales & Marketing department."
+                    ],
+                    "technical_skills": [
+                        "Sales force",
+                        "Oracle",
+                        "Windows"
+                    ],
+                    "soft_skills": [
+                        "Communication",
+                        "Teamwork",
+                        "Analytical skills"
+                    ]
+                }
+            ],
+            "extra_skills": {
+                "Technical skills": [
+                    "Shell scripting",
+                    "HTML",
+                    "XML",
+                    "SQL Developer"
+                ],
+                "Soft skills": [
+                    "Problem Solving",
+                    "Leadership"
+                ]
+            }
+        }
+    },
+    {
+        "resume_id": "CVs\\batch_1\\10018_NITIN_JAIN.txt",
+        "resume_text": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRESUME\n\nNITIN JAIN   \n\n\n\n\n\n       \n\nEmail: nitin9482@gmail.com                                                                                                                                                       \n\n\njain.nitin1985@yahoo.co.in                                                                                                       \n\nMobile No:8010475082\n\nSector -17 A Sukhrali Gurgaon (Delhi)                                                                                                                                                                                                                                                              \n\n                                                                                                                                                                                                                                                                                                         \n\n\t  PROFESSIONAL OBJECTIVE\n\n\nI want to spur my creative instinct, professional knowledge & use my skills as a programmer effectively & efficiently in organization to achieve best performance and progress of company.\n\n\t  WORK EXPERIENCE\n\n\nCompany Name: - Genpact India Gurgaon. \n\nDesignation: - Process Associate (Wells Fargo bank project)\nDuration: July 2011 \u2013 Presently Working\n\nAbout Company: Genpact is a global leader in business process and technology management. Responsibilities: -\n\nPrepare the report on the excel, Review financial data and research on that , Find the claim and issue the claim amount to the customer through visa , Reverse the NSF, OD and ITF Fees, work on software like FDR, HOGAN, DAT, ETRAN, Check the credit limit and the type of account, Prepare fraud report and questionnaire , Calculate the risk , \nCompany Name: - CA Agarwal Gajendra & Associate Gwalior. \n\nDesignation: - Office Assistant\n\nDuration: January 2010 \u2013 April 2011\n\nAbout Company: - It consults regarding Accounts and Financial matters.\n\nJob Responsibilities: -\n\n Tally Accounting, Voucher preparation, Checking of Daily Expense Report, .Bank Reconciliation Statement\n\n\t  EDUCATION\n\n\n\u00b7 MBA (Finance) from Prestige Institute of Management, Gwalior Jiwaji University 2007-2009.\n\n\u00b7 PGDCA from Maips College, Gwalior Jiwaji University 2007- 2008. \n\n\u00b7 B.Com (Honour\u2019s) from MLB College of Excellence, Gwalior Jiwaji University 2005.\n\n\tSUMMER INTERNSHIP PROJECT EXPOSURE\n\n\nName of the Organization: AXIS Bank Ltd Gwalior (M.P.).\n\nDuration: 60 days\n\n\nTitle of the Project: Profitability Analysis of Axis Bank.\n\n\t     ON JOB TRAINING\n\n\n\u00b7 Karvy Stock Broking Ltd. Gwalior. (15 days)\n\n\t      SEMINARS PRESENTED\n\n\n\u00b7 Effect And Analysis A Product Recall.\n\n\u00b7 Indian Animation Industry: The Way Ahead. \n\n\tRESERCH PROJECTS\n\n\n\u00b7 Securitization of NPA and Its Impact on Profitability of Bank.\n\n\u00b7 Generating positive word of mouth communication through customer \u2013 employee relationship: A study of banking sector.\n\n\u00b7 Aamdani Atthanni Kharcha Rupaiya.(Learning Through Movie Project)\n\n\tCOMPUTER PROFICIENCY\n\n\n\u00b7 Applications:  MS Word, MS Excel, MS PowerPoint, Internet, Tally.\n\n\t      PERSONAL DETAILS\n\n\nDate of birth\n                       \n24 - 02 - 1985\n\n\n\n\n\nMarital Status          \n\nSingle\n\nPhone No.                               9329727224, 08010475082\n\n",
+        "extracted_info": {
+            "education": [
+                {
+                    "degree": "MBA (Finance)",
+                    "institution": "Prestige Institute of Management, Gwalior Jiwaji University",
+                    "graduation_date": "2009"
+                },
+                {
+                    "degree": "PGDCA",
+                    "institution": "Maips College, Gwalior Jiwaji University",
+                    "graduation_date": "2008"
+                },
+                {
+                    "degree": "B.Com (Honour\u2019s)",
+                    "institution": "MLB College of Excellence, Gwalior Jiwaji University",
+                    "graduation_date": "2005"
+                }
+            ],
+            "work_experience": [
+                {
+                    "company": "Genpact India Gurgaon",
+                    "title": "Process Associate (Wells Fargo bank project)",
+                    "start_date": "July 2011",
+                    "end_date": "October 2023",
+                    "duration": 12.5,
+                    "responsibilities": [
+                        "Prepare the report on the excel",
+                        "Review financial data and research on that",
+                        "Find the claim and issue the claim amount to the customer through visa",
+                        "Reverse the NSF, OD and ITF Fees",
+                        "Work on software like FDR, HOGAN, DAT, ETRAN",
+                        "Check the credit limit and the type of account",
+                        "Prepare fraud report and questionnaire",
+                        "Calculate the risk"
+                    ],
+                    "technical_skills": [
+                        "Excel",
+                        "FDR",
+                        "HOGAN",
+                        "DAT",
+                        "ETRAN"
+                    ],
+                    "soft_skills": [
+                        "Analytical Skills",
+                        "Attention to Detail"
+                    ]
+                },
+                {
+                    "company": "CA Agarwal Gajendra & Associate Gwalior",
+                    "title": "Office Assistant",
+                    "start_date": "January 2010",
+                    "end_date": "April 2011",
+                    "duration": 1.5,
+                    "responsibilities": [
+                        "Tally Accounting",
+                        "Voucher preparation",
+                        "Checking of Daily Expense Report",
+                        "Bank Reconciliation Statement"
+                    ],
+                    "technical_skills": [
+                        "Tally"
+                    ],
+                    "soft_skills": [
+                        "Organizational Skills",
+                        "Time Management"
+                    ]
+                }
+            ],
+            "extra_skills": {
+                "Technical skills": [
+                    "MS Word",
+                    "MS Excel",
+                    "MS PowerPoint",
+                    "Internet"
+                ],
+                "Soft skills": [
+                    "Communication",
+                    "Teamwork"
+                ]
+            }
+        }
+    },
+    {
+        "resume_id": "CVs\\batch_1\\10019_SANTOSH_KUMAR_DHAL (1).txt",
+        "resume_text": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSANTOSH KUMAR DHAL\n\n\nMobile No: +8553782862\nEmail Id: santoshkumardhal1993@gmail.com \n\t\t\t\t\nCAREER OBJECTIVE:-\n I want to join as a web developer in a progressive organization to pursue professional excellence and contribute my best in the accomplishment of organizational goals. \n\nOVERVIEW:-\n\u00b7 1.7 Years of experience in developing web based applications.\n\u00b7 Hands on  in developing application using ASP.NET and C# .\n\u00b7 Hands on experience in Front end technologies such as HTML, CSS, JavaScript, Jquery,Bootstrap,\n\u00b7 Hands on experience in Adobe creative suite and Google web designer.\n\u00b7 Good at debugging code using Visual studio and Chrome DevTools. \n\u00b7 Good Analytical Skills and urge to learn new technologies and Tools. \n\nTECHNICAL PROFICIENCY:-\n\u00b7 Programming and Scripting: ASP.NET, CSS,HTML 5,JavaScript, AJAX, IIS 7.0,Visual studio 2015 and 2017.\n\u00b7 Database: Microsoft SQL server\n\u00b7 Operating Systems:  Mac OS and Windows\n\u00b7 Graphics and Animation Design: Adobe photoshop , Adobe illustrator,Adobe spark\n\u00b7 Other tools: Notepad++,Eclipse,Sublime text,Brackets,WYSIWYG Web Builder\n\nEXPERIENCE:-\nSoftware Engineer at IKONTEL Solutions Pvt Ltd (Nov-2016 Jun-2018)\n\nPROJECTS:-\n\n1) Project Name: Official Homepage Designing (In house project) (IKONTEL Solutions Pvt Ltd)\n\nProject Description: It\u2019s an official website for  IKONTEL Solutions Pvt Ltd\nJob functions and responsibilities:\n\u00b7 Redesigned Contact-Us div.\n\u00b7 Implemented \u2018i am not a robot\u2019 captcha in Contact-Us div.\n\u00b7 Designed Carousel.\n\u00b7 Tested websites for cross browser compatibility and fixing bugs and errors.\n\n2) Project Name: Transcription Portal  (Nuance Transcription Services India Pvt Ltd)\n\nProject Description:\nIt\u2019s a voice transcription portal where you can listen to user interaction with IVR and transcribe the same with appropriate voice utterance symbols.This transcription helps speech scientist to create grammar for voice engine.\n\nJob functions and responsibilities:\n\u00b7 Designing and developing websites on ASP.NET framework\n\u00b7 Designing UX for Transcription portal using adobe illustrator.\n\u00b7 Designing and implementing user interface (UI) using HTML5,CSS ,Bootstrap and javascript. \n\u00b7 Designing icon using Adobe illustrator.\n\u00b7 Create validation for login page (Both user and admin).\n\u00b7 Designing Admin and User UI.\n\u00b7 Create master page.\n\u00b7 Built dynamically generated dropdown lists using Ajax jqueryUI.\n\u00b7 Testing websites for cross browser compatibility and fixing bugs and errors.\n\u00b7 Test all page functionality using functional testing.\n\nEDUCATION:-\nCompleted B.Tech from Raajdhani Engineering College (Odisha) in the year 2014\n\n\nPERSONAL PROFILE:-\n\nFather\u2019s Name\t: Kishore Dhal\nDate of Birth\t: 03-06-1993\t\nNationality\t: Indian\t\nLanguages Known \t: English, Hindi and Odia\nCurrent Address                                 : Marathalli,Tulsi theater road, 7\u2019th cross Bangalore.\n\n\n\nDECLARATION:-\nI hereby declare that the information furnished above is correct and true to the best of my knowledge and belief.\t\t\t\t\t\t\t\n\nPlace: Bangalore\nDate: \t\t\t\t\t\t\t\t                               (SANTOSH DHAL)\n",
+        "extracted_info": {
+            "education": [
+                {
+                    "degree": "B.Tech",
+                    "institution": "Raajdhani Engineering College",
+                    "graduation_date": "2014"
+                }
+            ],
+            "work_experience": [
+                {
+                    "company": "IKONTEL Solutions Pvt Ltd",
+                    "title": "Software Engineer",
+                    "start_date": "November 2016",
+                    "end_date": "June 2018",
+                    "duration": 1.5,
+                    "responsibilities": [
+                        "Redesigned Contact-Us div.",
+                        "Implemented \u2018i am not a robot\u2019 captcha in Contact-Us div.",
+                        "Designed Carousel.",
+                        "Tested websites for cross browser compatibility and fixing bugs and errors.",
+                        "Designing and developing websites on ASP.NET framework.",
+                        "Designing UX for Transcription portal using adobe illustrator.",
+                        "Designing and implementing user interface (UI) using HTML5, CSS, Bootstrap and JavaScript.",
+                        "Designing icon using Adobe illustrator.",
+                        "Create validation for login page (Both user and admin).",
+                        "Designing Admin and User UI.",
+                        "Create master page.",
+                        "Built dynamically generated dropdown lists using Ajax jQuery UI.",
+                        "Testing websites for cross browser compatibility and fixing bugs and errors.",
+                        "Test all page functionality using functional testing."
+                    ],
+                    "technical_skills": [
+                        "ASP.NET",
+                        "C#",
+                        "HTML5",
+                        "CSS",
+                        "JavaScript",
+                        "AJAX",
+                        "IIS 7.0",
+                        "Visual Studio 2015",
+                        "Visual Studio 2017",
+                        "Microsoft SQL Server",
+                        "Adobe Illustrator",
+                        "Adobe Photoshop",
+                        "Adobe Spark",
+                        "Notepad++",
+                        "Eclipse",
+                        "Sublime Text",
+                        "Brackets",
+                        "WYSIWYG Web Builder"
+                    ],
+                    "soft_skills": [
+                        "Analytical Skills",
+                        "Problem Solving",
+                        "Attention to Detail"
+                    ]
+                }
+            ],
+            "extra_skills": {
+                "Technical skills": [
+                    "Adobe Creative Suite",
+                    "Google Web Designer",
+                    "Debugging using Visual Studio",
+                    "Debugging using Chrome DevTools"
+                ],
+                "Soft skills": [
+                    "Communication",
+                    "Teamwork",
+                    "Learning Agility"
+                ]
+            }
+        }
+    }
+]

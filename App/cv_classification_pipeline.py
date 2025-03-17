@@ -21,15 +21,15 @@ EXPERTISE_CATEGORIES = {
     ],
     'data_engineering': [
         'sql', 'etl', 'hadoop', 'spark', 'aws', 'data warehouse', 'azure', 
-        'databricks', 'snowflake', 'redshift', 'big data'
+        'databricks', 'snowflake', 'redshift', 'big data', 'oracle', 'ms sql server'
     ],
     'data_science': [
         'machine learning', 'deep learning', 'ai', 'artificial intelligence', 
-        'python', 'r', 'statistics', 'tensorflow', 'pytorch', 'keras'
+        'python', 'r', 'statistics', 'tensorflow', 'pytorch', 'keras', 'data analysis'
     ],
     'devops': [
         'jenkins', 'docker', 'kubernetes', 'aws', 'azure', 'devops', 'ci/cd',
-        'terraform', 'ansible', 'linux', 'bash', 'shell'
+        'terraform', 'ansible', 'linux', 'bash', 'shell', 'deployment'
     ],
     'cybersecurity': [
         'security', 'penetration testing', 'ethical hacking', 'network security',
@@ -41,7 +41,7 @@ EXPERTISE_CATEGORIES = {
     ],
     'finance': [
         'excel', 'accounting', 'financial analysis', 'financial reporting',
-        'banking', 'reconciliation', 'tax', 'audit'
+        'banking', 'reconciliation', 'tax', 'audit', 'tally'
     ],
     'management': [
         'project management', 'team lead', 'management', 'leadership',
@@ -64,6 +64,9 @@ ROLE_LEVELS = {
         'manager', 'head', 'director', 'chief', 'vp', 'president'
     ]
 }
+
+# Define role level hierarchy from highest to lowest
+ROLE_LEVEL_HIERARCHY = ['management', 'senior_level', 'mid_level', 'entry_level', 'unknown']
 
 # Define organizational units based on job roles and responsibilities
 ORG_UNITS = {
@@ -128,11 +131,26 @@ class CVClassifier:
             # Extract text representation
             all_text = self._extract_resume_text(extracted_info)
             
-            # Determine expertise categories
-            expertise = self._determine_expertise(extracted_info)
+            # Determine expertise categories by work experience
+            expertise_by_job = self._determine_expertise_by_job(extracted_info)
+            
+            # Get overall expertise categories (flattened)
+            expertise = list(set(exp for job_exp in expertise_by_job.values() for exp in job_exp))
+            if not expertise:
+                expertise = ['unknown']
             
             # Determine role level for each expertise category
-            role_level_by_expertise = self._determine_role_level_by_expertise(extracted_info, expertise)
+            role_level_by_expertise = self._determine_role_level_by_expertise(extracted_info, expertise_by_job)
+            
+            # For each expertise, keep only the highest role level
+            for exp in role_level_by_expertise:
+                role_levels = role_level_by_expertise[exp]
+                highest_level = 'unknown'
+                for level in ROLE_LEVEL_HIERARCHY:
+                    if level in role_levels:
+                        highest_level = level
+                        break
+                role_level_by_expertise[exp] = [highest_level]
             
             # Determine organizational unit
             org_unit = self._determine_org_unit(extracted_info)
@@ -141,6 +159,7 @@ class CVClassifier:
                 'resume_id': resume.get('resume_id', ''),
                 'text': all_text,
                 'expertise': expertise,
+                'expertise_by_job': expertise_by_job,
                 'role_level_by_expertise': role_level_by_expertise,
                 'org_unit': org_unit
             })
@@ -157,30 +176,45 @@ class CVClassifier:
                 edu_text = f"{edu.get('degree', '')} {edu.get('institution', '')} {edu.get('graduation_date', '')}"
                 texts.append(edu_text)
         
-        # Extract work experience
+        # Extract work experience including job-specific skills
         if 'work_experience' in extracted_info:
             for exp in extracted_info['work_experience']:
                 exp_text = f"{exp.get('company', '')} {exp.get('title', '')} "
-                if 'responsibilities' in exp:
+                
+                # Add responsibilities
+                if 'responsibilities' in exp and isinstance(exp['responsibilities'], list):
                     resp_text = ' '.join(exp.get('responsibilities', []))
                     exp_text += resp_text
+                    
+                # Add technical skills specific to this job
+                if 'technical_skills' in exp and isinstance(exp['technical_skills'], list):
+                    tech_skills = ' '.join(exp.get('technical_skills', []))
+                    exp_text += f" Technical skills: {tech_skills}"
+                    
+                # Add soft skills specific to this job
+                if 'soft_skills' in exp and isinstance(exp['soft_skills'], list):
+                    soft_skills = ' '.join(exp.get('soft_skills', []))
+                    exp_text += f" Soft skills: {soft_skills}"
+                    
                 texts.append(exp_text)
         
-        # Extract skills
-        if 'skills' in extracted_info:
-            if 'Technical skills' in extracted_info['skills']:
-                for skill_group in extracted_info['skills']['Technical skills']:
-                    skill_text = ' '.join(skill_group.get('skills', []))
-                    texts.append(skill_text)
-            
-            if 'Soft skills' in extracted_info['skills']:
-                soft_skills = ' '.join(extracted_info['skills']['Soft skills'])
-                texts.append(soft_skills)
+        # Extract extra skills that aren't associated with specific jobs
+        if 'extra_skills' in extracted_info:
+            if 'Technical skills' in extracted_info['extra_skills'] and isinstance(extracted_info['extra_skills']['Technical skills'], list):
+                extra_tech = ' '.join(extracted_info['extra_skills']['Technical skills'])
+                texts.append(f"Extra technical skills: {extra_tech}")
+                
+            if 'Soft skills' in extracted_info['extra_skills'] and isinstance(extracted_info['extra_skills']['Soft skills'], list):
+                extra_soft = ' '.join(extracted_info['extra_skills']['Soft skills'])
+                texts.append(f"Extra soft skills: {extra_soft}")
         
         return ' '.join(texts)
     
     def _map_skill_to_expertise(self, skill):
         """Map a skill to corresponding expertise categories"""
+        if not isinstance(skill, str):
+            return []
+            
         skill_lower = skill.lower()
         matched_expertise = []
         
@@ -192,113 +226,180 @@ class CVClassifier:
         
         return matched_expertise
     
-    def _determine_expertise(self, extracted_info):
-        """Determine expertise categories based on skills and experience"""
-        expertise_list = []
-        skills = []
+    def _determine_expertise_by_job(self, extracted_info):
+        """Determine expertise categories for each job based on skills and responsibilities"""
+        expertise_by_job = {}
         
-        # Extract all skills
-        if 'skills' in extracted_info and 'Technical skills' in extracted_info['skills']:
-            for skill_group in extracted_info['skills']['Technical skills']:
-                skills.extend([s.lower() for s in skill_group.get('skills', [])])
-        
-        # Extract experience responsibilities
-        experience_text = ""
+        # Process work experience entries
         if 'work_experience' in extracted_info:
-            for exp in extracted_info['work_experience']:
-                if 'responsibilities' in exp:
-                    experience_text += ' '.join(exp.get('responsibilities', []))
-        
-        # Match skills and experiences to expertise categories
-        for category, keywords in EXPERTISE_CATEGORIES.items():
-            if any(keyword.lower() in skills for keyword in keywords):
-                expertise_list.append(category)
-                continue
+            for i, exp in enumerate(extracted_info['work_experience']):
+                job_id = f"{exp.get('company', 'unknown')}_{i}"
+                job_title = exp.get('title', '').lower()
+                job_expertise = []
                 
-            if any(keyword.lower() in experience_text.lower() for keyword in keywords):
-                expertise_list.append(category)
+                # Extract skills for this job
+                tech_skills = []
+                if 'technical_skills' in exp and isinstance(exp['technical_skills'], list):
+                    tech_skills = [s.lower() for s in exp['technical_skills'] if isinstance(s, str)]
+                
+                # Extract responsibilities
+                responsibilities = ""
+                if 'responsibilities' in exp and isinstance(exp['responsibilities'], list):
+                    responsibilities = ' '.join([r.lower() for r in exp['responsibilities'] if isinstance(r, str)])
+                
+                # Match skills to expertise categories
+                for skill in tech_skills:
+                    matched = self._map_skill_to_expertise(skill)
+                    job_expertise.extend(matched)
+                
+                # Match job title and responsibilities to expertise categories
+                for category, keywords in EXPERTISE_CATEGORIES.items():
+                    if any(keyword.lower() in job_title for keyword in keywords):
+                        job_expertise.append(category)
+                        continue
+                        
+                    if any(keyword.lower() in responsibilities for keyword in keywords):
+                        job_expertise.append(category)
+                
+                # Remove duplicates
+                job_expertise = list(set(job_expertise))
+                
+                # If no expertise found, check if there are generic indicators
+                if not job_expertise:
+                    if 'developer' in job_title or 'engineer' in job_title:
+                        job_expertise.append('software_development')
+                    elif 'analyst' in job_title:
+                        job_expertise.append('data_engineering')
+                    elif 'manager' in job_title or 'director' in job_title:
+                        job_expertise.append('management')
+                
+                # Store expertise for this job
+                expertise_by_job[job_id] = job_expertise if job_expertise else ['unknown']
         
-        return expertise_list if expertise_list else ['unknown']
+        # Process extra skills (not associated with specific jobs)
+        extra_expertise = []
+        if 'extra_skills' in extracted_info and 'Technical skills' in extracted_info['extra_skills']:
+            extra_tech_skills = extracted_info['extra_skills']['Technical skills']
+            if isinstance(extra_tech_skills, list):
+                for skill in extra_tech_skills:
+                    if isinstance(skill, str):
+                        matched = self._map_skill_to_expertise(skill)
+                        extra_expertise.extend(matched)
+        
+        # Add extra expertise to a special category
+        if extra_expertise:
+            expertise_by_job['extra_skills'] = list(set(extra_expertise))
+        
+        return expertise_by_job
     
-    def _determine_role_level_by_expertise(self, extracted_info, expertise_categories):
-        """Determine role level for each expertise category"""
-        # Initialize with 'unknown' for each expertise
-        role_levels_by_expertise = {category: ['unknown'] for category in expertise_categories}
+    def _determine_role_level_by_expertise(self, extracted_info, expertise_by_job):
+        """Determine role level for each expertise category based on job titles and experience"""
+        # Initialize with empty dictionary
+        role_levels_by_expertise = {}
         
-        if 'work_experience' not in extracted_info:
-            return role_levels_by_expertise
+        # Process work experience to determine role levels
+        if 'work_experience' in extracted_info:
+            for i, exp in enumerate(extracted_info['work_experience']):
+                job_id = f"{exp.get('company', 'unknown')}_{i}"
+                
+                # Skip if job has no associated expertise
+                if job_id not in expertise_by_job or not expertise_by_job[job_id]:
+                    continue
+                
+                # Get job details
+                job_title = exp.get('title', '').lower()
+                duration = exp.get('duration', 0)
+                if not isinstance(duration, (int, float)) or duration == 'N/A':
+                    duration = 0
+                
+                # Determine role level from job title
+                role_level = 'unknown'
+                # Find all matching role levels
+                matched_levels = []
+                
+                # Find all matching role levels
+                for level, keywords in ROLE_LEVELS.items():
+                    if any(keyword.lower() in job_title for keyword in keywords):
+                        matched_levels.append(level)
+                
+                # Select highest level based on hierarchy
+                if matched_levels:
+                    for level in ROLE_LEVEL_HIERARCHY:
+                        if level in matched_levels:
+                            role_level = level
+                            break
+                
+                # If no role level found from title, use duration as a hint
+                if role_level == 'unknown':
+                    if duration >= 5:
+                        role_level = 'senior_level'
+                    elif duration >= 2:
+                        role_level = 'mid_level'
+                    elif duration > 0:
+                        role_level = 'entry_level'
+                
+                # Bump up role level based on duration
+                if duration >= 5:
+                    # Find current level index in hierarchy
+                    current_idx = ROLE_LEVEL_HIERARCHY.index(role_level) if role_level in ROLE_LEVEL_HIERARCHY else -1
+                    
+                    # Can only bump up to senior_level maximum
+                    if current_idx > ROLE_LEVEL_HIERARCHY.index('senior_level'):
+                        # Bump up one level
+                        role_level = ROLE_LEVEL_HIERARCHY[current_idx - 1]
+                
+                # Associate this role level with each expertise category for this job
+                for expertise in expertise_by_job[job_id]:
+                    if expertise not in role_levels_by_expertise:
+                        role_levels_by_expertise[expertise] = []
+                    
+                    if role_level not in role_levels_by_expertise[expertise]:
+                        role_levels_by_expertise[expertise].append(role_level)
         
-        # Analyze each work experience entry
-        for exp in extracted_info['work_experience']:
-            job_title = exp.get('title', '').lower()
-            responsibilities = ' '.join(exp.get('responsibilities', [])).lower()
-            skills_used = []
-            
-            # Try to determine skills used in this job
-            if 'skills' in extracted_info and 'Technical skills' in extracted_info['skills']:
-                for skill_group in extracted_info['skills']['Technical skills']:
-                    duration = skill_group.get('duration', 'N/A')
-                    # If we can match the duration to job experience, associate these skills
-                    if isinstance(duration, (int, float)) and duration > 0:
-                        skills_used.extend(skill_group.get('skills', []))
-            
-            # Determine role level from job title
-            role_level = 'unknown'
-            for level, keywords in ROLE_LEVELS.items():
-                if any(keyword.lower() in job_title for keyword in keywords):
-                    role_level = level
-                    break
-            
-            # Map this job to relevant expertise categories
-            job_expertise = []
-            
-            # Check job title and responsibilities against expertise categories
-            for category, keywords in EXPERTISE_CATEGORIES.items():
-                if any(keyword.lower() in job_title for keyword in keywords) or \
-                   any(keyword.lower() in responsibilities for keyword in keywords):
-                    job_expertise.append(category)
-            
-            # Also map through skills
-            for skill in skills_used:
-                matched_expertise = self._map_skill_to_expertise(skill)
-                job_expertise.extend(matched_expertise)
-            
-            # Remove duplicates
-            job_expertise = list(set(job_expertise))
-            
-            # For each relevant expertise, assign this role level
-            for category in job_expertise:
-                if category in expertise_categories:
-                    if role_levels_by_expertise[category] == ['unknown']:
-                        role_levels_by_expertise[category] = [role_level]
-                    elif role_level not in role_levels_by_expertise[category]:
-                        role_levels_by_expertise[category].append(role_level)
+        # For expertise categories without role levels, mark as unknown
+        all_expertise = set(exp for job_exps in expertise_by_job.values() for exp in job_exps)
+        for expertise in all_expertise:
+            if expertise not in role_levels_by_expertise or not role_levels_by_expertise[expertise]:
+                role_levels_by_expertise[expertise] = ['unknown']
         
         return role_levels_by_expertise
     
     def _determine_org_unit(self, extracted_info):
-        """Determine organizational unit based on job title and responsibilities"""
+        """Determine organizational unit based on job titles, skills, and responsibilities"""
         org_units = []
         
-        # Combine job titles and responsibilities
-        text_to_check = ""
+        # Process work experience to determine org units
         if 'work_experience' in extracted_info:
             for exp in extracted_info['work_experience']:
-                text_to_check += exp.get('title', '') + " "
-                text_to_check += ' '.join(exp.get('responsibilities', []))
+                # Gather text from job title and responsibilities
+                job_text = exp.get('title', '').lower()
+                
+                if 'responsibilities' in exp and isinstance(exp['responsibilities'], list):
+                    job_text += ' ' + ' '.join([r.lower() for r in exp['responsibilities'] if isinstance(r, str)])
+                
+                # Check technical skills
+                if 'technical_skills' in exp and isinstance(exp['technical_skills'], list):
+                    job_text += ' ' + ' '.join([s.lower() for s in exp['technical_skills'] if isinstance(s, str)])
+                
+                # Match to organizational units
+                for unit, keywords in ORG_UNITS.items():
+                    if any(keyword.lower() in job_text for keyword in keywords):
+                        org_units.append(unit)
         
-        # Match to organizational units
-        for unit, keywords in ORG_UNITS.items():
-            if any(keyword.lower() in text_to_check.lower() for keyword in keywords):
-                org_units.append(unit)
+        # Check extra skills
+        if 'extra_skills' in extracted_info and 'Technical skills' in extracted_info['extra_skills']:
+            extra_tech = ' '.join(extracted_info['extra_skills']['Technical skills'])
+            for unit, keywords in ORG_UNITS.items():
+                if any(keyword.lower() in extra_tech.lower() for keyword in keywords):
+                    org_units.append(unit)
+        
+        # Remove duplicates
+        org_units = list(set(org_units))
         
         return org_units if org_units else ['unknown']
     
     def prepare_for_training(self, processed_data):
         """Prepare data for model training"""
-        # This needs significant adaptation for the nested role_level_by_expertise structure
-        # For now, we'll simplify by flattening the structure for training purposes
-        
         # Extract text
         texts = [item['text'] for item in processed_data]
         
@@ -306,8 +407,7 @@ class CVClassifier:
         expertise_labels = [item['expertise'] for item in processed_data]
         expertise_encoded = self.expertise_binarizer.fit_transform(expertise_labels)
         
-        # For role levels, we'll need to create separate datasets for each expertise category
-        # This is a simplification; in a real system we might use a hierarchical approach
+        # For role levels, create separate datasets for each expertise category
         role_level_datasets = {}
         for category in set(cat for item in processed_data for cat in item['expertise'] if cat != 'unknown'):
             # Get role levels for this category from each resume that has this expertise
@@ -324,7 +424,7 @@ class CVClassifier:
                 category_binarizer = MultiLabelBinarizer()
                 category_encoded = category_binarizer.fit_transform(category_role_levels)
                 
-                # Create dataset
+                # Create dataset with float32 labels
                 category_dataset = Dataset.from_dict({
                     'text': category_texts,
                     'label': category_encoded.astype(np.float32).tolist()  # Convert to float32
@@ -339,13 +439,13 @@ class CVClassifier:
         org_unit_labels = [item['org_unit'] for item in processed_data]
         org_unit_encoded = self.org_unit_binarizer.fit_transform(org_unit_labels)
         
-        # Create org unit dataset
+        # Create org unit dataset with float32 labels
         org_unit_dataset = Dataset.from_dict({
             'text': texts,
             'label': org_unit_encoded.astype(np.float32).tolist()  # Convert to float32
         })
         
-        # Create expertise dataset
+        # Create expertise dataset with float32 labels
         expertise_dataset = Dataset.from_dict({
             'text': texts,
             'label': expertise_encoded.astype(np.float32).tolist()  # Convert to float32
@@ -401,6 +501,7 @@ class CVClassifier:
         self.init_models(datasets)
         
         # Train expertise model
+        print("\nTraining expertise model...")
         self._train_model(
             datasets['expertise'], 
             self.expertise_model, 
@@ -409,11 +510,25 @@ class CVClassifier:
         
         # Train role level models for each expertise category
         for category, category_data in datasets['role_level_by_expertise'].items():
+            # Check if we have enough samples to split into train/test
+            dataset_size = len(category_data['dataset'])
+            if dataset_size <= 1:
+                print(f"Skipping training for {category} - insufficient data (only {dataset_size} sample)")
+                continue
+            
+            # For very small datasets, adjust test_size
+            test_size = 0.2
+            if dataset_size < 5:
+                test_size = 1/dataset_size  # Just 1 sample for testing
+                print(f"Warning: Small dataset for {category} ({dataset_size} samples). Using minimal test split.")
+            
+            print(f"\nTraining role level model for {category}...")
             os.makedirs(f"{output_dir}/role_level/{category}", exist_ok=True)
             self._train_model(
                 category_data['dataset'],
                 self.role_level_models[category],
-                f"{output_dir}/role_level/{category}"
+                f"{output_dir}/role_level/{category}",
+                test_size=test_size
             )
             
             # Save binarizer
@@ -423,16 +538,21 @@ class CVClassifier:
                 }, f)
         
         # Train org unit model
+        print("\nTraining organizational unit model...")
         self._train_model(
             datasets['org_unit'], 
             self.org_unit_model, 
             f"{output_dir}/org_unit"
         )
     
-    def _train_model(self, dataset, model, output_dir):
+    def _train_model(self, dataset, model, output_dir, test_size=0.2):
         """Train a specific classification model"""
+        # Get dataset size
+        dataset_size = len(dataset)
+        print(f"Training model with {dataset_size} samples")
+        
         # Split dataset into train/test
-        dataset_dict = dataset.train_test_split(test_size=0.2)
+        dataset_dict = dataset.train_test_split(test_size=test_size)
         
         # Tokenize datasets
         tokenized_datasets = dataset_dict.map(self.tokenize_function, batched=True)
@@ -446,7 +566,7 @@ class CVClassifier:
             num_train_epochs=10,
             weight_decay=0.01,
             save_strategy="epoch",
-            eval_strategy="epoch",  # Add this line to match save_strategy
+            eval_strategy="epoch",  # Changed to match current API
             load_best_model_at_end=True,
         )
         
@@ -456,7 +576,7 @@ class CVClassifier:
             args=training_args,
             train_dataset=tokenized_datasets["train"],
             eval_dataset=tokenized_datasets["test"],
-            processing_class=self.tokenizer,
+            # Removed deprecated parameters
         )
         
         # Train model
@@ -548,22 +668,28 @@ def main():
     cv_classifier = CVClassifier()
     
     # Load data
-    resumes = cv_classifier.load_data('silver_labeled_resumes.json')
+    resumes = cv_classifier.load_data('silver_labeled_resumes2.json')
     
     # Preprocess data
     processed_resumes = cv_classifier.preprocess_resumes(resumes)
     
     # Print some statistics
     expertise_counts = defaultdict(list)
+    job_expertise_counts = defaultdict(lambda: defaultdict(list))
     role_level_by_expertise_counts = defaultdict(lambda: defaultdict(list))
     org_unit_counts = defaultdict(list)
     
     for resume in processed_resumes:
         resume_id = resume['resume_id']
         
-        # Track expertise
+        # Track overall expertise
         for exp in resume['expertise']:
             expertise_counts[exp].append(resume_id)
+        
+        # Track expertise by job
+        for job_id, job_expertise in resume['expertise_by_job'].items():
+            for exp in job_expertise:
+                job_expertise_counts[job_id][exp].append(resume_id)
         
         # Track role level by expertise
         for exp, role_levels in resume['role_level_by_expertise'].items():
@@ -574,10 +700,17 @@ def main():
         for unit in resume['org_unit']:
             org_unit_counts[unit].append(resume_id)
     
-    print("\nExpertise Distribution:")
+    print("\nOverall Expertise Distribution:")
     for exp, resume_ids in expertise_counts.items():
         print(f"{exp}: {len(resume_ids)}")
         print(f"  Resumes: {', '.join(resume_ids)}")
+    
+    print("\nExpertise by Job:")
+    for job_id, expertise_dict in job_expertise_counts.items():
+        print(f"\n  Job: {job_id}")
+        for exp, resume_ids in expertise_dict.items():
+            print(f"    {exp}: {len(resume_ids)}")
+            print(f"      Resumes: {', '.join(resume_ids)}")
     
     print("\nRole Level Distribution by Expertise:")
     for exp, role_levels in role_level_by_expertise_counts.items():
@@ -596,6 +729,10 @@ def main():
         print(f"\nResume ID: {resume['resume_id']}")
         print(f"  Expertise: {', '.join(resume['expertise'])}")
         
+        print("  Expertise by Job:")
+        for job_id, job_expertise in resume['expertise_by_job'].items():
+            print(f"    {job_id}: {', '.join(job_expertise)}")
+        
         print("  Role Level by Expertise:")
         for exp, roles in resume['role_level_by_expertise'].items():
             print(f"    {exp}: {', '.join(roles)}")
@@ -606,7 +743,7 @@ def main():
     datasets = cv_classifier.prepare_for_training(processed_resumes)
     
     # Train models (commented out as it would require GPU resources)
-    cv_classifier.train_models(datasets)
+    '''cv_classifier.train_models(datasets)
     
     # Example of how to use for prediction (would need trained models)
     cv_classifier.load_trained_models()
@@ -614,7 +751,7 @@ def main():
     predictions = cv_classifier.predict(sample_resume_text)
     print("\nSample Predictions:")
     print(predictions)
-    
+    '''
     print("\nPipeline setup complete. To train models, uncomment the training section.")
 
 

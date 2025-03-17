@@ -28,49 +28,38 @@ def extract_resume_info(resume_text):
        - End date (in format 'Month Year' or 'N/A' if not provided, if currently working, use '{month} {year}')
        - Duration (in years, rounded to the nearest 0.5 year, if not provided, use 'N/A', if end date is 'Present', use today's date as end date and calculate duration based both dates)
        - Key responsibilities
-    3. Skills: List all technical skills, programming languages, tools, and soft skills. 
+       - Technical skills 
+       - Soft skills
+    
+    For the skills section in the work experience section, list all technical skills, programming languages, tools, and soft skills. 
     For each skill atribute those to the following categories and only those categories.
     If a skill does not fit into any of the categories, include it in the one that is most relevant:
        - Technical skills (e.g. programming languages, tools, etc.)
        - Soft skills (e.g. communication, teamwork, etc.) 
-    For each technical skill also include the time period for which the skill was used in years
-    (if not provided, use either the duration of the work experience that the skill belongs to or 'N/A',
-    if a skill is used in multiple time periods, sum the time periods and include it in the corresponding sum
-    i.e, if a skill is used for 1 year in one job and 2 years in another, it should be included as 3 years)
-    Group skills by the time period for which they were used in 0.5 year increments, 
-    rounding to the nearest 0.5 year.
-    Below is an example of how to format the output:
+    Below is an example of how to format the skills output:
     {
-        "skills": {
-            "Technical skills": [
-                {
-                    "duration": 3,
-                    "skills": ["Python", "Java", "C++"]
-                },
-                {
-                    "duration": 2,
-                    "skills": ["C#", "SQL"]
-                },
-                {
-                    "duration": 1.5,
-                    "skills": ["HTML", "CSS", "JavaScript"]
-                }
-                {
-                    "duration": "N/A",
-                    "skills": ["Microsoft Excel", "Microsoft Powerpoint"]
-                }
-            ],
-            "Soft skills": [
-                "Communication", 
-                "Teamwork", 
-                "Leadership", 
-                "Problem Solving"
-            ]
-        }
+        "Technical skills": [
+            "Python", 
+            "Java", 
+            "C++", 
+            "C#", 
+            "SQL",
+            ...
+        ],
+        "Soft skills": [
+            "Communication", 
+            "Teamwork", 
+            "Leadership", 
+            "Problem Solving",
+            ...
+        ]
     }
+    3. ExtraSkills: List extra skills that are not related to work experience but that the candidate has.
+    Here only list skills that are listed in the resume but don't correlate with any work experience the candidate has.
+    List these in the same format as the skills in the work experience section.
     
-    Format the output as a JSON object with these exact keys: "skills", "work_experience", "education".
-    Make sure each work experience entry has "company", "title", "start_date", "end_date", and "responsibilities" fields.
+    Format the output as a JSON object with these exact keys: "education", "work_experience", "extra_skills".
+    Make sure each work experience entry has "company", "title", "start_date", "end_date", "responsibilities", "technical_skills" and "soft_skills" fields.
     """
     
     try:
@@ -124,4 +113,4 @@ for resume in tqdm(resumes_subset):
 
 # Save as silver data
 silver_df = pd.DataFrame(processed_data)
-silver_df.to_json('silver_labeled_resumes.json', orient='records')
+silver_df.to_json('silver_labeled_resumes2.json', orient='records')
