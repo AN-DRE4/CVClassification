@@ -1,0 +1,290 @@
+[
+  {
+    "resume_id": "CVs\\batch_11\\908_Near_Gopalan_mall (2).txt",
+    "resume_text": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n25 January 2017 - 25 May 2018\n\n \n\nSHARMILA G\n No.12, 1st cross, mysore road, , Old tollgate, Near Gopalan mall,, Bangalore-26\n\n 9176363467 | sharmilasharmi.2644@gmail.com\n\nCAREER OBJECTIVE\n\nTo build a challenging career where I can strive for excellence and success with profound \nanalytical skills to manage the assigned responsibilities and for the development of \n\ufffdorganisation.\n\n\ue803  EXPERIENCE\n\nHTC Global Services\nData Converting Operator\n\n\uf19d  EDUCATION\n\nBMS College For Women\nB. Com\n\n 59\n 2016\n\nBMS College For Women\nPUC\n\n 80\n 2013\n\nChamarajpet Girls High School\nSSLC\n\n 82\n 2011\n\n\uf135  TECHNICAL SKILLS\n\nBasic Computer\nAdvance Excell\nTally ERP 9\n\n\uf19c PERSONAL SKILL SET\n\nExtremely focused to do the job, keep track of each and every aspect, Apply my strong \nfundamental knowledge and update continuously.\n\nZeal to utilize and enhance the innovative ideas to improve business results.\nGood communication skills and a quick learner.\nAbility to work well under pressure with guidelines.\n\n\n\nDate : \u00a07/01/2019\n Place : Bangalore  \n\nSHARMILA G\n \n \n \n\n\ue808  PERSONAL PROFILE\n\nDate of Birth : 26/07/1995\n\nMarital Status : Single\n\nNationality : Indian\n\nKnown Languages : Tamil, kannada, English, Telugu\n\nHobby : Playing carrom\n\n\uf624 DECLARATION\n\nI here by declare that the above mentioned details are true upto my knowledge.\n \n\n\n",
+    "extracted_info": {
+      "education": [
+        {
+          "degree": "B. Com",
+          "institution": "BMS College For Women",
+          "graduation_date": "2016"
+        },
+        {
+          "degree": "PUC",
+          "institution": "BMS College For Women",
+          "graduation_date": "2013"
+        },
+        {
+          "degree": "SSLC",
+          "institution": "Chamarajpet Girls High School",
+          "graduation_date": "2011"
+        }
+      ],
+      "work_experience": [
+        {
+          "company": "HTC Global Services",
+          "title": "Data Converting Operator",
+          "start_date": "January 2017",
+          "end_date": "May 2018",
+          "duration": 1.5,
+          "responsibilities": [
+            "Track and maintain data records",
+            "Perform data entry and conversion tasks",
+            "Ensure data accuracy and quality",
+            "Handle basic computer operations",
+            "Work with Excel spreadsheets"
+          ],
+          "technical_skills": [
+            "Basic Computer",
+            "Advanced Excel",
+            "Tally ERP 9"
+          ],
+          "soft_skills": [
+            "Extremely focused",
+            "Good communication skills",
+            "Quick learner",
+            "Works well under pressure"
+          ]
+        }
+      ],
+      "extra_skills": {
+        "Technical skills": [
+          "Tamil",
+          "Kannada",
+          "English",
+          "Telugu"
+        ],
+        "Soft skills": [
+          "Carrom"
+        ]
+      }
+    }
+  },
+  {
+    "resume_id": "CVs\\batch_3\\14831_TANK_RITA_R.txt",
+    "resume_text": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCURRICULAM VITAE\n\nTANK RITA R.\n4 \u2013 Jasarajnagar,\nNear Radhe Hotel,\n150 Feet Ring Road,\nRajkot \u2013 360 004\n+91 87349 59092\nritatank1994@gmail.com\n\nCareer Objective\n\nTo build a career under organization that helps to grow professional skills and would\nlead me a better career with every steps. To secure a creative and challenging position\nwith a professionally managed organization which provides challenging work\nenvironment and allows me to grow professionally and as an individual.\n\nEducation Qualification\n\nInternships\n\n\uf0b7 SADP & CO. (Chartered Accountants)\n\n\uf0d8 Tax Audit\n\n\uf0d8 Preparing and filing of Income Tax return and other work related to TDS\n\nCourse/\nExamination\n\nInstitution/Board Month/Year of\nPassing\n\nPerformance\n\nH.S.C. Gujarat Board 2012 85.85%\n\nB.Com. Saurashtra University 2015 66.09%\n\nM.Com. Saurashtra University 2017 62.15%\n\nCA \u2013 CPT ICAI Dec.2012 125\n\nCA - IPCC ICAI 2014 394\n\nCA - Final ICAI Continue Continue\n\n\n\nExperience\n\n\uf0b7 Experience as accountant for 7 months in firm names Khyati Arts, Rajkot\n\nTechnical Skill\n\n\uf0b7 Knowledge of Oprating System\n\n\uf0b7 Office Package : MS office Word, Excel and MS office Power Point\n\n\uf0b7 Knowledge of Accounting Software like Tally, Miracle, Shree etc.\n\nPersonal Profile\n\n\uf0b7 Name : Tank Rita Rameshbhai\n\n\uf0b7 DOB : 4th November, 1994\n\n\uf0b7 Gender : Female\n\n\uf0b7 Maritul Status : Unmarried\n\n\uf0b7 Nationality : Indian\n\nDeclaration\n\nI hereby declare that the above mentioned information is correct up to\nmy knowledge and I bear the responsibility for correctness of the above mentioned\nparticulars.\n\nTank Rita R.\n\n\n",
+    "extracted_info": {
+      "education": [
+        {
+          "degree": "H.S.C.",
+          "institution": "Gujarat Board",
+          "graduation_date": "2012"
+        },
+        {
+          "degree": "B.Com",
+          "institution": "Saurashtra University",
+          "graduation_date": "2015"
+        },
+        {
+          "degree": "M.Com",
+          "institution": "Saurashtra University",
+          "graduation_date": "2017"
+        },
+        {
+          "degree": "CA - CPT",
+          "institution": "ICAI",
+          "graduation_date": "2012"
+        },
+        {
+          "degree": "CA - IPCC",
+          "institution": "ICAI",
+          "graduation_date": "2014"
+        }
+      ],
+      "work_experience": [
+        {
+          "company": "Khyati Arts",
+          "title": "Accountant",
+          "start_date": "N\/A",
+          "end_date": "N\/A",
+          "duration": 0.5,
+          "responsibilities": [],
+          "technical_skills": [
+            "Operating System",
+            "Office Word",
+            "Office Excel",
+            "Office Powerpoint",
+            "Tally",
+            "Miracle",
+            "Shree"
+          ],
+          "soft_skills": []
+        }
+      ],
+      "extra_skills": {
+        "Technical skills": [],
+        "Soft skills": []
+      }
+    }
+  },
+  {
+    "resume_id": "CVs\\batch_1\\59_VINAYK_CHANDRAKANT_GODASE.txt",
+    "resume_text": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRESUME\nVINAYK CHANDRAKANT GODASE                 Mobile- 8108149661/8806903790.\n\n                                                                                            Mail to: vinayak.godase@yahoo.com\n\n\u00a0\u00a0 \n\n______________________________________________________________________________\nOBJECTIVE:\n\u00a0\nTo obtain a position in an organization where my business skills can be utilized to enhance the company\u2019s growth, promote services and products and achieve overall strategic goals, allowing me to grow further.\n\n\u00a0\n\n\u00a0\n\nWork experience:\n\u00b7 Working as Accountant in Pramodkumar Jain Securities Pvt.  Ltd. From November 2011 to till date.\n\u00a0\n\u00a0\n\nEDUCATIONAL PROFILE:\n\u00a0\n\tCourse\n\tYear of Passing\n\tUniversity\u00a0 / Board\n\tClass obtained\n\n\tB. Com.\n\t2011\n\tShivaji University Kolp.\n\t2nd Class\n\n\tH. S.C.\n\t2008\n\tKolhapur\n\t2nd Class\n\n\tS.S.C.\n\t2006\n\tKolhapur\n\t2nd Class\n\n\nCOMPUTER SKILLS\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 \n\n      MS-CIT, Tally ERP 9.0\nOther courses\u00a0\n         Type writing English (30 w/m)          \nHOBIES:\n\u00a0\nPlaying cricketing, listen to music, watching movies.\n\n\u00a0\nSTRENGTHS \n\u00a0\nResult oriented \n\nAdaptable \n\nHard working\n\n\u00a0\nPERSONAL INFORMATION:\n\u00a0\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 Date of birth\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 :  1st Jan. 1991\n\n  Age\n\n\n\n       :  22 yr \n\n\n  Sex \n\n\n\n       :  Male\n\n\n\n\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 Nationality\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 \u00a0\u00a0\u00a0 \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 \u00a0 :  Indian\n\n\n  Marital status\n\n       :  Single\n\n\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 Languages Known\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 :  Marathi, Hindi, and English.\n\n\u00a0\u00a0\n\nPERMANENT ADDRESS: \n\nBDD Chawl No. 17, Room No. 28,\nN.M. Joshi Marg,\n\nLower Parel (E).\n\nMumbai -400013\n\n\u00a0             I hereby declare that all the information provided by me in this application is factual and correct to the best of my knowledge and belief.\n\n\u00a0\nPlace: Mumbai\nDate: \n\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\n\n                                                                                                          \u00a0\u00a0 Vinayak Godase.\n",
+    "extracted_info": {
+      "education": [
+        {
+          "degree": "B. Com",
+          "institution": "Shivaji University Kolp.",
+          "graduation_date": "2011"
+        },
+        {
+          "degree": "H.S.C.",
+          "institution": "Kolhapur",
+          "graduation_date": "2008"
+        },
+        {
+          "degree": "S.S.C.",
+          "institution": "Kolhapur",
+          "graduation_date": "2006"
+        }
+      ],
+      "work_experience": [
+        {
+          "company": "Pramodkumar Jain Securities Pvt. Ltd.",
+          "title": "Accountant",
+          "start_date": "November 2011",
+          "end_date": "Present",
+          "duration": 12.5,
+          "responsibilities": [],
+          "technical_skills": [
+            "MS-CIT",
+            "Tally ERP 9.0"
+          ],
+          "soft_skills": [
+            "Result Oriented",
+            "Adaptable",
+            "Hard Working"
+          ]
+        }
+      ],
+      "extra_skills": {
+        "Technical skills": ["Type Writing English (30 w/m)"],
+        "Soft skills": []
+      }
+    }
+  },
+  {
+    "resume_id": "CVs\\batch_14\\5598_Shalini_PC.txt",
+    "resume_text": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMxyz Pxyz\n\n\nShalini PC                                                                                           Email: shalinipc1594@gmail.com                                                          \n\n                                                                         Mobile No: +919742212999  \n \n\nOBJECTIVE \n\n \n\nIntend to build a career with leading institution with committed and dedicated people, \n\nwhich will help me to explore myself fully and realize my potential and willing to work as a key \n\nplayer in challenging and creative environment.  \n \n\n \n\nEDUCATION SUMMARY \n\n \n\nCOURSE \nINSTITUTE \n\n(BOARD/ UNIVERSITY) \nYEAR OF \n\nPASSING Percentage \n \n\nM.Com \n \n\n \nBishop Cotton Women\u2019s Christian College \n \n\n2018 \n \n \n\n \n \n\n71% \n\n     B.Com Baldwin\u2019s Women\u2019s Methodist College 2016 \n\n55.63% \n\n P.U.C \nSt.Anne\u2019s Women Christian Pre University \nCollege \n\n2013 \n60.43% \n\nSSLC Sree Venkateshwara English School 2010 \n53.60% \n\n \n\nPROJECT  \n\n \n\nSubject: Finance \n\nTopic: Loans and Advances \n\nIndustry: Bank- Sree Thayagaraja Cooperative Bank. \n\nDuration: 2 Months \n\nProject Description: The project was based on different types on loans and its varying interest rates. I \n\nhad to work with the administrative officials of the bank to get the balance sheet and the same was used to \n\nfind the profit position of the banking institution. The balance sheet was segregated mainly into three \n\ncategories, I.e. 1) Short term loan 2) Medium term Loan 3) Long term Loan. \n\n \n\nOn the study, I came across different features of the loans and their benefits. The bank had lesser rate of \n\ninterest for physically challenged people and farmers. Sree Thayagaraja Cooperative Bank had only \n\nbranches only across Bengaluru. \n\n \n\nOutcome and Benefits: The project have helped the bank to determine the loan defaulters. It has given \n\nthem the visibility on the profit and the losses occurred with the loans. The reports gave them the \n\ncomplete data of their profiting sectors. They major profits were on the vidyasagar loan and agriculture \n\nloan. \n\n \n\n\n\nAWARDS AND ACHIEVEMENTS  \n\n \n\n \n \n\nPlayed throw ball in District level at School \n\nWon 1st prize in Relay at School \n\nGroup leader at School for 3 Years. \n\nSports Representative at St Anne\u2019s Girl\u2019s Pre-university College. \n\nCultural Representative at Bishop Cottons Women\u2019s Christian College \n\nHave received all-rounder award for being exceptional on academics, sports and cultural activities \n\n \n \n\nCERTIFICATION \n\n \n\nBanking Certification Course \n\n             \n\n \n\nAdditional Skills \n\n \n\n \n\nMicrosoft Office \n\nInternet Application  \n\nPresentation Skills. \n\nEmail etiquette. \n\n \n\n \n\nPersonal Profile \n\n \n\n\uf0b7 Date of Birth            :  15/03/1995 \n\n\uf0b7 Nationality               :  Indian \n\n\uf0b7 Marital Status         :  Single \n\n\uf0b7 Languages Know           :  English, Kannada, Telugu and Tamil  \n\n\uf0b7 Gender   :  Female \n\n \n\nDECLARATION \n\n \n\n       I Hereby declare that the above \u2013 furnished details are true with Proven records. \n\n \n\n \n\nPLACE: - Bangalore                                  SHALINI.P.C \n\nDATE:-   \n\n\n",
+    "extracted_info": {
+      "education": [
+        {
+          "degree": "M. Com",
+          "institution": "Bishop Cotton Women\u2019s Christian College",
+          "graduation_date": "2018"
+        },
+        {
+          "degree": "B. Com",
+          "institution": "Baldwin\u2019s Women\u2019s Methodist College",
+          "graduation_date": "2013"
+        },
+        {
+          "degree": "SSLC",
+          "institution": "Sree Venkateshwara English School",
+          "graduation_date": "2010"
+        }
+      ],
+      "work_experience": [
+        {
+          "company": "Bank- Sree Thayagaraja Cooperative Bank",
+          "title": "N\/A",
+          "start_date": "N\/A",
+          "end_date": "N\/A",
+          "duration": 0.5,
+          "responsibilities": [
+            "Work with administrative officials to obtain balance sheet data",
+            "Analyze loan types and interest rates",
+            "Segregate balance sheet into loan categories",
+            "Study features and benefits of different loans",
+            "Determine loan defaulters",
+            "Track profit and loss from loans",
+            "Generate reports on profitable loan sectors"
+          ],
+          "technical_skills": [
+            "Financial Analysis",
+            "Balance Sheet Analysis",
+            "Loan Assessment"
+          ],
+          "soft_skills": [
+            "Analytical Skills",
+            "Attention to Detail",
+            "Report Writing"
+          ]
+        }
+      ],
+      "extra_skills": {
+        "Technical skills": [
+          "Financial Analysis",
+          "Balance Sheet Analysis",
+          "Loan Assessment"
+        ],
+        "Soft skills": [
+          "Analytical Skills",
+          "Attention to Detail",
+          "Report Writing"
+        ]
+      }
+    }
+  },
+  {
+    "resume_id": "CVs\\batch_14\\443_Bindu_S.txt",
+    "resume_text": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRESUME\n\nBindu S.R.\n\n# 3D, Lord Sri Enclave, 4th Cross,\n\nMaruthi Nagar 2nd Stage,\nBhadrappa Layout,\n\nBangalore \u2013 560094.\n\nPh: 080 \u2013 32947300\n\nMobile : 9480641443\n\nEmail : suseelabhai@gmail.com  &\n bindusr98@gmail.com  \nCareer Objective\n\nA progressive position where I can apply my knowledge, acquire\n\n new skills and to strive for the success of the  company  and thereby myself.\nEducational Qualification\nB.Sc. Maths from University of Kerala.\n\nM.S. Office.\n\nExperience\n5 years of experience as typist (Computer) in a private firm.\n\nWorked as Sub Editor  for a Malayalam monthly for 8 years.\n\nWorked as Data Entry operator for 6 months in Mars i tech Solutions.\nWorking as a DEO and payroll related work since 2008 July 30th  at Aon Hewitt Associates India Pvt. Ltd. Vasanth Nagar.\n\nCareer Details\n\u00b7 Monthly\n\n      Position              :    Sub Editor\n\n      Responsibilities  :   Editing\n\n\u00b7 Mars i tech Solutions\n\n      Position : Data Entry Operator (typing speed 40 wpm)\n\u00b7 Aon Hewitt Associates India Pvt. Ltd.\n\nPosition             : DEO\n\n      Responsibilities : Entering data, validation and process.\n\nPersonal Details\nName\n\n\n: Bindu S.R.\n\nFather\u2019s Name\n\n: P.K.Raghavan Pillai.\n\nDate of Birth\n\n: 12-05-1966\n\nSex\n\n\n: Female\n\nNationality\n\n: Indian\n\nMarital Status\n\n: Divorcee\n\nLocation\n\n: Bangalore\n\nI here by declare that the above particulars are true, correct and complete to the best of my knowledge.\n\nPlace : Bangalore \u2013 94\n\n\n\nDate   : 25-04-2012                                                                                            Bindu S.R.\n",
+    "extracted_info": {
+      "education": [
+        {
+          "degree": "B.Sc. Maths",
+          "institution": "University of Kerala",
+          "graduation_date": "N\/A"
+        }
+      ],
+      "work_experience": [
+        {
+          "company": "N\/A",
+          "title": "Typist",
+          "start_date": "N\/A",
+          "end_date": "N\/A",
+          "duration": 5,
+          "responsibilities": [],
+          "technical_skills": [],
+          "soft_skills": []
+        },
+        {
+          "company": "Malayalam Monthly",
+          "title": "Sub Editor",
+          "start_date": "N\/A",
+          "end_date": "N\/A",
+          "duration": 8,
+          "responsibilities": ["Editing"],
+          "technical_skills": [],
+          "soft_skills": []
+        },
+        {
+          "company": "Mars i tech Solutions",
+          "title": "Data Entry Operator",
+          "start_date": "N\/A",
+          "end_date": "N\/A",
+          "duration": 0.5,
+          "responsibilities": ["Data Entry"],
+          "technical_skills": ["Typing speed 40 wpm"],
+          "soft_skills": []
+        },
+        {
+          "company": "Aon Hewitt Associates India Pvt. Ltd.",
+          "title": "Data Entry Operator",
+          "start_date": "July 2008",
+          "end_date": "Present",
+          "duration": 17.5,
+          "responsibilities": [
+            "Entering data, validation and process"
+          ],
+          "technical_skills": [],
+          "soft_skills": []
+        }
+      ],
+      "extra_skills": {
+        "Technical skills": ["MS Office"],
+        "Soft skills": []
+      }
+    }
+  }
+]

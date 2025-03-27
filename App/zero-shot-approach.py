@@ -5,6 +5,7 @@ from tqdm import tqdm
 import os
 from dotenv import load_dotenv
 from datetime import datetime
+import time
 
 load_dotenv()
 
@@ -13,7 +14,7 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 year = datetime.now().year
 month = datetime.now().strftime("%B")
 
-print(month, year)
+print(f"Processing resumes in {month} {year}")
 
 def extract_resume_info(resume_text):
     prompt = """
@@ -62,46 +63,65 @@ def extract_resume_info(resume_text):
     Make sure each work experience entry has "company", "title", "start_date", "end_date", "responsibilities", "technical_skills" and "soft_skills" fields.
     """
     
-    try:
-        response = client.chat.completions.create(
-            model="gpt-4o-mini-2024-07-18",
-            messages=[
-                {"role": "system", "content": """You are an expert resume analyst. 
-                 You extract structured information from resumes accurately and in a structured way.
-                 You are given a resume in text format and you need to extract the information in a structured way following the prompt below. 
-                 """},
-                {"role": "user", "content": prompt + "\n\nRESUME:\n" + resume_text}
-            ],
-            response_format={"type": "json_object"},
-            temperature=0.1  # Keep it deterministic
-        )
-        return json.loads(response.choices[0].message.content)
-    except Exception as e:
-        print(f"Error processing resume: {e}")
-        return None
+    max_retries = 3
+    retry_delay = 5  # seconds
+    
+    for attempt in range(max_retries):
+        try:
+            response = client.chat.completions.create(
+                model="gpt-4o-mini-2024-07-18",
+                messages=[
+                    {"role": "system", "content": """You are an expert resume analyst. 
+                     You extract structured information from resumes accurately and in a structured way.
+                     You are given a resume in text format and you need to extract the information in a structured way following the prompt below. 
+                     """},
+                    {"role": "user", "content": prompt + "\n\nRESUME:\n" + resume_text}
+                ],
+                response_format={"type": "json_object"},
+                temperature=0.1  # Keep it deterministic
+            )
+            return json.loads(response.choices[0].message.content)
+        except Exception as e:
+            if attempt < max_retries - 1:
+                print(f"Attempt {attempt + 1} failed: {e}")
+                print(f"Retrying in {retry_delay} seconds...")
+                time.sleep(retry_delay)
+            else:
+                print(f"Error processing resume after {max_retries} attempts: {e}")
+                return None
 
+# Load existing labeled data if it exists
+existing_data = []
+if os.path.exists('silver_labeled_resumes.json'):
+    with open('silver_labeled_resumes.json', 'r') as f:
+        existing_data = json.load(f)
+    print(f"Loaded {len(existing_data)} existing labeled resumes")
 
+# Get list of already processed resume IDs
+processed_ids = {item['resume_id'] for item in existing_data}
+
+# Load all resumes
 resumes = []
 for root, dirs, files in os.walk('CVs'):
     for file in files:
         if file.endswith('.txt'):
-            with open(os.path.join(root, file), 'r', encoding='utf-8') as f:
-                resume_text = f.read()
-                resumes.append({
-                    'id': os.path.join(root, file),  # Use path as ID
-                    'text': resume_text
-                })
+            resume_id = os.path.join(root, file)
+            if resume_id not in processed_ids:  # Only add unprocessed resumes
+                with open(resume_id, 'r', encoding='utf-8') as f:
+                    resume_text = f.read()
+                    resumes.append({
+                        'id': resume_id,
+                        'text': resume_text
+                    })
 
-for resume in resumes[:5]:
-    print(resume['id'])
-
-print(len(resumes))
+print(f"Found {len(resumes)} unprocessed resumes")
 
 # Process a subset of resumes
-subset_size = 5
-resumes_subset = resumes[:subset_size]  # First 500 resumes
-processed_data = []
+subset_size = 100  # Process 100 resumes
+resumes_subset = resumes[:subset_size]  # First 100 resumes
+processed_data = existing_data  # Start with existing data
 
+print(f"Processing {len(resumes_subset)} new resumes...")
 for resume in tqdm(resumes_subset):
     extracted_info = extract_resume_info(resume['text'])
     if extracted_info:
@@ -113,4 +133,5 @@ for resume in tqdm(resumes_subset):
 
 # Save as silver data
 silver_df = pd.DataFrame(processed_data)
-silver_df.to_json('silver_labeled_resumes2.json', orient='records')
+silver_df.to_json('silver_labeled_resumes.json', orient='records')
+print(f"Saved {len(processed_data)} total resumes to silver_labeled_resumes.json")

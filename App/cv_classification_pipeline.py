@@ -668,7 +668,7 @@ def main():
     cv_classifier = CVClassifier()
     
     # Load data
-    resumes = cv_classifier.load_data('silver_labeled_resumes2.json')
+    resumes = cv_classifier.load_data('silver_labeled_resumes.json')
     
     # Preprocess data
     processed_resumes = cv_classifier.preprocess_resumes(resumes)
