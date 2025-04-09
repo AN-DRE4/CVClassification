@@ -3,3 +3,5 @@ venv/
 .env
 CVs/
 cv_classifier_models/
+outputs/
+cv_classifier/

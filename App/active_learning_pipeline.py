@@ -263,6 +263,76 @@ class ActiveLearningPipeline:
             json.dump(self.training_data, f, indent=2)
         logger.info(f"Saved labeled data to {output_file}")
 
+    def process_all_resumes(self) -> List[Dict[str, Any]]:
+        """Process all remaining unlabeled resumes using the trained model"""
+        if not self.model:
+            logger.error("No trained model available. Please train the model first.")
+            return []
+        
+        logger.info(f"Processing {len(self.unlabeled_data)} remaining resumes...")
+        processed_resumes = []
+        batch_size = 100  # Process 100 resumes at a time
+        
+        for i in range(0, len(self.unlabeled_data), batch_size):
+            batch = self.unlabeled_data[i:i + batch_size]
+            texts = [resume['text'] for resume in batch]
+            
+            logger.info(f"Processing batch {i//batch_size + 1} of {(len(self.unlabeled_data) + batch_size - 1)//batch_size}")
+            
+            # Tokenize batch
+            inputs = self.tokenizer(
+                texts,
+                padding=True,
+                truncation=True,
+                max_length=512,
+                return_tensors="pt"
+            )
+            
+            # Get predictions
+            with torch.no_grad():
+                outputs = self.model(**inputs)
+                probabilities = torch.sigmoid(outputs.logits)
+            
+            # Convert probabilities to predictions
+            predictions = (probabilities > 0.5).float().numpy()
+            
+            # Map predictions back to expertise categories
+            for j, resume in enumerate(batch):
+                expertise_indices = np.where(predictions[j] == 1)[0]
+                expertise_categories = [self.label_binarizer.classes_[idx] for idx in expertise_indices]
+                
+                # Create extracted info structure
+                extracted_info = {
+                    'work_experience': [{
+                        'technical_skills': [],
+                        'soft_skills': []
+                    }],
+                    'extra_skills': {
+                        'Technical skills': [],
+                        'Soft skills': []
+                    }
+                }
+                
+                # Add predicted expertise categories to skills
+                for expertise in expertise_categories:
+                    if expertise != 'unknown':
+                        extracted_info['extra_skills']['Technical skills'].append(expertise)
+                
+                processed_resumes.append({
+                    'resume_id': resume['id'],
+                    'resume_text': resume['text'],
+                    'extracted_info': extracted_info,
+                    'predicted_expertise': expertise_categories
+                })
+        
+        # Save processed resumes
+        output_file = 'processed_resumes.json'
+        with open(output_file, 'w') as f:
+            json.dump(processed_resumes, f, indent=2)
+        
+        logger.info(f"Processed {len(processed_resumes)} resumes. Results saved to {output_file}")
+        return processed_resumes
+
 def main():
     # Initialize pipeline
     pipeline = ActiveLearningPipeline()
@@ -319,6 +389,11 @@ def main():
             logger.warning("No valid labeled samples found. Skipping retraining.")
         
         logger.info(f"Completed iteration {iteration + 1}")
+
+    # After active learning loop completes, process remaining resumes
+    logger.info("\nProcessing all remaining resumes...")
+    processed_resumes = pipeline.process_all_resumes()
+    logger.info("Pipeline completed!")
 
 if __name__ == "__main__":
     main() 

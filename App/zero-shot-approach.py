@@ -21,7 +21,7 @@ def extract_resume_info(resume_text):
     Today's date is {month} {year}.
     Extract the following structured information from this resume:
         
-    1. Education: Degrees, institutions, and graduation dates
+    1. Education: Degrees, institutions, and graduation dates. All graduation dates should be in the format 'Year' only and nothing else.
     2. Work Experience: For each position include:
        - Company name
        - Job title
@@ -116,13 +116,12 @@ for root, dirs, files in os.walk('CVs'):
 
 print(f"Found {len(resumes)} unprocessed resumes")
 
-# Process a subset of resumes
-subset_size = 100  # Process 100 resumes
-resumes_subset = resumes[:subset_size]  # First 100 resumes
+# Process all remaining resumes
 processed_data = existing_data  # Start with existing data
 
-print(f"Processing {len(resumes_subset)} new resumes...")
-for resume in tqdm(resumes_subset):
+
+print(f"Processing {len(resumes)} remaining resumes...")
+for resume in tqdm(resumes):
     extracted_info = extract_resume_info(resume['text'])
     if extracted_info:
         processed_data.append({
