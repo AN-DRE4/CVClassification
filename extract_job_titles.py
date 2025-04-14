@@ -7,17 +7,35 @@ from collections import defaultdict
 ROLE_LEVEL_MAPPING = {
     "entry_level": ["entry", "junior", "jr", "intern", "trainee", "fresher", "graduate", "assistant", "clerk"],
     "mid_level": ["associate", "staff", "analyst", "consultant", "specialist"],
-    "senior_level": ["senior", "sr", "lead", "principal", "tech lead", "technical lead", "expert"],
-    "management": ["manager", "director", "vp", "chief", "head", "executive", "officer"],
+    "senior_level": ["senior", "sr", "lead", "principal", "tech lead", "technical lead", "expert", "team leader", "team lead"],
+    "management": ["manager", "director", "vp", "chief", "head", "executive", "officer", "president"],
 }
+
+ROLE_HIERARCHY = ["management", "senior_level", "mid_level", "entry_level", "uncategorized"]
+
+EXTRA_MAPPING = [
+    "developer",
+    "designer",
+    "qa",
+    "hr",
+    "human resources",
+    "analyst",
+    "accountant",
+    "consultant",
+    "marketing",
+    "sales",
+    "finance",
+]
 
 def extract_role_level(title):
     """
     Extract the role level from a job title based on the role level mapping.
     If no known role level is found, return "uncategorized".
     """
+    ret = ["uncategorized"]
+
     if not title or not isinstance(title, str):
-        return "uncategorized"
+        return ret
     
     title_lower = title.lower()
     
@@ -27,10 +45,10 @@ def extract_role_level(title):
             # Match keyword as a whole word
             pattern = r'\b' + re.escape(keyword) + r'\b'
             if re.search(pattern, title_lower):
-                return role_level
+                ret.append(role_level)
     
     # If no predefined level is found
-    return "uncategorized"
+    return ret
 
 def process_resumes(input_file, output_file):
     """
@@ -73,7 +91,20 @@ def process_resumes(input_file, output_file):
                 title = job.get("title")
                 if title and title != "N/A":
                     # Extract role level
-                    role_level = extract_role_level(title)
+                    role_levels = extract_role_level(title)
+                    role_level = role_levels[0]
+                    if len(role_levels) == 1: # only caught has 'uncategorized'
+                        for item in EXTRA_MAPPING:
+                            if item in title.lower():
+                                role_level = 'mid_level'
+                                print(f"{title} -> {role_levels} -> {role_level}")
+                                break
+                    else:
+                        # Take only the highest role level according to hierarchy
+                        for level in ROLE_HIERARCHY:
+                            if level in role_levels:
+                                role_level = level
+                                break
                     titles_by_level[role_level].add(title)
         
         # Convert sets to lists for JSON serialization
@@ -98,6 +129,13 @@ def process_resumes(input_file, output_file):
     except Exception as e:
         print(f"Error: {str(e)}")
         return False
+    
+"""def check_job_titles(title, categories):
+    title_new = title.lower()
+    if title_new in categories['management'] or title_new in categories['senior_level'] or title_new in categories['mid_level'] or title_new in categories['entry_level']:
+        return True
+    return False
+"""
 
 def interactive_categorization(input_file, output_file):
     """
@@ -128,7 +166,26 @@ def interactive_categorization(input_file, output_file):
         
         # Get all uncategorized titles from the existing categories
         uncategorized_titles = set(categories.get("uncategorized", []))
+
+        """titles_to_remove = []
+        print(f"Uncategorized titles: {len(uncategorized_titles)}")
+        for title in uncategorized_titles:
+            print(title)
+            if check_job_titles(title, categories):
+                titles_to_remove.append(title)
         
+        print(f"There are {len(titles_to_remove)} titles that are already categorized with different casing and will be removed")
+        # Output titles that will be removed to a JSON file
+        with open('removed_titles.json', 'w', encoding='utf-8') as f:
+            json.dump({'removed_titles': titles_to_remove}, f, indent=2)
+        
+        num = input("Press 1 to remove the titles and anything else to keep them").strip()
+        if num == '1':
+            for title in titles_to_remove:
+                uncategorized_titles.remove(title)
+                categories['uncategorized'].remove(title)
+
+        print(f"Uncategorized titles after checking: {len(uncategorized_titles)}")"""
         # Process each resume
         for resume in resumes:
             if "extracted_info" not in resume:
@@ -165,13 +222,12 @@ def interactive_categorization(input_file, output_file):
             for role_level, keywords in ROLE_LEVEL_MAPPING.items():
                 print(f"- {role_level}: {', '.join(keywords)}")
             print("- uncategorized")
-            print("- [custom]: You can enter any custom role level\n")
             
             # Define category keys for menu selection
             category_keys = ["entry_level", "mid_level", "senior_level", "management", "uncategorized"]
             
             # Process all titles that need categorization
-            for title in sorted(titles_to_categorize):
+            for i, title in enumerate(sorted(titles_to_categorize), 1):
                 suggested_level = extract_role_level(title)
                 
                 print(f"\nTitle: {title}")
@@ -186,7 +242,10 @@ Enter role level for this title (press Enter to accept '{suggested_level}'):
 1 - Entry Level
 2 - Mid Level
 3 - Senior Level
-4 - Management""").strip()
+4 - Management
+5 - Uncategorized
+6 - Exit
+""").strip()
                 
                 # Process user input
                 chosen_category = ""
@@ -195,7 +254,10 @@ Enter role level for this title (press Enter to accept '{suggested_level}'):
                 if not user_input:
                     chosen_category = suggested_level
                 # If user entered a number 1-5, map it to a category
-                elif user_input.isdigit() and 1 <= int(user_input) <= 4:
+                elif user_input.isdigit() and 1 <= int(user_input) <= 6:
+                    if int(user_input) == 6:
+                        print(f"Exiting interactive categorization with {len(titles_to_categorize) - i + 1} job titles remaining...")
+                        break
                     chosen_category = category_keys[int(user_input) - 1]
                 # Otherwise, use the input as a custom category
                 else:
