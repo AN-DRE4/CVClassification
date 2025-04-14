@@ -5,17 +5,20 @@ from collections import defaultdict
 
 # Role level mapping: keys are standardized role levels, values are lists of keywords to match
 ROLE_LEVEL_MAPPING = {
-    "entry_level": ["entry", "junior", "jr", "intern", "trainee", "fresher", "graduate", "assistant", "clerk"],
+    "entry_level": ["entry", "junior", "jr", "intern", "trainee", "fresher", "graduate", "assistant", "asst", "asst.", "clerk"],
     "mid_level": ["associate", "staff", "analyst", "consultant", "specialist"],
-    "senior_level": ["senior", "sr", "lead", "principal", "tech lead", "technical lead", "expert", "team leader", "team lead"],
+    "senior_level": ["senior", "sr", "sr.", "lead", "principal", "tech lead", "technical lead", "expert", "team leader", "team lead"],
     "management": ["manager", "director", "vp", "chief", "head", "executive", "officer", "president"],
 }
 
 ROLE_HIERARCHY = ["management", "senior_level", "mid_level", "entry_level", "uncategorized"]
 
+# Possibly replace this with a list of job key words to better encompass all job titles
+# Use jobs in this repo (https://github.com/jneidel/job-titles) as a reference
 EXTRA_MAPPING = [
     "developer",
     "designer",
+    "engineer",
     "qa",
     "hr",
     "human resources",
@@ -25,6 +28,8 @@ EXTRA_MAPPING = [
     "marketing",
     "sales",
     "finance",
+    "advisor",
+    "recruiter"
 ]
 
 def extract_role_level(title):
@@ -97,7 +102,6 @@ def process_resumes(input_file, output_file):
                         for item in EXTRA_MAPPING:
                             if item in title.lower():
                                 role_level = 'mid_level'
-                                print(f"{title} -> {role_levels} -> {role_level}")
                                 break
                     else:
                         # Take only the highest role level according to hierarchy
