@@ -13,6 +13,8 @@ import os
 from datasets import Dataset
 from collections import defaultdict
 
+from esco_integration import ESCOIntegration
+
 # Define expertise categories (based on technical skills)
 EXPERTISE_CATEGORIES = {
     'software_development': [
@@ -24,8 +26,8 @@ EXPERTISE_CATEGORIES = {
         'databricks', 'snowflake', 'redshift', 'big data', 'oracle', 'ms sql server'
     ],
     'data_science': [
-        'machine learning', 'deep learning', 'ai', 'artificial intelligence', 
-        'python', 'r', 'statistics', 'tensorflow', 'pytorch', 'keras', 'data analysis'
+        'machine learning', 'deep learning', 'artificial intelligence', 
+        'python', 'statistics', 'tensorflow', 'pytorch', 'keras', 'data analysis'
     ],
     'devops': [
         'jenkins', 'docker', 'kubernetes', 'aws', 'azure', 'devops', 'ci/cd',
@@ -40,7 +42,7 @@ EXPERTISE_CATEGORIES = {
         'digital marketing', 'content strategy', 'advertising'
     ],
     'finance': [
-        'excel', 'accounting', 'financial analysis', 'financial reporting',
+        'accounting', 'financial analysis', 'financial reporting',
         'banking', 'reconciliation', 'tax', 'audit', 'tally'
     ],
     'management': [
@@ -100,7 +102,7 @@ ORG_UNITS = {
 }
 
 class CVClassifier:
-    def __init__(self, model_name="bert-base-uncased"):
+    def __init__(self, model_name="bert-base-uncased", esco_api_key=None):
         self.model_name = model_name
         self.tokenizer = None
         self.model = None
@@ -112,6 +114,7 @@ class CVClassifier:
         self.org_unit_binarizer = MultiLabelBinarizer()
         self.role_level_models = {}
         self.role_level_models_binarizers = {}
+        self.esco = ESCOIntegration(api_key=esco_api_key) if esco_api_key else None
         
     def load_data(self, file_path):
         """Load labeled resume data from JSON file"""
@@ -218,11 +221,35 @@ class CVClassifier:
         skill_lower = skill.lower()
         matched_expertise = []
         
-        for category, keywords in EXPERTISE_CATEGORIES.items():
-            for keyword in keywords:
-                if keyword.lower() in skill_lower or skill_lower in keyword.lower():
-                    matched_expertise.append(category)
-                    break
+        # First try to map using ESCO if available
+        if self.esco:
+            esco_matches = self.esco.map_skills_to_esco([skill])
+            if skill in esco_matches and esco_matches[skill]:
+                # Get the top match
+                top_match = esco_matches[skill][0]
+                # Extract skill concept type which can help determine expertise
+                concept_type = top_match.get("type", "").lower()
+                print(f"ESCO match found for {skill}: {top_match}, concept_type: {concept_type}")
+                if "software" in concept_type or "programming" in concept_type:
+                    matched_expertise.append('software_development')
+                elif "data" in concept_type or "analytics" in concept_type:
+                    matched_expertise.append('data_engineering')
+                    matched_expertise.append('data_science')
+                elif "security" in concept_type:
+                    matched_expertise.append('cybersecurity')
+                elif "management" in concept_type:
+                    matched_expertise.append('management')
+        
+        # If no ESCO matches or we want to be thorough, use the existing keyword matching
+        if not matched_expertise:
+            for category, keywords in EXPERTISE_CATEGORIES.items():
+                for keyword in keywords:
+                    if len(skill_lower) < 2:
+                        continue
+                    if keyword.lower() in skill_lower or skill_lower in keyword.lower():
+                        # print(f"Keyword match found for {skill}: {keyword}, number1")
+                        matched_expertise.append(category)
+                        break
         
         return matched_expertise
     
@@ -236,6 +263,20 @@ class CVClassifier:
                 job_id = f"{exp.get('company', 'unknown')}_{i}"
                 job_title = exp.get('title', '').lower()
                 job_expertise = []
+                
+                # Try to map job title to ESCO occupation if available
+                if self.esco:
+                    occupation_matches = self.esco.map_job_title_to_esco(job_title)
+                    if occupation_matches:
+                        top_occupation = occupation_matches[0]
+                        # Get related skills for this occupation
+                        related_skills = self.esco.get_related_skills(top_occupation["uri"])
+                        # Map these skills to expertise categories
+                        for skill in related_skills:
+                            skill_name = skill.get("preferredLabel", {}).get("en", "")
+                            if skill_name:
+                                matched = self._map_skill_to_expertise(skill_name)
+                                job_expertise.extend(matched)
                 
                 # Extract skills for this job
                 tech_skills = []
@@ -255,10 +296,12 @@ class CVClassifier:
                 # Match job title and responsibilities to expertise categories
                 for category, keywords in EXPERTISE_CATEGORIES.items():
                     if any(keyword.lower() in job_title for keyword in keywords):
+                        # print(f"Keyword match found for {job_title}: {category}, number2")
                         job_expertise.append(category)
                         continue
                         
                     if any(keyword.lower() in responsibilities for keyword in keywords):
+                        # print(f"Keyword match found for {responsibilities}: {category}, number3")
                         job_expertise.append(category)
                 
                 # Remove duplicates
@@ -669,6 +712,11 @@ def main():
     
     # Load data
     resumes = cv_classifier.load_data('silver_labeled_resumes.json')
+
+    '''for resume in resumes:
+        if resume['resume_id'] == 'CVs\\batch_1\\10018_NITIN_JAIN.txt':
+            resumes = [resume]
+            break'''
     
     # Preprocess data
     processed_resumes = cv_classifier.preprocess_resumes(resumes)
@@ -699,51 +747,119 @@ def main():
         # Track org unit
         for unit in resume['org_unit']:
             org_unit_counts[unit].append(resume_id)
-    
-    print("\nOverall Expertise Distribution:")
-    for exp, resume_ids in expertise_counts.items():
-        print(f"{exp}: {len(resume_ids)}")
-        print(f"  Resumes: {', '.join(resume_ids)}")
-    
-    print("\nExpertise by Job:")
-    for job_id, expertise_dict in job_expertise_counts.items():
-        print(f"\n  Job: {job_id}")
-        for exp, resume_ids in expertise_dict.items():
-            print(f"    {exp}: {len(resume_ids)}")
-            print(f"      Resumes: {', '.join(resume_ids)}")
-    
-    print("\nRole Level Distribution by Expertise:")
-    for exp, role_levels in role_level_by_expertise_counts.items():
-        print(f"\n  Expertise: {exp}")
-        for role, resume_ids in role_levels.items():
-            print(f"    {role}: {len(resume_ids)}")
-            print(f"      Resumes: {', '.join(resume_ids)}")
-    
-    print("\nOrganizational Unit Distribution:")
-    for unit, resume_ids in org_unit_counts.items():
-        print(f"{unit}: {len(resume_ids)}")
-        print(f"  Resumes: {', '.join(resume_ids)}")
-    
-    print("\nDetailed Resume Classifications:")
-    for resume in processed_resumes:
-        print(f"\nResume ID: {resume['resume_id']}")
-        print(f"  Expertise: {', '.join(resume['expertise'])}")
+
+    a = 0
+    if a == 1:
+        print("\nOverall Expertise Distribution:")
+        for exp, resume_ids in expertise_counts.items():
+            print(f"{exp}: {len(resume_ids)}")
+            print(f"  Resumes: {', '.join(resume_ids)}")
         
-        print("  Expertise by Job:")
-        for job_id, job_expertise in resume['expertise_by_job'].items():
-            print(f"    {job_id}: {', '.join(job_expertise)}")
+        print("\nExpertise by Job:")
+        for job_id, expertise_dict in job_expertise_counts.items():
+            print(f"\n  Job: {job_id}")
+            for exp, resume_ids in expertise_dict.items():
+                print(f"    {exp}: {len(resume_ids)}")
+                print(f"      Resumes: {', '.join(resume_ids)}")
         
-        print("  Role Level by Expertise:")
-        for exp, roles in resume['role_level_by_expertise'].items():
-            print(f"    {exp}: {', '.join(roles)}")
+        print("\nRole Level Distribution by Expertise:")
+        for exp, role_levels in role_level_by_expertise_counts.items():
+            print(f"\n  Expertise: {exp}")
+            for role, resume_ids in role_levels.items():
+                print(f"    {role}: {len(resume_ids)}")
+                print(f"      Resumes: {', '.join(resume_ids)}")
+        
+        print("\nOrganizational Unit Distribution:")
+        for unit, resume_ids in org_unit_counts.items():
+            print(f"{unit}: {len(resume_ids)}")
+            print(f"  Resumes: {', '.join(resume_ids)}")
+        
+        print("\nDetailed Resume Classifications:")
+        for resume in processed_resumes:
+            print(f"\nResume ID: {resume['resume_id']}")
+            print(f"  Expertise: {', '.join(resume['expertise'])}")
             
-        print(f"  Org Unit: {', '.join(resume['org_unit'])}")
+            print("  Expertise by Job:")
+            for job_id, job_expertise in resume['expertise_by_job'].items():
+                print(f"    {job_id}: {', '.join(job_expertise)}")
+            
+            print("  Role Level by Expertise:")
+            for exp, roles in resume['role_level_by_expertise'].items():
+                print(f"    {exp}: {', '.join(roles)}")
+                
+            print(f"  Org Unit: {', '.join(resume['org_unit'])}")
+    else:
+        # Export expertise distribution to file
+        with open('expertise_distribution.txt', 'w', encoding='utf-8') as f:
+            f.write("Overall Expertise Distribution:\n")
+            for exp, resume_ids in expertise_counts.items():
+                f.write(f"{exp}: {len(resume_ids)}\n")
+                f.write(f"  Resumes: {', '.join(resume_ids)}\n")
+        print("Expertise distribution exported to expertise_distribution.txt")
+        
+        # Export expertise by job to file
+        with open('expertise_by_job.txt', 'w', encoding='utf-8') as f:
+            f.write("Expertise by Job:\n")
+            for job_id, expertise_dict in job_expertise_counts.items():
+                f.write(f"\n  Job: {job_id}\n")
+                for exp, resume_ids in expertise_dict.items():
+                    f.write(f"    {exp}: {len(resume_ids)}\n")
+                    f.write(f"      Resumes: {', '.join(resume_ids)}\n")
+        print("Expertise by job exported to expertise_by_job.txt")
+        
+        # Export role level distribution to file
+        with open('role_level_distribution.txt', 'w', encoding='utf-8') as f:
+            f.write("Role Level Distribution by Expertise:\n")
+            for exp, role_levels in role_level_by_expertise_counts.items():
+                f.write(f"\n  Expertise: {exp}\n")
+                for role, resume_ids in role_levels.items():
+                    f.write(f"    {role}: {len(resume_ids)}\n")
+                    f.write(f"      Resumes: {', '.join(resume_ids)}\n")
+        print("Role level distribution exported to role_level_distribution.txt")
+        
+        # Export organizational unit distribution to file
+        with open('org_unit_distribution.txt', 'w', encoding='utf-8') as f:
+            f.write("Organizational Unit Distribution:\n")
+            for unit, resume_ids in org_unit_counts.items():
+                f.write(f"{unit}: {len(resume_ids)}\n")
+                f.write(f"  Resumes: {', '.join(resume_ids)}\n")
+        print("Organizational unit distribution exported to org_unit_distribution.txt")
+        
+        # Export detailed resume classifications to file
+        with open('detailed_resume_classifications.txt', 'w', encoding='utf-8') as f:
+            f.write("Detailed Resume Classifications:\n")
+            for resume in processed_resumes:
+                f.write(f"\nResume ID: {resume['resume_id']}\n")
+                f.write(f"  Expertise: {', '.join(resume['expertise'])}\n")
+                
+                f.write("  Expertise by Job:\n")
+                for job_id, job_expertise in resume['expertise_by_job'].items():
+                    f.write(f"    {job_id}: {', '.join(job_expertise)}\n")
+                
+                f.write("  Role Level by Expertise:\n")
+                for exp, roles in resume['role_level_by_expertise'].items():
+                    f.write(f"    {exp}: {', '.join(roles)}\n")
+                    
+                f.write(f"  Org Unit: {', '.join(resume['org_unit'])}\n")
+        print("Detailed resume classifications exported to detailed_resume_classifications.txt")
+
+        # All resumes that don't have any expertise
+        counter = 0
+        with open('resumes_without_expertise.txt', 'w', encoding='utf-8') as f:
+            f.write("Resumes without any expertise:\n")
+            for resume in processed_resumes:
+                if len(resume['expertise']) == 1 and resume['expertise'][0] == 'unknown':
+                    counter += 1
+                    f.write(f"Resume ID: {resume['resume_id']}\n")
+        print("Resumes without any expertise exported to resumes_without_expertise.txt")
+        print(f"Number of resumes without any expertise: {counter}")
     
+    '''
     # Prepare for training
     datasets = cv_classifier.prepare_for_training(processed_resumes)
     
     # Train models (commented out as it would require GPU resources)
-    '''cv_classifier.train_models(datasets)
+    # Prepare for training
     
     # Example of how to use for prediction (would need trained models)
     cv_classifier.load_trained_models()

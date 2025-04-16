@@ -42,14 +42,12 @@ def extract_role_level(title):
     if not title or not isinstance(title, str):
         return ret
     
-    title_lower = title.lower()
-    
     # Check each role level category
     for role_level, keywords in ROLE_LEVEL_MAPPING.items():
         for keyword in keywords:
             # Match keyword as a whole word
             pattern = r'\b' + re.escape(keyword) + r'\b'
-            if re.search(pattern, title_lower):
+            if re.search(pattern, title):
                 ret.append(role_level)
     
     # If no predefined level is found
@@ -96,6 +94,7 @@ def process_resumes(input_file, output_file):
                 title = job.get("title")
                 if title and title != "N/A":
                     # Extract role level
+                    title = title.lower()
                     role_levels = extract_role_level(title)
                     role_level = role_levels[0]
                     if len(role_levels) == 1: # only caught has 'uncategorized'
@@ -206,6 +205,7 @@ def interactive_categorization(input_file, output_file):
                 title = job.get("title")
                 # Only process titles that aren't already properly categorized
                 if title and title != "N/A" and title not in already_categorized_titles:
+                    title = title.lower()
                     titles_to_categorize.add(title)
         
         # If there are titles to categorize, process them
