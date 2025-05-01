@@ -1,0 +1,1466 @@
+Resumes without any expertise:
+Resume ID: CVs\batch_1\10292_MOHAMED_AZARUDEEN.txt
+Resume ID: CVs\batch_1\10674_MANDEEP_KUMAR.txt
+Resume ID: CVs\batch_1\10701_Lavina_Vinay_Nair.txt
+Resume ID: CVs\batch_1\10707_KAYAM_VENKATA_SUBBAIAH.txt
+Resume ID: CVs\batch_1\10970_R.txt
+Resume ID: CVs\batch_1\11103_DIPANNITA_DAS.txt
+Resume ID: CVs\batch_1\11406_VISHAKHA_PATHAK.txt
+Resume ID: CVs\batch_1\11614_SOURAB_ROY.txt
+Resume ID: CVs\batch_1\11653_DURGA_SURYA_VENKAT.txt
+Resume ID: CVs\batch_1\11780_Saswati_Dey.txt
+Resume ID: CVs\batch_1\11813_Himanshu_Digambarrao_Joshi.txt
+Resume ID: CVs\batch_1\11951_RRaajjkkuummaarr_JJaaiisswwaal_l.txt
+Resume ID: CVs\batch_1\12092_A.txt
+Resume ID: CVs\batch_1\12478_Swagata_Purakayastha.txt
+Resume ID: CVs\batch_1\12498_AJITH_KUMAR.txt
+Resume ID: CVs\batch_1\12562_Abhishek_Jaiswal.txt
+Resume ID: CVs\batch_1\12597_MONDAL (1).txt
+Resume ID: CVs\batch_1\1259_Gayathri (1).txt
+Resume ID: CVs\batch_1\12955_BIRENDRAKUMARMISHRA.txt
+Resume ID: CVs\batch_1\13197_MSMAMARPCRYPT.txt
+Resume ID: CVs\batch_1\13303_U_RVASHI_Y_ADAV.txt
+Resume ID: CVs\batch_1\13337_YOGESH_JAGANNATH_SHINDE (1).txt
+Resume ID: CVs\batch_1\13565_Ankit_Sen_Roy (1).txt
+Resume ID: CVs\batch_1\13640_SUNAYANA.txt
+Resume ID: CVs\batch_1\1369_MITALI_SAHA.txt
+Resume ID: CVs\batch_1\13764_Dr_Krushna_Jagannath_Kshirasagar.txt
+Resume ID: CVs\batch_1\1396_PATEL_VIVEK_NARSINHBHAI.txt
+Resume ID: CVs\batch_1\14010_YOGESH_JAGANNATH_SHINDE.txt
+Resume ID: CVs\batch_1\14016_MAHBOOB_ALAM.txt
+Resume ID: CVs\batch_1\14061_Aparna_Bansode.txt
+Resume ID: CVs\batch_1\14073_Sasi.txt
+Resume ID: CVs\batch_1\14083_MITALI_KAR.txt
+Resume ID: CVs\batch_1\14092_VAIBHAVA_KUMAR_TIWARI.txt
+Resume ID: CVs\batch_1\14400_SURESH_CHITTIBOMMA.txt
+Resume ID: CVs\batch_1\1458_Tharangambadi_Tk.txt
+Resume ID: CVs\batch_1\14593_Ranganyukula_gutta.txt
+Resume ID: CVs\batch_1\14619_Mohamed_Owaish_Kolsawala.txt
+Resume ID: CVs\batch_1\14698_ASHWINI_P_M.txt
+Resume ID: CVs\batch_1\14925_Vishwajeet_Londhe.txt
+Resume ID: CVs\batch_1\14949_MANOJA_K.txt
+Resume ID: CVs\batch_1\14989_Yerra_Shilpa.txt
+Resume ID: CVs\batch_1\1595_KAKOLI_ROY.txt
+Resume ID: CVs\batch_1\1612_RAJKIRAN_CHERUKU.txt
+Resume ID: CVs\batch_1\1617_Nityanandan_Paramasivam.txt
+Resume ID: CVs\batch_1\181_Sushmita_Sarkar (2).txt
+Resume ID: CVs\batch_1\18_Aritra_Ghosh (1).txt
+Resume ID: CVs\batch_1\1941_Sanket_Mangal (1).txt
+Resume ID: CVs\batch_1\2104_SUCHETANA_SEN.txt
+Resume ID: CVs\batch_1\222_SUDIPTA_SARKAR.txt
+Resume ID: CVs\batch_1\2352_Shivaji_UniversityKolhapur.txt
+Resume ID: CVs\batch_1\2520_SONU_BALIRAM_METHRE.txt
+Resume ID: CVs\batch_1\2552_Dr_Deepti_Mahajan.txt
+Resume ID: CVs\batch_1\2631_Ramesh_Chandran.txt
+Resume ID: CVs\batch_1\2639_MUJAWAR_WAQAR_FAIZ_AHMED.txt
+Resume ID: CVs\batch_1\3136_M_SYED_ABUDHAGIR_RIAZ.txt
+Resume ID: CVs\batch_1\3405_NILAY_TIKADAR.txt
+Resume ID: CVs\batch_1\3476_Kunal_Nagshetti.txt
+Resume ID: CVs\batch_1\3624_PRITI_GUJE_GAIKWAD.txt
+Resume ID: CVs\batch_1\3940_GINGEE_T.txt
+Resume ID: CVs\batch_1\4037_Manjar_Ali.txt
+Resume ID: CVs\batch_1\4059_Rohan_Hindurao_Dhumal.txt
+Resume ID: CVs\batch_1\4245_Johnson_Karna_Swamy.txt
+Resume ID: CVs\batch_1\4409_Nasir_Jamal_Ansari.txt
+Resume ID: CVs\batch_1\4709_Shiva_Karmokar.txt
+Resume ID: CVs\batch_1\4722_Irfan_Khan_S.txt
+Resume ID: CVs\batch_1\4944_Shubhalaxmi_Haridas_Parkar.txt
+Resume ID: CVs\batch_1\5042_PULKIT_SHARMA.txt
+Resume ID: CVs\batch_1\5163_I_SAI_KUMAR.txt
+Resume ID: CVs\batch_1\5263_Devarshi_A_Patil.txt
+Resume ID: CVs\batch_1\5474_Sananda_Biswas.txt
+Resume ID: CVs\batch_1\5811_NIRANJAN_S.txt
+Resume ID: CVs\batch_1\6384_Kapil_Namdev.txt
+Resume ID: CVs\batch_1\6443_H.txt
+Resume ID: CVs\batch_1\6519_Syed_Imtiyaz_Ahmed.txt
+Resume ID: CVs\batch_1\6695_Hitesh_Patil.txt
+Resume ID: CVs\batch_1\6798_NAGARAJU_Y.txt
+Resume ID: CVs\batch_1\6885_VARSHA_SANJAY_GAIKWAD.txt
+Resume ID: CVs\batch_1\7252_A_ANBU (1).txt
+Resume ID: CVs\batch_1\7494_Loganatha_Narayanaswamy_Govt.txt
+Resume ID: CVs\batch_1\7545_SAURABH_TRIPATHI.txt
+Resume ID: CVs\batch_1\7685_Shailaja_Rajput.txt
+Resume ID: CVs\batch_1\7876_SNEHASISH_BANERJEE.txt
+Resume ID: CVs\batch_1\7931_GAURAV_DAS.txt
+Resume ID: CVs\batch_1\8009_Pratik_M_Dhanak.txt
+Resume ID: CVs\batch_1\8040_SUNIL_V_MODI.txt
+Resume ID: CVs\batch_1\8104_Benny_Stephan.txt
+Resume ID: CVs\batch_1\8345_Manoj_Kumar_Kohli.txt
+Resume ID: CVs\batch_1\8448_MR.txt
+Resume ID: CVs\batch_1\8606_Shankar_Viswanathan.txt
+Resume ID: CVs\batch_1\8858_ASHFAQ_AHMED.txt
+Resume ID: CVs\batch_1\8912_BALAJI_S.txt
+Resume ID: CVs\batch_1\8940_NAMAN_MUNDRA.txt
+Resume ID: CVs\batch_1\8943_Pravin_Sudam_Nayak.txt
+Resume ID: CVs\batch_1\9102_SRUTHI_SIDDIGIDDA (1).txt
+Resume ID: CVs\batch_1\9483_PRIYAN_KA_BARASKAR.txt
+Resume ID: CVs\batch_1\9652_Kajal_Beriya.txt
+Resume ID: CVs\batch_1\9792_SUNUGURI_RAMESH.txt
+Resume ID: CVs\batch_1\9851_RAKESH_JAISWAR.txt
+Resume ID: CVs\batch_10\10113_A_M_A_R_J_E_E_T.txt
+Resume ID: CVs\batch_10\10198_TUHIN_PAUL.txt
+Resume ID: CVs\batch_10\10533_Hrishikesh_Vijaykumar_Bhandvalkar.txt
+Resume ID: CVs\batch_10\10583_MONORANJANHALDER.txt
+Resume ID: CVs\batch_10\11073_PRABODH_PRALHAD_SAO.txt
+Resume ID: CVs\batch_10\11389_Sukumar_Dey.txt
+Resume ID: CVs\batch_10\1144_ATHIRA_M_A.txt
+Resume ID: CVs\batch_10\116_Ishita_Mitra.txt
+Resume ID: CVs\batch_10\11709_Richa_More.txt
+Resume ID: CVs\batch_10\11710_Dr.txt
+Resume ID: CVs\batch_10\1188_SOUGAT_SEN.txt
+Resume ID: CVs\batch_10\12028_Mohammed_Faizan_Khan.txt
+Resume ID: CVs\batch_10\12203_Purnavilla.txt
+Resume ID: CVs\batch_10\12224_SUBHRAPRATIM_DUTTA.txt
+Resume ID: CVs\batch_10\12397_Aruna_Kumaravel.txt
+Resume ID: CVs\batch_10\12485_L.txt
+Resume ID: CVs\batch_10\12791_Aziz_S_Ranginwala.txt
+Resume ID: CVs\batch_10\12793_Devbrata_Kundu.txt
+Resume ID: CVs\batch_10\13056_TANVEE_P_DETHE (1).txt
+Resume ID: CVs\batch_10\13165_PANKAJ_PALIWAL.txt
+Resume ID: CVs\batch_10\13274_Saurabh_Kumar_Sinha.txt
+Resume ID: CVs\batch_10\13519_Priti_Abhyuday_Bhalerao (1).txt
+Resume ID: CVs\batch_10\13557_Nidhi_Chhadawa (1).txt
+Resume ID: CVs\batch_10\13769_CHAUDHARI_DEEPAK_BHAULAL.txt
+Resume ID: CVs\batch_10\13866_VRUTI_R_DEVDHARIYA.txt
+Resume ID: CVs\batch_10\13913_THWAYIB_K.txt
+Resume ID: CVs\batch_10\13952_Abrar_Hiroli.txt
+Resume ID: CVs\batch_10\14237_Soni_Hiren_vinodchandra (1).txt
+Resume ID: CVs\batch_10\14249_Balaji_M.txt
+Resume ID: CVs\batch_10\14584_Shyam_Sundar_Manna.txt
+Resume ID: CVs\batch_10\14594_Manish_Kumar.txt
+Resume ID: CVs\batch_10\14618_Asandra_Kumar.txt
+Resume ID: CVs\batch_10\14697_M.txt
+Resume ID: CVs\batch_10\1570_Kunal_Baraik (1).txt
+Resume ID: CVs\batch_10\1693_BHARTI_T.txt
+Resume ID: CVs\batch_10\1806_Tax_Invoice.txt
+Resume ID: CVs\batch_10\1838_SWETA_SHAWARN.txt
+Resume ID: CVs\batch_10\1894_SUMIT_MONDAL.txt
+Resume ID: CVs\batch_10\206_MMaammttaa_SSoonni_i.txt
+Resume ID: CVs\batch_10\2357_Ashish_Mishra (1).txt
+Resume ID: CVs\batch_10\2412_PARINITABISWAKARMA.txt
+Resume ID: CVs\batch_10\2656_Ezhilarasan.txt
+Resume ID: CVs\batch_10\2699_Samuel_Dennison_T_A.txt
+Resume ID: CVs\batch_10\2806_Aritra_Ghosh.txt
+Resume ID: CVs\batch_10\2818_Tamal_Pal.txt
+Resume ID: CVs\batch_10\2864_Vijay_Kumar_A_Dwivedi.txt
+Resume ID: CVs\batch_10\3195_AJITH_KUMAR.txt
+Resume ID: CVs\batch_10\3297_RAHUL_V.txt
+Resume ID: CVs\batch_10\3545_AGNEL_JASMINE.txt
+Resume ID: CVs\batch_10\3585_RASHMI_SHUKLA.txt
+Resume ID: CVs\batch_10\362_ARVIND_B_PARDHI.txt
+Resume ID: CVs\batch_10\3647_Shevanti_K_Ranavat.txt
+Resume ID: CVs\batch_10\3740_DR_TAPAN_KALE.txt
+Resume ID: CVs\batch_10\3868_Krutharth_Sharma.txt
+Resume ID: CVs\batch_10\390_HARISH_C.txt
+Resume ID: CVs\batch_10\4136_PIYUSH_KUMAR_PRASHANT.txt
+Resume ID: CVs\batch_10\4158_Kaushik_Chhaya.txt
+Resume ID: CVs\batch_10\4199_Payal_N_Borkar.txt
+Resume ID: CVs\batch_10\4255_RAVISHANKAR_MAURYA.txt
+Resume ID: CVs\batch_10\4260_HARIKRISHNAN_N_R.txt
+Resume ID: CVs\batch_10\4616_R_E_S_U_M_E (3).txt
+Resume ID: CVs\batch_10\4798_MOHMMED_APSER_PASHA.txt
+Resume ID: CVs\batch_10\481_JEYA_KANNAN.txt
+Resume ID: CVs\batch_10\4862_SWARNENDU_SIKDAR.txt
+Resume ID: CVs\batch_10\4909_T.txt
+Resume ID: CVs\batch_10\4914_Regency.txt
+Resume ID: CVs\batch_10\5063_HIMANI_RAVINDRABHAI_PAREKH.txt
+Resume ID: CVs\batch_10\5153_Abdul_Mannan_Shahid.txt
+Resume ID: CVs\batch_10\5542_KALE.txt
+Resume ID: CVs\batch_10\559_KAVYA_SARIKONDA.txt
+Resume ID: CVs\batch_10\5600_Vijay_Mahadev_Mungal.txt
+Resume ID: CVs\batch_10\579_Ruchita_Prabhakar_Nanaware.txt
+Resume ID: CVs\batch_10\5833_DEBALINA_ROY.txt
+Resume ID: CVs\batch_10\5845_Ezhil.txt
+Resume ID: CVs\batch_10\5971_UNITH_KADAPATRI (1).txt
+Resume ID: CVs\batch_10\6036_Naveen_Reddy_Gopidi.txt
+Resume ID: CVs\batch_10\6413_Kore_Abhishek_Sanjay.txt
+Resume ID: CVs\batch_10\6442_AMARNATH_SARKAR.txt
+Resume ID: CVs\batch_10\6616_BHAKTI_R_BHILARE.txt
+Resume ID: CVs\batch_10\703_PRADEEP_KARANAM.txt
+Resume ID: CVs\batch_10\705_Dhar.txt
+Resume ID: CVs\batch_10\7101_Amol_Deepak_Paithankar.txt
+Resume ID: CVs\batch_10\7383_IVAN_XAVIER_FERNANDES.txt
+Resume ID: CVs\batch_10\753_AARTI_HIMANSHU_VASETA.txt
+Resume ID: CVs\batch_10\7922_BEHARA_VARUN.txt
+Resume ID: CVs\batch_10\8256_Pinkul_Pragyan_Paramita_Mohapatra.txt
+Resume ID: CVs\batch_10\8268_Akshay_Garden.txt
+Resume ID: CVs\batch_10\8307_Gourab_Das.txt
+Resume ID: CVs\batch_10\843_Jenil_Khamar.txt
+Resume ID: CVs\batch_10\8610_Vinodhini.txt
+Resume ID: CVs\batch_10\8937_Vishal_Kumbhar.txt
+Resume ID: CVs\batch_10\9020_VIKRAM_M_SHINDE.txt
+Resume ID: CVs\batch_10\9070_GADE_RAMANJANEYAREDDY.txt
+Resume ID: CVs\batch_10\923_RITUPARNA_BHATTACHARYA.txt
+Resume ID: CVs\batch_10\9488_BHARATH.txt
+Resume ID: CVs\batch_10\9542_KABILAN_G.txt
+Resume ID: CVs\batch_10\95_Husain_Naalwala.txt
+Resume ID: CVs\batch_10\9909_Shivani_Yadav.txt
+Resume ID: CVs\batch_10\9980_Arvinder_Singh_Sidhu.txt
+Resume ID: CVs\batch_11\10178_KUNAL_ANIL_RAO.txt
+Resume ID: CVs\batch_11\10227_Arun_Ghanshyam_Sharma.txt
+Resume ID: CVs\batch_11\10294_MEGHA_SOLANKI.txt
+Resume ID: CVs\batch_11\1039_Manvendra_Singh.txt
+Resume ID: CVs\batch_11\10433_Utso_Sen.txt
+Resume ID: CVs\batch_11\10639_Nagesh_Sarvade.txt
+Resume ID: CVs\batch_11\1063_Nancy_Chawla.txt
+Resume ID: CVs\batch_11\10886_MEJINA_JAMES_P_Skills.txt
+Resume ID: CVs\batch_11\11008_VEDAVATHvedavathi.txt
+Resume ID: CVs\batch_11\11138_Vijayendra_Pratap_Singh (1).txt
+Resume ID: CVs\batch_11\11742_Kunal_Baraik.txt
+Resume ID: CVs\batch_11\12091_BIKASH_KUMAR_SHAW.txt
+Resume ID: CVs\batch_11\12112_B.txt
+Resume ID: CVs\batch_11\12186_SOURAV_GHOSH.txt
+Resume ID: CVs\batch_11\12368_Shivali_V_Sangwai.txt
+Resume ID: CVs\batch_11\12404_AnkitaThakkar.txt
+Resume ID: CVs\batch_11\12420_S_SAJI.txt
+Resume ID: CVs\batch_11\12524_SRIDHARKR.txt
+Resume ID: CVs\batch_11\12566_Sivaraj_P.txt
+Resume ID: CVs\batch_11\12812_MOHD_SHAHZAD_WARSI.txt
+Resume ID: CVs\batch_11\12860_SakthiPriya_G.txt
+Resume ID: CVs\batch_11\12894_K.txt
+Resume ID: CVs\batch_11\12905_NIKITA_N_RAMTEKE (1).txt
+Resume ID: CVs\batch_11\12995_AKSHAY_VASANTBHAI_GALA.txt
+Resume ID: CVs\batch_11\13028_MANIMARAN.txt
+Resume ID: CVs\batch_11\1308_Satyam_Pandit.txt
+Resume ID: CVs\batch_11\13129_BHAWNA_BILWAL.txt
+Resume ID: CVs\batch_11\13152_Neelam.txt
+Resume ID: CVs\batch_11\13355_ANITA_JOSEPH.txt
+Resume ID: CVs\batch_11\13401_Leroy_Dsouza.txt
+Resume ID: CVs\batch_11\13510_Dr_Ishani_Patel.txt
+Resume ID: CVs\batch_11\13649_PRAMIT_SARKAR.txt
+Resume ID: CVs\batch_11\13730_Pinakin_P_Trivedi (1).txt
+Resume ID: CVs\batch_11\13772_KULDIP_VILASSING_GARUD.txt
+Resume ID: CVs\batch_11\1380_Abhay_Jain (1).txt
+Resume ID: CVs\batch_11\13828_Ramashish_Vishwakarma.txt
+Resume ID: CVs\batch_11\13947_Kudalkar_Sana.txt
+Resume ID: CVs\batch_11\13950_Rishi_Prakash.txt
+Resume ID: CVs\batch_11\14165_Jignesh_V_Savliya.txt
+Resume ID: CVs\batch_11\1418_Agun_Mary_Antony_Raj (1).txt
+Resume ID: CVs\batch_11\14310_Avinash_Upadhyay.txt
+Resume ID: CVs\batch_11\14609_Provide_best_of_my_ability.txt
+Resume ID: CVs\batch_11\14611_Shweta_P_Bhadalkar.txt
+Resume ID: CVs\batch_11\14656_Mounika_Camudrala.txt
+Resume ID: CVs\batch_11\14666_Haseeb_ulla_baig.txt
+Resume ID: CVs\batch_11\14762_SHIVANI_PATEL.txt
+Resume ID: CVs\batch_11\14772_PRIYOTAM_BOSE.txt
+Resume ID: CVs\batch_11\14827_DIPANNITA_DAS (1).txt
+Resume ID: CVs\batch_11\14964_B.txt
+Resume ID: CVs\batch_11\1584_DEBASISH_DAS.txt
+Resume ID: CVs\batch_11\1675_PSOLANKI_BHUVNESHVARI.txt
+Resume ID: CVs\batch_11\1698_SURJAN_RANA.txt
+Resume ID: CVs\batch_11\1839_INDIRA.txt
+Resume ID: CVs\batch_11\1854_M.txt
+Resume ID: CVs\batch_11\2059_Sasmita_Sharma.txt
+Resume ID: CVs\batch_11\2099_SANA_SHAIKH.txt
+Resume ID: CVs\batch_11\2177_Kunal_N_Parmar.txt
+Resume ID: CVs\batch_11\2185_S_PRAVEEN_YUVARAJ.txt
+Resume ID: CVs\batch_11\2322_SHELVI_PANWAR.txt
+Resume ID: CVs\batch_11\2678_V_Sampath_Kumar.txt
+Resume ID: CVs\batch_11\2968_SNEHAL_A_SURWASE.txt
+Resume ID: CVs\batch_11\2984_Trupti_Pandya (1).txt
+Resume ID: CVs\batch_11\3101_ROHAN_KUMAR.txt
+Resume ID: CVs\batch_11\3400_SHIBANI_MANSURI.txt
+Resume ID: CVs\batch_11\3885_KIRUBANATH_L_R.txt
+Resume ID: CVs\batch_11\4147_Bihan_Khandelwal.txt
+Resume ID: CVs\batch_11\4173_Kadar_A_Sayyed.txt
+Resume ID: CVs\batch_11\4219_BABU_SAHEB_CHAUDHARY.txt
+Resume ID: CVs\batch_11\4230_Rajesh_Kumar (3).txt
+Resume ID: CVs\batch_11\4236_MAHENDRA_KUMAR.txt
+Resume ID: CVs\batch_11\4287_K_SANTHOSH_KUMAR.txt
+Resume ID: CVs\batch_11\4923_CH_UMARANI.txt
+Resume ID: CVs\batch_11\5031_J.txt
+Resume ID: CVs\batch_11\5264_MUDIT_THATTE.txt
+Resume ID: CVs\batch_11\5293_P.txt
+Resume ID: CVs\batch_11\529_HANSRAJ_HARISHANKAR_JAISWAL.txt
+Resume ID: CVs\batch_11\5696_Arti_Ghallayya_Swamy.txt
+Resume ID: CVs\batch_11\5905_VAIBHAV_RAWAT (1).txt
+Resume ID: CVs\batch_11\6174_Ramashish_Vishwakarma (1).txt
+Resume ID: CVs\batch_11\6672_Chinmay_A_Borade (1).txt
+Resume ID: CVs\batch_11\6691_ZAFAR.txt
+Resume ID: CVs\batch_11\6968_PRIYAGUPTA.txt
+Resume ID: CVs\batch_11\7052_KANNAN.txt
+Resume ID: CVs\batch_11\765_O_Shantanu_D_Patankar.txt
+Resume ID: CVs\batch_11\7788_SHRADDHA_WAGHULE.txt
+Resume ID: CVs\batch_11\7829_ANISH.txt
+Resume ID: CVs\batch_11\793_SAUGATA_ROY.txt
+Resume ID: CVs\batch_11\8088_SIVARAMAKRISHNAN.txt
+Resume ID: CVs\batch_11\8202_ALLAN_A_ANNA.txt
+Resume ID: CVs\batch_11\8267_Mohammed_Wasim_Shaikh.txt
+Resume ID: CVs\batch_11\8399_RAJ_NARAYAN_BANERJEE.txt
+Resume ID: CVs\batch_11\8496_SATYAJIT_PUROHIT.txt
+Resume ID: CVs\batch_11\8697_Theja_Smruthi.txt
+Resume ID: CVs\batch_11\8699_SWARUPA_MONDAL.txt
+Resume ID: CVs\batch_11\86_Raja_Dutta.txt
+Resume ID: CVs\batch_11\8936_SWATHI_THAKUR.txt
+Resume ID: CVs\batch_11\9043_Pratima_Bhasoria.txt
+Resume ID: CVs\batch_11\9641_Hardik_Nathvani.txt
+Resume ID: CVs\batch_11\9758_RANJANA.txt
+Resume ID: CVs\batch_11\9878_PRIYOTAM_BOSE (2).txt
+Resume ID: CVs\batch_11\9907_KASARAPU_VISHNUPRIYA.txt
+Resume ID: CVs\batch_12\10039_ARUN_KUMAR_T.txt
+Resume ID: CVs\batch_12\10105_CHRISTEENA_VARGHESE.txt
+Resume ID: CVs\batch_12\10174_Sharda_D_Bhor.txt
+Resume ID: CVs\batch_12\10188_R.txt
+Resume ID: CVs\batch_12\10217_Abasaheb_kakade_of_It.txt
+Resume ID: CVs\batch_12\10358_S_U_N_K_A_N_N_A_B_A_S_A.txt
+Resume ID: CVs\batch_12\10443_MANSI_MUKESH_VORA.txt
+Resume ID: CVs\batch_12\10597_Prasham_Gautam.txt
+Resume ID: CVs\batch_12\10642_ASHFAQ_AHMED.txt
+Resume ID: CVs\batch_12\10697_LAXMINARAYAN_MISHRA.txt
+Resume ID: CVs\batch_12\10828_A_R.txt
+Resume ID: CVs\batch_12\1094_Akashdeep_Kashyap.txt
+Resume ID: CVs\batch_12\11051_SONAWANE_SHWETA_SURESH.txt
+Resume ID: CVs\batch_12\11094_Komal_Mishra.txt
+Resume ID: CVs\batch_12\11100_Rini_Nigam (1).txt
+Resume ID: CVs\batch_12\11185_RITUSHREE_PAL_ROY_CHAUDHURI.txt
+Resume ID: CVs\batch_12\11188_Md_Naved_Zafar_Alam.txt
+Resume ID: CVs\batch_12\11234_SAJAL_SARKAR.txt
+Resume ID: CVs\batch_12\11244_Ruchi_R_Sanghvi.txt
+Resume ID: CVs\batch_12\11464_Rahul_Kumar (1).txt
+Resume ID: CVs\batch_12\11570_SANKARI_G.txt
+Resume ID: CVs\batch_12\11746_Jinal_Piyushbhai_Domadia.txt
+Resume ID: CVs\batch_12\11783_ABHISHEK_KUMAR (2).txt
+Resume ID: CVs\batch_12\12157_HARISH_KUMAR.txt
+Resume ID: CVs\batch_12\12272_Laukik_Vinod_Padwal.txt
+Resume ID: CVs\batch_12\12311_C_O_N_T_A_C_T.txt
+Resume ID: CVs\batch_12\12459_EP2018IR226908.txt
+Resume ID: CVs\batch_12\12500_Atul_Ranjan.txt
+Resume ID: CVs\batch_12\12602_Prolay_Das.txt
+Resume ID: CVs\batch_12\12668_Deepak.txt
+Resume ID: CVs\batch_12\12695_SUSHIL_U_USHIR.txt
+Resume ID: CVs\batch_12\12855_SONAGARA_VIJAY_R.txt
+Resume ID: CVs\batch_12\12875_Penumallam.txt
+Resume ID: CVs\batch_12\12899_Soumarshi_Roy.txt
+Resume ID: CVs\batch_12\12949_MADHURIKUMARI (1).txt
+Resume ID: CVs\batch_12\13748_Sarfaraz_Iqbal_Khan.txt
+Resume ID: CVs\batch_12\13751_Dr_Kiran_Dnyanoba_Mundhe.txt
+Resume ID: CVs\batch_12\13923_PRADNYA_R_PANCHAL.txt
+Resume ID: CVs\batch_12\13929_PRITESH_RATHORE.txt
+Resume ID: CVs\batch_12\14238_HABIBA_LAKDAWALA (1).txt
+Resume ID: CVs\batch_12\14580_DIPIKA_GURUNG.txt
+Resume ID: CVs\batch_12\14833_Rahul_Tripurari_Gupta.txt
+Resume ID: CVs\batch_12\1563_Rini_Nigam.txt
+Resume ID: CVs\batch_12\17_RAVI_SHANKAR_SHUKLA.txt
+Resume ID: CVs\batch_12\1833_Saurabh_Tadwalkar.txt
+Resume ID: CVs\batch_12\1902_B_ANBUSELVI.txt
+Resume ID: CVs\batch_12\2078_Smrity_Sourav_Basu.txt
+Resume ID: CVs\batch_12\2311_SYED_KHAJA_MOHIDDIN.txt
+Resume ID: CVs\batch_12\2313_SUMITA_SARDAR.txt
+Resume ID: CVs\batch_12\2384_Ramji_J.txt
+Resume ID: CVs\batch_12\2709_M_O_N_I_C_A (1).txt
+Resume ID: CVs\batch_12\2879_G_SOLOMON_JACHIN_FINNEY.txt
+Resume ID: CVs\batch_12\3194_SANJIB_KUMAR_AUDDY (1).txt
+Resume ID: CVs\batch_12\3266_G_ALEKHYA (1).txt
+Resume ID: CVs\batch_12\3394_Yamen_Areeb.txt
+Resume ID: CVs\batch_12\3510_Shaunak.txt
+Resume ID: CVs\batch_12\3572_Ramar_B.txt
+Resume ID: CVs\batch_12\3593_Shiva_Perumal.txt
+Resume ID: CVs\batch_12\3610_Pregtonr_Paul.txt
+Resume ID: CVs\batch_12\3629_B.txt
+Resume ID: CVs\batch_12\3896_CH.txt
+Resume ID: CVs\batch_12\3950_AAKAS_ALI_SARDAR.txt
+Resume ID: CVs\batch_12\3981_Jhumur_Kundu.txt
+Resume ID: CVs\batch_12\3997_MOHAN_BHADORIA.txt
+Resume ID: CVs\batch_12\4048_Sunil_Kumar.txt
+Resume ID: CVs\batch_12\44_Chaudhari_Wada.txt
+Resume ID: CVs\batch_12\4511_Jinal_A_Shah.txt
+Resume ID: CVs\batch_12\4573_Kumaran_R (1).txt
+Resume ID: CVs\batch_12\4580_MEHUL_KANTIBHAI_PARMAR.txt
+Resume ID: CVs\batch_12\4777_Shivam_Mishra.txt
+Resume ID: CVs\batch_12\5066_Sneha_Vijayvargiya (1).txt
+Resume ID: CVs\batch_12\5125_R_E_S_U_M_E (4).txt
+Resume ID: CVs\batch_12\5221_AMARNATH_SARKAR (1).txt
+Resume ID: CVs\batch_12\5361_DINESH_CHARPE.txt
+Resume ID: CVs\batch_12\551_HARSHAL_SUHAS_JAIN (1).txt
+Resume ID: CVs\batch_12\5804_Anirban_Dey.txt
+Resume ID: CVs\batch_12\587_SONI.txt
+Resume ID: CVs\batch_12\5926_Prasad_Pravin_Vanarase.txt
+Resume ID: CVs\batch_12\6019_Dixit_Sushilkumar_Sanjaykumar.txt
+Resume ID: CVs\batch_12\6237_GARGI_GHATAK.txt
+Resume ID: CVs\batch_12\6340_DANISH_KHAN_AFAQUI.txt
+Resume ID: CVs\batch_12\6366_G_ALEKHYA.txt
+Resume ID: CVs\batch_12\6667_Dommeti_Mahesh_Bhargav.txt
+Resume ID: CVs\batch_12\6731_TAPAS_KUMAR_JANA.txt
+Resume ID: CVs\batch_12\6813_NAGARJUN.txt
+Resume ID: CVs\batch_12\6886_Mewati_Devi_Chawl.txt
+Resume ID: CVs\batch_12\6898_Ranganyukula_gutta (1).txt
+Resume ID: CVs\batch_12\7298_SHWETA_SINGH.txt
+Resume ID: CVs\batch_12\7444_JANA_SAWANT.txt
+Resume ID: CVs\batch_12\750_Sharmila_Shaik (1).txt
+Resume ID: CVs\batch_12\7536_SAMIR_ARUN_ROKADE.txt
+Resume ID: CVs\batch_12\7565_Nidhi_Chhadawa.txt
+Resume ID: CVs\batch_12\7665_VISHAL_VISHWAS_UTTEKAR.txt
+Resume ID: CVs\batch_12\7683_Nikita_Balwani.txt
+Resume ID: CVs\batch_12\7718_Ankit_Sen_Roy.txt
+Resume ID: CVs\batch_12\7760_KRUNAL_SONI.txt
+Resume ID: CVs\batch_12\7988_Ashwin_Kumar_Mukka (2).txt
+Resume ID: CVs\batch_12\8083_TANIMA_ROY_CHOUDHURY.txt
+Resume ID: CVs\batch_12\8125_Rohit_Tarlekar.txt
+Resume ID: CVs\batch_12\8147_DIPAK_SURESH_SHELAR.txt
+Resume ID: CVs\batch_12\8204_Block (1).txt
+Resume ID: CVs\batch_12\8247_Tanya_Saxena.txt
+Resume ID: CVs\batch_12\8270_Khushroo_Neville_Mistry.txt
+Resume ID: CVs\batch_12\8374_SHAMA_S_BAMBARKAR.txt
+Resume ID: CVs\batch_12\8464_C_A_R_E_ERO_B_J_E_C_T_I_V_E (1).txt
+Resume ID: CVs\batch_12\8529_Deepa_Chakkadi.txt
+Resume ID: CVs\batch_12\868_Block.txt
+Resume ID: CVs\batch_12\8816_HABIBA_LAKDAWALA.txt
+Resume ID: CVs\batch_12\8843_SURESH_BHAI.txt
+Resume ID: CVs\batch_12\8959_DIVYABA_ZALA.txt
+Resume ID: CVs\batch_12\8982_Swati_Jaiswal.txt
+Resume ID: CVs\batch_12\9045_SNEHASIS_DUTTA.txt
+Resume ID: CVs\batch_12\9160_EP2018CN131527.txt
+Resume ID: CVs\batch_12\9232_SAURABH_KUMAR.txt
+Resume ID: CVs\batch_12\9268_RISHABH_GUPTA.txt
+Resume ID: CVs\batch_12\9303_NANDHINI_R.txt
+Resume ID: CVs\batch_13\10258_LONI_KALITA.txt
+Resume ID: CVs\batch_13\10286_Simran_Telugu.txt
+Resume ID: CVs\batch_13\10332_AVRA_BHATTACHARYA (1).txt
+Resume ID: CVs\batch_13\103_Om_Shiv_Jagdamba_Apt.txt
+Resume ID: CVs\batch_13\10404_T_Stand (2).txt
+Resume ID: CVs\batch_13\10632_GOURANGA_KUMBHAKAR.txt
+Resume ID: CVs\batch_13\10690_KUSUMA_KUMARI.txt
+Resume ID: CVs\batch_13\10717_Jitendra_T_Parwani.txt
+Resume ID: CVs\batch_13\10792_Eshmeet_Kaur (1).txt
+Resume ID: CVs\batch_13\10888_Anandita_Biswal.txt
+Resume ID: CVs\batch_13\10957_VIKRAM_OJHA.txt
+Resume ID: CVs\batch_13\11057_VAIBHAV_RAWAT.txt
+Resume ID: CVs\batch_13\11264_MALAY_MISHRA.txt
+Resume ID: CVs\batch_13\11845_YUVA_RAJ_S.txt
+Resume ID: CVs\batch_13\1190_Partha_Sutradhar.txt
+Resume ID: CVs\batch_13\11913_JITHU_FRANCIS.txt
+Resume ID: CVs\batch_13\11918_BUMBA_GHOSH.txt
+Resume ID: CVs\batch_13\11934_VINAYAK_RAJENDRA_IRKAL.txt
+Resume ID: CVs\batch_13\11953_Bhagyashree_Raju_Nagod.txt
+Resume ID: CVs\batch_13\1200_PANKAJ_MISHRA.txt
+Resume ID: CVs\batch_13\12468_SHIVANI_M.txt
+Resume ID: CVs\batch_13\12515_JAI_PRAKASH_SINGH.txt
+Resume ID: CVs\batch_13\12962_Amit_Kumar (2).txt
+Resume ID: CVs\batch_13\12969_VISHNU.txt
+Resume ID: CVs\batch_13\12986_ADITYA_KUMAR (1).txt
+Resume ID: CVs\batch_13\12996_MOHMMED_APSER_PASHA (1).txt
+Resume ID: CVs\batch_13\13018_Hitesh_K_Bunkar.txt
+Resume ID: CVs\batch_13\13070_SAM_SABU.txt
+Resume ID: CVs\batch_13\13389_ANKITA_ROY_SARASWATI.txt
+Resume ID: CVs\batch_13\13442_Nishith_Naresh_Waghmare.txt
+Resume ID: CVs\batch_13\13537_Sweta_Hazra.txt
+Resume ID: CVs\batch_13\13785_RITESH_CHANDRA_SINGH.txt
+Resume ID: CVs\batch_13\13844_NARENDRA_KUMAR_MISHRA.txt
+Resume ID: CVs\batch_13\13872_Mallikarjun_Maki.txt
+Resume ID: CVs\batch_13\13958_NITIN_SINGH.txt
+Resume ID: CVs\batch_13\14038_MAHESH_CHANDRAKANT_MANDKE (1).txt
+Resume ID: CVs\batch_13\14115_To_bewaptitupro_Key_ski.txt
+Resume ID: CVs\batch_13\14194_POULAMI_GUHA.txt
+Resume ID: CVs\batch_13\14333_Mouna_Swamy_Madam_St.txt
+Resume ID: CVs\batch_13\1446_T_Vishal_Rao.txt
+Resume ID: CVs\batch_13\14513_SRUTHI_SIDDIGIDDA.txt
+Resume ID: CVs\batch_13\1456_Kamini_Wadhekar.txt
+Resume ID: CVs\batch_13\14686_Abdul_Rahman.txt
+Resume ID: CVs\batch_13\14699_MUHAMMED_HASIF_M_K (1).txt
+Resume ID: CVs\batch_13\14922_Srinivas.txt
+Resume ID: CVs\batch_13\1532_KALYAN_NEOGI.txt
+Resume ID: CVs\batch_13\1684_Sagar_Adhikari.txt
+Resume ID: CVs\batch_13\1900_Shruti_Sunil_Nair.txt
+Resume ID: CVs\batch_13\1907_Kumaran_R.txt
+Resume ID: CVs\batch_13\1975_Rajni.txt
+Resume ID: CVs\batch_13\2194_BHARATH_KUMAR_B.txt
+Resume ID: CVs\batch_13\2208_Sameer_Shashikant_Kamble.txt
+Resume ID: CVs\batch_13\2305_Shabbar_Hussain_Jhandawala.txt
+Resume ID: CVs\batch_13\2456_ROSY_SAHOO.txt
+Resume ID: CVs\batch_13\2483_Aaron_Xavier_Dsouza.txt
+Resume ID: CVs\batch_13\2488_JAY_R_SHRIVASTAV.txt
+Resume ID: CVs\batch_13\2588_STUTI_KUMARI.txt
+Resume ID: CVs\batch_13\2641_Gundla_Jagadish (1).txt
+Resume ID: CVs\batch_13\3140_K.txt
+Resume ID: CVs\batch_13\3173_Naveen_Chandra_Pandey.txt
+Resume ID: CVs\batch_13\3333_MANOHAR_DATTARAM_VISHWASRAO.txt
+Resume ID: CVs\batch_13\3451_Dujon_Francis.txt
+Resume ID: CVs\batch_13\3726_Shakti_Sharma.txt
+Resume ID: CVs\batch_13\3942_Menka_Matani.txt
+Resume ID: CVs\batch_13\4549_Purushvani_Heena_S.txt
+Resume ID: CVs\batch_13\4558_RRuuppaarraannii_DDaassh_h.txt
+Resume ID: CVs\batch_13\4704_SUSHMA_K_N.txt
+Resume ID: CVs\batch_13\4735_Shreyash_Bari.txt
+Resume ID: CVs\batch_13\4755_Sneha_Vijayvargiya.txt
+Resume ID: CVs\batch_13\4799_SHAUNAK_CHATTERJEE.txt
+Resume ID: CVs\batch_13\4808_A_kavitha.txt
+Resume ID: CVs\batch_13\5095_MD_SADDAM_HUSSAIN.txt
+Resume ID: CVs\batch_13\5193_PRADEEP_BALKRISHANA_GURAV.txt
+Resume ID: CVs\batch_13\5269_Bruno_Mano.txt
+Resume ID: CVs\batch_13\5311_Ukadas_Radheshyam_Bisen.txt
+Resume ID: CVs\batch_13\5636_POONAM_KUMARI.txt
+Resume ID: CVs\batch_13\565_BAKKOLA_VINOD_KUMAR.txt
+Resume ID: CVs\batch_13\6029_UNITH_KADAPATRI.txt
+Resume ID: CVs\batch_13\6720_KHATRAVATH_DEEKSHA_SINGH.txt
+Resume ID: CVs\batch_13\6756_SUSANTA_MALLICK.txt
+Resume ID: CVs\batch_13\7055_NAMDEV_S_WAGHMARE.txt
+Resume ID: CVs\batch_13\7173_KARTHIK_S_M.txt
+Resume ID: CVs\batch_13\7211_RAJ_SHEKHAR_NATH.txt
+Resume ID: CVs\batch_13\7459_Sudipta_Halder.txt
+Resume ID: CVs\batch_13\7593_PRIYA_KAPOOR.txt
+Resume ID: CVs\batch_13\761_Ms.txt
+Resume ID: CVs\batch_13\7709_MAYANK_RAJESH_PRAJAPATI.txt
+Resume ID: CVs\batch_13\7791_Michael_Edison_Thomas.txt
+Resume ID: CVs\batch_13\7918_Krish.txt
+Resume ID: CVs\batch_13\8075_Yogesh_Kadu_Birhade.txt
+Resume ID: CVs\batch_13\8465_Pooja_Kele.txt
+Resume ID: CVs\batch_13\8868_Sankar_Ganesh.txt
+Resume ID: CVs\batch_13\8979_Chinmay_A_Borade.txt
+Resume ID: CVs\batch_13\9028_Sri_Ram_Attal.txt
+Resume ID: CVs\batch_13\9145_RAFIQUL_ISLAM.txt
+Resume ID: CVs\batch_13\9619_Divya_Natarajan.txt
+Resume ID: CVs\batch_13\9671_RAHUL_BASANTLAL_GUPTA.txt
+Resume ID: CVs\batch_14\10250_K_PRADEEP_RAJU.txt
+Resume ID: CVs\batch_14\10575_SAROJ_KUMAR_NAYAK.txt
+Resume ID: CVs\batch_14\10922_SUCHITRA_RANGARAJ.txt
+Resume ID: CVs\batch_14\11037_Yogesh_Makwana.txt
+Resume ID: CVs\batch_14\11047_Shuvamoy_Mukhopadhyay.txt
+Resume ID: CVs\batch_14\11111_Mushtaque_Shaikh.txt
+Resume ID: CVs\batch_14\11425_AAKRITI_RATHI.txt
+Resume ID: CVs\batch_14\11620_Raval_Rohitkumar.txt
+Resume ID: CVs\batch_14\11637_JAYESH_RAWOOL.txt
+Resume ID: CVs\batch_14\12191_Shabnam_Khatoon.txt
+Resume ID: CVs\batch_14\1224_Vicky_Rajendra_Supekar.txt
+Resume ID: CVs\batch_14\12322_SANGEETA_DUBEY.txt
+Resume ID: CVs\batch_14\12372_GINGEE_T.txt
+Resume ID: CVs\batch_14\12717_Kanika_Pareek.txt
+Resume ID: CVs\batch_14\12908_PAVITHRA.txt
+Resume ID: CVs\batch_14\12909_SHAMSHAD_ALI.txt
+Resume ID: CVs\batch_14\13122_ARTI_SHINDE.txt
+Resume ID: CVs\batch_14\13217_PawarUmeshBhavsingh.txt
+Resume ID: CVs\batch_14\13296_Manoj_Jadhav.txt
+Resume ID: CVs\batch_14\13524_MUHAMMED_HASIF_M_K (4).txt
+Resume ID: CVs\batch_14\1355_DR_RESHMA_M_KOTIAN.txt
+Resume ID: CVs\batch_14\1361_Personalprofile.txt
+Resume ID: CVs\batch_14\13662_Daniel_Christopher_S.txt
+Resume ID: CVs\batch_14\13985_ARPITKUMAR_RAVIKANTBHAI_KHRISTI (1).txt
+Resume ID: CVs\batch_14\14085_CURRICULAM.txt
+Resume ID: CVs\batch_14\14438_CHETAN_SANER.txt
+Resume ID: CVs\batch_14\14545_PRATHAMESH_BHOSALE.txt
+Resume ID: CVs\batch_14\14894_GOWRI_SHANKAR.txt
+Resume ID: CVs\batch_14\1505_Prince_Vijay_B.txt
+Resume ID: CVs\batch_14\1789_Bansari_shukla.txt
+Resume ID: CVs\batch_14\1887_MORE_GAURAV_PRADIP.txt
+Resume ID: CVs\batch_14\2110_DIVYASHEEL_CHAUHAN_B.txt
+Resume ID: CVs\batch_14\241_S_a_n_d_e_e_p_S_h_a_r_m_a.txt
+Resume ID: CVs\batch_14\2722_Jui_Sawant.txt
+Resume ID: CVs\batch_14\274_PRIYA_BANERJEE.txt
+Resume ID: CVs\batch_14\2987_HEMANT_H_KHARVA.txt
+Resume ID: CVs\batch_14\3298_RAIESH_ANSARI.txt
+Resume ID: CVs\batch_14\3345_PATEL_RAJ_BIPINBHAI.txt
+Resume ID: CVs\batch_14\3427_NAGARJUN.txt
+Resume ID: CVs\batch_14\3461_AMIT_CHKRABORTY.txt
+Resume ID: CVs\batch_14\3557_AKANKSHA_RAMESH_BARASKARC_oloured_Passport_size_Photo (1).txt
+Resume ID: CVs\batch_14\3770_PRAVEENKUMAR_N.txt
+Resume ID: CVs\batch_14\3848_Sangam_SadashivKamate.txt
+Resume ID: CVs\batch_14\3996_Trupti_Pandya.txt
+Resume ID: CVs\batch_14\4214_CCHHAANNDDRRAA_BBAABBUU_K_K (1).txt
+Resume ID: CVs\batch_14\443_Bindu_S.txt
+Resume ID: CVs\batch_14\4793_Ms_Prachi_Sanjay_Periwal.txt
+Resume ID: CVs\batch_14\4879_Bhushan_Khanore.txt
+Resume ID: CVs\batch_14\5134_Antara_Sadhu.txt
+Resume ID: CVs\batch_14\5396_Vidhya_Viswanath.txt
+Resume ID: CVs\batch_14\5598_Shalini_PC.txt
+Resume ID: CVs\batch_14\5735_E_D_U_C_A_TIONAL.txt
+Resume ID: CVs\batch_14\5932_CURRICULUM.txt
+Resume ID: CVs\batch_14\604_Gulbhele_Prakash_Rajkumar.txt
+Resume ID: CVs\batch_14\6221_PRIYOTAM_BOSE (1).txt
+Resume ID: CVs\batch_14\6325_Anand_Khadake.txt
+Resume ID: CVs\batch_14\6458_ROUNAK_VERMA.txt
+Resume ID: CVs\batch_14\6602_MD_MURSHED.txt
+Resume ID: CVs\batch_14\6684_Imrankhan_J_Pathan.txt
+Resume ID: CVs\batch_14\6698_Santhosh_kumar.txt
+Resume ID: CVs\batch_14\6704_JAYABALAN.txt
+Resume ID: CVs\batch_14\7079_Deblina_Dey.txt
+Resume ID: CVs\batch_14\7560_Rasika_Rajendra_Kirdavkar.txt
+Resume ID: CVs\batch_14\8094_W_E_C_A_R_E.txt
+Resume ID: CVs\batch_14\8105_PULKIT_SHARMA.txt
+Resume ID: CVs\batch_14\8212_SINGH_MANISH_CHANDRAKISHOR.txt
+Resume ID: CVs\batch_14\8391_DR (1).txt
+Resume ID: CVs\batch_14\885_ABDULLAH.txt
+Resume ID: CVs\batch_14\9237_Harish_Shetty.txt
+Resume ID: CVs\batch_14\9499_Sriparna_Saha_Roy.txt
+Resume ID: CVs\batch_14\9549_Daipayan_Haldar.txt
+Resume ID: CVs\batch_14\9602_Bandu_B_Tarde.txt
+Resume ID: CVs\batch_14\9609_SUSHMITA_PANDEY (1).txt
+Resume ID: CVs\batch_14\9646_NITESH_CHATURVEDI.txt
+Resume ID: CVs\batch_15\10310_Amir_Raza_Khan.txt
+Resume ID: CVs\batch_15\10672_Sasmita_Sharma (1).txt
+Resume ID: CVs\batch_15\10724_Kajal_Dixit.txt
+Resume ID: CVs\batch_15\10736_Gandharv_Kumar_Jha.txt
+Resume ID: CVs\batch_15\11213_Amulya_Machiraju.txt
+Resume ID: CVs\batch_15\11613_SURJAN_RANA (1).txt
+Resume ID: CVs\batch_15\11644_JAYESH_RAWOOL (1).txt
+Resume ID: CVs\batch_15\11844_Latif_Shaikh (1).txt
+Resume ID: CVs\batch_15\11965_Bernadine_Ignatia_Samuel.txt
+Resume ID: CVs\batch_15\12380_Satish_Kumar_Yadav.txt
+Resume ID: CVs\batch_15\12481_Ayan_Banerjee.txt
+Resume ID: CVs\batch_15\12883_KUSUMA_KUMARI.txt
+Resume ID: CVs\batch_15\13003_Ankita_Shaw (1).txt
+Resume ID: CVs\batch_15\13014_SUDIPA_BANERJEE.txt
+Resume ID: CVs\batch_15\13022_Chilka_Abhijit_Sharad (1).txt
+Resume ID: CVs\batch_15\13025_M_SUBBU_LAKSHMI.txt
+Resume ID: CVs\batch_15\13032_Anantham.txt
+Resume ID: CVs\batch_15\13246_A_ANBU.txt
+Resume ID: CVs\batch_15\13394_Mumbai.txt
+Resume ID: CVs\batch_15\13406_ASIF_AZAM.txt
+Resume ID: CVs\batch_15\1344_Jyoti_Rani.txt
+Resume ID: CVs\batch_15\13659_SANJAYA_KUMAR_SAHOO.txt
+Resume ID: CVs\batch_15\13738_SUMIT_KUMAR_BARMAN.txt
+Resume ID: CVs\batch_15\1404_Bhanu_Prakash_Umapathi.txt
+Resume ID: CVs\batch_15\14201_SAVALI_SURESH_MANUR.txt
+Resume ID: CVs\batch_15\14337_Patel_Hemalkumar_Bipinchandra.txt
+Resume ID: CVs\batch_15\14416_Anita_Pal.txt
+Resume ID: CVs\batch_15\14548_CHAUHAN_SHUBHAM.txt
+Resume ID: CVs\batch_15\14552_D_I_G_I_A_N_A_P_R_O_J_E_C_T_P_V_T_L_T_D.txt
+Resume ID: CVs\batch_15\14732_VISHAL_PRAKASH_CHILLAL.txt
+Resume ID: CVs\batch_15\14823_JOITA_CHATTERJEE.txt
+Resume ID: CVs\batch_15\14840_Ankita_Jain.txt
+Resume ID: CVs\batch_15\14887_Vigneshwaran_G.txt
+Resume ID: CVs\batch_15\14993_Ravikumar (1).txt
+Resume ID: CVs\batch_15\1555_Mayuresh_Ranawre.txt
+Resume ID: CVs\batch_15\1801_Bhavesh_Soni.txt
+Resume ID: CVs\batch_15\183_PADMA_PRIYA.txt
+Resume ID: CVs\batch_15\1910_MEGHA_NIGAM.txt
+Resume ID: CVs\batch_15\1969_SWATI_SHAILWI.txt
+Resume ID: CVs\batch_15\2080_Kumar_Ashutosh.txt
+Resume ID: CVs\batch_15\2103_PRAMOD_PRAKASH_PADWAL.txt
+Resume ID: CVs\batch_15\2553_B.txt
+Resume ID: CVs\batch_15\2686_DIPANKAR_DAS.txt
+Resume ID: CVs\batch_15\3379_BISWAS_BHAWAN.txt
+Resume ID: CVs\batch_15\3725_SUSHMA.txt
+Resume ID: CVs\batch_15\3780_SHEREEN_FATIMA.txt
+Resume ID: CVs\batch_15\3923_P.txt
+Resume ID: CVs\batch_15\3947_SUBHAM_SHAW.txt
+Resume ID: CVs\batch_15\3971_RITU_RANA.txt
+Resume ID: CVs\batch_15\4098_Prashant_C_Kapopara.txt
+Resume ID: CVs\batch_15\416_YEMUNA_B_L.txt
+Resume ID: CVs\batch_15\4571_SUJITHA_G.txt
+Resume ID: CVs\batch_15\4619_MAMILLA_SARIKA.txt
+Resume ID: CVs\batch_15\4633_SHIBANI_MANSURI (1).txt
+Resume ID: CVs\batch_15\4652_VINOTHKUMAR.txt
+Resume ID: CVs\batch_15\4727_M.txt
+Resume ID: CVs\batch_15\4925_SHRITI_ROY.txt
+Resume ID: CVs\batch_15\5048_LAXMIKANT_P_CHANDEKAR.txt
+Resume ID: CVs\batch_15\5160_PRATHAMESH_BHOSALE (1).txt
+Resume ID: CVs\batch_15\5241_D_E_E_P_I_K_A_T_A_L_A_P_A_T_R_A (2).txt
+Resume ID: CVs\batch_15\5348_A_C_A_D_E_M_I_C_S.txt
+Resume ID: CVs\batch_15\5514_RAMYA.txt
+Resume ID: CVs\batch_15\5553_SURTI_AALIYA_J.txt
+Resume ID: CVs\batch_15\5685_Abhishek_Kumar_Sharma.txt
+Resume ID: CVs\batch_15\5823_VENKATRAJ_G.txt
+Resume ID: CVs\batch_15\5847_Regency.txt
+Resume ID: CVs\batch_15\6060_ABDUL_RAJAK_N_SHAIKH.txt
+Resume ID: CVs\batch_15\6290_SUMEET_SURENDRANATH_BABREKAR.txt
+Resume ID: CVs\batch_15\6303_Deb_Kumar_Dhara.txt
+Resume ID: CVs\batch_15\6307_AMRITKAUR_BALHOTRA.txt
+Resume ID: CVs\batch_15\6493_YELLALING.txt
+Resume ID: CVs\batch_15\6504_Deshmukh_Galli.txt
+Resume ID: CVs\batch_15\6642_Chawan_Sanjay_Ghenu.txt
+Resume ID: CVs\batch_15\6823_AKASH_RAMESH_ALHAT.txt
+Resume ID: CVs\batch_15\6853_HaroonSharieff.txt
+Resume ID: CVs\batch_15\7182_KIRAN_KUMAR_S.txt
+Resume ID: CVs\batch_15\7338_Debolina_Bose.txt
+Resume ID: CVs\batch_15\7380_Mansi_Saxena.txt
+Resume ID: CVs\batch_15\7463_Md_Irshad.txt
+Resume ID: CVs\batch_15\7552_MD_REFAI_MUZAMMIL_BUHARI (1).txt
+Resume ID: CVs\batch_15\7563_MERIN_RAJ_M_R.txt
+Resume ID: CVs\batch_15\7687_Suba_Krishnan.txt
+Resume ID: CVs\batch_15\7805_Dinesh_Kumar (1).txt
+Resume ID: CVs\batch_15\7911_PRADEEP_BALKRISHANA_GURAV (1).txt
+Resume ID: CVs\batch_15\807_Prateek_Mishra.txt
+Resume ID: CVs\batch_15\8266_D_E_E_P_I_K_A_T_A_L_A_P_A_T_R_A.txt
+Resume ID: CVs\batch_15\8395_Abhishek_Kuliyal.txt
+Resume ID: CVs\batch_15\8452_Sanket_Mangal.txt
+Resume ID: CVs\batch_15\8714_Vikas_Kumar_Gupta.txt
+Resume ID: CVs\batch_15\8831_Sumit_Malhotra.txt
+Resume ID: CVs\batch_15\8922_D_AMAR_LAL.txt
+Resume ID: CVs\batch_15\9013_Ananthan.txt
+Resume ID: CVs\batch_15\9033_ABDULLAH (2).txt
+Resume ID: CVs\batch_15\9047_Sandeep.txt
+Resume ID: CVs\batch_15\9151_SANTOSH_KUMAR_SINGH (1).txt
+Resume ID: CVs\batch_15\956_Maithili_Narendra_Nalawade.txt
+Resume ID: CVs\batch_15\9654_Jason_Peter_Rebello.txt
+Resume ID: CVs\batch_2\10373_Tapasvi_Shandilya.txt
+Resume ID: CVs\batch_2\10401_NIMISHA_DIVECHA.txt
+Resume ID: CVs\batch_2\10518_DEBABRATA_KARMAKAR.txt
+Resume ID: CVs\batch_2\10646_TAMAGHNO_BARDHAN.txt
+Resume ID: CVs\batch_2\10685_Jyoti_Jagdish_Singh.txt
+Resume ID: CVs\batch_2\1073_MAHESH_CHANDRAKANT_MANDKE.txt
+Resume ID: CVs\batch_2\11371_IHTESHAM_QURESHI.txt
+Resume ID: CVs\batch_2\1137_KIRIT.txt
+Resume ID: CVs\batch_2\11403_Saptarshi_Poddar.txt
+Resume ID: CVs\batch_2\11445_Examinatio_n.txt
+Resume ID: CVs\batch_2\11482_Venu_Gopalan.txt
+Resume ID: CVs\batch_2\11530_GAJENDRA_SONI (1).txt
+Resume ID: CVs\batch_2\11849_D_R_P_R_AT_I_K_D_I_V_E_K_A_R.txt
+Resume ID: CVs\batch_2\11854_Avinash_Murai.txt
+Resume ID: CVs\batch_2\1193_Kanika_Pareek (1).txt
+Resume ID: CVs\batch_2\12020_Mohit_Garg.txt
+Resume ID: CVs\batch_2\12021_SOWMYA_G.txt
+Resume ID: CVs\batch_2\12072_KOMAL_VILAS_DALVI.txt
+Resume ID: CVs\batch_2\12196_Mohit_Yadav.txt
+Resume ID: CVs\batch_2\12360_SANTOSH_KUMAR_SINGH (2).txt
+Resume ID: CVs\batch_2\12400_KRUNAL_J_PATTANI.txt
+Resume ID: CVs\batch_2\12529_KirtikumarBorade.txt
+Resume ID: CVs\batch_2\12863_HARSH_PANKAJ_SHAH.txt
+Resume ID: CVs\batch_2\12945_RAHULNISHAD.txt
+Resume ID: CVs\batch_2\13120_SHREYAS_YADAV.txt
+Resume ID: CVs\batch_2\1323_Saurabh_Kumar.txt
+Resume ID: CVs\batch_2\13250_MiyatraKetanNarendraBhai.txt
+Resume ID: CVs\batch_2\13334_Atish_Kumar_Sah.txt
+Resume ID: CVs\batch_2\13374_Angesh_Kumar_Singh.txt
+Resume ID: CVs\batch_2\13403_SYED_SHAKEEB_ANWAR.txt
+Resume ID: CVs\batch_2\13478_Mayank_Thada.txt
+Resume ID: CVs\batch_2\13500_Ranjit_Vilas_Mhetar.txt
+Resume ID: CVs\batch_2\13618_Lavina_Agnello_Rebeiro.txt
+Resume ID: CVs\batch_2\13668_AARON_BERT_MONTEIRO.txt
+Resume ID: CVs\batch_2\13855_Panchal_Kirankumar_Himmatbhai.txt
+Resume ID: CVs\batch_2\13953_Jitendra_T_Parwani (1).txt
+Resume ID: CVs\batch_2\13968_AKANKSHA_J_BIRADAR.txt
+Resume ID: CVs\batch_2\14173_CHAUHAN_ISHWARSINH_RATNSINH.txt
+Resume ID: CVs\batch_2\14200_SOUMYA_KANTI_GHOSH.txt
+Resume ID: CVs\batch_2\14303_CHANDANI_KEKULKUMAR_SHAH (1).txt
+Resume ID: CVs\batch_2\14415_Miss_Anuja_Deepak_Kalange.txt
+Resume ID: CVs\batch_2\14541_SAGAR_SAHA.txt
+Resume ID: CVs\batch_2\14627_R_E_S_U_M_E (11).txt
+Resume ID: CVs\batch_2\14847_SURESH_BHAI.txt
+Resume ID: CVs\batch_2\14990_TANMAY_C_SAWANT.txt
+Resume ID: CVs\batch_2\1520_RANGU_NIKHILESWARUDU.txt
+Resume ID: CVs\batch_2\1603_Ashish_k_Makwana.txt
+Resume ID: CVs\batch_2\1652_SAURABHSAMADHIYA.txt
+Resume ID: CVs\batch_2\1654_HEMA_PAVAN_KUMAR_REDDY_PAIDELA.txt
+Resume ID: CVs\batch_2\1990_M.txt
+Resume ID: CVs\batch_2\2093_SUBHADIP_MAJUMDER.txt
+Resume ID: CVs\batch_2\2096_Saga.txt
+Resume ID: CVs\batch_2\227_Anitha_Manda.txt
+Resume ID: CVs\batch_2\2441_Shreya_Mishra.txt
+Resume ID: CVs\batch_2\2909_SIREESHA.txt
+Resume ID: CVs\batch_2\3045_VIJAY_G.txt
+Resume ID: CVs\batch_2\3050_Neha_Anil_Jain.txt
+Resume ID: CVs\batch_2\3145_Moumita_Bose.txt
+Resume ID: CVs\batch_2\3158_SUBHASREE_GHOSH (1).txt
+Resume ID: CVs\batch_2\3392_Shahane.txt
+Resume ID: CVs\batch_2\3404_Soumyavani_S_Pappu.txt
+Resume ID: CVs\batch_2\3568_SARAVANAN_R.txt
+Resume ID: CVs\batch_2\3781_MUNDACKAL.txt
+Resume ID: CVs\batch_2\3817_ASHISH (1).txt
+Resume ID: CVs\batch_2\394_Ankita_Shaw.txt
+Resume ID: CVs\batch_2\4106_Sanchita_Nandi.txt
+Resume ID: CVs\batch_2\4212_John_Milton_J.txt
+Resume ID: CVs\batch_2\421_M_Suresh.txt
+Resume ID: CVs\batch_2\4396_ABHISHEK_SURESH_SHIRKAR.txt
+Resume ID: CVs\batch_2\4763_ANUJ_S_AGARWAL.txt
+Resume ID: CVs\batch_2\4987_MANJUNATH_RAMESH_POOJARY.txt
+Resume ID: CVs\batch_2\5025_VARSHA_GUPTA.txt
+Resume ID: CVs\batch_2\5306_PALLAVI_MANJULKAR.txt
+Resume ID: CVs\batch_2\5492_MD.txt
+Resume ID: CVs\batch_2\5494_NR_Nandhagopal.txt
+Resume ID: CVs\batch_2\5583_REENA_BARAI.txt
+Resume ID: CVs\batch_2\5586_Digambar_Chandrakant_Karande.txt
+Resume ID: CVs\batch_2\57_SANTRE_NEHA_KISHOR.txt
+Resume ID: CVs\batch_2\5911_Ashwin_Kumar_Mukka.txt
+Resume ID: CVs\batch_2\6032_SUBRATA_DEY.txt
+Resume ID: CVs\batch_2\6126_Tarun_Kumar_Sinha.txt
+Resume ID: CVs\batch_2\6163_Nilesh_P.txt
+Resume ID: CVs\batch_2\6539_Sukla_Das.txt
+Resume ID: CVs\batch_2\6574_OBEAD_AKBAR_SHAIKH.txt
+Resume ID: CVs\batch_2\6634_SHAIK_MAHABOOB.txt
+Resume ID: CVs\batch_2\6676_KOMAL_VINOD_WALMIKI (1).txt
+Resume ID: CVs\batch_2\6697_JYOTI_PAWAR (1).txt
+Resume ID: CVs\batch_2\6801_Laxmi_Kiran.txt
+Resume ID: CVs\batch_2\6836_HARSHAL_SUHAS_JAIN.txt
+Resume ID: CVs\batch_2\686_Rajkumar_Nagendra_Vishwakarma.txt
+Resume ID: CVs\batch_2\7031_P.txt
+Resume ID: CVs\batch_2\7112_ANTONY_THENNA.txt
+Resume ID: CVs\batch_2\7335_SURAJIT_DESHMUKH.txt
+Resume ID: CVs\batch_2\7371_SWARUP_DAS.txt
+Resume ID: CVs\batch_2\7391_DHARMRAJ_RAVAL.txt
+Resume ID: CVs\batch_2\7417_Mohanasundhar_Rajendran.txt
+Resume ID: CVs\batch_2\780_SHWETA_OJHA.txt
+Resume ID: CVs\batch_2\7860_Krisha_Ramesh_Varia.txt
+Resume ID: CVs\batch_2\7937_Krishna_Harish_Salian.txt
+Resume ID: CVs\batch_2\7960_CHUKKA_DEVENDER.txt
+Resume ID: CVs\batch_2\7967_Amit_Khedkar.txt
+Resume ID: CVs\batch_2\798_PANKAJ_DEVULAPALLI.txt
+Resume ID: CVs\batch_2\8791_DIVYAMOL.txt
+Resume ID: CVs\batch_2\8899_R_E_S_U_M_E (16).txt
+Resume ID: CVs\batch_2\8926_Manoj_B.txt
+Resume ID: CVs\batch_2\8952_WASHIM_AKRAM_MALLICK (1).txt
+Resume ID: CVs\batch_2\9056_NILESH_SARJERAO_GAIKWAD.txt
+Resume ID: CVs\batch_2\9358_Prathamesh_Ramesh_Bhosale.txt
+Resume ID: CVs\batch_2\9464_KARAN_BENDEKAR.txt
+Resume ID: CVs\batch_2\9526_MD_WAHED.txt
+Resume ID: CVs\batch_2\955_SAMANI_ASMA_ABDULLAH.txt
+Resume ID: CVs\batch_3\10031_Dr_Tanvi_Raghunath_Koyande.txt
+Resume ID: CVs\batch_3\10203_AZIZ_KOTHARI.txt
+Resume ID: CVs\batch_3\1046_Priyanka_Thakur.txt
+Resume ID: CVs\batch_3\10474_OMPRAKASH.txt
+Resume ID: CVs\batch_3\10658_ASHISH_NINORIYA.txt
+Resume ID: CVs\batch_3\11053_Rupali_R_Toke.txt
+Resume ID: CVs\batch_3\11062_ABDULLAH (1).txt
+Resume ID: CVs\batch_3\11288_Ashutosh_Kumar_Gupta.txt
+Resume ID: CVs\batch_3\11420_DEBJYOTI_MITRA.txt
+Resume ID: CVs\batch_3\11436_Sohail_Choudhary.txt
+Resume ID: CVs\batch_3\11481_NISHANT_GUPTA.txt
+Resume ID: CVs\batch_3\11572_RAHULDEY.txt
+Resume ID: CVs\batch_3\11942_KHUSHABU_SHIVPRASADJI_CHANDAK.txt
+Resume ID: CVs\batch_3\12015_BIKASH_SINGH.txt
+Resume ID: CVs\batch_3\1205_Vikas_Kumar_Gupta (1).txt
+Resume ID: CVs\batch_3\12489_Piyush_Rawat.txt
+Resume ID: CVs\batch_3\12629_RANJEET_SINGH.txt
+Resume ID: CVs\batch_3\13081_Chilka_Abhijit_Sharad.txt
+Resume ID: CVs\batch_3\13131_P.txt
+Resume ID: CVs\batch_3\13370_GOBI.txt
+Resume ID: CVs\batch_3\13546_MANEESH_SACHAN.txt
+Resume ID: CVs\batch_3\1370_MANJUNATH (2).txt
+Resume ID: CVs\batch_3\13809_BEBISKA_SINGH.txt
+Resume ID: CVs\batch_3\13811_SUMAIYA_ISLAM.txt
+Resume ID: CVs\batch_3\13849_R_MANIKANDA_MANICKA_PRABHU.txt
+Resume ID: CVs\batch_3\13925_TARANNUM.txt
+Resume ID: CVs\batch_3\13965_Rushit_A_Patel.txt
+Resume ID: CVs\batch_3\14055_Anjana.txt
+Resume ID: CVs\batch_3\14185_Prerit_Rathi (1).txt
+Resume ID: CVs\batch_3\14263_NITESH_RAVIKAR_NISHAD.txt
+Resume ID: CVs\batch_3\14267_ROCKY_MARK_DCRUZE.txt
+Resume ID: CVs\batch_3\14494_R.txt
+Resume ID: CVs\batch_3\14632_Sangamitra_Sengupta.txt
+Resume ID: CVs\batch_3\14877_C_O_N_T_A_C_T (1).txt
+Resume ID: CVs\batch_3\1522_AMIR_HALA.txt
+Resume ID: CVs\batch_3\153_Shiladitya_Chakraborty.txt
+Resume ID: CVs\batch_3\1571_SUDARSHAN_T_N (1).txt
+Resume ID: CVs\batch_3\1674_GURUSUNDER_J.txt
+Resume ID: CVs\batch_3\1699_SHRUTHI_S.txt
+Resume ID: CVs\batch_3\1868_Ashish_Mishra (2).txt
+Resume ID: CVs\batch_3\2146_Smita_Sinha.txt
+Resume ID: CVs\batch_3\2237_Deepika_Doraikannu.txt
+Resume ID: CVs\batch_3\2278_S.txt
+Resume ID: CVs\batch_3\2283_KUSUMA_KUMARI.txt
+Resume ID: CVs\batch_3\2394_PEARL_MURZELLO.txt
+Resume ID: CVs\batch_3\23_Ankur_Ahmed.txt
+Resume ID: CVs\batch_3\2791_PRAVIN.txt
+Resume ID: CVs\batch_3\290_SHREYASI_SHRIDHAR_PATIL.txt
+Resume ID: CVs\batch_3\3288_E_pathan.txt
+Resume ID: CVs\batch_3\3474_Rahul_Ashok_Gaikwad.txt
+Resume ID: CVs\batch_3\3514_SUJEET_KUMAR_SINGH.txt
+Resume ID: CVs\batch_3\3771_KIRTI_NARAYAN_PALANKAR.txt
+Resume ID: CVs\batch_3\3795_Kaveri_L.txt
+Resume ID: CVs\batch_3\3871_Sasi (1).txt
+Resume ID: CVs\batch_3\4075_POOJA_SIDDESH_MORE.txt
+Resume ID: CVs\batch_3\4228_Sanya_Gulati.txt
+Resume ID: CVs\batch_3\4470_Billal_Yakub_Chowdhary.txt
+Resume ID: CVs\batch_3\4537_KOKILA.txt
+Resume ID: CVs\batch_3\4647_CHAITALI_DEY.txt
+Resume ID: CVs\batch_3\4673_Payel_Sarkar.txt
+Resume ID: CVs\batch_3\467_NIKHIL_JOSHI.txt
+Resume ID: CVs\batch_3\4846_M_SHARFUDEEN (1).txt
+Resume ID: CVs\batch_3\4896_MOHAMMAD_ATAULLAH.txt
+Resume ID: CVs\batch_3\5062_Chanchala_Tiwari.txt
+Resume ID: CVs\batch_3\5133_Vishal_Agale.txt
+Resume ID: CVs\batch_3\5183_RAGHU.txt
+Resume ID: CVs\batch_3\5349_JyotiSethi.txt
+Resume ID: CVs\batch_3\5431_Saurav_Singh.txt
+Resume ID: CVs\batch_3\5703_Bhautik_Rabadiya (1).txt
+Resume ID: CVs\batch_3\6072_RAJESH_PRADHAN.txt
+Resume ID: CVs\batch_3\6085_Mithil_Bhalerao.txt
+Resume ID: CVs\batch_3\6145_K_MOORTHI.txt
+Resume ID: CVs\batch_3\6208_H_IMANSHU_KAINTURA.txt
+Resume ID: CVs\batch_3\6273_Mohammed_Ishaaq_Iqbal_Ansari.txt
+Resume ID: CVs\batch_3\6275_CHANDRESH_KAUSHIK.txt
+Resume ID: CVs\batch_3\6283_SATISH.txt
+Resume ID: CVs\batch_3\6321_Kunwar_Singh.txt
+Resume ID: CVs\batch_3\6456_SURE_NAGA_PAVAN_KUMAR.txt
+Resume ID: CVs\batch_3\6528_Gayathri.txt
+Resume ID: CVs\batch_3\6635_T_A_L_A_T_I_T_A_R_A_N_G.txt
+Resume ID: CVs\batch_3\6678_SOUMYADEEP_DAS.txt
+Resume ID: CVs\batch_3\667_PREETYAGARWAL (1).txt
+Resume ID: CVs\batch_3\6963_MMAADDAASSAAMMY_Y.txt
+Resume ID: CVs\batch_3\7063_GAWANDE_NAVJYOT_GHANSHYAM.txt
+Resume ID: CVs\batch_3\7146_ABHRADEEP_BANERJEE.txt
+Resume ID: CVs\batch_3\7149_A_Smruti.txt
+Resume ID: CVs\batch_3\7414_SHABA_USMANI.txt
+Resume ID: CVs\batch_3\7547_PIYUSH_PRAFULL_NAGORI.txt
+Resume ID: CVs\batch_3\7796_PawanYashwantMainkar.txt
+Resume ID: CVs\batch_3\7814_Shanthy_G.txt
+Resume ID: CVs\batch_3\7947_VIKRANT_KUMAR_SINGH.txt
+Resume ID: CVs\batch_3\8175_AVRA_BHATTACHARYA.txt
+Resume ID: CVs\batch_3\8208_Eshmeet_Kaur.txt
+Resume ID: CVs\batch_3\8432_AMIT_SINGH.txt
+Resume ID: CVs\batch_3\845_MOMIN_SHIRIN_BANO_GAYASUDDIN.txt
+Resume ID: CVs\batch_3\8599_Satya_Teja.txt
+Resume ID: CVs\batch_3\8698_Madam (4).txt
+Resume ID: CVs\batch_3\895_MITALI_KAR (1).txt
+Resume ID: CVs\batch_3\8984_MISS_PRERNA_RAVINDRA_VAIDYA_Details.txt
+Resume ID: CVs\batch_3\9021_SHENDRE.txt
+Resume ID: CVs\batch_3\9290_Tanmay_Chandrakant_Pawar.txt
+Resume ID: CVs\batch_3\9318_AMIT_KUMAR (1).txt
+Resume ID: CVs\batch_3\9347_Aparna_D_Nimkar.txt
+Resume ID: CVs\batch_3\9545_ARUN_KUMAR_C.txt
+Resume ID: CVs\batch_3\971_CDCS.txt
+Resume ID: CVs\batch_3\9754_NAINA_BANSAL.txt
+Resume ID: CVs\batch_3\9777_Shripallavi_Mallesh_lingala.txt
+Resume ID: CVs\batch_3\9778_Sushmita_Sarkar (1).txt
+Resume ID: CVs\batch_3\9862_Pradeep_Sp.txt
+Resume ID: CVs\batch_3\9872_DEEPIKA_S.txt
+Resume ID: CVs\batch_4\1020_ARAGONDA_RUPESH.txt
+Resume ID: CVs\batch_4\10328_H_AMAN_ULLAH_MALIK.txt
+Resume ID: CVs\batch_4\11081_RANGU_NIKHILESWARUDU (1).txt
+Resume ID: CVs\batch_4\11115_SNEHASISH_BANERJEE (1).txt
+Resume ID: CVs\batch_4\11154_Aditi_Ganguly.txt
+Resume ID: CVs\batch_4\11192_ARAVINDU_BODADASARI.txt
+Resume ID: CVs\batch_4\11257_E_pathan.txt
+Resume ID: CVs\batch_4\11280_K.txt
+Resume ID: CVs\batch_4\11340_Namita_Bindal (1).txt
+Resume ID: CVs\batch_4\11633_RAJESH.txt
+Resume ID: CVs\batch_4\11931_Poulami_De.txt
+Resume ID: CVs\batch_4\11936_Ayush_Sawant.txt
+Resume ID: CVs\batch_4\12044_SHWETA_P_DOLARE (1).txt
+Resume ID: CVs\batch_4\12237_MALAY_MISHRA (1).txt
+Resume ID: CVs\batch_4\1223_TANMOY_SAHA (1).txt
+Resume ID: CVs\batch_4\12451_Sunita_Barua.txt
+Resume ID: CVs\batch_4\12487_Vinodhini (1).txt
+Resume ID: CVs\batch_4\12586_KARTHIKEYAN_L.txt
+Resume ID: CVs\batch_4\13184_INZAMAM_BARI.txt
+Resume ID: CVs\batch_4\1319_JENCY_R.txt
+Resume ID: CVs\batch_4\13399_EKTA_ADHIKARY.txt
+Resume ID: CVs\batch_4\13721_Jagadish_Reddy_Karri.txt
+Resume ID: CVs\batch_4\1372_Barkha_Banthia.txt
+Resume ID: CVs\batch_4\13876_GAUTAMKUMAR_JITABHAI_CHAUDHARI.txt
+Resume ID: CVs\batch_4\14154_RAHUL_AGARWAL (1).txt
+Resume ID: CVs\batch_4\14172_SONALI_KUTE.txt
+Resume ID: CVs\batch_4\1427_Sharmila_Shaik.txt
+Resume ID: CVs\batch_4\14411_SAURABH.txt
+Resume ID: CVs\batch_4\14533_Priyanka_kamlakar.txt
+Resume ID: CVs\batch_4\14664_KRISHNENDU_DAS.txt
+Resume ID: CVs\batch_4\14678_CHANDRAKANT_D.txt
+Resume ID: CVs\batch_4\14706_ANAND (1).txt
+Resume ID: CVs\batch_4\1554_AYAN_GHOSH.txt
+Resume ID: CVs\batch_4\1705_SONAL_NATVARBHAI_RATHOD.txt
+Resume ID: CVs\batch_4\1754_NEHA_BANERJEE.txt
+Resume ID: CVs\batch_4\1895_Rushabh_khara.txt
+Resume ID: CVs\batch_4\1898_TANVEE_P_DETHE.txt
+Resume ID: CVs\batch_4\2338_Namrata_Kalbende.txt
+Resume ID: CVs\batch_4\2707_Bhautik_Rabadiya.txt
+Resume ID: CVs\batch_4\3102_Neha_Grewal.txt
+Resume ID: CVs\batch_4\3242_YASH_PARASHAR.txt
+Resume ID: CVs\batch_4\3353_RAJKUMAR_PURKAIT.txt
+Resume ID: CVs\batch_4\3613_VARTIKA_YADAV.txt
+Resume ID: CVs\batch_4\3614_SAURAV_BHATTACHARYA.txt
+Resume ID: CVs\batch_4\365_New Resumes.txt
+Resume ID: CVs\batch_4\3691_Mohit_Garg (1).txt
+Resume ID: CVs\batch_4\391_Documentation.txt
+Resume ID: CVs\batch_4\4040_KOMAL_VINOD_WALMIKI.txt
+Resume ID: CVs\batch_4\4070_SONAL_B_KUTHE.txt
+Resume ID: CVs\batch_4\4112_THANGA_DURAI.txt
+Resume ID: CVs\batch_4\4168_Bhanu_Prakash_Umapathi (1).txt
+Resume ID: CVs\batch_4\4210_S_PRAVEEN_YUVARAJ (1).txt
+Resume ID: CVs\batch_4\4314_AMAN_K_CHAUHAN.txt
+Resume ID: CVs\batch_4\4358_Tanvi_Bhandare.txt
+Resume ID: CVs\batch_4\4822_Muthappa_T.txt
+Resume ID: CVs\batch_4\4827_GOKUL_RAJESH_MEHADIYA.txt
+Resume ID: CVs\batch_4\4930_Banahatti.txt
+Resume ID: CVs\batch_4\512_PAUL_ROHITH (1).txt
+Resume ID: CVs\batch_4\5139_Agbal_Mohiddeen_Syed.txt
+Resume ID: CVs\batch_4\5207_TUSHAR_RAJARAM_JADHAV.txt
+Resume ID: CVs\batch_4\5327_Nandhini.txt
+Resume ID: CVs\batch_4\5375_ROCKY_MARK_DCRUZE (1).txt
+Resume ID: CVs\batch_4\55_Atrijit_Maulik.txt
+Resume ID: CVs\batch_4\562_PRIYANKA_NEGI.txt
+Resume ID: CVs\batch_4\5721_KARTHICK_KANNAN.txt
+Resume ID: CVs\batch_4\572_Pushkaraj_Pradeep_Kulkarni.txt
+Resume ID: CVs\batch_4\6186_KOYEL_KHANRA.txt
+Resume ID: CVs\batch_4\6201_NEHA_D_KHAPEKAR.txt
+Resume ID: CVs\batch_4\6269_MADHUMITA_HARSHE.txt
+Resume ID: CVs\batch_4\644_ARPITKUMAR_RAVIKANTBHAI_KHRISTI.txt
+Resume ID: CVs\batch_4\66_K_I_S_H_O_R_E_D_A_S_A_R_I.txt
+Resume ID: CVs\batch_4\6722_PRAGYA_KHARWAR.txt
+Resume ID: CVs\batch_4\6757_Priyanka_Singh (1).txt
+Resume ID: CVs\batch_4\6852_SANJAY_SHANTILAL_GAIKWAD.txt
+Resume ID: CVs\batch_4\699_SUSHMITA_SUNA (1).txt
+Resume ID: CVs\batch_4\709_Manojkumar_Narasimhan (1).txt
+Resume ID: CVs\batch_4\710_Shah.txt
+Resume ID: CVs\batch_4\7442_RAHUL_AGARWAL.txt
+Resume ID: CVs\batch_4\7468_SRUTHI_SIDDIGIDDA (2).txt
+Resume ID: CVs\batch_4\7717_TABREZ_RAJE.txt
+Resume ID: CVs\batch_4\794_SWARAJ_KHARE.txt
+Resume ID: CVs\batch_4\8324_Chavan_Vikrant_Hanmant.txt
+Resume ID: CVs\batch_4\8331_ANKITA_VINOD_BHURKE.txt
+Resume ID: CVs\batch_4\834_Etti_Dhawan.txt
+Resume ID: CVs\batch_4\8536_PANKAJ_SHARMA.txt
+Resume ID: CVs\batch_4\8665_Pratima_Bhasoria (1).txt
+Resume ID: CVs\batch_4\8753_B_Lakshmishree.txt
+Resume ID: CVs\batch_4\8957_Sojitra_Harshil_Piyushbhai (1).txt
+Resume ID: CVs\batch_4\9148_Munafbhai_Sultanbhai_Umatiya.txt
+Resume ID: CVs\batch_4\9166_NIRAJ_KUMAR_YADAV.txt
+Resume ID: CVs\batch_4\9267_Ranjan_kumar.txt
+Resume ID: CVs\batch_4\9270_DEEPAK_KUMAR_SINHA.txt
+Resume ID: CVs\batch_4\9341_Parth.txt
+Resume ID: CVs\batch_4\9422_Saurav_Singh (1).txt
+Resume ID: CVs\batch_4\9461_EB.txt
+Resume ID: CVs\batch_4\9964_ESU.txt
+Resume ID: CVs\batch_5\10036_SUPRIYO_ROY.txt
+Resume ID: CVs\batch_5\10213_SPANDAN_BHATTACHARYA.txt
+Resume ID: CVs\batch_5\10349_PRADEEP_CARLESON.txt
+Resume ID: CVs\batch_5\10417_VENKATESH_T.txt
+Resume ID: CVs\batch_5\10464_Vijay_Navnath_Navle.txt
+Resume ID: CVs\batch_5\104_Surbhi_Oberoi.txt
+Resume ID: CVs\batch_5\1058_ANIL_YADAV.txt
+Resume ID: CVs\batch_5\10691_SUBHASREE_GHOSH.txt
+Resume ID: CVs\batch_5\1070_BANDITA_PRIYADARSINI_BHOL.txt
+Resume ID: CVs\batch_5\10795_SIBARAM_KUNDU.txt
+Resume ID: CVs\batch_5\10959_Parvez_AbdulAziz_Nimbalkar.txt
+Resume ID: CVs\batch_5\1105_BAMANE_AISHWARYA_NILESH.txt
+Resume ID: CVs\batch_5\11326_ASHISH_KOUL.txt
+Resume ID: CVs\batch_5\11497_MOUMITA_KANUNGO.txt
+Resume ID: CVs\batch_5\11685_MANJUNATH_ANGADI.txt
+Resume ID: CVs\batch_5\11821_AMISH_PANDE.txt
+Resume ID: CVs\batch_5\12192_Ashish_Kumar_Pandit.txt
+Resume ID: CVs\batch_5\12221_RUPAM_MONDAL.txt
+Resume ID: CVs\batch_5\12610_SK.txt
+Resume ID: CVs\batch_5\12743_AMEY_C_BAKRE.txt
+Resume ID: CVs\batch_5\12811_BHAGYASHREE_RAM_GURAV.txt
+Resume ID: CVs\batch_5\13113_RESHMA_PAWAR.txt
+Resume ID: CVs\batch_5\13126_RANJANA.txt
+Resume ID: CVs\batch_5\13176_SUDARSHAN_T_N.txt
+Resume ID: CVs\batch_5\13272_SHUBHASHREE_MALLICK.txt
+Resume ID: CVs\batch_5\13390_SURENDRA_CH.txt
+Resume ID: CVs\batch_5\13756_Leo_Carvalho (1).txt
+Resume ID: CVs\batch_5\13788_VIVEK_SINGH.txt
+Resume ID: CVs\batch_5\14069_DRISHYA_K.txt
+Resume ID: CVs\batch_5\14081_Aziz_Ismail_Thanawala.txt
+Resume ID: CVs\batch_5\14351_SANJIB_KUMAR_AUDDY.txt
+Resume ID: CVs\batch_5\14535_M_O_N_I_C_A.txt
+Resume ID: CVs\batch_5\14616_Company.txt
+Resume ID: CVs\batch_5\1467_Priyanka_Singh.txt
+Resume ID: CVs\batch_5\14931_CHANDANI_KEKULKUMAR_SHAH.txt
+Resume ID: CVs\batch_5\14966_Mahadev_Patil_Chawl.txt
+Resume ID: CVs\batch_5\1831_Neelamber_Aditya.txt
+Resume ID: CVs\batch_5\2016_JyotiSethi (1).txt
+Resume ID: CVs\batch_5\244_Akila.txt
+Resume ID: CVs\batch_5\2765_HimansuSekharNayak.txt
+Resume ID: CVs\batch_5\2875_SYED_SHAKEEB_ANWAR (1).txt
+Resume ID: CVs\batch_5\2983_KAMALKANT_OJHA.txt
+Resume ID: CVs\batch_5\3075_ATUL_PANDURANG_KAMBLE.txt
+Resume ID: CVs\batch_5\3181_HIREN_BHATTI.txt
+Resume ID: CVs\batch_5\3351_RAVI_DAS.txt
+Resume ID: CVs\batch_5\3357_NAGANATH_NAMDEV_SHINDE.txt
+Resume ID: CVs\batch_5\3369_ABHIJITH_BHASKER_U.txt
+Resume ID: CVs\batch_5\3600_Sk_Asif_Nawaz.txt
+Resume ID: CVs\batch_5\3794_Dr_Koya_Clinic.txt
+Resume ID: CVs\batch_5\3857_Mohammed.txt
+Resume ID: CVs\batch_5\3985_Vipin_Mishra.txt
+Resume ID: CVs\batch_5\4651_AMBIKA_KUMARI.txt
+Resume ID: CVs\batch_5\4657_TRUPTI_NILESH_KHARCHE.txt
+Resume ID: CVs\batch_5\4740_UMESH_L_RAMPUR.txt
+Resume ID: CVs\batch_5\4865_J.txt
+Resume ID: CVs\batch_5\5016_Aakansha_Jagirdar.txt
+Resume ID: CVs\batch_5\5064_KVL_Nanditha.txt
+Resume ID: CVs\batch_5\5176_SUDHIR_KUMAR_ROU.txt
+Resume ID: CVs\batch_5\5203_Rooth_Prasanna_M.txt
+Resume ID: CVs\batch_5\5248_RADHA_Y.txt
+Resume ID: CVs\batch_5\5495_NEHA_SAHANI.txt
+Resume ID: CVs\batch_5\5669_Latif_Shaikh (2).txt
+Resume ID: CVs\batch_5\5711_Afsar_Pasha.txt
+Resume ID: CVs\batch_5\5917_DIPTI_PHULE.txt
+Resume ID: CVs\batch_5\6404_S_e_e_k_i_n_g_a_f_u_l_l.txt
+Resume ID: CVs\batch_5\6408_GAURAV_SHARMA (1).txt
+Resume ID: CVs\batch_5\6561_SUSHMA_KUMARI.txt
+Resume ID: CVs\batch_5\6892_Maher_Jitendra_Patel.txt
+Resume ID: CVs\batch_5\6917_VINAYAK_HALANNANAVAR.txt
+Resume ID: CVs\batch_5\700_Arpan_Sanesar.txt
+Resume ID: CVs\batch_5\7027_Auswin_Norbert_John.txt
+Resume ID: CVs\batch_5\7109_Varadharaj_S.txt
+Resume ID: CVs\batch_5\7199_Supratik_Chatterjee.txt
+Resume ID: CVs\batch_5\7217_AJINKYA_ARVIND_JADHAV.txt
+Resume ID: CVs\batch_5\7353_Pallavi_S.txt
+Resume ID: CVs\batch_5\7469_MD_SHADAAB_ALAM.txt
+Resume ID: CVs\batch_5\7495_O_Nagaraj_V.txt
+Resume ID: CVs\batch_5\7543_Abdul_Shukur_Khan.txt
+Resume ID: CVs\batch_5\7587_KIRAN_CHANDRAKANT_KANUKALE (1).txt
+Resume ID: CVs\batch_5\7951_NIVEDHA_KM.txt
+Resume ID: CVs\batch_5\822_PRIYADARSHINI_ROY_CHOWDHURY.txt
+Resume ID: CVs\batch_5\8243_SHIVANAND_BALIGAR.txt
+Resume ID: CVs\batch_5\8370_NITHIN_S_GOWDA.txt
+Resume ID: CVs\batch_5\874_S_Hemalatha.txt
+Resume ID: CVs\batch_5\8758_ABHIJIT_MONDAL.txt
+Resume ID: CVs\batch_5\9289_Pooja.txt
+Resume ID: CVs\batch_5\9346_Md.txt
+Resume ID: CVs\batch_5\9378_SRIDHAR.txt
+Resume ID: CVs\batch_5\9398_SAUMENDRA_KUMAR_RAY.txt
+Resume ID: CVs\batch_5\9412_Asgerali_Contractor.txt
+Resume ID: CVs\batch_5\9443_Sonal_Singh (1).txt
+Resume ID: CVs\batch_5\9508_JAYESH_CHETWANI.txt
+Resume ID: CVs\batch_5\9511_AKANKSHA_RAMESH_BARASKARC_oloured_Passport_size_Photo.txt
+Resume ID: CVs\batch_5\9613_HIREN_BHATTI (1).txt
+Resume ID: CVs\batch_5\9687_M_SYED_ABUDHAGIR_RIAZ (1).txt
+Resume ID: CVs\batch_5\9863_VIGHNARAJ_CHANDI.txt
+Resume ID: CVs\batch_5\988_Yasheshree_Kalpak_Chincholkar.txt
+Resume ID: CVs\batch_5\9918_Vaishnavi_Arun_Patil.txt
+Resume ID: CVs\batch_6\10951_T.txt
+Resume ID: CVs\batch_6\11101_Arnab_Biswas.txt
+Resume ID: CVs\batch_6\11104_PUSHPA_KUMARI.txt
+Resume ID: CVs\batch_6\1120_Dr.txt
+Resume ID: CVs\batch_6\11519_Hetal_Patel.txt
+Resume ID: CVs\batch_6\11564_SANA_KAZI.txt
+Resume ID: CVs\batch_6\11748_SNEHA_NAKKA.txt
+Resume ID: CVs\batch_6\1182_Jyoti_Jagdish_Singh (1).txt
+Resume ID: CVs\batch_6\1215_POOJA_PRADEEP_NARVEKAR.txt
+Resume ID: CVs\batch_6\12329_S_SHARAN_KUMAR.txt
+Resume ID: CVs\batch_6\1234_DEVYANI_SANJEEVKUMAR_BARGAL.txt
+Resume ID: CVs\batch_6\12398_MANISH_SHANTARAM_TERVANKAR.txt
+Resume ID: CVs\batch_6\12488_Rajasekhar_P.txt
+Resume ID: CVs\batch_6\12502_Suman_Banerjee.txt
+Resume ID: CVs\batch_6\13004_Mohammed_Faizan_Khan (1).txt
+Resume ID: CVs\batch_6\13192_Aaish_N_Kharatmol.txt
+Resume ID: CVs\batch_6\13321_Choksi_odd.txt
+Resume ID: CVs\batch_6\13338_R_E_S_U_M_E (7).txt
+Resume ID: CVs\batch_6\13468_Sayoni_Deb.txt
+Resume ID: CVs\batch_6\13469_Namita_Bindal.txt
+Resume ID: CVs\batch_6\1363_SUMIT_KUMAR_BARMAN (1).txt
+Resume ID: CVs\batch_6\13645_Farooque_Memon.txt
+Resume ID: CVs\batch_6\13815_Juli_Kirti.txt
+Resume ID: CVs\batch_6\13827_Mob.txt
+Resume ID: CVs\batch_6\14053_SURAJ_SINGH.txt
+Resume ID: CVs\batch_6\14191_Sharmin_M_Budhwani.txt
+Resume ID: CVs\batch_6\14314_FARHANA_SHAIKH.txt
+Resume ID: CVs\batch_6\14373_Meenakshi_Mathur.txt
+Resume ID: CVs\batch_6\14431_Samardip_Talukdar.txt
+Resume ID: CVs\batch_6\14483_SIDDHI_R_TRIVEDI.txt
+Resume ID: CVs\batch_6\14571_SOURAV_PAUL.txt
+Resume ID: CVs\batch_6\14737_VINIT_KUMAR_ANAND.txt
+Resume ID: CVs\batch_6\14939_Vaibhav_K_Verma.txt
+Resume ID: CVs\batch_6\1547_Dhaval_V_Trivedi.txt
+Resume ID: CVs\batch_6\1920_HEMANTA_LIMBU.txt
+Resume ID: CVs\batch_6\2015_K.txt
+Resume ID: CVs\batch_6\2288_DAVESH_MANOJ_SHARMA.txt
+Resume ID: CVs\batch_6\2512_HARIHARAN (1).txt
+Resume ID: CVs\batch_6\2563_SAIKAT_ADHIKARY.txt
+Resume ID: CVs\batch_6\259_VIDYA_SACHIN_PATIL.txt
+Resume ID: CVs\batch_6\2668_Prashant_Late.txt
+Resume ID: CVs\batch_6\2779_Mayur_S_Avhale.txt
+Resume ID: CVs\batch_6\2873_APURVA_REVDEKAR.txt
+Resume ID: CVs\batch_6\3105_VRUTI_R_DEVDHARIYA (1).txt
+Resume ID: CVs\batch_6\3676_Soni_Hiren_vinodchandra.txt
+Resume ID: CVs\batch_6\4083_Shweta_Jagdishbhai_Ratda.txt
+Resume ID: CVs\batch_6\4189_Tambe.txt
+Resume ID: CVs\batch_6\4605_ABHIJIT_HAZRA.txt
+Resume ID: CVs\batch_6\4732_MANAS_A_MISHRA.txt
+Resume ID: CVs\batch_6\5002_Dr_Salil_Bhanoo.txt
+Resume ID: CVs\batch_6\5088_D_AMAR_LAL (1).txt
+Resume ID: CVs\batch_6\5089_SWAPNIL_NARHARIRAO_SHILWANT.txt
+Resume ID: CVs\batch_6\5120_VASANTHI.txt
+Resume ID: CVs\batch_6\5122_SUSHMITA_PANDEY.txt
+Resume ID: CVs\batch_6\5213_SATYANARAYAN_MAHARANA.txt
+Resume ID: CVs\batch_6\56_P_RAMACHANDRAN.txt
+Resume ID: CVs\batch_6\5814_N_I_H_A_R_I_K_A_R_E_D_D_Y_P_A_I_L_A.txt
+Resume ID: CVs\batch_6\6336_Dr_Shyamantak_Mani.txt
+Resume ID: CVs\batch_6\6550_Gadhave_Parikshit_Suryakant (1).txt
+Resume ID: CVs\batch_6\695_Debali_Chakraborty.txt
+Resume ID: CVs\batch_6\7246_GOOTAM_SANDEEP_BABU.txt
+Resume ID: CVs\batch_6\7408_SHAHRUKH_MANSOOR.txt
+Resume ID: CVs\batch_6\78_RUDRAJIT_BANERJEE.txt
+Resume ID: CVs\batch_6\7904_Amit_Kumar (1).txt
+Resume ID: CVs\batch_6\8053_Rishab_Srivastva.txt
+Resume ID: CVs\batch_6\8463_SHAMIM_AZAD_GAZI.txt
+Resume ID: CVs\batch_6\8474_Aakanksha_Bhosale.txt
+Resume ID: CVs\batch_6\8702_MANIKANDAN.txt
+Resume ID: CVs\batch_6\8774_YEDDU_ARAVINDA_NAGA_SAI.txt
+Resume ID: CVs\batch_6\8879_SELVAKUMAR.txt
+Resume ID: CVs\batch_6\8883_SHAH.txt
+Resume ID: CVs\batch_6\8981_NUZHAT_FATIMA.txt
+Resume ID: CVs\batch_6\9071_Shobha_Rajpurohit.txt
+Resume ID: CVs\batch_6\9111_TANMOY_SARDAR.txt
+Resume ID: CVs\batch_6\9157_SUDHIR_KUMAR (2).txt
+Resume ID: CVs\batch_6\9327_TEJAS_BAPAT.txt
+Resume ID: CVs\batch_6\93_Manojkumar_Narasimhan.txt
+Resume ID: CVs\batch_6\9430_A_GANGA.txt
+Resume ID: CVs\batch_6\9505_Gundla_Jagadish.txt
+Resume ID: CVs\batch_6\9704_Ajit_Kumar.txt
+Resume ID: CVs\batch_6\9707_MOHD_ADIL.txt
+Resume ID: CVs\batch_6\9873_R.txt
+Resume ID: CVs\batch_6\9883_RAJAT_RATHORE.txt
+Resume ID: CVs\batch_7\10117_RAI (1).txt
+Resume ID: CVs\batch_7\10192_C_A_R_E_ERO_B_J_E_C_T_I_V_E.txt
+Resume ID: CVs\batch_7\10270_RAMALAKSHMI.txt
+Resume ID: CVs\batch_7\10282_Ms_J.txt
+Resume ID: CVs\batch_7\1034_Debasmita_Samanta.txt
+Resume ID: CVs\batch_7\10410_MEET_MANISH_KENIA.txt
+Resume ID: CVs\batch_7\10495_C_O_N_T_A_C_T.txt
+Resume ID: CVs\batch_7\1049_ARCHANA_ASHOK_KAMBLE.txt
+Resume ID: CVs\batch_7\107_Jason_Peter_Rebello (1).txt
+Resume ID: CVs\batch_7\10802_MUHAMMED_HASIF_M_K (3).txt
+Resume ID: CVs\batch_7\10927_Sagar_Rajput.txt
+Resume ID: CVs\batch_7\10961_SANKET_SURESH_YADAV.txt
+Resume ID: CVs\batch_7\11248_MUHAMMED_HASIF_M_K.txt
+Resume ID: CVs\batch_7\11341_BHUPENDRA_SINGH.txt
+Resume ID: CVs\batch_7\11441_Neeraj_kumar_pareek.txt
+Resume ID: CVs\batch_7\1147_Leo_Carvalho.txt
+Resume ID: CVs\batch_7\11582_BHAVANA_J_SHETTI.txt
+Resume ID: CVs\batch_7\11734_REDDYBABU_T.txt
+Resume ID: CVs\batch_7\11935_MADHURIKUMARI.txt
+Resume ID: CVs\batch_7\11945_SUMIT_KARMAKAR.txt
+Resume ID: CVs\batch_7\12114_KARAN_KUMAR.txt
+Resume ID: CVs\batch_7\12211_CURRICULUM (1).txt
+Resume ID: CVs\batch_7\12438_BRIJESH_V_L.txt
+Resume ID: CVs\batch_7\12463_TABREZ_RAJE (1).txt
+Resume ID: CVs\batch_7\12550_GAJENDRA_SONI.txt
+Resume ID: CVs\batch_7\12874_MiraRoad.txt
+Resume ID: CVs\batch_7\12920_PREETYAGARWAL.txt
+Resume ID: CVs\batch_7\13071_Debali_Chakraborty (1).txt
+Resume ID: CVs\batch_7\13098_Sunesh_Dnyaneshwar_Patre.txt
+Resume ID: CVs\batch_7\13142_KIRAN_CHANDRAKANT_KANUKALE.txt
+Resume ID: CVs\batch_7\13346_East.txt
+Resume ID: CVs\batch_7\13449_Ankita_Ashok_Rumde.txt
+Resume ID: CVs\batch_7\13567_SHARVARI_SUBHASH_KHOKRALE.txt
+Resume ID: CVs\batch_7\13647_NN.txt
+Resume ID: CVs\batch_7\13651_SAHELY_MUKHERJEE.txt
+Resume ID: CVs\batch_7\13728_RAI.txt
+Resume ID: CVs\batch_7\13753_Shienetee_nee.txt
+Resume ID: CVs\batch_7\1379_MUHAMMED_HASIF_M_K (2).txt
+Resume ID: CVs\batch_7\14099_ADITYA_KUMAR.txt
+Resume ID: CVs\batch_7\14134_Jyotiba_Gund.txt
+Resume ID: CVs\batch_7\14393_ABHINAV_TRIPATHI.txt
+Resume ID: CVs\batch_7\14854_Rupali_R_Toke (1).txt
+Resume ID: CVs\batch_7\14897_Priyadharshini_S.txt
+Resume ID: CVs\batch_7\14979_Agun_Mary_Antony_Raj.txt
+Resume ID: CVs\batch_7\1525_SHIVANGI_SWAIN.txt
+Resume ID: CVs\batch_7\1634_SUMAIYA_ISLAM (1).txt
+Resume ID: CVs\batch_7\1777_Sagar_Vishnu_Pandit.txt
+Resume ID: CVs\batch_7\2549_SWARUP_DAS (1).txt
+Resume ID: CVs\batch_7\2568_DHANYAMOL_HARIDAS.txt
+Resume ID: CVs\batch_7\2743_BARUN_KUMAR.txt
+Resume ID: CVs\batch_7\2745_Date_of_Birth.txt
+Resume ID: CVs\batch_7\2878_NILESH_RAMESHRAO_INGALE.txt
+Resume ID: CVs\batch_7\2897_Rajendra_Dhumal.txt
+Resume ID: CVs\batch_7\3078_PERSONAL_Vipul_Gujrati_Ph.txt
+Resume ID: CVs\batch_7\3508_Adithya_Nayak.txt
+Resume ID: CVs\batch_7\3521_GANGA_BHAGIRADHI_KRISHNAN.txt
+Resume ID: CVs\batch_7\3611_ANINDITA_BHATTACHARJYA.txt
+Resume ID: CVs\batch_7\3841_SUMIT_JHA.txt
+Resume ID: CVs\batch_7\3916_E.txt
+Resume ID: CVs\batch_7\4004_Suraj_Vikas_Patil.txt
+Resume ID: CVs\batch_7\4031_KAPIL_C_SONWANE.txt
+Resume ID: CVs\batch_7\43_MINAKSHIDAYARAM_MAHAJAN.txt
+Resume ID: CVs\batch_7\4406_PARINITABISWAKARMA (1).txt
+Resume ID: CVs\batch_7\4419_Chandan_Singh_Rathor.txt
+Resume ID: CVs\batch_7\4881_WASHIM_AKRAM_MALLICK.txt
+Resume ID: CVs\batch_7\4882_Nandini_kumari_singh.txt
+Resume ID: CVs\batch_7\4983_Sojitra_Harshil_Piyushbhai.txt
+Resume ID: CVs\batch_7\5010_Lessley_Mammen_Jacob.txt
+Resume ID: CVs\batch_7\5659_Shevanti_K_Ranavat (1).txt
+Resume ID: CVs\batch_7\5812_Work_Experience.txt
+Resume ID: CVs\batch_7\5968_PRIYANKA_GHOSH.txt
+Resume ID: CVs\batch_7\6198_HARIHARAN.txt
+Resume ID: CVs\batch_7\6236_VAIBHAV_DILIP_CHIMURKAR.txt
+Resume ID: CVs\batch_7\6364_Abhay_Jain.txt
+Resume ID: CVs\batch_7\640_Barsha_Singh.txt
+Resume ID: CVs\batch_7\6423_Pillai_Rajput.txt
+Resume ID: CVs\batch_7\6468_Rahul.txt
+Resume ID: CVs\batch_7\6523_M_SHARFUDEEN.txt
+Resume ID: CVs\batch_7\6551_SANAKAM_SWATHI.txt
+Resume ID: CVs\batch_7\6668_THUMMURU_ANU_SATYA_DEEPIKA.txt
+Resume ID: CVs\batch_7\6694_SIDDHANT_DILIP_ALEKAR.txt
+Resume ID: CVs\batch_7\6838_DANISH_KHAN_AFAQUI (1).txt
+Resume ID: CVs\batch_7\6861_Rahul_Ingle.txt
+Resume ID: CVs\batch_7\6872_BY_CONTRIBUTING_THE_BEST.txt
+Resume ID: CVs\batch_7\7050_NIKHIL_NAYAK.txt
+Resume ID: CVs\batch_7\714_RAFIK.txt
+Resume ID: CVs\batch_7\7364_Somnath_Chakraborty.txt
+Resume ID: CVs\batch_7\73_SHRIYALOHANI.txt
+Resume ID: CVs\batch_7\7638_Tanaji_Balaji_Botule.txt
+Resume ID: CVs\batch_7\7853_NAZIM_KHAN.txt
+Resume ID: CVs\batch_7\7945_Kushagra_Gautam.txt
+Resume ID: CVs\batch_7\7998_MD.txt
+Resume ID: CVs\batch_7\79_HARSHAL_BADGUJAR.txt
+Resume ID: CVs\batch_7\8163_SANJEEV_BHATIA.txt
+Resume ID: CVs\batch_7\8188_GURRAM_ANUSHA.txt
+Resume ID: CVs\batch_7\826_MISS_PRERNA_RAVINDRA_VAIDYA_Details (2).txt
+Resume ID: CVs\batch_7\8410_VARSHA_SAGAR_KHERADIYA.txt
+Resume ID: CVs\batch_7\8810_Jyotiba_Gund (1).txt
+Resume ID: CVs\batch_7\8834_SHALINI_A.txt
+Resume ID: CVs\batch_7\9057_Dibyendu_Das.txt
+Resume ID: CVs\batch_7\9207_RICKYTA_MAHATO.txt
+Resume ID: CVs\batch_7\9372_AISHWARYA_PRADEEP_SUTAR.txt
+Resume ID: CVs\batch_7\9522_MD_REFAI_MUZAMMIL_BUHARI.txt
+Resume ID: CVs\batch_7\9781_U_RVASHI_Y_ADAV (1).txt
+Resume ID: CVs\batch_8\10061_Bandu_B_Tarde (1).txt
+Resume ID: CVs\batch_8\10324_Prachi_R_Tomar.txt
+Resume ID: CVs\batch_8\10629_Ruby_Arya.txt
+Resume ID: CVs\batch_8\10740_RAJ_KEERTHI.txt
+Resume ID: CVs\batch_8\11589_SSuummaa_VVaassa_a.txt
+Resume ID: CVs\batch_8\11683_RUTURAJ_PRAJAPATI.txt
+Resume ID: CVs\batch_8\11762_I_would_like_to_join_an_organization.txt
+Resume ID: CVs\batch_8\11851_Md.txt
+Resume ID: CVs\batch_8\12115_GOLAM_ZEESHAN.txt
+Resume ID: CVs\batch_8\12130_NARELLA_CHANDRA_TEJ.txt
+Resume ID: CVs\batch_8\12180_Ramesh_Kumar_Vishwakarma.txt
+Resume ID: CVs\batch_8\12269_Priya_Babanrao_Talekar.txt
+Resume ID: CVs\batch_8\12573_SSuusshheeeellkkuummaarr_MM_SSaahhaannii.txt
+Resume ID: CVs\batch_8\12661_V_SHANU_PRIYA.txt
+Resume ID: CVs\batch_8\12809_SJAGADESSAN.txt
+Resume ID: CVs\batch_8\13108_PRANAY_D_TETE.txt
+Resume ID: CVs\batch_8\1322_Akash_T.txt
+Resume ID: CVs\batch_8\13353_SUMAN_BISWAS.txt
+Resume ID: CVs\batch_8\13383_CHANDER_SHAIKAR.txt
+Resume ID: CVs\batch_8\13514_PARISHMITA_HAZARIKA.txt
+Resume ID: CVs\batch_8\13608_SURESH_M.txt
+Resume ID: CVs\batch_8\1436_IMRAN_ALI.txt
+Resume ID: CVs\batch_8\1438_ALKESH_SODHA.txt
+Resume ID: CVs\batch_8\14396_Darshana_Shankar_Jadhav.txt
+Resume ID: CVs\batch_8\14789_Vinay.txt
+Resume ID: CVs\batch_8\14936_RANJANA.txt
+Resume ID: CVs\batch_8\1591_Vijayendra_Pratap_Singh.txt
+Resume ID: CVs\batch_8\1799_CCHHAANNDDRRAA_BBAABBUU_K_K.txt
+Resume ID: CVs\batch_8\1827_Dinesh_Ashoklal_Balrani.txt
+Resume ID: CVs\batch_8\1933_MUKUND_G_PANDYA.txt
+Resume ID: CVs\batch_8\2040_YADAV_UMESH_KUMAR_BHAGWAN_DAS.txt
+Resume ID: CVs\batch_8\2582_Mr.txt
+Resume ID: CVs\batch_8\2679_Naik_Babaraje_Rajaram.txt
+Resume ID: CVs\batch_8\2685_LEYAGATHALI_S.txt
+Resume ID: CVs\batch_8\2701_VELVANKAR_OMKAR_ANANT.txt
+Resume ID: CVs\batch_8\270_ISHWAR_R.txt
+Resume ID: CVs\batch_8\2717_SONI_DIXIT_PRAVINKUMAR.txt
+Resume ID: CVs\batch_8\2837_ABHIJEET_GUPTA.txt
+Resume ID: CVs\batch_8\2843_SMITA_SINHA.txt
+Resume ID: CVs\batch_8\3002_Dr_Varada_Ishad_Aykar.txt
+Resume ID: CVs\batch_8\3024_DEEPAK_SHARMA.txt
+Resume ID: CVs\batch_8\3320_Vikas_Kumar_Gupta (2).txt
+Resume ID: CVs\batch_8\3492_SARDAR_PATEL.txt
+Resume ID: CVs\batch_8\3763_SAM_SABU (1).txt
+Resume ID: CVs\batch_8\3831_JOYDIP_BASAK.txt
+Resume ID: CVs\batch_8\4054_SUGANYA.txt
+Resume ID: CVs\batch_8\411_Leena_Ravindra_Gawade.txt
+Resume ID: CVs\batch_8\4854_Meghna_Puthran.txt
+Resume ID: CVs\batch_8\5198_PYARI_MOHAN_NAYAK_JOB.txt
+Resume ID: CVs\batch_8\5330_PRIYAGUPTA (1).txt
+Resume ID: CVs\batch_8\5351_Snehal_Balasaheb_Kanherkar.txt
+Resume ID: CVs\batch_8\5366_Mihir_Mehta.txt
+Resume ID: CVs\batch_8\5551_Harish_Shekar_Shetty.txt
+Resume ID: CVs\batch_8\5749_Abrar_Hiroli (1).txt
+Resume ID: CVs\batch_8\5824_RAVEENA_LEADER.txt
+Resume ID: CVs\batch_8\5979_R_MANIKANDA_MANICKA_PRABHU (1).txt
+Resume ID: CVs\batch_8\6296_UTSAV_JANAK_RAYMANGIA.txt
+Resume ID: CVs\batch_8\6395_LAD_DIVYESHKUMAR_PRAVINBHAI.txt
+Resume ID: CVs\batch_8\6755_PRIYANKA_DAM.txt
+Resume ID: CVs\batch_8\6834_KOMALA_N.txt
+Resume ID: CVs\batch_8\7196_ISHIKA_PUSHILAL.txt
+Resume ID: CVs\batch_8\7279_Hina_Mahesh_Waghulade.txt
+Resume ID: CVs\batch_8\7365_Gadhave_Parikshit_Suryakant.txt
+Resume ID: CVs\batch_8\7692_Mousumi_Shaw (1).txt
+Resume ID: CVs\batch_8\8121_Anurag_Mishra.txt
+Resume ID: CVs\batch_8\8360_VIJAY_KUMAR_CHEJARA.txt
+Resume ID: CVs\batch_8\8652_Rahul_Kumar.txt
+Resume ID: CVs\batch_8\8710_Mansi_M_Gaudana.txt
+Resume ID: CVs\batch_8\9017_Vinod_Kumar_K.txt
+Resume ID: CVs\batch_8\9069_Dr_MAYURI_KESKAR.txt
+Resume ID: CVs\batch_8\9185_A.txt
+Resume ID: CVs\batch_8\9395_S_U_N_K_A_N_N_A_B_A_S_A (1).txt
+Resume ID: CVs\batch_8\9432_D_E_E_P_I_K_A_T_A_L_A_P_A_T_R_A (1).txt
+Resume ID: CVs\batch_8\9677_Thrishul_C_R.txt
+Resume ID: CVs\batch_8\9784_INDRAJIT_DATTA.txt
+Resume ID: CVs\batch_8\9801_Shankar_Viswanathan (1).txt
+Resume ID: CVs\batch_9\10048_PRACHI_DUA.txt
+Resume ID: CVs\batch_9\10199_Vishwajeet_Nagnath_Navgire.txt
+Resume ID: CVs\batch_9\10504_ARUN_KAMBLE.txt
+Resume ID: CVs\batch_9\10552_Eqlakh_Shaikh.txt
+Resume ID: CVs\batch_9\10703_AVADHUTHA_NIKHIL.txt
+Resume ID: CVs\batch_9\10725_PALLABI_CHAKRABARTY.txt
+Resume ID: CVs\batch_9\1075_NAVNEET_KAMATH.txt
+Resume ID: CVs\batch_9\10785_Bharath.txt
+Resume ID: CVs\batch_9\10954_Prabhakar_Teegala.txt
+Resume ID: CVs\batch_9\11001_Agbal_Mohiddeen_Syed (1).txt
+Resume ID: CVs\batch_9\11041_Abhay_Raorane.txt
+Resume ID: CVs\batch_9\11285_Sonam_Singhee.txt
+Resume ID: CVs\batch_9\11377_DEEPIKA_CADDRESS.txt
+Resume ID: CVs\batch_9\11823_Ravi_Mahendrabhai_Vijay.txt
+Resume ID: CVs\batch_9\11943_EFG.txt
+Resume ID: CVs\batch_9\1296_SURAJ_RAKESH_TIWARI.txt
+Resume ID: CVs\batch_9\12990_Details.txt
+Resume ID: CVs\batch_9\13091_SHAMA_S_BAMBARKAR (1).txt
+Resume ID: CVs\batch_9\13200_NIKITA_N_RAMTEKE.txt
+Resume ID: CVs\batch_9\13404_Shivani_Kangutkar.txt
+Resume ID: CVs\batch_9\13425_Santosh_Dashrath_Pasange.txt
+Resume ID: CVs\batch_9\13701_ABHIJITH_K.txt
+Resume ID: CVs\batch_9\14036_TANMOY_SAHA.txt
+Resume ID: CVs\batch_9\14615_SARATH_KUMAR_P (1).txt
+Resume ID: CVs\batch_9\1531_NINAD_ANIL_NARVEKAR.txt
+Resume ID: CVs\batch_9\1534_Pinakin_P_Trivedi.txt
+Resume ID: CVs\batch_9\1663_SAMANI_ASMA_ABDULLAH (1).txt
+Resume ID: CVs\batch_9\2163_Gopal_Baug_Co.txt
+Resume ID: CVs\batch_9\2524_Syed_Usman_Shareef.txt
+Resume ID: CVs\batch_9\2612_Mohammed_Wasim_Shaikh (1).txt
+Resume ID: CVs\batch_9\2741_R_TAMILAZAGAN.txt
+Resume ID: CVs\batch_9\3026_JYOTI_PAWAR.txt
+Resume ID: CVs\batch_9\3077_LakshmiNarayana_Nelapati.txt
+Resume ID: CVs\batch_9\3360_VIKASH_KUMAR.txt
+Resume ID: CVs\batch_9\3459_Om_SAICorner.txt
+Resume ID: CVs\batch_9\3640_JIT_CHOUDHURY.txt
+Resume ID: CVs\batch_9\3658_RAJASEKAR.txt
+Resume ID: CVs\batch_9\378_RACHNA_JAIDEV_VAGARIA.txt
+Resume ID: CVs\batch_9\4003_ABHISHEK_JOSHI.txt
+Resume ID: CVs\batch_9\4005_VINOTH_SALETH_RAJ_J.txt
+Resume ID: CVs\batch_9\4027_PUNNAM_PRIYANKA.txt
+Resume ID: CVs\batch_9\403_ANKIT_BISARIYA.txt
+Resume ID: CVs\batch_9\410_Naga_Prakeerthi_P.txt
+Resume ID: CVs\batch_9\4201_HEMA_PRIYA_S.txt
+Resume ID: CVs\batch_9\4277_Mudholkar_Danish_Raja_BilalKhan.txt
+Resume ID: CVs\batch_9\4390_PAUL_ROHITH.txt
+Resume ID: CVs\batch_9\4658_CHINTAN_NAVIN_VED.txt
+Resume ID: CVs\batch_9\4736_Rohit_Yadav.txt
+Resume ID: CVs\batch_9\4878_PRASHANT_S_PAWAR.txt
+Resume ID: CVs\batch_9\4924_AKASH_SHIROOR.txt
+Resume ID: CVs\batch_9\4926_Cordelia_White.txt
+Resume ID: CVs\batch_9\5219_Latif_Shaikh.txt
+Resume ID: CVs\batch_9\5575_PARIKH_JIMITKUMAR_JITENDRAKUMAR.txt
+Resume ID: CVs\batch_9\5619_Mahadev_Patil_Chawl (1).txt
+Resume ID: CVs\batch_9\5828_Ruchi_Ameta.txt
+Resume ID: CVs\batch_9\5852_SEKAR.txt
+Resume ID: CVs\batch_9\5980_PriyankaDeshpande.txt
+Resume ID: CVs\batch_9\6141_K_P_MUHAMMED_NASFIN.txt
+Resume ID: CVs\batch_9\6334_Ashwin_Kumar_Mukka (1).txt
+Resume ID: CVs\batch_9\6451_CHUKKA_DEVENDER (1).txt
+Resume ID: CVs\batch_9\6541_DEVENDRA_SINGH.txt
+Resume ID: CVs\batch_9\6594_MONORANJANHALDER (1).txt
+Resume ID: CVs\batch_9\6888_MD_USAMA_M.txt
+Resume ID: CVs\batch_9\6974_CIRCULUM.txt
+Resume ID: CVs\batch_9\7095_BASI_SANTOSH_RAO.txt
+Resume ID: CVs\batch_9\7125_MONDAL.txt
+Resume ID: CVs\batch_9\7150_SONAGARA_VIJAY_R (1).txt
+Resume ID: CVs\batch_9\7272_BISHAL_BASU.txt
+Resume ID: CVs\batch_9\72_SHAM_SUNDER.txt
+Resume ID: CVs\batch_9\7306_DEEPAK_MAHAVIR_MAGDUM.txt
+Resume ID: CVs\batch_9\7451_PRATIK_RAJESH_MISHRA.txt
+Resume ID: CVs\batch_9\7644_Priti_Abhyuday_Bhalerao.txt
+Resume ID: CVs\batch_9\7695_Suraj_Vitthal_Pise.txt
+Resume ID: CVs\batch_9\7820_Mousumi_Shaw.txt
+Resume ID: CVs\batch_9\7963_POONGODI_N.txt
+Resume ID: CVs\batch_9\8004_Rowince_kumar.txt
+Resume ID: CVs\batch_9\8037_Sruthi.txt
+Resume ID: CVs\batch_9\8192_Mudaliyar.txt
+Resume ID: CVs\batch_9\8248_A.txt
+Resume ID: CVs\batch_9\8259_ROHIT_KUMAR_SINGH.txt
+Resume ID: CVs\batch_9\8291_Manali_S_Durve.txt
+Resume ID: CVs\batch_9\8376_Khamboli.txt
+Resume ID: CVs\batch_9\860_A_M_A_N_K_U_M_A_R.txt
+Resume ID: CVs\batch_9\8643_V_V_V_S_K_CHAITANYA_MAJETI.txt
+Resume ID: CVs\batch_9\8662_Ayush_Paul_Gopurathingal.txt
+Resume ID: CVs\batch_9\8682_MUSHTAQ_AHMED.txt
+Resume ID: CVs\batch_9\8706_PRAKASH_R.txt
+Resume ID: CVs\batch_9\886_PRAVEEN_RAMKUMAR_S.txt
+Resume ID: CVs\batch_9\8988_ROME.txt
+Resume ID: CVs\batch_9\9022_Kudalkar_Sana (1).txt
+Resume ID: CVs\batch_9\9026_KAPILESH.txt
+Resume ID: CVs\batch_9\9169_Swati_Yadav.txt
+Resume ID: CVs\batch_9\9183_SANDEEP_SINGH.txt
+Resume ID: CVs\batch_9\9192_SHRABANI_SARKAR.txt
+Resume ID: CVs\batch_9\924_MOIZ_LOKHANDWALA.txt
+Resume ID: CVs\batch_9\9294_YASMIN_KHATOON.txt
+Resume ID: CVs\batch_9\9442_Aaqib_Javeed_M_Beerwale.txt
+Resume ID: CVs\batch_9\9490_Anandan_K.txt
+Resume ID: CVs\batch_9\9668_MISS_PRERNA_RAVINDRA_VAIDYA_Details (1).txt
+Resume ID: CVs\batch_9\9682_ANIKET_SUBHASH_KURHEWAR.txt
+Resume ID: CVs\batch_9\9783_C.txt
+Resume ID: CVs\batch_9\986_Vasam_Venkata_Shiva_Sai_Ram.txt
+Resume ID: CVs\test_batch\1259_Gayathri (1).txt
+Resume ID: CVs\test_batch\181_Sushmita_Sarkar (2).txt
+Resume ID: CVs\test_batch\28_MOHAMMED_AFTHAB_M.txt
