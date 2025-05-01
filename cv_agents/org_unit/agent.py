@@ -13,7 +13,8 @@ Based on the candidate's expertise areas and role levels, determine the most app
 - hr: Human resources, recruitment, training
 
 Provide a confidence score (0-1) and justification for your determination.
-Format your response as a valid JSON object."""
+Provide an in depth justification for your response. Be clear and concise but also thorough and with a good level of detail.
+Format your response as a valid JSON object. Only return the JSON object, nothing else. This is very important since it will be parsed directly as JSON."""
 
 ORG_UNIT_USER_PROMPT = """Analyze this CV for organizational fit:
 
@@ -30,6 +31,7 @@ Role levels:
 {role_results}
 
 Determine the most appropriate organizational unit(s) with justification.
+Provide an in depth justification for your response. Be clear and concise but also thorough and with a good level of detail.
 Return the organizational units in JSON format. Only return the JSON object, nothing else. This is very important since it will be parsed directly as JSON."""
 
 class OrgUnitAgent(BaseAgent):

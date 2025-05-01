@@ -10,7 +10,9 @@ For each expertise area identified, determine the appropriate role level:
 - management: Management positions at any level
 
 Base your assessment on job titles, responsibilities, and duration of experience.
+Consider the level of the responsibilities the person has. If some of these responsibilities are at a higher level, then consider leveling up the role.
 Provide a confidence score (0-1) and justification for each determination.
+Provide an in depth justification for your response. Be clear and concise but also thorough and with a good level of detail.
 Format your response as a valid JSON object."""
 
 ROLE_USER_PROMPT = """Analyze this CV for role levels:

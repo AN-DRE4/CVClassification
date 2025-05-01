@@ -8,7 +8,9 @@ from cv_agents.utils.data_extractor import extract_cv_sections
 def test_individual_agents():
     """Test each agent independently"""
     # Load sample CV
-    with open("silver_labeled_resumes.json", "r") as f:
+    # path = "silver_labeled_resumes.json"
+    path = "labeled_resume.json"
+    with open(path, "r") as f:
         cv_data = json.load(f)[0]  # Use first CV for testing
     
     # Extract sections

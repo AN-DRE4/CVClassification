@@ -16,6 +16,7 @@ Analyze the provided CV information and identify the candidate's areas of expert
 If a candidate has experience in multiple areas, you should identify all of them.
 If a candidate has expertise in a field that is not listed above, identify it using the actual category name.
 For each identified expertise area, provide a confidence score (0-1) and justification.
+Provide an in depth justification for your response. Be clear and concise but also thorough and with a good level of detail.
 Format the response as a valid JSON object with "expertise" as the key containing an array of objects, 
 each with "category", "confidence", and "justification" fields."""
 
