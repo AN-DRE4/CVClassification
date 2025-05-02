@@ -1,0 +1,58 @@
+{
+  "timestamp": "20250502_153928",
+  "total_processed": 0,
+  "total_errors": 10,
+  "results": [],
+  "errors": [
+    {
+      "resume_id": "CVs\\batch_1\\10001_Arghya_Das (1).txt",
+      "error": "empty vocabulary; perhaps the documents only contain stop words",
+      "timestamp": "2025-05-02T15:39:28.336801"
+    },
+    {
+      "resume_id": "CVs\\batch_1\\10002_Pooja_Darji.txt",
+      "error": "empty vocabulary; perhaps the documents only contain stop words",
+      "timestamp": "2025-05-02T15:39:28.336801"
+    },
+    {
+      "resume_id": "CVs\\batch_1\\10005_Sachin_Jadhav.txt",
+      "error": "empty vocabulary; perhaps the documents only contain stop words",
+      "timestamp": "2025-05-02T15:39:28.346401"
+    },
+    {
+      "resume_id": "CVs\\batch_1\\10018_NITIN_JAIN.txt",
+      "error": "empty vocabulary; perhaps the documents only contain stop words",
+      "timestamp": "2025-05-02T15:39:28.346910"
+    },
+    {
+      "resume_id": "CVs\\batch_1\\10019_SANTOSH_KUMAR_DHAL (1).txt",
+      "error": "empty vocabulary; perhaps the documents only contain stop words",
+      "timestamp": "2025-05-02T15:39:28.349674"
+    },
+    {
+      "resume_id": "CVs\\batch_1\\10022_Prem_Prakash_Gautam.txt",
+      "error": "empty vocabulary; perhaps the documents only contain stop words",
+      "timestamp": "2025-05-02T15:39:28.351221"
+    },
+    {
+      "resume_id": "CVs\\batch_1\\10028_Prajakta_Bajarang_Shinde.txt",
+      "error": "empty vocabulary; perhaps the documents only contain stop words",
+      "timestamp": "2025-05-02T15:39:28.352220"
+    },
+    {
+      "resume_id": "CVs\\batch_1\\10038_SAIKAT_DUTTA.txt",
+      "error": "empty vocabulary; perhaps the documents only contain stop words",
+      "timestamp": "2025-05-02T15:39:28.353221"
+    },
+    {
+      "resume_id": "CVs\\batch_1\\1003_Sunil_Kumar_BT.txt",
+      "error": "empty vocabulary; perhaps the documents only contain stop words",
+      "timestamp": "2025-05-02T15:39:28.355220"
+    },
+    {
+      "resume_id": "CVs\\batch_1\\10058_ALKA_TIWARI.txt",
+      "error": "empty vocabulary; perhaps the documents only contain stop words",
+      "timestamp": "2025-05-02T15:39:28.357117"
+    }
+  ]
+}

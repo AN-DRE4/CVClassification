@@ -13,7 +13,8 @@ Base your assessment on job titles, responsibilities, and duration of experience
 Consider the level of the responsibilities the person has. If some of these responsibilities are at a higher level, then consider leveling up the role.
 Provide a confidence score (0-1) and justification for each determination.
 Provide an in depth justification for your response. Be clear and concise but also thorough and with a good level of detail.
-Format your response as a valid JSON object."""
+Format your response as a valid JSON object with "role_levels" as the key containing an array of objects, 
+each with "expertise", "level", "confidence", and "justification" fields."""
 
 ROLE_USER_PROMPT = """Analyze this CV for role levels:
 

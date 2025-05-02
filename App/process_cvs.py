@@ -3,6 +3,7 @@ import os
 from datetime import datetime
 from typing import Dict, List
 from tqdm import tqdm
+import argparse
 from cv_agents.chains.classification_chain import CVClassificationOrchestrator
 
 class CVProcessor:
@@ -59,7 +60,7 @@ class CVProcessor:
         # Analyze expertise areas
         expertise_areas = {}
         for result in self.results:
-            expertises = result.get("expertise", [])['expertise']
+            expertises = result.get("expertise", {}).get("expertise", [])
             for exp in expertises:
                 category = exp.get("category")
                 expertise_areas[category] = expertise_areas.get(category, 0) + 1
@@ -108,15 +109,32 @@ class CVProcessor:
         self.analyze_results()
 
 def main():
+    print("Starting CV processing...")
+    parser = argparse.ArgumentParser(description='Process CVs with classification agents')
+    parser.add_argument('--input', type=str, default='silver_labeled_resumes.json', help='Path to the input JSON file containing CV data')
+    parser.add_argument('--output', type=str, default='agents_results', help='Path to the output directory for results')
+    parser.add_argument('--batch_size', type=int, default=10, help='Number of CVs to process in each batch')
+    parser.add_argument('--save_interval', type=int, default=5, help='Save results every N batches')
+    parser.add_argument('--max_cvs', type=int, default=None, help='Maximum number of CVs to process, if None, all CVs will be processed')
+    parser.add_argument('--clear_memory', type=bool, default=False, help='Clear memory before processing')
+    args = parser.parse_args()
+    print(f"Processing CVs from {args.input} to {args.output}")
+    
+
     # Configuration
-    input_file = "silver_labeled_resumes.json"
-    output_dir = "agents_results"
-    batch_size = 10
-    save_interval = 5
-    max_cvs = 10 # Number of CVs to process, if you want to process all, set to None
+    input_file = args.input if args.input else 'silver_labeled_resumes.json'
+    output_dir = args.output if args.output else 'agents_results'
+    batch_size = args.batch_size if args.batch_size else 10
+    save_interval = args.save_interval if args.save_interval else 5
+    max_cvs = args.max_cvs if args.max_cvs else None
+    clear_memory = args.clear_memory if args.clear_memory else False
     
     # Initialize and run processor
     processor = CVProcessor(input_file, output_dir)
+    if clear_memory:
+        print("Clearing memory...")
+        processor.orchestrator.clear_memory()
+    print("Processing CVs...")
     processor.process_cvs(batch_size, save_interval, max_cvs)
 
 if __name__ == "__main__":

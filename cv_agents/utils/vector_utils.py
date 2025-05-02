@@ -33,12 +33,13 @@ class CVVectorizer:
     
     def _get_cv_text(self, cv_data: Dict) -> str:
         """Extract and combine relevant text from CV data"""
-        work_experience = cv_data.get("work_experience", "")
-        skills = cv_data.get("skills", "")
+        cv_data = cv_data.get("extracted_info", {})
         education = cv_data.get("education", "")
+        work_experience = cv_data.get("work_experience", "")
+        skills = cv_data.get("extra_skills", "")
         
         # Combine all text with appropriate weights
-        return f"{work_experience} {skills} {education}"
+        return f"{education} {work_experience} {skills}"
     
     def get_vector(self, cv_data: Dict, resume_id: str) -> np.ndarray:
         """Get or create vector for a CV"""
@@ -59,6 +60,20 @@ class CVVectorizer:
     def find_similar_cvs(self, cv_data: Dict, resume_id: str, threshold: float = 0.7) -> List[Dict]:
         """Find similar CVs based on vector similarity"""
         if not self.vector_cache["vectors"]:
+            # Fit the vectorizer on the current CV text if cache is empty
+            cv_text = self._get_cv_text(cv_data)
+            try:
+                self.vectorizer.fit([cv_text])
+                # Get vector for current CV
+                current_vector = self.vectorizer.transform([cv_text]).toarray()[0]
+                # Cache the vector and text
+                self.vector_cache["vectors"][resume_id] = current_vector.tolist()
+                self.vector_cache["texts"][resume_id] = cv_text
+                self._save_vector_cache()
+            except Exception as e:
+                print(f"DEBUG: Error during vectorization: {str(e)}")
+                print(f"DEBUG: Error type: {type(e)}")
+                raise
             return []
         
         # Get vector for current CV

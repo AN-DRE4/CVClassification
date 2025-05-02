@@ -1,0 +1,340 @@
+{
+  "timestamp": "20250502_164245",
+  "total_processed": 4,
+  "total_errors": 6,
+  "results": [
+    {
+      "resume_id": "CVs\\batch_1\\10001_Arghya_Das (1).txt",
+      "timestamp": "2025-05-02T16:41:13.849862",
+      "source": "new_analysis",
+      "expertise": {
+        "expertise": [
+          {
+            "category": "software_development",
+            "confidence": 0.9,
+            "justification": "The candidate has extensive experience in developing web applications using C#.NET and ASP.NET, as well as working with HTML, CSS, and JavaScript. Their role involved creating custom web parts and implementing SharePoint functionalities, which are strong indicators of software development skills."
+          },
+          {
+            "category": "data_engineering",
+            "confidence": 0.6,
+            "justification": "The candidate mentions experience with MS SQL Server and database development, which suggests some level of data engineering expertise. However, the details provided do not indicate extensive experience in data pipeline or ETL processes, leading to a moderate confidence score."
+          }
+        ]
+      },
+      "role_levels": {
+        "role_levels": [
+          {
+            "expertise": "software_development",
+            "level": "mid_level",
+            "confidence": 0.9,
+            "justification": "The candidate has 12.5 years of experience as a Project Engineer, where they developed web applications and custom web parts using C#.NET and ASP.NET. Their responsibilities indicate a solid understanding of software development principles and practices, as well as the ability to implement complex functionalities in SharePoint. Given the duration of experience and the technical skills demonstrated, a mid-level designation is appropriate."
+          },
+          {
+            "expertise": "data_engineering",
+            "level": "entry_level",
+            "confidence": 0.6,
+            "justification": "The candidate has some experience with MS SQL Server, which suggests a basic understanding of database management. However, the lack of detailed responsibilities related to data engineering tasks such as data pipeline development or ETL processes indicates that their experience in this area is limited. Therefore, an entry-level designation is more suitable for this expertise."
+          }
+        ]
+      },
+      "org_unit": {
+        "org_units": [
+          {
+            "unit": "engineering",
+            "confidence": 0.9,
+            "justification": "The candidate has a strong background in software development, particularly in web application development using C#.NET and ASP.NET. Their experience in creating custom web parts and implementing SharePoint functionalities demonstrates a solid understanding of engineering principles. Given their mid-level role in software development, they are well-suited for an engineering unit focused on software development."
+          },
+          {
+            "unit": "data",
+            "confidence": 0.6,
+            "justification": "While the candidate has some experience with MS SQL Server and database development, their expertise in data engineering is limited. The lack of extensive experience in data pipeline or ETL processes suggests that they may not be fully equipped for a dedicated data engineering role. However, their basic understanding of database management allows for a potential fit in a data unit, albeit at an entry-level capacity."
+          }
+        ]
+      }
+    },
+    {
+      "resume_id": "CVs\\batch_1\\10002_Pooja_Darji.txt",
+      "timestamp": "2025-05-02T16:41:40.389858",
+      "source": "new_analysis",
+      "expertise": {
+        "expertise": [
+          {
+            "category": "marketing",
+            "confidence": 0.8,
+            "justification": "The candidate has experience in SEO and content-related tasks such as directory submission, social bookmarking, article submission, and content writing. These responsibilities indicate a strong background in digital marketing strategies, particularly in search engine optimization and content marketing."
+          },
+          {
+            "category": "software_development",
+            "confidence": 0.7,
+            "justification": "The candidate possesses technical skills in programming languages such as C, C++, VB.NET, and ASP.NET, as well as database management with ORACLE 8i and MS-ACCESS. This indicates a solid foundation in software development, although the specific experience level is not detailed."
+          },
+          {
+            "category": "data_engineering",
+            "confidence": 0.5,
+            "justification": "The candidate's knowledge of SQL and database management tools suggests some familiarity with data engineering concepts. However, the lack of specific experience in data pipeline development or data architecture limits the confidence score."
+          }
+        ]
+      },
+      "role_levels": {
+        "role_levels": [
+          {
+            "expertise": "marketing",
+            "level": "entry_level",
+            "confidence": 0.8,
+            "justification": "The candidate's responsibilities primarily involve basic SEO tasks such as directory submission, social bookmarking, and content writing, which are typically associated with entry-level positions. The lack of advanced strategies or leadership roles further supports this classification."
+          },
+          {
+            "expertise": "software_development",
+            "level": "entry_level",
+            "confidence": 0.7,
+            "justification": "While the candidate has technical skills in programming and database management, there is no indication of professional experience or projects that would elevate them to a mid-level role. The skills listed suggest foundational knowledge, which aligns with entry-level positions."
+          },
+          {
+            "expertise": "data_engineering",
+            "level": "entry_level",
+            "confidence": 0.5,
+            "justification": "The candidate's familiarity with SQL and database management tools indicates some basic understanding of data engineering concepts. However, the absence of specific experience in data engineering tasks or projects leads to a classification at the entry level."
+          }
+        ]
+      },
+      "org_unit": {
+        "org_units": [
+          {
+            "unit": "marketing_sales",
+            "confidence": 0.8,
+            "justification": "The candidate has a strong background in SEO and content-related tasks, which are essential components of digital marketing. Their responsibilities in directory submission, social bookmarking, and content writing indicate a solid understanding of marketing strategies aimed at improving online visibility and engagement. Given their entry-level role in marketing, they would fit well within a marketing team focused on digital outreach and content creation."
+          },
+          {
+            "unit": "engineering",
+            "confidence": 0.7,
+            "justification": "The candidate possesses foundational technical skills in programming languages and database management, which align with entry-level software development roles. Their knowledge of C, C++, VB.NET, and SQL suggests they could contribute to software development projects, although their lack of professional experience limits their immediate fit for more advanced engineering roles. They would be suitable for a junior developer position where they can further develop their skills."
+          },
+          {
+            "unit": "data",
+            "confidence": 0.5,
+            "justification": "While the candidate has some familiarity with SQL and database management, their experience does not extend to specific data engineering tasks or projects. This indicates a basic understanding of data concepts, but the lack of practical experience in data engineering limits their fit in this area. They could potentially support entry-level data tasks, but their primary strengths lie in marketing and software development."
+          }
+        ]
+      }
+    },
+    {
+      "resume_id": "CVs\\batch_1\\10005_Sachin_Jadhav.txt",
+      "timestamp": "2025-05-02T16:42:11.304187",
+      "source": "new_analysis",
+      "expertise": {
+        "expertise": [
+          {
+            "category": "devops",
+            "confidence": 0.8,
+            "justification": "The candidate has extensive experience in Change/Release management and L2 support, which are key components of DevOps practices. Their responsibilities include monitoring platforms and coordinating with vendors for development activities, indicating a strong understanding of deployment and operational processes."
+          },
+          {
+            "category": "data_engineering",
+            "confidence": 0.7,
+            "justification": "The candidate has worked as a Data Analyst, extracting data from Salesforce and creating reports and dashboards. This experience suggests a solid foundation in data handling and engineering principles, although it is less extensive compared to their DevOps experience."
+          },
+          {
+            "category": "software_development",
+            "confidence": 0.6,
+            "justification": "The candidate has technical skills in Java, SQL, and PL/SQL, which are relevant to software development. Their role in coordinating development activities also indicates involvement in software development processes, though it is not the primary focus of their experience."
+          },
+          {
+            "category": "management",
+            "confidence": 0.5,
+            "justification": "The candidate has demonstrated management skills through their roles in Change/Release management and client management. Their responsibilities include coordinating with stakeholders and vendors, which reflects a level of management capability, albeit not in a traditional managerial role."
+          },
+          {
+            "category": "marketing",
+            "confidence": 0.4,
+            "justification": "The candidate has experience in Sales and Marketing, specifically in lead analysis and marketing strategies. This indicates some level of expertise in marketing, although it is not a primary focus of their career."
+          }
+        ]
+      },
+      "role_levels": {
+        "role_levels": [
+          {
+            "expertise": "devops",
+            "level": "senior_level",
+            "confidence": 0.9,
+            "justification": "The candidate has over 7 years of experience in DevOps-related responsibilities, including Change/Release management and L2 support. Their role as a Senior System Engineer at Mastercard Technology indicates a high level of responsibility and expertise in managing complex systems and coordinating with various stakeholders."
+          },
+          {
+            "expertise": "data_engineering",
+            "level": "mid_level",
+            "confidence": 0.7,
+            "justification": "The candidate has 1 year of experience as a Data Analyst, which provides a foundational understanding of data handling and engineering principles. However, this experience is less extensive compared to their DevOps experience, placing them at a mid-level role in data engineering."
+          },
+          {
+            "expertise": "software_development",
+            "level": "mid_level",
+            "confidence": 0.6,
+            "justification": "The candidate has relevant technical skills in SQL and PL/SQL and has been involved in coordinating development activities. While they have some experience in software development, it is not their primary focus, which aligns them with a mid-level role."
+          },
+          {
+            "expertise": "management",
+            "level": "mid_level",
+            "confidence": 0.6,
+            "justification": "The candidate has demonstrated management capabilities through their roles in Change/Release management and client management. Their responsibilities include coordinating with stakeholders and vendors, indicating a level of management experience, but not in a traditional managerial capacity."
+          },
+          {
+            "expertise": "marketing",
+            "level": "entry_level",
+            "confidence": 0.4,
+            "justification": "The candidate has some experience in marketing through their role in Sales and Marketing, specifically in lead analysis and marketing strategies. However, this experience is limited and does not reflect a strong focus on marketing, placing them at an entry-level role."
+          }
+        ]
+      },
+      "org_unit": {
+        "org_units": [
+          {
+            "unit": "unknown",
+            "confidence": 0,
+            "justification": "Failed to parse response"
+          }
+        ]
+      }
+    },
+    {
+      "resume_id": "CVs\\batch_1\\10019_SANTOSH_KUMAR_DHAL (1).txt",
+      "timestamp": "2025-05-02T16:42:45.054296",
+      "source": "new_analysis",
+      "expertise": {
+        "expertise": [
+          {
+            "category": "software_development",
+            "confidence": 0.9,
+            "justification": "The candidate has extensive experience as a Software Engineer, specifically in designing and developing websites using ASP.NET, HTML5, CSS, JavaScript, and AJAX. Responsibilities include UI design, cross-browser testing, and debugging, which are core aspects of software development."
+          },
+          {
+            "category": "data_engineering",
+            "confidence": 0.3,
+            "justification": "The candidate has experience with Microsoft SQL Server, which suggests some familiarity with data management and engineering concepts, although there is no explicit mention of data engineering tasks."
+          },
+          {
+            "category": "data_science",
+            "confidence": 0.1,
+            "justification": "There is no direct evidence of data science experience in the CV. The mention of analytical skills may imply some capability, but it is not substantiated by specific data science tasks."
+          },
+          {
+            "category": "devops",
+            "confidence": 0.2,
+            "justification": "The candidate's experience with testing and debugging may indicate some understanding of DevOps practices, but there is no clear evidence of direct involvement in DevOps roles or responsibilities."
+          },
+          {
+            "category": "cybersecurity",
+            "confidence": 0.2,
+            "justification": "The implementation of captcha for the Contact-Us div suggests a basic understanding of cybersecurity principles, but there is no extensive experience or responsibilities related to cybersecurity."
+          },
+          {
+            "category": "marketing",
+            "confidence": 0.1,
+            "justification": "The candidate's skills in designing user interfaces and using Adobe Creative Suite may imply some marketing-related capabilities, but there is no direct experience in marketing roles."
+          },
+          {
+            "category": "finance",
+            "confidence": 0.0,
+            "justification": "There is no mention of finance-related experience or skills in the CV."
+          },
+          {
+            "category": "management",
+            "confidence": 0.1,
+            "justification": "The candidate's soft skills such as teamwork and communication may suggest some potential for management, but there is no direct experience in management roles."
+          }
+        ]
+      },
+      "role_levels": {
+        "role_levels": [
+          {
+            "expertise": "software_development",
+            "level": "mid_level",
+            "confidence": 0.9,
+            "justification": "The candidate has 1.5 years of experience as a Software Engineer, which typically aligns with mid-level roles. They have demonstrated responsibilities such as designing and developing websites, implementing features, and testing, which are indicative of a regular position in software development."
+          },
+          {
+            "expertise": "data_engineering",
+            "level": "entry_level",
+            "confidence": 0.3,
+            "justification": "The candidate has some familiarity with Microsoft SQL Server, but there are no explicit data engineering tasks mentioned. This suggests a basic understanding rather than a developed skill set, placing them at an entry-level position in this area."
+          },
+          {
+            "expertise": "data_science",
+            "level": "entry_level",
+            "confidence": 0.1,
+            "justification": "There is no direct evidence of data science experience in the CV. The mention of analytical skills is too vague to support a higher level, thus placing the candidate at an entry-level role in this area."
+          },
+          {
+            "expertise": "devops",
+            "level": "entry_level",
+            "confidence": 0.2,
+            "justification": "The candidate's experience with testing and debugging suggests a basic understanding of DevOps practices, but without clear evidence of direct involvement, they are best categorized at an entry-level position."
+          },
+          {
+            "expertise": "cybersecurity",
+            "level": "entry_level",
+            "confidence": 0.2,
+            "justification": "The implementation of captcha indicates a basic understanding of cybersecurity principles, but the lack of extensive experience or responsibilities in this area suggests an entry-level classification."
+          },
+          {
+            "expertise": "marketing",
+            "level": "entry_level",
+            "confidence": 0.1,
+            "justification": "The candidate's skills in UI design and use of Adobe tools imply some marketing-related capabilities, but there is no direct experience in marketing roles, placing them at an entry-level position."
+          },
+          {
+            "expertise": "finance",
+            "level": "entry_level",
+            "confidence": 0.0,
+            "justification": "There is no mention of finance-related experience or skills in the CV, thus the candidate is not applicable for any role level in this area."
+          },
+          {
+            "expertise": "management",
+            "level": "entry_level",
+            "confidence": 0.1,
+            "justification": "While the candidate possesses soft skills that may suggest potential for management, there is no direct experience in management roles, placing them at an entry-level position."
+          }
+        ]
+      },
+      "org_unit": {
+        "org_units": [
+          {
+            "unit": "unknown",
+            "confidence": 0,
+            "justification": "Failed to parse response"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "resume_id": "CVs\\batch_1\\10018_NITIN_JAIN.txt",
+      "error": "'str' object has no attribute 'get'",
+      "timestamp": "2025-05-02T16:42:11.319981"
+    },
+    {
+      "resume_id": "CVs\\batch_1\\10022_Prem_Prakash_Gautam.txt",
+      "error": "'str' object has no attribute 'get'",
+      "timestamp": "2025-05-02T16:42:45.074276"
+    },
+    {
+      "resume_id": "CVs\\batch_1\\10028_Prajakta_Bajarang_Shinde.txt",
+      "error": "'str' object has no attribute 'get'",
+      "timestamp": "2025-05-02T16:42:45.089686"
+    },
+    {
+      "resume_id": "CVs\\batch_1\\10038_SAIKAT_DUTTA.txt",
+      "error": "'str' object has no attribute 'get'",
+      "timestamp": "2025-05-02T16:42:45.112437"
+    },
+    {
+      "resume_id": "CVs\\batch_1\\1003_Sunil_Kumar_BT.txt",
+      "error": "'str' object has no attribute 'get'",
+      "timestamp": "2025-05-02T16:42:45.132504"
+    },
+    {
+      "resume_id": "CVs\\batch_1\\10058_ALKA_TIWARI.txt",
+      "error": "'str' object has no attribute 'get'",
+      "timestamp": "2025-05-02T16:42:45.157916"
+    }
+  ]
+}

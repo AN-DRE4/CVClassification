@@ -14,7 +14,8 @@ Based on the candidate's expertise areas and role levels, determine the most app
 
 Provide a confidence score (0-1) and justification for your determination.
 Provide an in depth justification for your response. Be clear and concise but also thorough and with a good level of detail.
-Format your response as a valid JSON object. Only return the JSON object, nothing else. This is very important since it will be parsed directly as JSON."""
+Format your response as a valid JSON object with "org_units" as the key containing an array of objects, 
+each with "unit", "confidence", and "justification" fields."""
 
 ORG_UNIT_USER_PROMPT = """Analyze this CV for organizational fit:
 
