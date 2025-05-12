@@ -36,11 +36,15 @@ class CVClassificationOrchestrator:
         if not resume_id:
             return None, []
         
+        print("DEBUG: checking for historical data")
+        
         # First check exact match
         for classification in self.memory["classifications"]:
             if classification["resume_id"] == resume_id:
                 return classification, []
         
+        print("DEBUG: no exact match found")
+
         # Then check similar CVs
         similar_cv_ids = self.vectorizer.find_similar_cvs(cv_data, resume_id)
         print("DEBUG: similar CVs: ", similar_cv_ids)
@@ -169,10 +173,14 @@ class CVClassificationOrchestrator:
     def process_cv(self, cv_data: Dict) -> Dict:
         """Process a CV through the entire agent chain with memory support"""
         # Check for historical data
-        exact_match, similar_cvs = self._get_historical_data(cv_data)
+        print("DEBUG: checking for historical data")
+        exact_match, similar_cvs = None, None # self._get_historical_data(cv_data)
+        print("DEBUG: extracted historical data")
         if exact_match:
             print(f"Found exact match for resume {cv_data.get('resume_id')}")
             return exact_match
+        
+        print("DEBUG: no exact match found")
         
         # If we have similar CVs, get consensus
         if similar_cvs:
@@ -187,9 +195,13 @@ class CVClassificationOrchestrator:
                     **consensus
                 }
         
+        print("DEBUG: no consensus found")
+
         # Extract CV sections
         print(f"DEBUG: {cv_data.get('resume_id', '')} has no historical data or similar CVs")
         cv_sections = extract_cv_sections(cv_data)
+
+        print("DEBUG: cv_sections: ", cv_sections.keys())
         
         try:
             # Process with agents

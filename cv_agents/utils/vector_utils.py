@@ -52,6 +52,7 @@ class CVVectorizer:
         
         # Cache the vector and text
         self.vector_cache["vectors"][resume_id] = vector.tolist()
+        print("DEBUG: length of vector: ", len(self.vector_cache["vectors"][resume_id]))
         self.vector_cache["texts"][resume_id] = cv_text
         self._save_vector_cache()
         
@@ -76,8 +77,12 @@ class CVVectorizer:
                 raise
             return []
         
+        print("DEBUG: vector cache found")
+        
         # Get vector for current CV
         current_vector = self.get_vector(cv_data, resume_id)
+
+        print("DEBUG: current vector found")
         
         # Calculate similarities with all cached vectors
         similarities = []
@@ -88,6 +93,8 @@ class CVVectorizer:
                     [np.array(cached_vector)]
                 )[0][0]
                 similarities.append((cached_id, similarity))
+
+        print("DEBUG: similarities calculated")
         
         # Sort by similarity and filter by threshold
         similarities.sort(key=lambda x: x[1], reverse=True)

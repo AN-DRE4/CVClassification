@@ -1,0 +1,149 @@
+{
+  "timestamp": "20250512_215411",
+  "total_processed": 2,
+  "total_errors": 0,
+  "results": [
+    {
+      "resume_id": "upload_20250512_215116",
+      "timestamp": "2025-05-12T21:51:34.733090",
+      "source": "new_analysis",
+      "expertise": {
+        "expertise": [
+          {
+            "category": "software_development",
+            "confidence": 0.8,
+            "justification": "The candidate has experience as a developer at HCL Infosystems Limited, where they were involved in development tasks. Their technical skills include SQL, PL/SQL, PHP, and MySQL, which are commonly used in software development. The presence of these programming languages and database management skills indicates a strong foundation in software development."
+          },
+          {
+            "category": "data_engineering",
+            "confidence": 0.6,
+            "justification": "The candidate's experience with SQL and PL/SQL suggests familiarity with data manipulation and database management, which are essential skills in data engineering. However, the lack of specific data engineering tools or frameworks in the CV limits the confidence score."
+          },
+          {
+            "category": "management",
+            "confidence": 0.5,
+            "justification": "The candidate lists soft skills such as leadership and teamwork, which are relevant to management roles. While there is no direct management experience mentioned, these skills indicate potential for management capabilities."
+          }
+        ]
+      },
+      "role_levels": {
+        "role_levels": [
+          {
+            "expertise": "software_development",
+            "level": "entry_level",
+            "confidence": 0.9,
+            "justification": "The candidate has worked as a Trainee Developer for 0.5 years, which aligns with entry-level positions. Their responsibilities include development tasks, and they possess relevant technical skills such as SQL, PL/SQL, PHP, and MySQL. Given their limited experience, they are best categorized at the entry level."
+          },
+          {
+            "expertise": "data_engineering",
+            "level": "entry_level",
+            "confidence": 0.7,
+            "justification": "The candidate's experience with SQL and PL/SQL indicates a foundational understanding of data manipulation and database management, which are key components of data engineering. However, the lack of specific data engineering experience or tools suggests that they are still at an entry-level position in this area."
+          },
+          {
+            "expertise": "management",
+            "level": "entry_level",
+            "confidence": 0.6,
+            "justification": "While the candidate demonstrates soft skills relevant to management, such as leadership and teamwork, there is no direct management experience. Therefore, they are best categorized at the entry level, with potential for growth into management roles as they gain more experience."
+          }
+        ]
+      },
+      "org_unit": {
+        "org_units": [
+          {
+            "unit": "engineering",
+            "confidence": 0.85,
+            "justification": "The candidate has direct experience as a developer, which aligns well with the engineering organizational unit. Their technical skills in SQL, PL/SQL, PHP, and MySQL are essential for software development roles. Given their entry-level status and relevant experience, they fit well within the software development segment of engineering."
+          },
+          {
+            "unit": "data",
+            "confidence": 0.65,
+            "justification": "The candidate's familiarity with SQL and PL/SQL indicates a foundational understanding of data manipulation, which is relevant to data engineering. However, the absence of specific data engineering tools or frameworks limits their fit in this area. Nonetheless, their skills suggest potential for growth in data-related roles, justifying a moderate confidence score."
+          },
+          {
+            "unit": "hr",
+            "confidence": 0.5,
+            "justification": "The candidate's soft skills, particularly in teamwork and leadership, suggest potential for roles in human resources or recruitment. While they lack direct HR experience, their interpersonal skills could be beneficial in HR functions, warranting a lower confidence score for this organizational unit."
+          }
+        ]
+      }
+    },
+    {
+      "resume_id": "upload_20250512_215349",
+      "timestamp": "2025-05-12T21:54:11.914817",
+      "source": "new_analysis",
+      "expertise": {
+        "expertise": [
+          {
+            "category": "finance",
+            "confidence": 0.9,
+            "justification": "The candidate has extensive experience in accounting roles, including responsibilities such as bank reconciliation, preparation of tax returns (GSTR, TDS), and handling financial transactions in SAP and Tally. Their work involved significant financial reporting and compliance tasks, indicating a strong background in finance."
+          },
+          {
+            "category": "management",
+            "confidence": 0.7,
+            "justification": "The candidate has demonstrated management skills through responsibilities such as coordinating with bank authorities, collaborating with senior controllers, and handling accounts for multiple companies. Their ability to manage financial processes and assist in audits suggests a level of management expertise."
+          },
+          {
+            "category": "software_development",
+            "confidence": 0.5,
+            "justification": "While the candidate's primary focus is on accounting, they have experience working with SAP systems (SAP B1 and SAP R3) and handling software-related invoices. This indicates some familiarity with software systems, although it is not their primary area of expertise."
+          },
+          {
+            "category": "data_engineering",
+            "confidence": 0.4,
+            "justification": "The candidate's experience with data preparation for tax returns and financial reporting suggests some skills in data handling and processing. However, this is not a primary focus of their roles, leading to a lower confidence score."
+          }
+        ]
+      },
+      "role_levels": {
+        "role_levels": [
+          {
+            "expertise": "finance",
+            "level": "senior_level",
+            "confidence": 0.9,
+            "justification": "The candidate has over 5 years of experience in various accounting roles, including significant responsibilities such as bank reconciliation, preparation of tax returns (GSTR, TDS), and managing financial transactions in SAP and Tally. Their involvement in financial reporting and compliance tasks indicates a strong and mature understanding of finance, justifying a senior level designation."
+          },
+          {
+            "expertise": "management",
+            "level": "mid_level",
+            "confidence": 0.7,
+            "justification": "The candidate has demonstrated some management capabilities through their responsibilities, such as coordinating with bank authorities and collaborating with senior controllers. However, while they have experience in managing financial processes, they do not hold a formal management title or extensive management experience, which suggests a mid-level designation is more appropriate."
+          },
+          {
+            "expertise": "software_development",
+            "level": "entry_level",
+            "confidence": 0.5,
+            "justification": "The candidate has experience working with SAP systems and handling software-related invoices, but their primary focus is on accounting rather than software development. This limited exposure to software systems suggests an entry-level understanding of software development concepts."
+          },
+          {
+            "expertise": "data_engineering",
+            "level": "entry_level",
+            "confidence": 0.4,
+            "justification": "The candidate's experience with data preparation for tax returns and financial reporting indicates some skills in data handling. However, this is not a primary focus of their roles, and they lack extensive experience in data engineering, leading to an entry-level designation."
+          }
+        ]
+      },
+      "org_unit": {
+        "org_units": [
+          {
+            "unit": "finance_accounting",
+            "confidence": 0.9,
+            "justification": "The candidate has a strong background in finance and accounting, with over 5 years of experience in various accounting roles. Their responsibilities include bank reconciliation, preparation of tax returns (GSTR, TDS), and managing financial transactions using SAP and Tally. This extensive experience in financial reporting and compliance tasks aligns perfectly with the finance_accounting organizational unit, making it the most appropriate fit."
+          },
+          {
+            "unit": "operations",
+            "confidence": 0.7,
+            "justification": "The candidate has demonstrated some management capabilities through their responsibilities, such as coordinating with bank authorities and collaborating with senior controllers. Their experience in handling accounts for multiple companies and assisting in audits indicates a level of operational management, which aligns with the operations organizational unit. However, this is secondary to their primary expertise in finance."
+          },
+          {
+            "unit": "customer_service",
+            "confidence": 0.5,
+            "justification": "While the candidate's primary focus is on finance, their roles have involved communication and teamwork, which are essential in customer service. Their experience in preparing customer aging reports and following up on outstanding payments suggests some interaction with customers, indicating a potential fit for the customer_service unit, albeit at a lower confidence level."
+          }
+        ]
+      }
+    }
+  ],
+  "errors": []
+}

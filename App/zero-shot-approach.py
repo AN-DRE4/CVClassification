@@ -15,8 +15,6 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 year = datetime.now().year
 month = datetime.now().strftime("%B")
 
-print(f"Processing resumes in {month} {year}")
-
 def extract_resume_info(resume_text):
     prompt = """
     Today's date is {month} {year}.

@@ -1,0 +1,68 @@
+{
+  "timestamp": "20250512_220529",
+  "total_processed": 1,
+  "total_errors": 0,
+  "results": [
+    {
+      "resume_id": "upload_271_Anurag_Tripathi.txt_20250512_220508",
+      "timestamp": "2025-05-12T22:05:29.386641",
+      "source": "new_analysis",
+      "expertise": {
+        "expertise": [
+          {
+            "category": "data_engineering",
+            "confidence": 0.9,
+            "justification": "The candidate has extensive experience with SQL, PL-SQL, and various database management systems (Oracle, MySQL, Teradata). Their responsibilities included data extraction, transformation, and management, which are core aspects of data engineering. The use of stored procedures and functions further supports this expertise."
+          },
+          {
+            "category": "data_science",
+            "confidence": 0.85,
+            "justification": "The candidate has demonstrated skills in statistical modeling and machine learning techniques such as regression, decision trees, and random forests using R. Their work on building linear models and generating descriptive reports indicates a strong foundation in data analysis and interpretation, which are key components of data science."
+          },
+          {
+            "category": "software_development",
+            "confidence": 0.7,
+            "justification": "The candidate has experience with programming in R and C, as well as knowledge of object-oriented programming (OOPS). While their primary focus appears to be on data analysis and database management, the skills in programming suggest a level of software development expertise."
+          }
+        ]
+      },
+      "role_levels": {
+        "role_levels": [
+          {
+            "expertise": "data_engineering",
+            "level": "mid_level",
+            "confidence": 0.9,
+            "justification": "The candidate has 8.75 years of experience in data engineering tasks, including SQL queries, data extraction, and database management. Their responsibilities indicate a solid understanding of data engineering principles, and the use of advanced SQL features like stored procedures and functions suggests a level of proficiency that aligns with mid-level roles."
+          },
+          {
+            "expertise": "data_science",
+            "level": "mid_level",
+            "confidence": 0.85,
+            "justification": "With nearly 9 years of experience, the candidate has demonstrated a strong foundation in data science through their work with statistical modeling and machine learning techniques. The ability to build linear models and create descriptive reports using R and Tableau indicates a level of expertise that is typically expected from mid-level data scientists, who are expected to apply analytical skills to real-world problems."
+          },
+          {
+            "expertise": "software_development",
+            "level": "entry_level",
+            "confidence": 0.7,
+            "justification": "Although the candidate has programming experience in R and C, their primary focus appears to be on data analysis and engineering rather than software development. The skills mentioned are supportive of software development but do not indicate a strong emphasis or extensive experience in this area. Therefore, it is more appropriate to classify this expertise at the entry-level, as they may be capable of contributing but are not primarily focused on software development."
+          }
+        ]
+      },
+      "org_unit": {
+        "org_units": [
+          {
+            "unit": "data",
+            "confidence": 0.9,
+            "justification": "The candidate's extensive experience in data engineering and data science makes them a strong fit for the data organizational unit. Their responsibilities at Cognizant Technology Solutions involved significant data extraction, transformation, and management, which are core functions of data engineering. Additionally, their proficiency in statistical modeling and machine learning techniques indicates a solid foundation in data science. The combination of these skills aligns well with the needs of a data-focused unit, where both data engineering and data science capabilities are essential."
+          },
+          {
+            "unit": "engineering",
+            "confidence": 0.7,
+            "justification": "While the candidate's primary expertise lies in data engineering and data science, they also possess programming skills in R and C, as well as knowledge of object-oriented programming. This suggests a level of capability in software development, albeit at a lower emphasis compared to their data-related skills. The candidate's understanding of programming concepts and their ability to work with databases and data management tools could allow them to contribute to engineering projects, particularly those that intersect with data applications."
+          }
+        ]
+      }
+    }
+  ],
+  "errors": []
+}

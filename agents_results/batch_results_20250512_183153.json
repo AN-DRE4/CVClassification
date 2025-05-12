@@ -1,0 +1,73 @@
+{
+  "timestamp": "20250512_183153",
+  "total_processed": 1,
+  "total_errors": 0,
+  "results": [
+    {
+      "resume_id": "upload_20250512_183132",
+      "timestamp": "2025-05-12T18:31:52.997959",
+      "source": "new_analysis",
+      "expertise": {
+        "expertise": [
+          {
+            "category": "software_development",
+            "confidence": 0.9,
+            "justification": "The candidate has extensive experience in software development, particularly in front-end technologies such as Angular JS, JavaScript, HTML5, CSS3, and various frameworks like Bootstrap and jQuery. Their roles involved developing web applications and automation tools, indicating a strong foundation in software engineering principles."
+          },
+          {
+            "category": "management",
+            "confidence": 0.7,
+            "justification": "The candidate has demonstrated project management skills, client interaction, and team management in their roles. They have experience in Agile methodology, which often involves managing teams and projects effectively, suggesting a solid understanding of management principles."
+          },
+          {
+            "category": "data_engineering",
+            "confidence": 0.4,
+            "justification": "While the candidate's primary focus is on software development, their experience with APIs and data formats like JSON and XML indicates some exposure to data engineering concepts. However, this is not a primary area of expertise."
+          }
+        ]
+      },
+      "role_levels": {
+        "role_levels": [
+          {
+            "expertise": "software_development",
+            "level": "senior_level",
+            "confidence": 0.9,
+            "justification": "The candidate has over 8.5 years of experience in software development, primarily focusing on front-end technologies. As a Lead Engineer, they have taken on significant responsibilities, including development and management of complex web applications, which aligns with senior-level expectations. Their extensive technical skills and experience in Agile methodologies further support this classification."
+          },
+          {
+            "expertise": "management",
+            "level": "mid_level",
+            "confidence": 0.7,
+            "justification": "The candidate has demonstrated project management and team management skills, particularly in their role as a Lead Engineer. However, while they have experience in client interaction and Agile methodologies, the lack of formal management titles or extensive experience in a management role suggests a mid-level classification rather than a senior management position."
+          },
+          {
+            "expertise": "data_engineering",
+            "level": "entry_level",
+            "confidence": 0.4,
+            "justification": "The candidate has some exposure to data engineering concepts through their work with APIs and data formats like JSON and XML. However, this experience is not extensive or deep enough to classify them at a higher level. Their primary focus remains on software development, making entry-level the most appropriate classification for this expertise area."
+          }
+        ]
+      },
+      "org_unit": {
+        "org_units": [
+          {
+            "unit": "engineering",
+            "confidence": 0.95,
+            "justification": "The candidate has a strong background in software development, particularly in front-end technologies such as Angular JS, JavaScript, HTML5, and CSS3. Their experience as a Lead Engineer, where they developed web applications and automation tools, aligns perfectly with the engineering unit. The extensive technical skills and hands-on experience with Agile methodologies further solidify their fit within this organizational unit."
+          },
+          {
+            "unit": "operations",
+            "confidence": 0.7,
+            "justification": "The candidate has demonstrated project management skills and experience in Agile methodologies, which are crucial for operations roles. Their ability to manage teams and interact with clients indicates a capacity for overseeing projects and ensuring operational efficiency. However, their primary focus remains on software development, which slightly lowers the confidence in this classification."
+          },
+          {
+            "unit": "data",
+            "confidence": 0.4,
+            "justification": "While the candidate has some exposure to data engineering concepts through their work with APIs and data formats like JSON and XML, this is not their primary area of expertise. The confidence score reflects their limited experience in data engineering, making it a less suitable organizational unit compared to engineering and operations."
+          }
+        ]
+      }
+    }
+  ],
+  "errors": []
+}

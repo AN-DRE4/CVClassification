@@ -1,0 +1,73 @@
+{
+  "timestamp": "20250512_215134",
+  "total_processed": 1,
+  "total_errors": 0,
+  "results": [
+    {
+      "resume_id": "upload_20250512_215116",
+      "timestamp": "2025-05-12T21:51:34.733090",
+      "source": "new_analysis",
+      "expertise": {
+        "expertise": [
+          {
+            "category": "software_development",
+            "confidence": 0.8,
+            "justification": "The candidate has experience as a developer at HCL Infosystems Limited, where they were involved in development tasks. Their technical skills include SQL, PL/SQL, PHP, and MySQL, which are commonly used in software development. The presence of these programming languages and database management skills indicates a strong foundation in software development."
+          },
+          {
+            "category": "data_engineering",
+            "confidence": 0.6,
+            "justification": "The candidate's experience with SQL and PL/SQL suggests familiarity with data manipulation and database management, which are essential skills in data engineering. However, the lack of specific data engineering tools or frameworks in the CV limits the confidence score."
+          },
+          {
+            "category": "management",
+            "confidence": 0.5,
+            "justification": "The candidate lists soft skills such as leadership and teamwork, which are relevant to management roles. While there is no direct management experience mentioned, these skills indicate potential for management capabilities."
+          }
+        ]
+      },
+      "role_levels": {
+        "role_levels": [
+          {
+            "expertise": "software_development",
+            "level": "entry_level",
+            "confidence": 0.9,
+            "justification": "The candidate has worked as a Trainee Developer for 0.5 years, which aligns with entry-level positions. Their responsibilities include development tasks, and they possess relevant technical skills such as SQL, PL/SQL, PHP, and MySQL. Given their limited experience, they are best categorized at the entry level."
+          },
+          {
+            "expertise": "data_engineering",
+            "level": "entry_level",
+            "confidence": 0.7,
+            "justification": "The candidate's experience with SQL and PL/SQL indicates a foundational understanding of data manipulation and database management, which are key components of data engineering. However, the lack of specific data engineering experience or tools suggests that they are still at an entry-level position in this area."
+          },
+          {
+            "expertise": "management",
+            "level": "entry_level",
+            "confidence": 0.6,
+            "justification": "While the candidate demonstrates soft skills relevant to management, such as leadership and teamwork, there is no direct management experience. Therefore, they are best categorized at the entry level, with potential for growth into management roles as they gain more experience."
+          }
+        ]
+      },
+      "org_unit": {
+        "org_units": [
+          {
+            "unit": "engineering",
+            "confidence": 0.85,
+            "justification": "The candidate has direct experience as a developer, which aligns well with the engineering organizational unit. Their technical skills in SQL, PL/SQL, PHP, and MySQL are essential for software development roles. Given their entry-level status and relevant experience, they fit well within the software development segment of engineering."
+          },
+          {
+            "unit": "data",
+            "confidence": 0.65,
+            "justification": "The candidate's familiarity with SQL and PL/SQL indicates a foundational understanding of data manipulation, which is relevant to data engineering. However, the absence of specific data engineering tools or frameworks limits their fit in this area. Nonetheless, their skills suggest potential for growth in data-related roles, justifying a moderate confidence score."
+          },
+          {
+            "unit": "hr",
+            "confidence": 0.5,
+            "justification": "The candidate's soft skills, particularly in teamwork and leadership, suggest potential for roles in human resources or recruitment. While they lack direct HR experience, their interpersonal skills could be beneficial in HR functions, warranting a lower confidence score for this organizational unit."
+          }
+        ]
+      }
+    }
+  ],
+  "errors": []
+}
