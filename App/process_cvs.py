@@ -1,21 +1,38 @@
 import json
 import os
 from datetime import datetime
-from typing import Dict, List
+from typing import Dict, List, Optional, Any
 from tqdm import tqdm
 import argparse
 from cv_agents.chains.classification_chain import CVClassificationOrchestrator
 
 class CVProcessor:
-    def __init__(self, input_file: str, output_dir: str = "results"):
+    def __init__(self, input_file: str, output_dir: str = "results", custom_config: Optional[Dict[str, Any]] = None, config_files: Optional[List[str]] = None):
         self.input_file = input_file
         self.output_dir = output_dir
-        self.orchestrator = CVClassificationOrchestrator()
+        
+        # Initialize orchestrator with base custom configuration
+        self.orchestrator = CVClassificationOrchestrator(custom_config=custom_config)
+        
+        # Load additional configuration from files if provided
+        if config_files:
+            for config_file in config_files:
+                self.load_config_from_file(config_file)
+                
         self.results: List[Dict] = []
         self.errors: List[Dict] = []
         
         # Create output directory if it doesn't exist
         os.makedirs(output_dir, exist_ok=True)
+    
+    def load_config_from_file(self, config_file: str) -> bool:
+        """Load configuration from a file and apply it to the orchestrator"""
+        print(f"Loading configuration from {config_file}")
+        try:
+            return self.orchestrator.load_config_from_file(config_file)
+        except Exception as e:
+            print(f"Error loading configuration file: {e}")
+            return False
     
     def load_cv_data(self) -> List[Dict]:
         """Load CV data from input file"""
@@ -120,6 +137,7 @@ def main():
     parser.add_argument('--save_interval', type=int, default=5, help='Save results every N batches')
     parser.add_argument('--max_cvs', type=int, default=None, help='Maximum number of CVs to process, if None, all CVs will be processed')
     parser.add_argument('--clear_memory', type=bool, default=False, help='Clear memory before processing')
+    parser.add_argument('--config', type=str, action='append', help='Path to configuration file(s) for customizing agent behavior')
     args = parser.parse_args()
     print(f"Processing CVs from {args.input} to {args.output}")
     
@@ -131,9 +149,10 @@ def main():
     save_interval = args.save_interval if args.save_interval else 5
     max_cvs = args.max_cvs if args.max_cvs else None
     clear_memory = args.clear_memory if args.clear_memory else False
+    config_files = args.config if args.config else []
     
     # Initialize and run processor
-    processor = CVProcessor(input_file, output_dir)
+    processor = CVProcessor(input_file, output_dir, config_files=config_files)
     if clear_memory:
         print("Clearing memory...")
         processor.orchestrator.clear_memory()

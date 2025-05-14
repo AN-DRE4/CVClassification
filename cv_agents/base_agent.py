@@ -4,9 +4,10 @@ import os
 import json
 import time
 import logging
+from typing import Dict, Optional, Any
 
 class BaseAgent:
-    def __init__(self, model_name="gpt-4o-mini-2024-07-18", temperature=0.1, max_retries=3, retry_delay=2):
+    def __init__(self, model_name="gpt-4o-mini-2024-07-18", temperature=0.1, max_retries=3, retry_delay=2, custom_config: Optional[Dict[str, Any]] = None):
         self.llm = ChatOpenAI(
             model=model_name,
             temperature=temperature,
@@ -15,11 +16,16 @@ class BaseAgent:
         self.prompt = None
         self.max_retries = max_retries
         self.retry_delay = retry_delay
+        self.custom_config = custom_config or {}
         
     def process(self, cv_data):
         """Process a CV with the agent with automatic retries"""
         if not self.prompt:
             raise NotImplementedError("Each agent must define its prompt")
+        
+        # Apply any custom configurations to the data
+        self._apply_custom_config(cv_data)
+        
         # Format the prompt with CV data
         formatted_prompt = self.prompt.format_prompt(**cv_data)
         # Initialize counters and tracking
@@ -62,6 +68,11 @@ class BaseAgent:
         # Return a fallback result if we couldn't get a valid one
         return self._get_fallback_result(errors)
     
+    def _apply_custom_config(self, cv_data):
+        """Apply any custom configurations to the data before processing
+        This is meant to be overridden by subclasses for specific customization needs"""
+        pass
+    
     def _parse_response(self, response_text):
         """Parse the LLM response into structured data"""
         raise NotImplementedError("Each agent must implement parsing logic")
@@ -79,3 +90,14 @@ class BaseAgent:
             "message": "Failed to process after multiple retries",
             "details": errors
         }
+        
+    def update_config(self, new_config: Dict[str, Any]):
+        """Update the agent's custom configuration"""
+        self.custom_config.update(new_config)
+        # Optionally rebuild prompts or other components when config changes
+        self._on_config_updated()
+        
+    def _on_config_updated(self):
+        """Hook called when configuration is updated
+        Override in subclasses to rebuild prompt templates or other configuration-dependent components"""
+        pass

@@ -1,0 +1,95 @@
+{
+  "timestamp": "20250513_153541",
+  "total_processed": 1,
+  "total_errors": 0,
+  "results": [
+    {
+      "resume_id": "upload_317_ROHAN_VIJAY_CHAVAN.txt_20250513_153512",
+      "timestamp": "2025-05-13T15:35:41.230934",
+      "source": "new_analysis",
+      "expertise": {
+        "expertise": [
+          {
+            "category": "management",
+            "confidence": 0.8,
+            "justification": "The candidate has held multiple leadership roles, including Lead Associate and Assistant Manager, where they managed regulatory compliance and coordinated with project managers. Their responsibilities included overseeing project deliverables and facilitating discussions in product team meetings, indicating strong management skills."
+          },
+          {
+            "category": "data_engineering",
+            "confidence": 0.6,
+            "justification": "The candidate has experience in preparing and reviewing various technical documents, including method development and validation reports, which suggests a foundational understanding of data handling and engineering principles, particularly in the pharmaceutical context."
+          },
+          {
+            "category": "data_science",
+            "confidence": 0.5,
+            "justification": "The candidate's work with stability studies, method validation, and data compilation for regulatory submissions indicates a level of analytical skills and data interpretation, which aligns with data science principles, although it is not their primary focus."
+          },
+          {
+            "category": "cybersecurity",
+            "confidence": 0.2,
+            "justification": "While the candidate does not explicitly mention cybersecurity, their experience with regulatory compliance and maintaining quality systems suggests an awareness of data integrity and security standards, which are relevant to cybersecurity."
+          },
+          {
+            "category": "software_development",
+            "confidence": 0.1,
+            "justification": "The candidate's experience does not directly relate to software development; however, their involvement in method development and validation could imply some familiarity with software tools used in laboratory settings."
+          }
+        ]
+      },
+      "role_levels": {
+        "role_levels": [
+          {
+            "expertise": "management",
+            "level": "management",
+            "confidence": 0.8,
+            "justification": "The candidate has held leadership roles such as Lead Associate and Assistant Manager, where they managed regulatory compliance and coordinated with project managers. Their responsibilities included overseeing project deliverables and facilitating discussions in product team meetings, indicating strong management skills and the ability to lead teams effectively."
+          },
+          {
+            "expertise": "data_engineering",
+            "level": "mid_level",
+            "confidence": 0.6,
+            "justification": "The candidate has experience in preparing and reviewing various technical documents, including method development and validation reports. This suggests a foundational understanding of data handling and engineering principles, particularly in the pharmaceutical context, which aligns with a mid-level role where technical skills are applied in practice."
+          },
+          {
+            "expertise": "data_science",
+            "level": "mid_level",
+            "confidence": 0.5,
+            "justification": "The candidate's work with stability studies, method validation, and data compilation for regulatory submissions indicates a level of analytical skills and data interpretation. While not their primary focus, these responsibilities align with mid-level data science roles where analytical skills are essential for decision-making."
+          },
+          {
+            "expertise": "cybersecurity",
+            "level": "entry_level",
+            "confidence": 0.2,
+            "justification": "The candidate does not explicitly mention cybersecurity experience. However, their work in regulatory compliance and maintaining quality systems suggests an awareness of data integrity and security standards. This foundational understanding aligns more closely with an entry-level role in cybersecurity."
+          },
+          {
+            "expertise": "software_development",
+            "level": "entry_level",
+            "confidence": 0.1,
+            "justification": "The candidate's experience does not directly relate to software development. Their involvement in method development and validation may imply some familiarity with software tools used in laboratory settings, but this is not sufficient to classify them beyond an entry-level understanding of software development."
+          }
+        ]
+      },
+      "org_unit": {
+        "org_units": [
+          {
+            "unit": "operations",
+            "confidence": 0.9,
+            "justification": "The candidate has extensive experience in managing regulatory compliance, project deliverables, and coordinating with various teams, which aligns closely with the operations unit. Their responsibilities include lifecycle management of products, handling regulatory submissions, and ensuring timely communication across departments, all of which are critical aspects of operations management. The leadership roles they have held further support their fit within this unit."
+          },
+          {
+            "unit": "engineering",
+            "confidence": 0.7,
+            "justification": "The candidate's technical skills in method development, validation, and stability studies indicate a strong foundation in engineering principles, particularly within the pharmaceutical sector. Their experience in preparing CMC documents and regulatory submissions suggests they possess the analytical and technical skills necessary for roles related to engineering, especially in a regulated environment. This makes them a suitable fit for the engineering unit, particularly in areas related to process engineering and compliance."
+          },
+          {
+            "unit": "data",
+            "confidence": 0.6,
+            "justification": "The candidate's involvement in data compilation for regulatory submissions and their analytical skills in method validation and stability studies suggest a foundational understanding of data handling and analysis. While their primary focus has been on regulatory compliance, the skills they have developed in data interpretation and documentation align with roles in data engineering and data science, making them a reasonable fit for the data unit."
+          }
+        ]
+      }
+    }
+  ],
+  "errors": []
+}

@@ -5,17 +5,50 @@ from ..utils.data_extractor import extract_cv_sections
 from ..utils.vector_utils import CVVectorizer
 import json
 import os
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional, Tuple, Any
 from datetime import datetime
 
 class CVClassificationOrchestrator:
-    def __init__(self, memory_path: str = "memory/cv_classifications.json"):
-        self.expertise_agent = ExpertiseAgent()
-        self.role_level_agent = RoleLevelAgent()
-        self.org_unit_agent = OrgUnitAgent()
+    def __init__(self, memory_path: str = "memory/cv_classifications.json", custom_config: Optional[Dict[str, Any]] = None):
+        self.custom_config = custom_config or {}
+        
+        # Initialize agents with custom configuration
+        expertise_config = self.custom_config.get("expertise", {})
+        role_config = self.custom_config.get("role_levels", {})
+        org_unit_config = self.custom_config.get("org_units", {})
+        
+        self.expertise_agent = ExpertiseAgent(custom_config=expertise_config)
+        self.role_level_agent = RoleLevelAgent(custom_config=role_config)
+        self.org_unit_agent = OrgUnitAgent(custom_config=org_unit_config)
+        
         self.memory_path = memory_path
         self.memory = self._load_memory()
         self.vectorizer = CVVectorizer()
+    
+    def update_config(self, new_config: Dict[str, Any]):
+        """Update the configuration for the orchestrator and its agents"""
+        self.custom_config.update(new_config)
+        
+        # Update agent configurations
+        if "expertise" in new_config:
+            self.expertise_agent.update_config(new_config["expertise"])
+        
+        if "role_levels" in new_config:
+            self.role_level_agent.update_config(new_config["role_levels"])
+        
+        if "org_units" in new_config:
+            self.org_unit_agent.update_config(new_config["org_units"])
+    
+    def load_config_from_file(self, config_path: str):
+        """Load configuration from a JSON file"""
+        try:
+            with open(config_path, 'r') as f:
+                config = json.load(f)
+                self.update_config(config)
+                return True
+        except Exception as e:
+            print(f"Error loading configuration file: {e}")
+            return False
     
     def _load_memory(self) -> Dict:
         """Load classification memory from file"""

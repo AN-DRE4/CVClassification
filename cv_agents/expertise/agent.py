@@ -3,17 +3,12 @@ from langchain_core.prompts import ChatPromptTemplate
 import json
 import logging
 import re
+from typing import Dict, Any, List, Optional
 
-EXPERTISE_SYSTEM_PROMPT = """You are an expert CV Analyzer specializing in identifying areas of expertise.
-Analyze the provided CV information and identify the candidate's areas of expertise from these categories:
-- software_development
-- data_engineering
-- data_science
-- devops
-- cybersecurity
-- marketing
-- finance
-- management
+# Base system prompt template - will be customized based on configuration
+EXPERTISE_SYSTEM_PROMPT_TEMPLATE = """You are an expert CV Analyzer specializing in identifying areas of expertise.
+Analyze the provided CV information and identify the candidate's areas of expertise from categories such as:
+{expertise_categories}
 
 If a candidate has experience in multiple areas, you should identify all of them.
 If a candidate has expertise in a field that is not listed above, identify it using the actual category name.
@@ -22,6 +17,18 @@ Provide an in depth justification for your response. Be clear and concise but al
 Format the response as a valid JSON object with "expertise" as the key containing an array of objects, 
 each with "category", "confidence", and "justification" fields.
 Your entire response/output is going to consist of a single JSON object, and you will NOT wrap it within JSON md markers. This is very important since it will be parsed directly as JSON."""
+
+# Default expertise categories for backward compatibility
+DEFAULT_EXPERTISE_CATEGORIES = [
+    "software_development",
+    "data_engineering",
+    "data_science",
+    "devops",
+    "cybersecurity",
+    "marketing",
+    "finance",
+    "management"
+]
 
 EXPERTISE_USER_PROMPT = """Analyze this CV:
 
@@ -37,12 +44,30 @@ Education:
 Your entire response/output is going to consist of a single JSON object, and you will NOT wrap it within JSON md markers. This is very important since it will be parsed directly as JSON."""
 
 class ExpertiseAgent(BaseAgent):
-    def __init__(self, model_name="gpt-4o-mini-2024-07-18", temperature=0.1, max_retries=3, retry_delay=2):
-        super().__init__(model_name, temperature, max_retries, retry_delay)
+    def __init__(self, model_name="gpt-4o-mini-2024-07-18", temperature=0.1, max_retries=3, retry_delay=2, custom_config: Optional[Dict[str, Any]] = None):
+        super().__init__(model_name, temperature, max_retries, retry_delay, custom_config)
+        self._build_prompt()
+    
+    def _build_prompt(self):
+        """Build the prompt template using current configuration"""
+        # Get expertise categories from config or use defaults
+        expertise_categories = self.custom_config.get("expertise_categories", DEFAULT_EXPERTISE_CATEGORIES)
+        
+        # Format the expertise categories as a bullet list
+        formatted_categories = "\n".join([f"- {category}" for category in expertise_categories])
+        
+        # Create the system prompt with the categories
+        system_prompt = EXPERTISE_SYSTEM_PROMPT_TEMPLATE.format(expertise_categories=formatted_categories)
+        
+        # Build the final prompt template
         self.prompt = ChatPromptTemplate.from_messages([
-            ("system", EXPERTISE_SYSTEM_PROMPT),
+            ("system", system_prompt),
             ("human", EXPERTISE_USER_PROMPT)
         ])
+    
+    def _on_config_updated(self):
+        """Rebuild prompt when configuration changes"""
+        self._build_prompt()
     
     def _parse_response(self, response_text):
         """Parse the LLM JSON response"""

@@ -1,0 +1,161 @@
+{
+  "timestamp": "20250514_153046",
+  "total_processed": 1,
+  "total_errors": 0,
+  "results": [
+    {
+      "resume_id": "upload_317_ROHAN_VIJAY_CHAVAN.txt_20250514_153003",
+      "timestamp": "2025-05-14T15:30:46.075429",
+      "source": "new_analysis",
+      "expertise": {
+        "expertise": [
+          {
+            "category": "Regulatory Compliance",
+            "confidence": 1.0,
+            "justification": "The candidate has extensive experience managing regulatory compliance across multiple roles, including Lead Associate and Senior Regulatory Specialist. Responsibilities included handling queries from regulatory authorities, managing post-approval submissions, and ensuring adherence to corporate and industry best practices."
+          },
+          {
+            "category": "CMC Documentation",
+            "confidence": 1.0,
+            "justification": "The candidate has consistently prepared and reviewed CMC documents to support health authority submissions in various positions. This includes authoring regulatory documents and ensuring their accuracy and compliance with regulatory standards."
+          },
+          {
+            "category": "Method Development and Validation",
+            "confidence": 1.0,
+            "justification": "The candidate has a strong background in method development and validation, demonstrated through responsibilities in multiple roles, including preparation and review of method validation protocols and reports, as well as method development reports."
+          },
+          {
+            "category": "Stability Studies",
+            "confidence": 1.0,
+            "justification": "The candidate has experience in preparing and reviewing stability studies and protocols, which is a critical aspect of pharmaceutical development and regulatory submissions."
+          },
+          {
+            "category": "Dossier Preparation",
+            "confidence": 0.9,
+            "justification": "The candidate has been involved in dossier preparation for various markets, including Europe and emerging markets. While the experience is evident, the specific depth of involvement in dossier preparation compared to other areas is slightly less emphasized."
+          },
+          {
+            "category": "GMP and ICH Guidelines",
+            "confidence": 0.9,
+            "justification": "The candidate has demonstrated knowledge and application of GMP and ICH guidelines throughout their roles, particularly in ensuring compliance and quality standards in regulatory submissions."
+          },
+          {
+            "category": "Leadership and Teamwork",
+            "confidence": 0.8,
+            "justification": "The candidate has exhibited leadership and teamwork skills through responsibilities that involve coordinating with teams, conducting meetings, and supporting product development teams. However, the emphasis on leadership is less pronounced compared to technical skills."
+          },
+          {
+            "category": "Communication Skills",
+            "confidence": 0.8,
+            "justification": "The candidate has shown strong communication skills through documented interactions with regulatory agencies and internal teams. This includes maintaining oral and written communications, which is crucial in regulatory roles."
+          },
+          {
+            "category": "Problem-Solving",
+            "confidence": 0.7,
+            "justification": "The candidate has demonstrated problem-solving abilities, particularly in handling queries from regulatory authorities and managing project deliverables. However, specific examples of problem-solving scenarios are less detailed."
+          },
+          {
+            "category": "Organizational Skills",
+            "confidence": 0.7,
+            "justification": "The candidate's ability to manage multiple responsibilities and timelines indicates strong organizational skills, although specific examples of organizational strategies are not extensively detailed."
+          },
+          {
+            "category": "Analytical Skills",
+            "confidence": 0.6,
+            "justification": "The candidate's role in evaluating regulatory impacts and conducting risk analysis suggests analytical skills, but there is less emphasis on this area compared to others."
+          }
+        ]
+      },
+      "role_levels": {
+        "role_levels": [
+          {
+            "expertise": "Regulatory Compliance",
+            "level": "senior_level",
+            "confidence": 1.0,
+            "justification": "The candidate has over 5 years of experience managing regulatory compliance across multiple roles, including Lead Associate and Senior Regulatory Specialist. Their responsibilities involve significant oversight of regulatory submissions and compliance with industry standards, indicating a senior-level understanding and capability."
+          },
+          {
+            "expertise": "CMC Documentation",
+            "level": "senior_level",
+            "confidence": 1.0,
+            "justification": "The candidate has consistently prepared and reviewed CMC documents in senior roles, demonstrating a deep understanding of the requirements for regulatory submissions. Their extensive experience in this area supports a senior-level designation."
+          },
+          {
+            "expertise": "Method Development and Validation",
+            "level": "mid_level",
+            "confidence": 1.0,
+            "justification": "While the candidate has a strong background in method development and validation, the majority of their experience is in roles that suggest a mid-level position. They have been involved in method validation and development but have not held a role that indicates a senior-level authority in this area."
+          },
+          {
+            "expertise": "Stability Studies",
+            "level": "mid_level",
+            "confidence": 1.0,
+            "justification": "The candidate has experience in preparing and reviewing stability studies, which is essential for regulatory submissions. However, the depth of experience does not indicate a senior-level role, placing it at a mid-level."
+          },
+          {
+            "expertise": "Dossier Preparation",
+            "level": "mid_level",
+            "confidence": 0.9,
+            "justification": "The candidate has been involved in dossier preparation for various markets, indicating a solid understanding of the process. However, the experience is slightly less emphasized compared to other areas, suggesting a mid-level designation."
+          },
+          {
+            "expertise": "GMP and ICH Guidelines",
+            "level": "mid_level",
+            "confidence": 0.9,
+            "justification": "The candidate has demonstrated knowledge and application of GMP and ICH guidelines throughout their roles. While they have a strong grasp of these guidelines, their experience aligns more closely with mid-level responsibilities."
+          },
+          {
+            "expertise": "Leadership and Teamwork",
+            "level": "mid_level",
+            "confidence": 0.8,
+            "justification": "The candidate has exhibited leadership and teamwork skills, particularly in coordinating with teams and conducting meetings. However, the emphasis on leadership is less pronounced, suggesting a mid-level role rather than a senior management position."
+          },
+          {
+            "expertise": "Communication Skills",
+            "level": "mid_level",
+            "confidence": 0.8,
+            "justification": "The candidate has shown strong communication skills through interactions with regulatory agencies and internal teams. While effective communication is crucial, the level of responsibility does not indicate a senior-level role."
+          },
+          {
+            "expertise": "Problem-Solving",
+            "level": "mid_level",
+            "confidence": 0.7,
+            "justification": "The candidate has demonstrated problem-solving abilities, particularly in handling regulatory queries. However, specific examples of complex problem-solving scenarios are less detailed, placing this expertise at a mid-level."
+          },
+          {
+            "expertise": "Organizational Skills",
+            "level": "mid_level",
+            "confidence": 0.7,
+            "justification": "The candidate's ability to manage multiple responsibilities indicates strong organizational skills. However, the lack of detailed examples suggests a mid-level rather than a senior-level capability."
+          },
+          {
+            "expertise": "Analytical Skills",
+            "level": "mid_level",
+            "confidence": 0.6,
+            "justification": "The candidate's role in evaluating regulatory impacts suggests analytical skills, but the emphasis on this area is less compared to others. This indicates a mid-level understanding rather than a senior-level expertise."
+          }
+        ]
+      },
+      "org_unit": {
+        "org_units": [
+          {
+            "unit": "operations",
+            "confidence": 0.9,
+            "justification": "The candidate has extensive experience in regulatory compliance, project management, and coordination with various teams to ensure timely submissions and adherence to guidelines. Their responsibilities include managing post-approval submissions and communicating with different departments, which aligns well with operations roles that require oversight and management of processes."
+          },
+          {
+            "unit": "hr",
+            "confidence": 0.7,
+            "justification": "The candidate has demonstrated leadership and teamwork skills, which are essential in human resources roles. Their ability to coordinate with teams and facilitate discussions indicates potential for HR functions, particularly in recruitment and training, although this is not their primary area of expertise."
+          },
+          {
+            "unit": "engineering",
+            "confidence": 0.6,
+            "justification": "While the candidate's primary focus is on regulatory compliance and documentation, their experience in method development and validation suggests a technical understanding that could be applicable in engineering roles, particularly in pharmaceutical engineering or quality assurance. However, this is a secondary fit compared to operations."
+          }
+        ]
+      }
+    }
+  ],
+  "errors": []
+}

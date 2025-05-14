@@ -26,10 +26,10 @@ st.set_page_config(
 
 # Initialize orchestrator
 @st.cache_resource
-def get_orchestrator(input_file: str, output_dir: str = "results"):
-    return CVProcessor(input_file, output_dir)
+def get_orchestrator(input_file: str, output_dir: str = "results", custom_config=None, config_files=None):
+    return CVProcessor(input_file, output_dir, custom_config=custom_config, config_files=config_files)
 
-def process_cv_text(cv_text, file_name):
+def process_cv_text(cv_text, file_name, custom_config=None, config_files=None):
     """Process a CV text through the entire pipeline"""
     # Step 1: Initial processing with zero-shot approach
     st.write("### Step 1: Initial CV information extraction")
@@ -59,7 +59,12 @@ def process_cv_text(cv_text, file_name):
     # Step 3: Process with agents/vector search
     st.write("### Step 2: Advanced CV Classification")
     with st.spinner("Classifying CV with agents..."):
-        orchestrator = get_orchestrator(input_file="processed_cv_data.json", output_dir="agents_results")
+        orchestrator = get_orchestrator(
+            input_file="processed_cv_data.json", 
+            output_dir="agents_results",
+            custom_config=custom_config,
+            config_files=config_files
+        )
         try:
             results = orchestrator.process_cvs(batch_size=1, save_interval=1, max_cvs=1)
             return results
@@ -121,51 +126,246 @@ def display_results(results):
         else:
             st.write("No organizational units identified")
 
+def create_custom_expertise_config():
+    """Create a custom expertise configuration based on user input"""
+    st.write("### Define Custom Expertise Categories")
+    st.write("Enter the expertise categories you want to use for classification, one per line:")
+    
+    expertise_text = st.text_area("Expertise Categories", 
+                                value="software_development\ndata_engineering\ndata_science\ndevops\ncybersecurity\nmarketing\nfinance\nmanagement",
+                                height=200)
+    
+    if expertise_text:
+        # Parse the text into a list of categories
+        categories = [cat.strip() for cat in expertise_text.split('\n') if cat.strip()]
+        if categories:
+            return {"expertise_categories": categories}
+    
+    return None
+
+def create_custom_role_levels_config():
+    """Create a custom role levels configuration based on user input"""
+    st.write("### Define Custom Role Levels")
+    st.write("Enter the role levels you want to use for classification, in the format: name:description (one per line)")
+    
+    role_levels_text = st.text_area("Role Levels", 
+                                  value="entry_level:Junior positions, 0-2 years experience\nmid_level:Regular positions, 2-5 years experience\nsenior_level:Senior positions, 5+ years experience\nmanagement:Management positions at any level",
+                                  height=200)
+    
+    if role_levels_text:
+        role_levels = []
+        for line in role_levels_text.split('\n'):
+            if ':' in line:
+                name, description = line.split(':', 1)
+                role_levels.append({
+                    "name": name.strip(),
+                    "description": description.strip()
+                })
+        
+        if role_levels:
+            return {"role_levels": role_levels}
+    
+    return None
+
+def create_custom_org_units_config():
+    """Create a custom org units configuration based on user input"""
+    st.write("### Define Custom Organizational Units")
+    st.write("Enter the organizational units you want to use for classification, in the format: name:description (one per line)")
+    
+    org_units_text = st.text_area("Organizational Units", 
+                                value="engineering:Software development, DevOps, infrastructure\ndata:Data engineering, data science, analytics\nmarketing_sales:Marketing, sales, communications\nfinance_accounting:Finance, accounting, auditing\noperations:Project management, operations, logistics\ncustomer_service:Customer support, account management\nhr:Human resources, recruitment, training",
+                                height=200)
+    
+    if org_units_text:
+        org_units = []
+        for line in org_units_text.split('\n'):
+            if ':' in line:
+                name, description = line.split(':', 1)
+                org_units.append({
+                    "name": name.strip(),
+                    "description": description.strip()
+                })
+        
+        if org_units:
+            return {"org_units": org_units}
+    
+    return None
+
 def main():
     st.title("CV Classification Pipeline")
     st.write("""
     Upload a CV to classify it using our AI-powered pipeline. The system will:
     1. Extract key information from your CV
     2. Classify your expertise areas, role levels, and organizational unit fit
+    
+    You can also customize the classification parameters using the customization options.
     """)
     
-    # File uploader for CV text
-    uploaded_file = st.file_uploader("Upload your CV (text format)", type=["txt", "pdf", "docx"])
-    if uploaded_file is not None:
-        file_name = uploaded_file.name
-    else:
-        file_name = None
+    # Add tabs for CV upload and customization
+    tabs = st.tabs(["CV Upload & Processing", "Classification Customization"])
     
-    # Text area for direct input
-    st.write("#### Or paste your CV text below")
-    cv_text = st.text_area("CV Text", height=200)
-    
-    # Process button
-    process_clicked = st.button("Process CV")
-    
-    if process_clicked:
+    # Tab 1: CV Upload & Processing
+    with tabs[0]:
+        # File uploader for CV text
+        uploaded_file = st.file_uploader("Upload your CV (text format)", type=["txt", "pdf", "docx"])
+        
         # Get CV text from either file or text area
+        cv_text = ""
+        file_name = None
+        
         if uploaded_file is not None:
-            cv_text = uploaded_file.getvalue().decode("utf-8")
+            file_name = uploaded_file.name
+            try:
+                cv_text = uploaded_file.getvalue().decode("utf-8")
+                st.success(f"Successfully loaded CV from file: {file_name}")
+            except Exception as e:
+                st.error(f"Error reading file: {str(e)}")
         
-        if not cv_text:
-            st.warning("Please upload a file or paste CV text")
-            return
+        # Text area for direct input
+        st.write("#### Or paste your CV text below")
+        text_input = st.text_area("CV Text", height=200)
         
-        # Process the CV
-        with st.expander("View raw CV text", expanded=False):
-            st.text(cv_text)
+        # Use text input if no file was uploaded or if text was entered
+        if not cv_text and text_input:
+            cv_text = text_input
+            file_name = "manual_entry"
         
-        results = process_cv_text(cv_text, file_name)[-1]
+        # Display the CV text if available
+        if cv_text:
+            with st.expander("View CV text", expanded=False):
+                st.text(cv_text)
         
-        if results:
-            display_results(results)
+        # Configuration file uploads
+        st.write("#### Optional: Upload configuration files")
+        st.info("You can upload pre-configured JSON files here, or create your own custom configuration in the **Classification Customization** tab.")
+        uploaded_config_files = st.file_uploader("Upload JSON configuration files", type=["json"], accept_multiple_files=True)
+        
+        config_files = []
+        if uploaded_config_files:
+            for config_file in uploaded_config_files:
+                # Save the uploaded file temporarily
+                temp_path = f"temp_config_{config_file.name}"
+                with open(temp_path, "wb") as f:
+                    f.write(config_file.getbuffer())
+                config_files.append(temp_path)
+                st.success(f"Loaded configuration file: {config_file.name}")
+        
+        # Process button
+        process_clicked = st.button("Process CV")
+        
+        if process_clicked:
+            if not cv_text:
+                st.warning("Please upload a file or paste CV text")
+            else:
+                # Collect custom configuration from the customization tab
+                custom_config = {}
+                if "expertise_config" in st.session_state and st.session_state.expertise_config:
+                    custom_config["expertise"] = st.session_state.expertise_config
+                
+                if "role_levels_config" in st.session_state and st.session_state.role_levels_config:
+                    custom_config["role_levels"] = st.session_state.role_levels_config
+                
+                if "org_units_config" in st.session_state and st.session_state.org_units_config:
+                    custom_config["org_units"] = st.session_state.org_units_config
+                
+                # Process the CV
+                results = process_cv_text(cv_text, file_name, custom_config=custom_config, config_files=config_files)
+                
+                if results:
+                    display_results(results[-1])
+                    
+                    # Option to download results
+                    st.download_button(
+                        label="Download Results as JSON",
+                        data=json.dumps(results[-1], indent=2),
+                        file_name=f"cv_results_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
+                        mime="application/json"
+                    )
+                    
+                # Clean up temporary config files
+                for temp_file in config_files:
+                    if os.path.exists(temp_file):
+                        os.remove(temp_file)
+    
+    # Tab 2: Classification Customization
+    with tabs[1]:
+        st.write("""
+        ## Classification Customization
+        
+        Use the options below to customize how CVs are classified. You can:
+        - Define custom expertise categories
+        - Define custom role levels
+        - Define custom organizational units
+        
+        Your customizations will be applied when you process a CV.
+        """)
+        
+        # Create expanders for each customization option
+        with st.expander("Customize Expertise Categories", expanded=False):
+            expertise_config = create_custom_expertise_config()
+            if expertise_config:
+                # Save to session state
+                st.session_state.expertise_config = expertise_config
+                
+                # Option to download config
+                st.download_button(
+                    label="Download Expertise Configuration",
+                    data=json.dumps({"expertise": expertise_config}, indent=2),
+                    file_name=f"expertise_config_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
+                    mime="application/json"
+                )
+        
+        with st.expander("Customize Role Levels", expanded=False):
+            role_levels_config = create_custom_role_levels_config()
+            if role_levels_config:
+                # Save to session state
+                st.session_state.role_levels_config = role_levels_config
+                
+                # Option to download config
+                st.download_button(
+                    label="Download Role Levels Configuration",
+                    data=json.dumps({"role_levels": role_levels_config}, indent=2),
+                    file_name=f"role_levels_config_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
+                    mime="application/json"
+                )
+        
+        with st.expander("Customize Organizational Units", expanded=False):
+            org_units_config = create_custom_org_units_config()
+            if org_units_config:
+                # Save to session state
+                st.session_state.org_units_config = org_units_config
+                
+                # Option to download config
+                st.download_button(
+                    label="Download Org Units Configuration",
+                    data=json.dumps({"org_units": org_units_config}, indent=2),
+                    file_name=f"org_units_config_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
+                    mime="application/json"
+                )
+        
+        # Option to combine all configurations into a single file
+        if (
+            "expertise_config" in st.session_state or 
+            "role_levels_config" in st.session_state or 
+            "org_units_config" in st.session_state
+        ):
+            st.write("### Download Complete Configuration")
             
-            # Option to download results
+            combined_config = {}
+            
+            if "expertise_config" in st.session_state:
+                combined_config["expertise"] = st.session_state.expertise_config
+                
+            if "role_levels_config" in st.session_state:
+                combined_config["role_levels"] = st.session_state.role_levels_config
+                
+            if "org_units_config" in st.session_state:
+                combined_config["org_units"] = st.session_state.org_units_config
+            
             st.download_button(
-                label="Download Results as JSON",
-                data=json.dumps(results, indent=2),
-                file_name=f"cv_results_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
+                label="Download Complete Configuration",
+                data=json.dumps(combined_config, indent=2),
+                file_name=f"cv_classification_config_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
                 mime="application/json"
             )
 

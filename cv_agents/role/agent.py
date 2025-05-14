@@ -3,13 +3,12 @@ from langchain_core.prompts import ChatPromptTemplate
 import json
 import logging
 import re
+from typing import Dict, Any, List, Optional
 
-ROLE_SYSTEM_PROMPT = """You are an expert CV Analyzer specializing in determining role levels.
+# Base system prompt template - will be customized based on configuration
+ROLE_SYSTEM_PROMPT_TEMPLATE = """You are an expert CV Analyzer specializing in determining role levels.
 For each expertise area identified, determine the appropriate role level:
-- entry_level: Junior positions, 0-2 years experience
-- mid_level: Regular positions, 2-5 years experience
-- senior_level: Senior positions, 5+ years experience
-- management: Management positions at any level
+{role_levels}
 
 Base your assessment on job titles, responsibilities, and duration of experience.
 Consider the level of the responsibilities the person has. If some of these responsibilities are at a higher level, then consider leveling up the role.
@@ -18,6 +17,14 @@ Provide an in depth justification for your response. Be clear and concise but al
 Format your response as a valid JSON object with "role_levels" as the key containing an array of objects, 
 each with "expertise", "level", "confidence", and "justification" fields.
 Your entire response/output is going to consist of a single JSON object, and you will NOT wrap it within JSON md markers. This is very important since it will be parsed directly as JSON."""
+
+# Default role levels for backward compatibility
+DEFAULT_ROLE_LEVELS = [
+    {"name": "entry_level", "description": "Junior positions, 0-2 years experience"},
+    {"name": "mid_level", "description": "Regular positions, 2-5 years experience"},
+    {"name": "senior_level", "description": "Senior positions, 5+ years experience"},
+    {"name": "management", "description": "Management positions at any level"}
+]
 
 ROLE_USER_PROMPT = """Analyze this CV for role levels:
 
@@ -31,12 +38,30 @@ For each expertise area, determine the most appropriate role level with justific
 Your entire response/output is going to consist of a single JSON object, and you will NOT wrap it within JSON md markers.  This is very important since it will be parsed directly as JSON."""
 
 class RoleLevelAgent(BaseAgent):
-    def __init__(self, model_name="gpt-4o-mini-2024-07-18", temperature=0.1, max_retries=3, retry_delay=2):
-        super().__init__(model_name, temperature, max_retries, retry_delay)
+    def __init__(self, model_name="gpt-4o-mini-2024-07-18", temperature=0.1, max_retries=3, retry_delay=2, custom_config: Optional[Dict[str, Any]] = None):
+        super().__init__(model_name, temperature, max_retries, retry_delay, custom_config)
+        self._build_prompt()
+        
+    def _build_prompt(self):
+        """Build the prompt template using current configuration"""
+        # Get role levels from config or use defaults
+        role_levels = self.custom_config.get("role_levels", DEFAULT_ROLE_LEVELS)
+        
+        # Format the role levels as a bullet list
+        formatted_role_levels = "\n".join([f"- {level['name']}: {level['description']}" for level in role_levels])
+        
+        # Create the system prompt with the role levels
+        system_prompt = ROLE_SYSTEM_PROMPT_TEMPLATE.format(role_levels=formatted_role_levels)
+        
+        # Build the final prompt template
         self.prompt = ChatPromptTemplate.from_messages([
-            ("system", ROLE_SYSTEM_PROMPT),
+            ("system", system_prompt),
             ("human", ROLE_USER_PROMPT)
         ])
+    
+    def _on_config_updated(self):
+        """Rebuild prompt when configuration changes"""
+        self._build_prompt()
     
     def _parse_response(self, response_text):
         """Parse the LLM JSON response"""
