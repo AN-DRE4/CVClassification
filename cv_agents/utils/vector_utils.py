@@ -54,7 +54,6 @@ class CVVectorizer:
         
         # Cache the vector and text
         self.vector_cache["vectors"][resume_id] = vector.tolist()
-        print("DEBUG: length of vector: ", len(self.vector_cache["vectors"][resume_id]))
         self.vector_cache["texts"][resume_id] = cv_text
         self._save_vector_cache()
         

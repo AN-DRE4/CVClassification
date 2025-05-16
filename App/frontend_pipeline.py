@@ -343,8 +343,6 @@ def main():
                 interpreter_configs = None
                 if "interpreter_configs" in st.session_state and st.session_state.interpreter_configs:
                     interpreter_configs = st.session_state.interpreter_configs
-
-                print(f"interpreter_configs: {interpreter_configs}")
                 
                 # Process the CV
                 results = process_cv_text(

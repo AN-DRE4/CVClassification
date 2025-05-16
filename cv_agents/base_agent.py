@@ -32,7 +32,6 @@ class BaseAgent:
         retries = 0
         result = None
         errors = []
-        print(f"formatted_prompt: {formatted_prompt}")
         # Try processing with retries
         while retries <= self.max_retries:
             try:
@@ -95,7 +94,6 @@ class BaseAgent:
     def update_config(self, new_config: Dict[str, Any]):
         """Update the agent's custom configuration"""
         self.custom_config.update(new_config)
-        print(f"new_config: {new_config}")
         # Optionally rebuild prompts or other components when config changes
         self._on_config_updated()
         

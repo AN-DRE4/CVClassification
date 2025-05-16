@@ -34,7 +34,6 @@ class CVProcessor:
     
     def load_config_from_file(self, config_file: str) -> bool:
         """Load configuration from a file and apply it to the orchestrator"""
-        print(f"Loading configuration from {config_file}")
         try:
             return self.orchestrator.load_config_from_file(config_file)
         except Exception as e:
@@ -43,7 +42,6 @@ class CVProcessor:
     
     def load_config_from_interpreter(self, file_path: str, interpretation_description: str, agent_type: str) -> bool:
         """Load configuration using the interpreter agent"""
-        print(f"Loading configuration for {agent_type} using interpreter from {file_path}")
         try:
             return self.orchestrator.load_config_from_interpreter(file_path, interpretation_description, agent_type)
         except Exception as e:

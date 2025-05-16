@@ -103,14 +103,10 @@ class CVClassificationOrchestrator:
         if not resume_id:
             return None, []
         
-        print("DEBUG: checking for historical data")
-        
         # First check exact match
         for classification in self.memory["classifications"]:
             if classification["resume_id"] == resume_id:
                 return classification, []
-        
-        print("DEBUG: no exact match found")
 
         # Then check similar CVs
         similar_cv_ids = self.vectorizer.find_similar_cvs(cv_data, resume_id)
