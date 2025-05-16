@@ -1,0 +1,100 @@
+{
+  "timestamp": "20250516_174642",
+  "total_processed": 1,
+  "total_errors": 0,
+  "results": [
+    {
+      "resume_id": "upload_13170_Mohit_Kumar (2).txt_20250516_174607",
+      "timestamp": "2025-05-16T17:46:42.358224",
+      "source": "new_analysis",
+      "expertise": {
+        "expertise": [
+          {
+            "category": "devops",
+            "confidence": 0.9,
+            "justification": "The candidate has extensive experience in managing virtualized environments, including VMware and KVM, and has been involved in deployment and management of datacenters. Their responsibilities included automation of server functions and technical design of solutions, which are key aspects of DevOps practices."
+          },
+          {
+            "category": "data_engineering",
+            "confidence": 0.8,
+            "justification": "The candidate has experience with data center infrastructure, including storage management (Hitachi Storage AMS2300, LVM, RAID) and provisioning of virtual machines. Their role involved significant technical design and implementation, which aligns with data engineering responsibilities."
+          },
+          {
+            "category": "cybersecurity",
+            "confidence": 0.7,
+            "justification": "The candidate assessed threats and vulnerabilities in existing RHEL deployments and integrated ClamAV Antivirus, indicating a solid understanding of cybersecurity principles and practices."
+          },
+          {
+            "category": "software_development",
+            "confidence": 0.6,
+            "justification": "The candidate has experience with automation tools like Ansible and Docker, which are often used in software development and deployment processes. Their involvement in creating solutions blueprints and technical proposals also suggests a foundational understanding of software development."
+          },
+          {
+            "category": "management",
+            "confidence": 0.5,
+            "justification": "The candidate has experience in client-facing presentations and coordination, which indicates some level of management skills. However, the focus appears to be more on technical roles rather than direct management."
+          }
+        ]
+      },
+      "role_levels": {
+        "role_levels": [
+          {
+            "expertise": "devops",
+            "level": "mid_level",
+            "confidence": 0.9,
+            "justification": "The candidate has 4.5 years of experience as a Senior System Engineer and 1 year as an IT Consultant, both of which involve significant responsibilities in managing virtualized environments, automation, and technical design. Their experience aligns well with mid-level DevOps roles, where individuals are expected to have a solid understanding of infrastructure management and automation."
+          },
+          {
+            "expertise": "data_engineering",
+            "level": "mid_level",
+            "confidence": 0.8,
+            "justification": "With 4.5 years of experience in managing data center infrastructure and storage solutions, the candidate demonstrates a strong capability in data engineering. Their responsibilities include provisioning virtual machines and managing storage systems, which are critical aspects of data engineering roles, justifying a mid-level classification."
+          },
+          {
+            "expertise": "cybersecurity",
+            "level": "mid_level",
+            "confidence": 0.7,
+            "justification": "The candidate's experience in assessing threats and vulnerabilities in RHEL deployments and integrating antivirus solutions indicates a solid understanding of cybersecurity principles. Given their 4.5 years of experience, they are positioned at a mid-level in cybersecurity, where practical experience is essential."
+          },
+          {
+            "expertise": "software_development",
+            "level": "entry_level",
+            "confidence": 0.6,
+            "justification": "The candidate has some experience with automation tools and creating technical proposals, but their primary focus has been on infrastructure and operations rather than software development. With less direct experience in software development roles, an entry-level classification is appropriate."
+          },
+          {
+            "expertise": "management",
+            "level": "entry_level",
+            "confidence": 0.5,
+            "justification": "While the candidate has experience in client-facing presentations and coordination, these responsibilities do not indicate a strong management role. Their experience is more technical, and thus an entry-level classification in management is justified, as they have not held formal management positions."
+          }
+        ]
+      },
+      "org_unit": {
+        "org_units": [
+          {
+            "unit": "engineering",
+            "confidence": 0.9,
+            "justification": "The candidate has extensive experience in managing virtualized environments and datacenter infrastructure, which are core components of the engineering unit. Their responsibilities in technical design, deployment, and automation align closely with the software development and DevOps aspects of engineering. The candidate's proficiency in tools like VMware, KVM, and automation technologies further solidifies their fit within this unit."
+          },
+          {
+            "unit": "data",
+            "confidence": 0.8,
+            "justification": "The candidate's experience with data center infrastructure, including storage management and provisioning of virtual machines, positions them well within the data unit. Their technical skills in managing storage solutions and understanding of data engineering principles indicate a strong capability to contribute to data engineering and analytics roles."
+          },
+          {
+            "unit": "operations",
+            "confidence": 0.7,
+            "justification": "Given the candidate's experience in managing operations within a datacenter environment, including 24/7 tech support and system administration, they are also a good fit for the operations unit. Their responsibilities in project management and operational performance align with the operational aspects of this unit."
+          },
+          {
+            "unit": "cybersecurity",
+            "confidence": 0.7,
+            "justification": "The candidate has demonstrated knowledge in cybersecurity through their experience in assessing threats and vulnerabilities in RHEL deployments and integrating antivirus solutions. This expertise aligns with the growing need for cybersecurity within engineering and operations, making them a suitable candidate for roles that require a cybersecurity focus."
+          }
+        ]
+      }
+    }
+  ],
+  "errors": []
+}

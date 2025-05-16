@@ -1,0 +1,100 @@
+{
+  "timestamp": "20250516_183153",
+  "total_processed": 1,
+  "total_errors": 0,
+  "results": [
+    {
+      "resume_id": "upload_13170_Mohit_Kumar (2).txt_20250516_183116",
+      "timestamp": "2025-05-16T18:31:53.588700",
+      "source": "new_analysis",
+      "expertise": {
+        "expertise": [
+          {
+            "category": "devops",
+            "confidence": 0.9,
+            "justification": "The candidate has extensive experience in deployment and management of virtualized environments, including the use of KVM and VMware. Responsibilities include automation of server functions, technical designing of solutions for data center infrastructure, and implementation of services like Subversion and Bugzilla, which are common in DevOps practices."
+          },
+          {
+            "category": "data_engineering",
+            "confidence": 0.8,
+            "justification": "The candidate has experience in managing a large number of virtual machines and servers, as well as setting up and administering storage solutions like Hitachi Storage AMS2300 and RAID configurations. This indicates a strong background in data engineering, particularly in managing data infrastructure."
+          },
+          {
+            "category": "software_development",
+            "confidence": 0.7,
+            "justification": "The candidate has experience in drafting technical proposals and creating solution blueprints, which suggests involvement in software development processes. Additionally, the use of tools like Subversion and Bugzilla indicates familiarity with software version control and issue tracking."
+          },
+          {
+            "category": "cloud_computing",
+            "confidence": 0.85,
+            "justification": "The candidate has worked with Infrastructure-as-a-Service (IAAS) solutions and has experience with cloud technologies such as Amazon Web Services and Mirantis OpenStack. This indicates a solid understanding of cloud computing principles and practices."
+          },
+          {
+            "category": "management",
+            "confidence": 0.6,
+            "justification": "The candidate has experience in coordinating client-facing presentations and drafting technical proposals, which suggests some level of management and client interaction skills. However, the focus appears to be more on technical execution rather than formal management roles."
+          }
+        ]
+      },
+      "role_levels": {
+        "role_levels": [
+          {
+            "expertise": "devops",
+            "level": "Senior Consultant",
+            "confidence": 0.9,
+            "justification": "The candidate has extensive experience in deployment and management of virtualized environments, including KVM and VMware. Responsibilities such as automation of server functions and technical designing of solutions for data center infrastructure indicate a strong ability to work autonomously while also coordinating with others, fitting the Senior Consultant level."
+          },
+          {
+            "expertise": "data_engineering",
+            "level": "Senior Consultant",
+            "confidence": 0.8,
+            "justification": "The candidate's experience in managing a large number of virtual machines and servers, along with setting up and administering storage solutions, suggests a solid understanding of data infrastructure management. This aligns with the responsibilities expected of a Senior Consultant, who balances autonomy with some leadership."
+          },
+          {
+            "expertise": "software_development",
+            "level": "Consultant",
+            "confidence": 0.7,
+            "justification": "While the candidate has experience in drafting technical proposals and creating solution blueprints, the focus appears to be more on technical execution rather than formal software development roles. This aligns with the Consultant level, where the individual is responsible for organizing tasks with some autonomy."
+          },
+          {
+            "expertise": "cloud_computing",
+            "level": "Senior Consultant",
+            "confidence": 0.85,
+            "justification": "The candidate's work with Infrastructure-as-a-Service (IAAS) solutions and cloud technologies indicates a strong grasp of cloud computing principles. The ability to design and implement cloud solutions suggests a level of responsibility that fits the Senior Consultant role, where one balances independent work with team coordination."
+          },
+          {
+            "expertise": "management",
+            "level": "Consultant",
+            "confidence": 0.6,
+            "justification": "The candidate has some experience in client interaction and drafting proposals, but the focus remains on technical execution rather than formal management. This aligns with the Consultant level, where the individual is expected to manage tasks and contribute to team efforts without full leadership responsibilities."
+          }
+        ]
+      },
+      "org_unit": {
+        "org_units": [
+          {
+            "unit": "engineering",
+            "confidence": 0.9,
+            "justification": "The candidate's extensive experience in deployment and management of virtualized environments, particularly with KVM and VMware, aligns well with the engineering unit. Their responsibilities in managing servers, networks, and storage solutions demonstrate a strong technical foundation in software development and infrastructure, which are critical components of the engineering unit."
+          },
+          {
+            "unit": "data",
+            "confidence": 0.8,
+            "justification": "The candidate's background in managing a large number of virtual machines and servers, along with their experience in setting up and administering storage solutions, indicates a solid understanding of data infrastructure management. This expertise is essential for roles within the data unit, particularly in data engineering and analytics."
+          },
+          {
+            "unit": "operations",
+            "confidence": 0.75,
+            "justification": "The candidate's experience in technical designing of solutions for data center infrastructure and their involvement in project management tasks, such as drafting technical proposals and coordinating client presentations, suggest a fit within the operations unit. Their ability to manage complex environments and automate server functions also aligns with operational efficiency."
+          },
+          {
+            "unit": "cloud_computing",
+            "confidence": 0.85,
+            "justification": "The candidate's work with Infrastructure-as-a-Service (IAAS) solutions and cloud technologies like Amazon Web Services and Mirantis OpenStack indicates a strong grasp of cloud computing principles. This expertise is crucial for roles within the cloud computing segment, which often overlaps with engineering and operations."
+          }
+        ]
+      }
+    }
+  ],
+  "errors": []
+}

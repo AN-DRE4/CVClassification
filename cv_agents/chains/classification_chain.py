@@ -1,6 +1,7 @@
 from ..expertise.agent import ExpertiseAgent
 from ..role.agent import RoleLevelAgent
 from ..org_unit.agent import OrgUnitAgent
+from ..interpreter.agent import InterpreterAgent
 from ..utils.data_extractor import extract_cv_sections
 from ..utils.vector_utils import CVVectorizer
 import json
@@ -48,6 +49,39 @@ class CVClassificationOrchestrator:
                 return True
         except Exception as e:
             print(f"Error loading configuration file: {e}")
+            return False
+    
+    def load_config_from_interpreter(self, file_path: str, interpretation_description: str, agent_type: str):
+        """Load configuration using the interpreter agent"""
+        try:
+            result = InterpreterAgent.process_file_for_agent(
+                file_path=file_path,
+                interpretation_description=interpretation_description,
+                agent_type=agent_type
+            )
+            
+            if not result:
+                print(f"Error: Interpreter couldn't process the file for {agent_type}")
+                return False
+            
+            # Create a configuration dictionary for the appropriate agent type
+            config = {}
+            if agent_type == "expertise":
+                config = {"expertise": result}
+            elif agent_type == "role_levels":
+                config = {"role_levels": result}
+            elif agent_type == "org_units":
+                config = {"org_units": result}
+            else:
+                print(f"Error: Unknown agent type {agent_type}")
+                return False
+            
+            # Update the configuration
+            self.update_config(config)
+            return True
+            
+        except Exception as e:
+            print(f"Error loading configuration using interpreter: {e}")
             return False
     
     def _load_memory(self) -> Dict:
@@ -207,7 +241,8 @@ class CVClassificationOrchestrator:
         """Process a CV through the entire agent chain with memory support"""
         # Check for historical data
         print("DEBUG: checking for historical data")
-        exact_match, similar_cvs = None, None # self._get_historical_data(cv_data)
+        exact_match, similar_cvs = None, None 
+        # exact_match, similar_cvs = self._get_historical_data(cv_data)
         print("DEBUG: extracted historical data")
         if exact_match:
             print(f"Found exact match for resume {cv_data.get('resume_id')}")

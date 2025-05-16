@@ -46,7 +46,8 @@ class RoleLevelAgent(BaseAgent):
         """Build the prompt template using current configuration"""
         # Get role levels from config or use defaults
         role_levels = self.custom_config.get("role_levels", DEFAULT_ROLE_LEVELS)
-        
+        print(f"role_levels: {role_levels}")
+
         # Format the role levels as a bullet list
         formatted_role_levels = "\n".join([f"- {level['name']}: {level['description']}" for level in role_levels])
         

@@ -1,0 +1,41 @@
+{
+  "timestamp": "20250516_170114",
+  "total_processed": 1,
+  "total_errors": 0,
+  "results": [
+    {
+      "resume_id": "upload_9826_PrathibhaRajuK (1).txt_20250516_170054",
+      "timestamp": "2025-05-16T17:01:14.054815",
+      "source": "new_analysis",
+      "expertise": {
+        "expertise": [
+          {
+            "category": "software_development",
+            "confidence": 0.9,
+            "justification": "The candidate has worked as a Junior Software Engineer, where they were involved in development, unit testing, and support for a Cargo Management System and an Asset Management System. Their technical skills in Visual Studio, C#, VB.Net, and JavaScript further support their expertise in software development."
+          }
+        ]
+      },
+      "role_levels": {
+        "role_levels": [
+          {
+            "expertise": "software_development",
+            "level": "entry_level",
+            "confidence": 0.95,
+            "justification": "The candidate has worked for 2 years as a Junior Software Engineer, which aligns with the entry-level designation. Their responsibilities include development, unit testing, and support, which are typical for junior roles. Although they have experience in writing specifications and database design, the overall scope of their responsibilities suggests they are still in the early stages of their career, making entry-level the most appropriate classification."
+          }
+        ]
+      },
+      "org_unit": {
+        "org_units": [
+          {
+            "unit": "engineering",
+            "confidence": 0.95,
+            "justification": "The candidate's work experience as a Junior Software Engineer directly aligns with the engineering organizational unit, specifically in software development. Their responsibilities included development, unit testing, and support for two systems, which are core functions of software engineering. Additionally, their technical skills in programming languages such as C#, VB.Net, and JavaScript further reinforce their fit within this unit. Given their entry-level role and the nature of their tasks, they are well-suited for a position that focuses on software development within the engineering unit."
+          }
+        ]
+      }
+    }
+  ],
+  "errors": []
+}

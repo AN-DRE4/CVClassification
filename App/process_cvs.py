@@ -1,13 +1,15 @@
 import json
 import os
 from datetime import datetime
-from typing import Dict, List, Optional, Any
+from typing import Dict, List, Optional, Any, Tuple
 from tqdm import tqdm
 import argparse
 from cv_agents.chains.classification_chain import CVClassificationOrchestrator
 
 class CVProcessor:
-    def __init__(self, input_file: str, output_dir: str = "results", custom_config: Optional[Dict[str, Any]] = None, config_files: Optional[List[str]] = None):
+    def __init__(self, input_file: str, output_dir: str = "results", custom_config: Optional[Dict[str, Any]] = None, 
+                 config_files: Optional[List[str]] = None, 
+                 interpreter_configs: Optional[List[Tuple[str, str, str]]] = None):
         self.input_file = input_file
         self.output_dir = output_dir
         
@@ -18,6 +20,11 @@ class CVProcessor:
         if config_files:
             for config_file in config_files:
                 self.load_config_from_file(config_file)
+        
+        # Load and apply interpreter configurations if provided
+        if interpreter_configs:
+            for file_path, description, agent_type in interpreter_configs:
+                self.load_config_from_interpreter(file_path, description, agent_type)
                 
         self.results: List[Dict] = []
         self.errors: List[Dict] = []
@@ -32,6 +39,15 @@ class CVProcessor:
             return self.orchestrator.load_config_from_file(config_file)
         except Exception as e:
             print(f"Error loading configuration file: {e}")
+            return False
+    
+    def load_config_from_interpreter(self, file_path: str, interpretation_description: str, agent_type: str) -> bool:
+        """Load configuration using the interpreter agent"""
+        print(f"Loading configuration for {agent_type} using interpreter from {file_path}")
+        try:
+            return self.orchestrator.load_config_from_interpreter(file_path, interpretation_description, agent_type)
+        except Exception as e:
+            print(f"Error loading configuration using interpreter: {e}")
             return False
     
     def load_cv_data(self) -> List[Dict]:
@@ -138,10 +154,18 @@ def main():
     parser.add_argument('--max_cvs', type=int, default=None, help='Maximum number of CVs to process, if None, all CVs will be processed')
     parser.add_argument('--clear_memory', type=bool, default=False, help='Clear memory before processing')
     parser.add_argument('--config', type=str, action='append', help='Path to configuration file(s) for customizing agent behavior')
+    
+    # Add interpreter configuration arguments
+    parser.add_argument('--expertise-file', type=str, help='Path to file containing expertise categories information')
+    parser.add_argument('--expertise-description', type=str, help='Description of how to interpret the expertise file')
+    parser.add_argument('--role-file', type=str, help='Path to file containing role levels information')
+    parser.add_argument('--role-description', type=str, help='Description of how to interpret the role file')
+    parser.add_argument('--org-file', type=str, help='Path to file containing organizational units information')
+    parser.add_argument('--org-description', type=str, help='Description of how to interpret the org file')
+    
     args = parser.parse_args()
     print(f"Processing CVs from {args.input} to {args.output}")
     
-
     # Configuration
     input_file = args.input if args.input else 'silver_labeled_resumes.json'
     output_dir = args.output if args.output else 'agents_results'
@@ -151,11 +175,30 @@ def main():
     clear_memory = args.clear_memory if args.clear_memory else False
     config_files = args.config if args.config else []
     
+    # Process interpreter configurations
+    interpreter_configs = []
+    
+    if args.expertise_file and args.expertise_description:
+        interpreter_configs.append((args.expertise_file, args.expertise_description, "expertise"))
+    
+    if args.role_file and args.role_description:
+        interpreter_configs.append((args.role_file, args.role_description, "role_levels"))
+    
+    if args.org_file and args.org_description:
+        interpreter_configs.append((args.org_file, args.org_description, "org_units"))
+    
     # Initialize and run processor
-    processor = CVProcessor(input_file, output_dir, config_files=config_files)
+    processor = CVProcessor(
+        input_file=input_file, 
+        output_dir=output_dir, 
+        config_files=config_files,
+        interpreter_configs=interpreter_configs
+    )
+    
     if clear_memory:
         print("Clearing memory...")
         processor.orchestrator.clear_memory()
+    
     print("Processing CVs...")
     processor.process_cvs(batch_size, save_interval, max_cvs)
 

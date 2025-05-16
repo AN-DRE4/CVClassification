@@ -1,0 +1,95 @@
+{
+  "timestamp": "20250516_181301",
+  "total_processed": 1,
+  "total_errors": 0,
+  "results": [
+    {
+      "resume_id": "upload_13170_Mohit_Kumar (2).txt_20250516_181227",
+      "timestamp": "2025-05-16T18:13:01.074790",
+      "source": "new_analysis",
+      "expertise": {
+        "expertise": [
+          {
+            "category": "devops",
+            "confidence": 0.9,
+            "justification": "The candidate has extensive experience in deployment and management of virtualized environments, including the use of KVM, VMware, and various Linux distributions. Responsibilities such as automating server functions, managing datacenter infrastructure, and implementing solutions for clients indicate a strong background in DevOps practices."
+          },
+          {
+            "category": "data_engineering",
+            "confidence": 0.7,
+            "justification": "The candidate's experience with managing virtual hosts, storage solutions, and infrastructure provisioning suggests a solid understanding of data engineering principles, particularly in the context of cloud and virtualization technologies."
+          },
+          {
+            "category": "software_development",
+            "confidence": 0.6,
+            "justification": "The candidate has experience with technical designing of solutions and drafting technical proposals, which indicates a level of involvement in software development processes, particularly in creating solutions and blueprints for clients."
+          },
+          {
+            "category": "cybersecurity",
+            "confidence": 0.5,
+            "justification": "The candidate has assessed threats and vulnerabilities in existing deployments and integrated antivirus solutions, which demonstrates a foundational understanding of cybersecurity principles."
+          },
+          {
+            "category": "management",
+            "confidence": 0.6,
+            "justification": "The candidate has experience in client-facing presentations, solution designing, and vendor management, indicating skills in project and team management."
+          }
+        ]
+      },
+      "role_levels": {
+        "role_levels": [
+          {
+            "expertise": "devops",
+            "level": "mid_level",
+            "confidence": 0.9,
+            "justification": "The candidate has 4.5 years of experience as a Senior System Engineer and has demonstrated significant responsibilities in deployment and management of virtualized environments, including KVM and VMware. Their role involved automating server functions and managing datacenter infrastructure, which aligns with mid-level DevOps responsibilities."
+          },
+          {
+            "expertise": "data_engineering",
+            "level": "mid_level",
+            "confidence": 0.7,
+            "justification": "With experience managing virtual hosts and storage solutions, the candidate shows a solid understanding of data engineering principles. Their responsibilities in infrastructure provisioning and deployment of IAAS solutions indicate a mid-level understanding of data engineering, particularly in cloud and virtualization contexts."
+          },
+          {
+            "expertise": "software_development",
+            "level": "entry_level",
+            "confidence": 0.6,
+            "justification": "The candidate's involvement in technical designing and drafting proposals suggests some engagement in software development processes. However, the lack of direct software development experience and the relatively lower complexity of responsibilities indicate an entry-level understanding in this area."
+          },
+          {
+            "expertise": "cybersecurity",
+            "level": "entry_level",
+            "confidence": 0.5,
+            "justification": "The candidate has performed assessments of threats and vulnerabilities and integrated antivirus solutions, which shows a foundational understanding of cybersecurity. However, the experience is limited and does not indicate a higher level of responsibility, placing it at entry-level."
+          },
+          {
+            "expertise": "management",
+            "level": "mid_level",
+            "confidence": 0.6,
+            "justification": "The candidate has experience in client-facing presentations and solution designing, which indicates some level of project and team management. However, the lack of direct management responsibilities suggests a mid-level rather than senior management role."
+          }
+        ]
+      },
+      "org_unit": {
+        "org_units": [
+          {
+            "unit": "engineering",
+            "confidence": 0.9,
+            "justification": "The candidate has a strong background in engineering, particularly in DevOps and infrastructure management. Their extensive experience with virtualization technologies (KVM, VMware) and Linux systems indicates a solid fit for an engineering role focused on software development and infrastructure. The responsibilities outlined in their work experience, such as deployment and management of virtualized environments, align well with the engineering unit's focus on software development and infrastructure."
+          },
+          {
+            "unit": "operations",
+            "confidence": 0.8,
+            "justification": "The candidate's experience in managing datacenter infrastructure, automating server functions, and handling client-facing presentations suggests a strong fit for operations roles. Their responsibilities in project management, solution designing, and vendor management further support their alignment with operational functions, which often require coordination and execution of technical solutions in a business context."
+          },
+          {
+            "unit": "data",
+            "confidence": 0.7,
+            "justification": "The candidate's experience with managing virtual hosts and storage solutions, as well as their involvement in infrastructure provisioning, indicates a solid understanding of data engineering principles. Their work with cloud technologies and IAAS solutions suggests they could contribute effectively to data-related projects, particularly those that involve data infrastructure and engineering."
+          }
+        ]
+      }
+    }
+  ],
+  "errors": []
+}

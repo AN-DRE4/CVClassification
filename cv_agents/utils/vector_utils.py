@@ -27,8 +27,10 @@ class CVVectorizer:
     
     def _fit_vectorizer(self):
         """Fit the vectorizer with existing texts"""
-        if self.vector_cache["texts"]:
-            texts = list(self.vector_cache["texts"].values())
+        with open("silver_labeled_resumes.json", 'r') as f:
+            silver_labeled_resumes = json.load(f)
+        if silver_labeled_resumes:
+            texts = [self._get_cv_text(resume) for resume in silver_labeled_resumes]
             self.vectorizer.fit(texts)
     
     def _get_cv_text(self, cv_data: Dict) -> str:
@@ -60,7 +62,7 @@ class CVVectorizer:
     
     def find_similar_cvs(self, cv_data: Dict, resume_id: str, threshold: float = 0.7) -> List[Dict]:
         """Find similar CVs based on vector similarity"""
-        if not self.vector_cache["vectors"]:
+        """if not self.vector_cache["vectors"]:
             # Fit the vectorizer on the current CV text if cache is empty
             cv_text = self._get_cv_text(cv_data)
             try:
@@ -75,7 +77,7 @@ class CVVectorizer:
                 print(f"DEBUG: Error during vectorization: {str(e)}")
                 print(f"DEBUG: Error type: {type(e)}")
                 raise
-            return []
+            return []"""
         
         print("DEBUG: vector cache found")
         

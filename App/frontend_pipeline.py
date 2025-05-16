@@ -4,6 +4,7 @@ import os
 from datetime import datetime
 import sys
 import importlib.util
+from typing import Dict, Any, Optional, List, Tuple
 
 # Add parent directory to path to import modules
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -26,10 +27,16 @@ st.set_page_config(
 
 # Initialize orchestrator
 @st.cache_resource
-def get_orchestrator(input_file: str, output_dir: str = "results", custom_config=None, config_files=None):
-    return CVProcessor(input_file, output_dir, custom_config=custom_config, config_files=config_files)
+def get_orchestrator(input_file: str, output_dir: str = "results", custom_config=None, config_files=None, interpreter_configs=None):
+    return CVProcessor(
+        input_file=input_file, 
+        output_dir=output_dir, 
+        custom_config=custom_config, 
+        config_files=config_files,
+        interpreter_configs=interpreter_configs
+    )
 
-def process_cv_text(cv_text, file_name, custom_config=None, config_files=None):
+def process_cv_text(cv_text, file_name, custom_config=None, config_files=None, interpreter_configs=None):
     """Process a CV text through the entire pipeline"""
     # Step 1: Initial processing with zero-shot approach
     st.write("### Step 1: Initial CV information extraction")
@@ -63,7 +70,8 @@ def process_cv_text(cv_text, file_name, custom_config=None, config_files=None):
             input_file="processed_cv_data.json", 
             output_dir="agents_results",
             custom_config=custom_config,
-            config_files=config_files
+            config_files=config_files,
+            interpreter_configs=interpreter_configs
         )
         try:
             results = orchestrator.process_cvs(batch_size=1, save_interval=1, max_cvs=1)
@@ -191,6 +199,69 @@ def create_custom_org_units_config():
     
     return None
 
+def create_interpreter_config():
+    """Create configurations using the interpreter agent"""
+    interpreter_configs = []
+    
+    st.write("### Expertise Categories File Interpretation")
+    with st.expander("Configure Expertise Categories using a File", expanded=False):
+        expertise_file = st.file_uploader("Upload file with expertise categories", type=["txt", "csv", "json", "xlsx", "md"])
+        if expertise_file:
+            expertise_description = st.text_area(
+                "Describe how to interpret this file for expertise categories",
+                "This file contains expertise categories for CV classification. Each line represents a distinct expertise area."
+            )
+            
+            if expertise_description:
+                # Save the file temporarily
+                expertise_file_path = f"temp_expertise_{expertise_file.name}"
+                with open(expertise_file_path, "wb") as f:
+                    f.write(expertise_file.getbuffer())
+                
+                # Add to interpreter configs
+                interpreter_configs.append((expertise_file_path, expertise_description, "expertise"))
+                st.success(f"Added expertise configuration from file: {expertise_file.name}")
+
+    st.write("### Role Levels File Interpretation")
+    with st.expander("Configure Role Levels using a File", expanded=False):
+        role_file = st.file_uploader("Upload file with role levels", type=["txt", "csv", "json", "xlsx", "md"])
+        if role_file:
+            role_description = st.text_area(
+                "Describe how to interpret this file for role levels",
+                "This file contains role levels for CV classification. Each section describes a role level with its requirements and responsibilities."
+            )
+            
+            if role_description:
+                # Save the file temporarily
+                role_file_path = f"temp_role_{role_file.name}"
+                with open(role_file_path, "wb") as f:
+                    f.write(role_file.getbuffer())
+                
+                # Add to interpreter configs
+                interpreter_configs.append((role_file_path, role_description, "role_levels"))
+                st.success(f"Added role levels configuration from file: {role_file.name}")
+
+    st.write("### Organizational Units File Interpretation")
+    with st.expander("Configure Organizational Units using a File", expanded=False):
+        org_file = st.file_uploader("Upload file with organizational units", type=["txt", "csv", "json", "xlsx", "md"])
+        if org_file:
+            org_description = st.text_area(
+                "Describe how to interpret this file for organizational units",
+                "This file contains organizational units for CV classification. Each section describes a unit with the skills needed for that unit."
+            )
+            
+            if org_description:
+                # Save the file temporarily
+                org_file_path = f"temp_org_{org_file.name}"
+                with open(org_file_path, "wb") as f:
+                    f.write(org_file.getbuffer())
+                
+                # Add to interpreter configs
+                interpreter_configs.append((org_file_path, org_description, "org_units"))
+                st.success(f"Added organizational units configuration from file: {org_file.name}")
+    
+    return interpreter_configs if interpreter_configs else None
+
 def main():
     st.title("CV Classification Pipeline")
     st.write("""
@@ -202,7 +273,7 @@ def main():
     """)
     
     # Add tabs for CV upload and customization
-    tabs = st.tabs(["CV Upload & Processing", "Classification Customization"])
+    tabs = st.tabs(["CV Upload & Processing", "Classification Customization", "Advanced File Interpretation"])
     
     # Tab 1: CV Upload & Processing
     with tabs[0]:
@@ -237,7 +308,7 @@ def main():
         
         # Configuration file uploads
         st.write("#### Optional: Upload configuration files")
-        st.info("You can upload pre-configured JSON files here, or create your own custom configuration in the **Classification Customization** tab.")
+        st.info("You can upload pre-configured JSON files here, or create your own custom configuration in the **Classification Customization** tab or use **Advanced File Interpretation** for more complex configurations.")
         uploaded_config_files = st.file_uploader("Upload JSON configuration files", type=["json"], accept_multiple_files=True)
         
         config_files = []
@@ -268,8 +339,21 @@ def main():
                 if "org_units_config" in st.session_state and st.session_state.org_units_config:
                     custom_config["org_units"] = st.session_state.org_units_config
                 
+                # Get interpreter configurations
+                interpreter_configs = None
+                if "interpreter_configs" in st.session_state and st.session_state.interpreter_configs:
+                    interpreter_configs = st.session_state.interpreter_configs
+
+                print(f"interpreter_configs: {interpreter_configs}")
+                
                 # Process the CV
-                results = process_cv_text(cv_text, file_name, custom_config=custom_config, config_files=config_files)
+                results = process_cv_text(
+                    cv_text, 
+                    file_name, 
+                    custom_config=custom_config, 
+                    config_files=config_files,
+                    interpreter_configs=interpreter_configs
+                )
                 
                 if results:
                     display_results(results[-1])
@@ -286,6 +370,12 @@ def main():
                 for temp_file in config_files:
                     if os.path.exists(temp_file):
                         os.remove(temp_file)
+                
+                # Clean up temporary interpreter files
+                if interpreter_configs:
+                    for file_path, _, _ in interpreter_configs:
+                        if os.path.exists(file_path):
+                            os.remove(file_path)
     
     # Tab 2: Classification Customization
     with tabs[1]:
@@ -368,6 +458,25 @@ def main():
                 file_name=f"cv_classification_config_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
                 mime="application/json"
             )
+    
+    # Tab 3: Advanced File Interpretation
+    with tabs[2]:
+        st.write("""
+        ## Advanced File Interpretation
+        
+        Use this feature to provide custom files with detailed descriptions of how the system should interpret them.
+        Upload files containing your own categorization schemes, role level definitions, or organizational structures.
+        
+        For each uploaded file, provide a clear description of how it should be interpreted.
+        The system will use an AI interpreter to convert your data into a format that the classification agents can use.
+        """)
+        
+        interpreter_configs = create_interpreter_config()
+        if interpreter_configs:
+            # Save to session state
+            st.session_state.interpreter_configs = interpreter_configs
+            
+            st.success("File interpretation configurations saved. These will be applied when you process a CV.")
 
 if __name__ == "__main__":
     main()

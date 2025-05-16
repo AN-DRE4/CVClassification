@@ -1,0 +1,163 @@
+{
+  "timestamp": "20250516_171313",
+  "total_processed": 3,
+  "total_errors": 0,
+  "results": [
+    {
+      "resume_id": "upload_9826_PrathibhaRajuK (1).txt_20250516_170054",
+      "timestamp": "2025-05-16T17:01:14.054815",
+      "source": "new_analysis",
+      "expertise": {
+        "expertise": [
+          {
+            "category": "software_development",
+            "confidence": 0.9,
+            "justification": "The candidate has worked as a Junior Software Engineer, where they were involved in development, unit testing, and support for a Cargo Management System and an Asset Management System. Their technical skills in Visual Studio, C#, VB.Net, and JavaScript further support their expertise in software development."
+          }
+        ]
+      },
+      "role_levels": {
+        "role_levels": [
+          {
+            "expertise": "software_development",
+            "level": "entry_level",
+            "confidence": 0.95,
+            "justification": "The candidate has worked for 2 years as a Junior Software Engineer, which aligns with the entry-level designation. Their responsibilities include development, unit testing, and support, which are typical for junior roles. Although they have experience in writing specifications and database design, the overall scope of their responsibilities suggests they are still in the early stages of their career, making entry-level the most appropriate classification."
+          }
+        ]
+      },
+      "org_unit": {
+        "org_units": [
+          {
+            "unit": "engineering",
+            "confidence": 0.95,
+            "justification": "The candidate's work experience as a Junior Software Engineer directly aligns with the engineering organizational unit, specifically in software development. Their responsibilities included development, unit testing, and support for two systems, which are core functions of software engineering. Additionally, their technical skills in programming languages such as C#, VB.Net, and JavaScript further reinforce their fit within this unit. Given their entry-level role and the nature of their tasks, they are well-suited for a position that focuses on software development within the engineering unit."
+          }
+        ]
+      }
+    },
+    {
+      "resume_id": "upload_9826_PrathibhaRajuK (1).txt_20250516_170534",
+      "timestamp": "2025-05-16T17:05:36.024403",
+      "source": "consensus",
+      "expertise": {
+        "expertise": [
+          {
+            "category": "software_development",
+            "confidence": 0.9
+          }
+        ]
+      },
+      "role_levels": {
+        "role_levels": [
+          {
+            "expertise": "software_development",
+            "level": "entry_level",
+            "confidence": 0.95
+          }
+        ]
+      },
+      "org_unit": {
+        "org_units": [
+          {
+            "unit": "engineering",
+            "confidence": 0.95
+          }
+        ]
+      }
+    },
+    {
+      "resume_id": "upload_13170_Mohit_Kumar (2).txt_20250516_171251",
+      "timestamp": "2025-05-16T17:13:13.961081",
+      "source": "new_analysis",
+      "expertise": {
+        "expertise": [
+          {
+            "category": "devops",
+            "confidence": 0.9,
+            "justification": "The candidate has extensive experience in managing virtualized environments, including deployment and administration of virtual hosts and datacenters. Responsibilities include automation of server functions, technical design of solutions, and 24/7 operations support, which are key aspects of DevOps practices."
+          },
+          {
+            "category": "data_engineering",
+            "confidence": 0.7,
+            "justification": "The candidate has experience in managing and designing infrastructure for data centers, including the setup of storage solutions and handling of virtual machines. This indicates a strong understanding of data engineering principles, particularly in the context of infrastructure management."
+          },
+          {
+            "category": "cybersecurity",
+            "confidence": 0.6,
+            "justification": "The candidate has assessed threats and vulnerabilities in existing deployments and has experience with security benchmarks. This indicates a foundational understanding of cybersecurity practices, particularly in relation to system administration."
+          },
+          {
+            "category": "software_development",
+            "confidence": 0.5,
+            "justification": "The candidate has implemented services like Subversion and Bugzilla, which are tools commonly used in software development for version control and issue tracking. However, there is limited direct evidence of software development experience."
+          },
+          {
+            "category": "management",
+            "confidence": 0.5,
+            "justification": "The candidate has coordinated client-facing presentations and drafted technical proposals, indicating some level of management and communication skills. However, the extent of management experience is not deeply detailed."
+          }
+        ]
+      },
+      "role_levels": {
+        "role_levels": [
+          {
+            "expertise": "devops",
+            "level": "mid_level",
+            "confidence": 0.9,
+            "justification": "The candidate has significant experience in managing virtualized environments and datacenters, with responsibilities that include automation of server functions and 24/7 operations support. These responsibilities align with mid-level DevOps roles, which typically require 2-5 years of experience and a solid understanding of both development and operations."
+          },
+          {
+            "expertise": "data_engineering",
+            "level": "mid_level",
+            "confidence": 0.7,
+            "justification": "The candidate's experience in managing and designing infrastructure for data centers, including storage solutions and virtual machine management, indicates a solid understanding of data engineering principles. This level of expertise is consistent with mid-level roles, which require a good grasp of data infrastructure management, typically seen in professionals with 2-5 years of experience."
+          },
+          {
+            "expertise": "cybersecurity",
+            "level": "entry_level",
+            "confidence": 0.6,
+            "justification": "The candidate has assessed threats and vulnerabilities and has experience with security benchmarks, which suggests a foundational understanding of cybersecurity. However, the experience is not extensive enough to qualify for mid-level roles, making entry-level the most appropriate classification."
+          },
+          {
+            "expertise": "software_development",
+            "level": "entry_level",
+            "confidence": 0.5,
+            "justification": "The candidate has implemented tools like Subversion and Bugzilla, which are relevant to software development. However, there is limited evidence of direct software development experience, leading to the conclusion that an entry-level role is most suitable."
+          },
+          {
+            "expertise": "management",
+            "level": "entry_level",
+            "confidence": 0.5,
+            "justification": "The candidate has some experience in coordinating client-facing presentations and drafting technical proposals, which indicates basic management skills. However, the lack of extensive management responsibilities suggests that an entry-level classification is more appropriate."
+          }
+        ]
+      },
+      "org_unit": {
+        "org_units": [
+          {
+            "unit": "engineering",
+            "confidence": 0.9,
+            "justification": "The candidate has extensive experience in IT consulting with a strong focus on infrastructure management, particularly in virtualized environments and cloud computing. Their responsibilities include deployment and administration of virtual hosts, which aligns closely with the engineering unit, specifically in software development and DevOps. The candidate's skills in automation and managing datacenter operations further solidify their fit within this unit."
+          },
+          {
+            "unit": "data",
+            "confidence": 0.7,
+            "justification": "The candidate's experience in managing and designing infrastructure for data centers, including storage solutions and virtual machine management, indicates a solid understanding of data engineering principles. This aligns well with the data unit, particularly in data engineering, as they have demonstrated the ability to handle complex data environments and ensure operational performance."
+          },
+          {
+            "unit": "operations",
+            "confidence": 0.8,
+            "justification": "The candidate has significant experience in 24/7 operations support, technical design of solutions, and managing virtualized environments. Their responsibilities in project management and operational performance issues suggest a strong fit within the operations unit, where project management and logistics are key components."
+          },
+          {
+            "unit": "customer_service",
+            "confidence": 0.6,
+            "justification": "The candidate has experience in client-facing roles, including conducting presentations and drafting technical proposals. While this indicates some level of customer interaction, it is not the primary focus of their experience. However, their communication skills and teamwork abilities suggest they could contribute positively to customer service roles."
+          }
+        ]
+      }
+    }
+  ],
+  "errors": []
+}
