@@ -16,7 +16,7 @@ Provide a confidence score (0-1) and justification for each determination.
 Provide an in depth justification for your response. Be clear and concise but also thorough and with a good level of detail.
 Format your response as a valid JSON object with "role_levels" as the key containing an array of objects, 
 each with "expertise", "level", "confidence", and "justification" fields.
-Your entire response/output is going to consist of a single JSON object, and you will NOT wrap it within JSON md markers. This is very important since it will be parsed directly as JSON."""
+Your entire response/output is going to consist of a single JSON object, and you will NOT wrap it within JSON md markers. This is very important since it will be parsed directly as JSON.{feedback_context}"""
 
 # Default role levels for backward compatibility
 DEFAULT_ROLE_LEVELS = [
@@ -34,6 +34,8 @@ Work Experience:
 Previously identified expertise areas:
 {expertise_results}
 
+Note that the duration in the work experience is in years.
+
 For each expertise area, determine the most appropriate role level with justification.
 Your entire response/output is going to consist of a single JSON object, and you will NOT wrap it within JSON md markers.  This is very important since it will be parsed directly as JSON."""
 
@@ -50,8 +52,14 @@ class RoleLevelAgent(BaseAgent):
         # Format the role levels as a bullet list
         formatted_role_levels = "\n".join([f"- {level['name']}: {level['description']}" for level in role_levels])
         
-        # Create the system prompt with the role levels
-        system_prompt = ROLE_SYSTEM_PROMPT_TEMPLATE.format(role_levels=formatted_role_levels)
+        # Get feedback context
+        feedback_context = self.get_feedback_context("role_level")
+        
+        # Create the system prompt with the role levels and feedback
+        system_prompt = ROLE_SYSTEM_PROMPT_TEMPLATE.format(
+            role_levels=formatted_role_levels,
+            feedback_context=feedback_context
+        )
         
         # Build the final prompt template
         self.prompt = ChatPromptTemplate.from_messages([
@@ -136,6 +144,45 @@ class RoleLevelAgent(BaseAgent):
         # Store input for potential fallback use
         self.last_input = cv_data
         return super().process(cv_data)
+
+    def _apply_feedback_adjustments(self, result):
+        """Apply feedback-based adjustments to role level classifications"""
+        if "role_levels" not in result:
+            return result
+        
+        adjusted_role_levels = []
+        for role in result["role_levels"]:
+            expertise = role["expertise"]
+            level = role["level"]
+            confidence = role["confidence"]
+            
+            # Create a key for feedback lookup
+            role_key = f"{expertise}_{level}"
+            
+            # Get feedback summary for this role level
+            feedback_summary = self.feedback_manager.get_feedback_summary("role_level", role_key)
+            
+            # Apply confidence adjustment based on feedback
+            confidence_adjustment = feedback_summary.get("confidence_adjustment", 0.0)
+            adjusted_confidence = max(0.0, min(1.0, confidence + confidence_adjustment))
+            
+            # Add feedback information to justification if there's significant feedback
+            justification = role.get("justification", "")
+            if feedback_summary.get("positive_count", 0) > 0 or feedback_summary.get("negative_count", 0) > 0:
+                feedback_info = f" [Confidence adjusted based on {feedback_summary['positive_count']} positive and {feedback_summary['negative_count']} negative user feedback]"
+                justification += feedback_info
+            
+            adjusted_role_levels.append({
+                "expertise": expertise,
+                "level": level,
+                "confidence": adjusted_confidence,
+                "justification": justification,
+                "original_confidence": confidence,
+                "feedback_adjustment": confidence_adjustment
+            })
+        
+        result["role_levels"] = adjusted_role_levels
+        return result
 
 def clean_json_string(json_string):
     pattern = r'^```json\s*(.*?)\s*```$'

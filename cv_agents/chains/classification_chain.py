@@ -4,6 +4,7 @@ from ..org_unit.agent import OrgUnitAgent
 from ..interpreter.agent import InterpreterAgent
 from ..utils.data_extractor import extract_cv_sections
 from ..utils.vector_utils import CVVectorizer
+from ..utils.feedback_manager import FeedbackManager
 import json
 import os
 from typing import Dict, List, Optional, Tuple, Any
@@ -25,6 +26,9 @@ class CVClassificationOrchestrator:
         self.memory_path = memory_path
         self.memory = self._load_memory()
         self.vectorizer = CVVectorizer()
+        
+        # Initialize feedback manager
+        self.feedback_manager = FeedbackManager()
     
     def update_config(self, new_config: Dict[str, Any]):
         """Update the configuration for the orchestrator and its agents"""
@@ -314,3 +318,34 @@ class CVClassificationOrchestrator:
         self._save_memory()
         self.vectorizer.clear_cache()
         print("Memory cleared: ", self.memory)
+
+    def add_feedback(self, classification_result: Dict):
+        """Add user feedback to a classification result"""
+        if "user_feedback" not in classification_result:
+            return False
+        
+        resume_id = classification_result.get("resume_id", "")
+        user_feedback = classification_result["user_feedback"]
+        
+        # Remove user_feedback from classification_result for storage
+        clean_result = {k: v for k, v in classification_result.items() if k != "user_feedback"}
+        
+        # Add feedback using the feedback manager
+        self.feedback_manager.add_feedback(resume_id, clean_result, user_feedback)
+        
+        # Find and update the classification in memory
+        for classification in self.memory["classifications"]:
+            if classification["resume_id"] == resume_id:
+                classification["user_feedback"] = user_feedback
+                self._save_memory()
+                return True
+        
+        return False
+    
+    def get_feedback_stats(self):
+        """Get feedback statistics"""
+        return self.feedback_manager.get_stats()
+    
+    def clear_feedback(self):
+        """Clear all feedback data"""
+        self.feedback_manager.clear_feedback()

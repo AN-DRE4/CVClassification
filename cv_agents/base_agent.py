@@ -18,8 +18,12 @@ class BaseAgent:
         self.retry_delay = retry_delay
         self.custom_config = custom_config or {}
         
+        # Initialize feedback manager
+        from .utils.feedback_manager import FeedbackManager
+        self.feedback_manager = FeedbackManager()
+        
     def process(self, cv_data):
-        """Process a CV with the agent with automatic retries"""
+        """Process a CV with the agent with automatic retries and feedback integration"""
         if not self.prompt:
             raise NotImplementedError("Each agent must define its prompt")
         
@@ -42,6 +46,8 @@ class BaseAgent:
                 # If we reach here, parsing was successful
                 # For additional validation, check if the result is somewhat valid
                 if self._validate_result(result):
+                    # Apply feedback adjustments to the result
+                    result = self._apply_feedback_adjustments(result)
                     return result
                 else:
                     error_msg = f"Invalid result format after parsing: {result}"
@@ -73,6 +79,11 @@ class BaseAgent:
         This is meant to be overridden by subclasses for specific customization needs"""
         pass
     
+    def _apply_feedback_adjustments(self, result):
+        """Apply feedback-based adjustments to the classification result
+        This should be overridden by subclasses for agent-specific adjustments"""
+        return result
+    
     def _parse_response(self, response_text):
         """Parse the LLM response into structured data"""
         raise NotImplementedError("Each agent must implement parsing logic")
@@ -101,3 +112,45 @@ class BaseAgent:
         """Hook called when configuration is updated
         Override in subclasses to rebuild prompt templates or other configuration-dependent components"""
         pass
+    
+    def get_feedback_context(self, agent_type: str) -> str:
+        """Get feedback context to include in prompts for learning from past feedback"""
+        feedback_stats = self.feedback_manager.get_stats()
+        
+        if feedback_stats["total_positive"] == 0 and feedback_stats["total_negative"] == 0:
+            return ""
+        
+        context = f"\n\nIMPORTANT: Based on user feedback from previous classifications:\n"
+        context += f"- Total positive feedback: {feedback_stats['total_positive']}\n"
+        context += f"- Total negative feedback: {feedback_stats['total_negative']}\n"
+        
+        # Add specific feedback insights
+        if agent_type == "expertise":
+            recent_feedback = self.feedback_manager.feedback_data.get("expertise_feedback", [])[-10:]  # Last 10
+        elif agent_type == "role_level":
+            recent_feedback = self.feedback_manager.feedback_data.get("role_level_feedback", [])[-10:]
+        elif agent_type == "org_unit":
+            recent_feedback = self.feedback_manager.feedback_data.get("org_unit_feedback", [])[-10:]
+        else:
+            recent_feedback = []
+        
+        if recent_feedback:
+            context += "\nRecent feedback patterns:\n"
+            positive_feedback = [f for f in recent_feedback if f["rating"] == "positive"]
+            negative_feedback = [f for f in recent_feedback if f["rating"] == "negative"]
+            
+            if positive_feedback:
+                context += "✓ Users appreciated classifications that:\n"
+                for feedback in positive_feedback[-3:]:  # Last 3 positive
+                    if feedback.get("reason"):
+                        context += f"  - {feedback['reason'][:100]}...\n"
+            
+            if negative_feedback:
+                context += "✗ Users found issues with classifications that:\n"
+                for feedback in negative_feedback[-3:]:  # Last 3 negative
+                    if feedback.get("reason"):
+                        context += f"  - {feedback['reason'][:100]}...\n"
+            
+            context += "\nPlease consider this feedback when making your classification.\n"
+        
+        return context

@@ -14,7 +14,7 @@ Provide a confidence score (0-1) and justification for your determination.
 Provide an in depth justification for your response. Be clear and concise but also thorough and with a good level of detail.
 Format your response as a valid JSON object with "org_units" as the key containing an array of objects, 
 each with "unit", "confidence", and "justification" fields.
-Your entire response/output is going to consist of a single JSON object, and you will NOT wrap it within JSON md markers"""
+Your entire response/output is going to consist of a single JSON object, and you will NOT wrap it within JSON md markers.{feedback_context}"""
 
 # Default org units for backward compatibility
 DEFAULT_ORG_UNITS = [
@@ -41,6 +41,8 @@ Expertise areas:
 Role levels:
 {role_results}
 
+Note that the duration in the work experience is in years.
+
 Determine the most appropriate organizational unit(s) with justification.
 Provide an in depth justification for your response. Be clear and concise but also thorough and with a good level of detail.
 Your entire response/output is going to consist of a single JSON object, and you will NOT wrap it within JSON md markers. This is very important since it will be parsed directly as JSON."""
@@ -58,8 +60,14 @@ class OrgUnitAgent(BaseAgent):
         # Format the org units as a bullet list
         formatted_org_units = "\n".join([f"- {unit['name']}: {unit['description']}" for unit in org_units])
         
-        # Create the system prompt with the org units
-        system_prompt = ORG_UNIT_SYSTEM_PROMPT_TEMPLATE.format(org_units=formatted_org_units)
+        # Get feedback context
+        feedback_context = self.get_feedback_context("org_unit")
+        
+        # Create the system prompt with the org units and feedback
+        system_prompt = ORG_UNIT_SYSTEM_PROMPT_TEMPLATE.format(
+            org_units=formatted_org_units,
+            feedback_context=feedback_context
+        )
         
         # Build the final prompt template
         self.prompt = ChatPromptTemplate.from_messages([
@@ -202,6 +210,40 @@ class OrgUnitAgent(BaseAgent):
             return {**default_mapping, **mapping}
         
         return default_mapping
+
+    def _apply_feedback_adjustments(self, result):
+        """Apply feedback-based adjustments to org unit classifications"""
+        if "org_units" not in result:
+            return result
+        
+        adjusted_org_units = []
+        for unit in result["org_units"]:
+            unit_name = unit["unit"]
+            confidence = unit["confidence"]
+            
+            # Get feedback summary for this org unit
+            feedback_summary = self.feedback_manager.get_feedback_summary("org_unit", unit_name)
+            
+            # Apply confidence adjustment based on feedback
+            confidence_adjustment = feedback_summary.get("confidence_adjustment", 0.0)
+            adjusted_confidence = max(0.0, min(1.0, confidence + confidence_adjustment))
+            
+            # Add feedback information to justification if there's significant feedback
+            justification = unit.get("justification", "")
+            if feedback_summary.get("positive_count", 0) > 0 or feedback_summary.get("negative_count", 0) > 0:
+                feedback_info = f" [Confidence adjusted based on {feedback_summary['positive_count']} positive and {feedback_summary['negative_count']} negative user feedback]"
+                justification += feedback_info
+            
+            adjusted_org_units.append({
+                "unit": unit_name,
+                "confidence": adjusted_confidence,
+                "justification": justification,
+                "original_confidence": confidence,
+                "feedback_adjustment": confidence_adjustment
+            })
+        
+        result["org_units"] = adjusted_org_units
+        return result
 
 def clean_json_string(json_string):
     pattern = r'^```json\s*(.*?)\s*```$'

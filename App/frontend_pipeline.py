@@ -66,7 +66,7 @@ def process_cv_text(cv_text, file_name, custom_config=None, config_files=None, i
     # Step 3: Process with agents/vector search
     st.write("### Step 2: Advanced CV Classification")
     with st.spinner("Classifying CV with agents..."):
-        orchestrator = get_orchestrator(
+        processor = CVProcessor(
             input_file="processed_cv_data.json", 
             output_dir="agents_results",
             custom_config=custom_config,
@@ -74,7 +74,9 @@ def process_cv_text(cv_text, file_name, custom_config=None, config_files=None, i
             interpreter_configs=interpreter_configs
         )
         try:
-            results = orchestrator.process_cvs(batch_size=1, save_interval=1, max_cvs=1)
+            results = processor.process_cvs(batch_size=1, save_interval=1, max_cvs=1)
+            # Store orchestrator in session state for feedback handling
+            st.session_state.orchestrator = processor.orchestrator
             return results
         except Exception as e:
             st.error(f"Error during CV classification: {str(e)}")
@@ -99,10 +101,27 @@ def display_results(results):
         if expertise_list:
             # Sort by confidence
             sorted_expertise = sorted(expertise_list, key=lambda x: x.get("confidence", 0), reverse=True)
-            for exp in sorted_expertise:
+            for i, exp in enumerate(sorted_expertise):
                 conf_pct = int(exp.get("confidence", 0) * 100)
-                st.write(f"{exp.get('category')} ({conf_pct}%)")
-                st.progress(exp.get("confidence", 0))
+                
+                # Create a row with the category, percentage, and info button
+                exp_col1, exp_col2 = st.columns([4, 1])
+                
+                with exp_col1:
+                    st.write(f"{exp.get('category')} ({conf_pct}%)")
+                    st.progress(exp.get("confidence", 0))
+                
+                with exp_col2:
+                    # Use popover for justification display
+                    with st.popover("ℹ️", help="View justification"):
+                        st.write(f"**Justification for {exp.get('category')}:**")
+                        st.write(exp.get("justification", "No justification provided"))
+                        
+                        # Show feedback adjustment info if available
+                        if exp.get("feedback_adjustment") is not None:
+                            original_conf = exp.get("original_confidence", exp.get("confidence", 0))
+                            adjustment = exp.get("feedback_adjustment", 0)
+                            st.info(f"Original confidence: {original_conf:.2f}, Feedback adjustment: {adjustment:+.2f}")
         else:
             st.write("No expertise areas identified")
     
@@ -113,10 +132,27 @@ def display_results(results):
         if role_levels:
             # Sort by confidence
             sorted_roles = sorted(role_levels, key=lambda x: x.get("confidence", 0), reverse=True)
-            for role in sorted_roles:
+            for i, role in enumerate(sorted_roles):
                 conf_pct = int(role.get("confidence", 0) * 100)
-                st.write(f"**{role.get('expertise')}:** {role.get('level')} ({conf_pct}%)")
-                st.progress(role.get("confidence", 0))
+                
+                # Create a row with the role info, percentage, and info button
+                role_col1, role_col2 = st.columns([4, 1])
+                
+                with role_col1:
+                    st.write(f"**{role.get('expertise')}:** {role.get('level')} ({conf_pct}%)")
+                    st.progress(role.get("confidence", 0))
+                
+                with role_col2:
+                    # Use popover for justification display
+                    with st.popover("ℹ️", help="View justification"):
+                        st.write(f"**Justification for {role.get('expertise')} - {role.get('level')}:**")
+                        st.write(role.get("justification", "No justification provided"))
+                        
+                        # Show feedback adjustment info if available
+                        if role.get("feedback_adjustment") is not None:
+                            original_conf = role.get("original_confidence", role.get("confidence", 0))
+                            adjustment = role.get("feedback_adjustment", 0)
+                            st.info(f"Original confidence: {original_conf:.2f}, Feedback adjustment: {adjustment:+.2f}")
         else:
             st.write("No role levels identified")
     
@@ -127,10 +163,27 @@ def display_results(results):
         if org_units:
             # Sort by confidence
             sorted_units = sorted(org_units, key=lambda x: x.get("confidence", 0), reverse=True)
-            for unit in sorted_units:
+            for i, unit in enumerate(sorted_units):
                 conf_pct = int(unit.get("confidence", 0) * 100)
-                st.write(f"{unit.get('unit')} ({conf_pct}%)")
-                st.progress(unit.get("confidence", 0))
+                
+                # Create a row with the unit info, percentage, and info button
+                unit_col1, unit_col2 = st.columns([4, 1])
+                
+                with unit_col1:
+                    st.write(f"{unit.get('unit')} ({conf_pct}%)")
+                    st.progress(unit.get("confidence", 0))
+                
+                with unit_col2:
+                    # Use popover for justification display
+                    with st.popover("ℹ️", help="View justification"):
+                        st.write(f"**Justification for {unit.get('unit')}:**")
+                        st.write(unit.get("justification", "No justification provided"))
+                        
+                        # Show feedback adjustment info if available
+                        if unit.get("feedback_adjustment") is not None:
+                            original_conf = unit.get("original_confidence", unit.get("confidence", 0))
+                            adjustment = unit.get("feedback_adjustment", 0)
+                            st.info(f"Original confidence: {original_conf:.2f}, Feedback adjustment: {adjustment:+.2f}")
         else:
             st.write("No organizational units identified")
 
@@ -262,6 +315,89 @@ def create_interpreter_config():
     
     return interpreter_configs if interpreter_configs else None
 
+def display_feedback_section(results):
+    """Display feedback section using forms to avoid page reloads"""
+    st.write("---")
+    st.write("### Provide Feedback")
+    st.write("Help us improve our classification by providing feedback on these results.")
+    
+    # Check if feedback was already provided for this CV
+    feedback_key = f"feedback_saved_{results.get('resume_id', 'unknown')}"
+    feedback_already_provided = st.session_state.get(feedback_key, False)
+    
+    if feedback_already_provided:
+        st.success("✅ Thank you! Feedback has already been provided for this classification.")
+        
+        # Show feedback statistics
+        if "orchestrator" in st.session_state:
+            feedback_stats = st.session_state.orchestrator.get_feedback_stats()
+            if feedback_stats["total_positive"] > 0 or feedback_stats["total_negative"] > 0:
+                st.info(f"📊 Total feedback received: {feedback_stats['total_positive']} positive, {feedback_stats['total_negative']} negative")
+        
+        # Option to provide new feedback
+        if st.button("Provide Additional Feedback", key="additional_feedback"):
+            # Reset the feedback key to allow new feedback
+            if feedback_key in st.session_state:
+                del st.session_state[feedback_key]
+            st.rerun()
+        return
+    
+    # Use a form to collect feedback without page reloads
+    with st.form(key="feedback_form", clear_on_submit=True):
+        st.write("**How would you rate this classification?**")
+        
+        # Rating selection
+        rating = st.selectbox(
+            "Select your rating:",
+            options=["Select an option", "👍 Good Classification", "👎 Needs Improvement"],
+            index=0
+        )
+        
+        # Feedback details
+        feedback_reason = st.text_area(
+            "Please provide details about your feedback (optional):",
+            help="Your feedback helps us improve the classification system. Please share any specific aspects that could be improved or what worked well.",
+            height=100,
+            placeholder="What specifically worked well or could be improved?"
+        )
+        
+        # Submit button
+        submitted = st.form_submit_button("Submit Feedback", type="primary")
+        
+        if submitted:
+            if rating == "Select an option":
+                st.warning("Please select a rating before submitting.")
+            else:
+                # Determine rating type
+                rating_type = "positive" if "Good" in rating else "negative"
+                
+                # Save feedback
+                results["user_feedback"] = {
+                    "rating": rating_type,
+                    "reason": feedback_reason.strip() if feedback_reason.strip() else "No additional details provided",
+                    "timestamp": datetime.now().isoformat()
+                }
+
+                print(results)
+                
+                # Save to orchestrator
+                if "orchestrator" in st.session_state:
+                    st.session_state.orchestrator.add_feedback(results)
+                    st.session_state[feedback_key] = True
+                    
+                    # Show success message
+                    if rating_type == "positive":
+                        st.success("👍 Thank you for your positive feedback!")
+                    else:
+                        st.success("👎 Thank you for your feedback. We'll use this to improve our classification.")
+                    
+                    # Show feedback statistics
+                    feedback_stats = st.session_state.orchestrator.get_feedback_stats()
+                    if feedback_stats["total_positive"] > 0 or feedback_stats["total_negative"] > 0:
+                        st.info(f"📊 Total feedback received: {feedback_stats['total_positive']} positive, {feedback_stats['total_negative']} negative")
+                else:
+                    st.warning("Could not save feedback - orchestrator not available")
+
 def main():
     st.title("CV Classification Pipeline")
     st.write("""
@@ -273,7 +409,7 @@ def main():
     """)
     
     # Add tabs for CV upload and customization
-    tabs = st.tabs(["CV Upload & Processing", "Classification Customization", "Advanced File Interpretation"])
+    tabs = st.tabs(["CV Upload & Processing", "Classification Customization", "Advanced File Interpretation", "Feedback Dashboard"])
     
     # Tab 1: CV Upload & Processing
     with tabs[0]:
@@ -363,6 +499,9 @@ def main():
                         file_name=f"cv_results_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
                         mime="application/json"
                     )
+                    
+                    # Add feedback section after download button
+                    display_feedback_section(results[-1])
                     
                 # Clean up temporary config files
                 for temp_file in config_files:
@@ -475,6 +614,93 @@ def main():
             st.session_state.interpreter_configs = interpreter_configs
             
             st.success("File interpretation configurations saved. These will be applied when you process a CV.")
+
+    # Tab 4: Feedback Dashboard
+    with tabs[3]:
+        st.write("""
+        ## Feedback Dashboard
+        
+        View and manage feedback received from users to understand how the system is performing.
+        """)
+        
+        # Check if orchestrator is available
+        if "orchestrator" in st.session_state:
+            feedback_stats = st.session_state.orchestrator.get_feedback_stats()
+            
+            # Display overall statistics
+            col1, col2, col3 = st.columns(3)
+            
+            with col1:
+                st.metric("Positive Feedback", feedback_stats.get('total_positive', 0))
+            
+            with col2:
+                st.metric("Negative Feedback", feedback_stats.get('total_negative', 0))
+            
+            with col3:
+                total_feedback = feedback_stats.get('total_positive', 0) + feedback_stats.get('total_negative', 0)
+                if total_feedback > 0:
+                    positive_rate = (feedback_stats.get('total_positive', 0) / total_feedback) * 100
+                    st.metric("Positive Rate", f"{positive_rate:.1f}%")
+                else:
+                    st.metric("Positive Rate", "N/A")
+            
+            # Show last updated
+            if feedback_stats.get('last_updated'):
+                st.write(f"**Last updated:** {feedback_stats['last_updated']}")
+            
+            # Feedback management
+            st.write("### Feedback Management")
+            
+            col1, col2 = st.columns(2)
+            
+            with col1:
+                if st.button("View Detailed Feedback"):
+                    # Show detailed feedback breakdown
+                    feedback_manager = st.session_state.orchestrator.feedback_manager
+                    
+                    st.write("#### Recent Expertise Feedback")
+                    expertise_feedback = feedback_manager.get_expertise_feedback()[-10:]  # Last 10
+                    if expertise_feedback:
+                        for feedback in expertise_feedback:
+                            rating_emoji = "👍" if feedback["rating"] == "positive" else "👎"
+                            st.write(f"{rating_emoji} **{feedback['category']}** (Confidence: {feedback['confidence']:.2f})")
+                            if feedback.get('reason'):
+                                st.write(f"   Reason: {feedback['reason'][:100]}...")
+                    else:
+                        st.write("No expertise feedback available")
+                    
+                    st.write("#### Recent Role Level Feedback")
+                    role_feedback = feedback_manager.get_role_level_feedback()[-10:]  # Last 10
+                    if role_feedback:
+                        for feedback in role_feedback:
+                            rating_emoji = "👍" if feedback["rating"] == "positive" else "👎"
+                            st.write(f"{rating_emoji} **{feedback['expertise']} - {feedback['level']}** (Confidence: {feedback['confidence']:.2f})")
+                            if feedback.get('reason'):
+                                st.write(f"   Reason: {feedback['reason'][:100]}...")
+                    else:
+                        st.write("No role level feedback available")
+                    
+                    st.write("#### Recent Org Unit Feedback")
+                    org_feedback = feedback_manager.get_org_unit_feedback()[-10:]  # Last 10
+                    if org_feedback:
+                        for feedback in org_feedback:
+                            rating_emoji = "👍" if feedback["rating"] == "positive" else "👎"
+                            st.write(f"{rating_emoji} **{feedback['unit']}** (Confidence: {feedback['confidence']:.2f})")
+                            if feedback.get('reason'):
+                                st.write(f"   Reason: {feedback['reason'][:100]}...")
+                    else:
+                        st.write("No org unit feedback available")
+            
+            with col2:
+                if st.button("Clear All Feedback", type="secondary"):
+                    if st.button("Confirm Clear Feedback", type="primary"):
+                        st.session_state.orchestrator.clear_feedback()
+                        st.success("All feedback has been cleared!")
+                        st.experimental_rerun()
+                    else:
+                        st.warning("Click 'Confirm Clear Feedback' to permanently delete all feedback data")
+        else:
+            st.info("No feedback data available. Please process a CV first to enable feedback tracking.")
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,91 @@
+{
+  "timestamp": "20250527_182433",
+  "total_processed": 1,
+  "total_errors": 0,
+  "results": [
+    {
+      "resume_id": "upload_1207_Miss_Megha_Appasaheb_Solunke.txt_20250527_182405",
+      "timestamp": "2025-05-27T18:24:33.661615",
+      "source": "new_analysis",
+      "expertise": {
+        "expertise": [
+          {
+            "category": "pharmacy",
+            "confidence": 0.9,
+            "justification": "The candidate holds a Master's degree in Pharmacy (M. Pharm.) and a Bachelor's degree in Pharmacy (B. Pharm.), indicating a strong educational background in the field. Their work experience as a Patent Formulation Analyst involves analyzing patent documents and studying formulations, which is directly related to pharmaceutical sciences.",
+            "original_confidence": 0.9,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "category": "clinical research",
+            "confidence": 0.7,
+            "justification": "The candidate's role in analyzing patent documents and formulations suggests involvement in research activities, which is a key component of clinical research. However, there is no explicit mention of clinical trials or direct research experience, leading to a slightly lower confidence score.",
+            "original_confidence": 0.7,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "category": "data_science",
+            "confidence": 0.5,
+            "justification": "While the candidate does not explicitly mention data science, their experience with analytical methods and various laboratory instruments (like HPLC and UV-Visible Spectrophotometer) implies a familiarity with data analysis and interpretation, which are essential skills in data science.",
+            "original_confidence": 0.5,
+            "feedback_adjustment": 0.0
+          }
+        ]
+      },
+      "role_levels": {
+        "role_levels": [
+          {
+            "expertise": "pharmacy",
+            "level": "mid_level",
+            "confidence": 0.85,
+            "justification": "The candidate has a Master's degree in Pharmacy and relevant work experience as a Patent Formulation Analyst for 6.5 years. This duration indicates a solid understanding of pharmaceutical sciences and practical application in analyzing patent documents and formulations. While the title includes 'Trainee', the length of experience suggests they have moved beyond entry-level responsibilities, warranting a mid-level classification.",
+            "original_confidence": 0.85,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "expertise": "clinical research",
+            "level": "entry_level",
+            "confidence": 0.65,
+            "justification": "The candidate's involvement in analyzing patent documents and formulations suggests some exposure to research activities, which is relevant to clinical research. However, the lack of explicit experience in clinical trials or direct research roles limits their classification to entry-level. The confidence score reflects this uncertainty, as the candidate may have foundational knowledge but lacks the depth of experience typically required for mid-level roles.",
+            "original_confidence": 0.65,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "expertise": "data_science",
+            "level": "entry_level",
+            "confidence": 0.55,
+            "justification": "The candidate's experience with analytical methods and laboratory instruments indicates some familiarity with data analysis, which is a component of data science. However, there is no direct experience or formal training in data science, leading to an entry-level classification. The confidence score is moderate, reflecting the potential for growth in this area but acknowledging the current lack of substantial experience.",
+            "original_confidence": 0.55,
+            "feedback_adjustment": 0.0
+          }
+        ]
+      },
+      "org_unit": {
+        "org_units": [
+          {
+            "unit": "pharmacy_industry",
+            "confidence": 0.9,
+            "justification": "The candidate has a strong educational background in Pharmacy, holding both a Master's and Bachelor's degree in the field. Their work experience as a Patent Formulation Analyst involves analyzing patent documents and studying various formulations, which aligns closely with roles in the pharmacy industry, particularly in areas like Regulatory Affairs and Quality Assurance. The high confidence score reflects the candidate's relevant skills and experience directly applicable to this organizational unit.",
+            "original_confidence": 0.9,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "unit": "academic_research",
+            "confidence": 0.7,
+            "justification": "The candidate's experience in analyzing patent documents and formulations suggests involvement in research activities, which is relevant to academic research. Although there is no explicit mention of clinical trials or direct research roles, the analytical skills demonstrated through their technical expertise indicate potential for contribution in academic research settings. The confidence score is moderate, reflecting the candidate's foundational knowledge in research-related activities.",
+            "original_confidence": 0.7,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "unit": "healthcare",
+            "confidence": 0.6,
+            "justification": "While the candidate's primary experience is in patent analysis, their educational background in Pharmacy provides a foundational understanding of healthcare-related topics. The skills in analytical methods and laboratory instruments could be beneficial in roles related to Clinical Pharmacy. However, the lack of direct experience in healthcare settings leads to a moderate confidence score for this organizational unit.",
+            "original_confidence": 0.6,
+            "feedback_adjustment": 0.0
+          }
+        ]
+      }
+    }
+  ],
+  "errors": []
+}

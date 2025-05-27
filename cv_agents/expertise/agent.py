@@ -16,7 +16,7 @@ For each identified expertise area, provide a confidence score (0-1) and justifi
 Provide an in depth justification for your response. Be clear and concise but also thorough and with a good level of detail.
 Format the response as a valid JSON object with "expertise" as the key containing an array of objects, 
 each with "category", "confidence", and "justification" fields.
-Your entire response/output is going to consist of a single JSON object, and you will NOT wrap it within JSON md markers. This is very important since it will be parsed directly as JSON."""
+Your entire response/output is going to consist of a single JSON object, and you will NOT wrap it within JSON md markers. This is very important since it will be parsed directly as JSON.{feedback_context}"""
 
 # Default expertise categories for backward compatibility
 DEFAULT_EXPERTISE_CATEGORIES = [
@@ -41,6 +41,8 @@ Skills:
 Education:
 {education}
 
+Note that the duration in the work experience is in years.
+
 Your entire response/output is going to consist of a single JSON object, and you will NOT wrap it within JSON md markers. This is very important since it will be parsed directly as JSON."""
 
 class ExpertiseAgent(BaseAgent):
@@ -56,8 +58,14 @@ class ExpertiseAgent(BaseAgent):
         # Format the expertise categories as a bullet list
         formatted_categories = "\n".join([f"- {category}" for category in expertise_categories])
         
-        # Create the system prompt with the categories
-        system_prompt = EXPERTISE_SYSTEM_PROMPT_TEMPLATE.format(expertise_categories=formatted_categories)
+        # Get feedback context
+        feedback_context = self.get_feedback_context("expertise")
+        
+        # Create the system prompt with the categories and feedback
+        system_prompt = EXPERTISE_SYSTEM_PROMPT_TEMPLATE.format(
+            expertise_categories=formatted_categories,
+            feedback_context=feedback_context
+        )
         
         # Build the final prompt template
         self.prompt = ChatPromptTemplate.from_messages([
@@ -118,6 +126,40 @@ class ExpertiseAgent(BaseAgent):
         self.last_input = cv_data
         return super().process(cv_data)
     
+    def _apply_feedback_adjustments(self, result):
+        """Apply feedback-based adjustments to expertise classifications"""
+        if "expertise" not in result:
+            return result
+        
+        adjusted_expertise = []
+        for exp in result["expertise"]:
+            category = exp["category"]
+            confidence = exp["confidence"]
+            
+            # Get feedback summary for this category
+            feedback_summary = self.feedback_manager.get_feedback_summary("expertise", category)
+            
+            # Apply confidence adjustment based on feedback
+            confidence_adjustment = feedback_summary.get("confidence_adjustment", 0.0)
+            adjusted_confidence = max(0.0, min(1.0, confidence + confidence_adjustment))
+            
+            # Add feedback information to justification if there's significant feedback
+            justification = exp.get("justification", "")
+            if feedback_summary.get("positive_count", 0) > 0 or feedback_summary.get("negative_count", 0) > 0:
+                feedback_info = f" [Confidence adjusted based on {feedback_summary['positive_count']} positive and {feedback_summary['negative_count']} negative user feedback]"
+                justification += feedback_info
+            
+            adjusted_expertise.append({
+                "category": category,
+                "confidence": adjusted_confidence,
+                "justification": justification,
+                "original_confidence": confidence,
+                "feedback_adjustment": confidence_adjustment
+            })
+        
+        result["expertise"] = adjusted_expertise
+        return result
+
 def clean_json_string(json_string):
     pattern = r'^```json\s*(.*?)\s*```$'
     cleaned_string = re.sub(pattern, r'\1', json_string, flags=re.DOTALL)

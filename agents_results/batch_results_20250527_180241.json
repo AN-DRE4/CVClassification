@@ -1,0 +1,91 @@
+{
+  "timestamp": "20250527_180241",
+  "total_processed": 1,
+  "total_errors": 0,
+  "results": [
+    {
+      "resume_id": "upload_1207_Miss_Megha_Appasaheb_Solunke.txt_20250527_180216",
+      "timestamp": "2025-05-27T18:02:41.803429",
+      "source": "new_analysis",
+      "expertise": {
+        "expertise": [
+          {
+            "category": "management",
+            "confidence": 0.6,
+            "justification": "The candidate has experience in teamwork and self-motivation, which are essential skills in management roles. However, there is limited evidence of direct management experience or responsibilities.",
+            "original_confidence": 0.6,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "category": "data_science",
+            "confidence": 0.5,
+            "justification": "The candidate's role as a Patent Formulation Analyst involves analysis of patent documents and formulation studies, which may require analytical skills akin to data science. However, the specific data science methodologies or tools are not mentioned.",
+            "original_confidence": 0.5,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "category": "software_development",
+            "confidence": 0.3,
+            "justification": "The candidate has experience with MS Office, which indicates some familiarity with software tools, but there is no direct experience in software development or programming mentioned.",
+            "original_confidence": 0.3,
+            "feedback_adjustment": 0.0
+          }
+        ]
+      },
+      "role_levels": {
+        "role_levels": [
+          {
+            "expertise": "management",
+            "level": "entry_level",
+            "confidence": 0.6,
+            "justification": "The candidate demonstrates soft skills such as teamwork and self-motivation, which are valuable in management. However, there is no evidence of direct management responsibilities or experience leading teams, which suggests that they are at an entry-level position in management.",
+            "original_confidence": 0.6,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "expertise": "data_science",
+            "level": "entry_level",
+            "confidence": 0.5,
+            "justification": "The candidate's role involves analysis of patent documents and formulation studies, which requires analytical skills. However, the lack of specific data science methodologies or tools mentioned indicates that they are likely at an entry-level position in this area, as they are still developing their expertise.",
+            "original_confidence": 0.5,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "expertise": "software_development",
+            "level": "entry_level",
+            "confidence": 0.3,
+            "justification": "The candidate has some familiarity with software tools like MS Office, but there is no direct experience in software development or programming. This suggests they are at an entry-level position, as they have not yet engaged in any substantial software development tasks.",
+            "original_confidence": 0.3,
+            "feedback_adjustment": 0.0
+          }
+        ]
+      },
+      "org_unit": {
+        "org_units": [
+          {
+            "unit": "operations",
+            "confidence": 0.6,
+            "justification": "The candidate's experience as a Patent Formulation Analyst involves analytical skills and teamwork, which are valuable in operations roles. Their responsibilities suggest a focus on process analysis and formulation, aligning with project management and operational tasks. However, the lack of direct experience in logistics or project management limits the confidence score.",
+            "original_confidence": 0.6,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "unit": "data",
+            "confidence": 0.5,
+            "justification": "The candidate's role involves analysis of patent documents and formulation studies, which requires analytical skills similar to those used in data engineering or data science. However, the absence of specific data science methodologies or tools indicates that they are still developing their expertise in this area, justifying a moderate confidence score.",
+            "original_confidence": 0.5,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "unit": "hr",
+            "confidence": 0.4,
+            "justification": "The candidate demonstrates soft skills such as teamwork, willingness to learn, and a positive attitude, which are essential in human resources roles. However, there is no direct experience in HR functions such as recruitment or training, leading to a lower confidence score for this unit.",
+            "original_confidence": 0.4,
+            "feedback_adjustment": 0.0
+          }
+        ]
+      }
+    }
+  ],
+  "errors": []
+}

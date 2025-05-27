@@ -1867,6 +1867,739 @@
           }
         ]
       }
+    },
+    {
+      "resume_id": "upload_1207_Miss_Megha_Appasaheb_Solunke.txt_20250527_180216",
+      "timestamp": "2025-05-27T18:02:41.803429",
+      "source": "new_analysis",
+      "expertise": {
+        "expertise": [
+          {
+            "category": "management",
+            "confidence": 0.6,
+            "justification": "The candidate has experience in teamwork and self-motivation, which are essential skills in management roles. However, there is limited evidence of direct management experience or responsibilities.",
+            "original_confidence": 0.6,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "category": "data_science",
+            "confidence": 0.5,
+            "justification": "The candidate's role as a Patent Formulation Analyst involves analysis of patent documents and formulation studies, which may require analytical skills akin to data science. However, the specific data science methodologies or tools are not mentioned.",
+            "original_confidence": 0.5,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "category": "software_development",
+            "confidence": 0.3,
+            "justification": "The candidate has experience with MS Office, which indicates some familiarity with software tools, but there is no direct experience in software development or programming mentioned.",
+            "original_confidence": 0.3,
+            "feedback_adjustment": 0.0
+          }
+        ]
+      },
+      "role_levels": {
+        "role_levels": [
+          {
+            "expertise": "management",
+            "level": "entry_level",
+            "confidence": 0.6,
+            "justification": "The candidate demonstrates soft skills such as teamwork and self-motivation, which are valuable in management. However, there is no evidence of direct management responsibilities or experience leading teams, which suggests that they are at an entry-level position in management.",
+            "original_confidence": 0.6,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "expertise": "data_science",
+            "level": "entry_level",
+            "confidence": 0.5,
+            "justification": "The candidate's role involves analysis of patent documents and formulation studies, which requires analytical skills. However, the lack of specific data science methodologies or tools mentioned indicates that they are likely at an entry-level position in this area, as they are still developing their expertise.",
+            "original_confidence": 0.5,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "expertise": "software_development",
+            "level": "entry_level",
+            "confidence": 0.3,
+            "justification": "The candidate has some familiarity with software tools like MS Office, but there is no direct experience in software development or programming. This suggests they are at an entry-level position, as they have not yet engaged in any substantial software development tasks.",
+            "original_confidence": 0.3,
+            "feedback_adjustment": 0.0
+          }
+        ]
+      },
+      "org_unit": {
+        "org_units": [
+          {
+            "unit": "operations",
+            "confidence": 0.6,
+            "justification": "The candidate's experience as a Patent Formulation Analyst involves analytical skills and teamwork, which are valuable in operations roles. Their responsibilities suggest a focus on process analysis and formulation, aligning with project management and operational tasks. However, the lack of direct experience in logistics or project management limits the confidence score.",
+            "original_confidence": 0.6,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "unit": "data",
+            "confidence": 0.5,
+            "justification": "The candidate's role involves analysis of patent documents and formulation studies, which requires analytical skills similar to those used in data engineering or data science. However, the absence of specific data science methodologies or tools indicates that they are still developing their expertise in this area, justifying a moderate confidence score.",
+            "original_confidence": 0.5,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "unit": "hr",
+            "confidence": 0.4,
+            "justification": "The candidate demonstrates soft skills such as teamwork, willingness to learn, and a positive attitude, which are essential in human resources roles. However, there is no direct experience in HR functions such as recruitment or training, leading to a lower confidence score for this unit.",
+            "original_confidence": 0.4,
+            "feedback_adjustment": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "resume_id": "upload_1207_Miss_Megha_Appasaheb_Solunke.txt_20250527_181042",
+      "timestamp": "2025-05-27T18:11:04.101194",
+      "source": "new_analysis",
+      "expertise": {
+        "expertise": [
+          {
+            "category": "pharmacy",
+            "confidence": 0.9,
+            "justification": "The candidate holds a Master's degree in Pharmacy (M. Pharm.) and a Bachelor's degree in Pharmacy (B. Pharm.), indicating a strong educational background in the field. Their work experience as a Patent Formulation Analyst involves analyzing patent documents and studying formulations, which is directly related to pharmaceutical sciences.",
+            "original_confidence": 0.9,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "category": "clinical research",
+            "confidence": 0.7,
+            "justification": "The candidate's responsibilities include analysis of patent documents and case studies, which suggests involvement in research activities. While not explicitly stated, the skills in analytical methods development and various laboratory techniques (e.g., HPLC, UV-Visible Spectrophotometer) indicate a foundation in clinical research methodologies.",
+            "original_confidence": 0.7,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "category": "language",
+            "confidence": 0.6,
+            "justification": "The candidate is learning the German language professionally, which demonstrates a commitment to language acquisition. However, this is not a primary area of expertise but rather a skill enhancement.",
+            "original_confidence": 0.6,
+            "feedback_adjustment": 0.0
+          }
+        ]
+      },
+      "role_levels": {
+        "role_levels": [
+          {
+            "expertise": "pharmacy",
+            "level": "entry_level",
+            "confidence": 0.9,
+            "justification": "The candidate has 6.5 years of experience as a Patent Formulation Analyst, which is typically considered an entry-level position in the pharmaceutical field. Their responsibilities focus on learning and analysis, indicating they are still in the early stages of their career despite the duration of experience. The role primarily involves foundational tasks rather than advanced responsibilities that would warrant a mid-level designation.",
+            "original_confidence": 0.9,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "expertise": "clinical research",
+            "level": "entry_level",
+            "confidence": 0.7,
+            "justification": "While the candidate's experience includes analysis related to clinical research, the role of Patent Formulation Analyst does not typically involve direct clinical research responsibilities. The skills mentioned suggest a foundational understanding of research methodologies, but the lack of direct involvement in clinical trials or advanced research projects supports an entry-level classification.",
+            "original_confidence": 0.7,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "expertise": "language",
+            "level": "entry_level",
+            "confidence": 0.6,
+            "justification": "The candidate is currently learning the German language, which indicates a commitment to skill development rather than established expertise. This is not a primary area of professional experience but rather a supplementary skill. Therefore, it aligns with an entry-level classification as they are still in the process of acquiring proficiency.",
+            "original_confidence": 0.6,
+            "feedback_adjustment": 0.0
+          }
+        ]
+      },
+      "org_unit": {
+        "org_units": [
+          {
+            "unit": "pharmacy_industry",
+            "confidence": 0.9,
+            "justification": "The candidate's educational background in Pharmacy (M. Pharm. and B. Pharm.) and their work experience as a Patent Formulation Analyst directly align with the pharmacy industry. Their responsibilities involve analyzing patent documents and formulations, which are critical aspects of pharmaceutical product development and regulatory compliance. The technical skills in analytical methods and laboratory techniques further support their fit within this organizational unit.",
+            "original_confidence": 0.9,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "unit": "academic_research",
+            "confidence": 0.7,
+            "justification": "The candidate's experience in analyzing patent documents and case studies suggests involvement in research activities, which is relevant to academic research. Their skills in analytical methods development and laboratory techniques indicate a foundational understanding of research methodologies. However, the lack of direct experience in clinical trials or advanced research projects limits their fit in this unit, hence a moderate confidence score.",
+            "original_confidence": 0.7,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "unit": "operations",
+            "confidence": 0.6,
+            "justification": "While the candidate's role as a Patent Formulation Analyst involves analytical tasks that may contribute to operational processes in pharmaceutical development, their primary focus is on patent analysis and formulation rather than project management or logistics. The soft skills listed, such as teamwork and problem-solving, are beneficial in operations, but the core responsibilities do not strongly align with this unit.",
+            "original_confidence": 0.6,
+            "feedback_adjustment": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "resume_id": "upload_1207_Miss_Megha_Appasaheb_Solunke.txt_20250527_181645",
+      "timestamp": "2025-05-27T18:17:09.251128",
+      "source": "new_analysis",
+      "expertise": {
+        "expertise": [
+          {
+            "category": "pharmacy",
+            "confidence": 0.9,
+            "justification": "The candidate holds a Master's degree in Pharmacy (M. Pharm.) and a Bachelor's degree in Pharmacy (B. Pharm.), indicating a strong educational background in the field. Their work experience as a Patent Formulation Analyst involves analyzing patent documents and studying formulations, which is directly related to pharmaceutical sciences.",
+            "original_confidence": 0.9,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "category": "clinical research",
+            "confidence": 0.7,
+            "justification": "The candidate's role in analyzing patent documents and studying case studies suggests involvement in research activities, which is a key component of clinical research. However, there is no explicit mention of clinical trials or direct research experience, leading to a slightly lower confidence score.",
+            "original_confidence": 0.7,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "category": "data_science",
+            "confidence": 0.5,
+            "justification": "While the candidate does not explicitly mention data science, their experience with analytical methods development and various analytical instruments (like HPLC and UV-Visible Spectrophotometer) indicates a familiarity with data analysis and interpretation, which are essential skills in data science.",
+            "original_confidence": 0.5,
+            "feedback_adjustment": 0.0
+          }
+        ]
+      },
+      "role_levels": {
+        "role_levels": [
+          {
+            "expertise": "pharmacy",
+            "level": "entry_level",
+            "confidence": 0.9,
+            "justification": "The candidate is currently in a trainee position as a Patent Formulation Analyst, which typically corresponds to an entry-level role. With 6.5 years of experience, this may seem unusual for an entry-level designation; however, the role is focused on learning and analysis, indicating that the candidate is still in the early stages of their career in pharmacy. The responsibilities primarily involve learning and applying foundational knowledge rather than leading projects or teams.",
+            "original_confidence": 0.9,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "expertise": "clinical research",
+            "level": "entry_level",
+            "confidence": 0.7,
+            "justification": "The candidate's involvement in analyzing patent documents and studying formulations suggests a basic level of engagement in research activities. However, the lack of direct experience in clinical trials or more advanced research roles indicates that they are still at an entry-level position in this field. The responsibilities do not reflect the depth of experience typically required for mid-level roles in clinical research.",
+            "original_confidence": 0.7,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "expertise": "data_science",
+            "level": "entry_level",
+            "confidence": 0.5,
+            "justification": "While the candidate has experience with analytical methods and instruments, which are relevant to data analysis, there is no explicit mention of data science roles or responsibilities. The skills listed suggest a foundational understanding of data analysis, but without direct experience or responsibilities that align with data science roles, it is appropriate to classify this expertise at the entry level.",
+            "original_confidence": 0.5,
+            "feedback_adjustment": 0.0
+          }
+        ]
+      },
+      "org_unit": {
+        "org_units": [
+          {
+            "unit": "pharmacy_industry",
+            "confidence": 0.9,
+            "justification": "The candidate has a strong educational background in pharmacy, holding both a Master's and Bachelor's degree in the field. Their current role as a Patent Formulation Analyst involves analyzing patent documents and studying formulations, which aligns closely with the responsibilities typically found in the pharmacy industry, particularly in areas such as Regulatory Affairs and Quality Assurance. The technical skills related to analytical methods and instruments further support their fit within this organizational unit.",
+            "original_confidence": 0.9,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "unit": "academic_research",
+            "confidence": 0.7,
+            "justification": "The candidate's experience in analyzing patent documents and studying case studies indicates a level of engagement in research activities, which is relevant to academic research. While there is no direct experience in clinical trials or advanced research roles, the foundational skills and knowledge in pharmacy suggest potential for growth in this area. The candidate's analytical skills could be beneficial in academic research settings, particularly in pharmaceutical sciences.",
+            "original_confidence": 0.7,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "unit": "data",
+            "confidence": 0.5,
+            "justification": "Although the candidate does not explicitly mention data science, their experience with analytical methods development and various analytical instruments indicates a familiarity with data analysis and interpretation. This foundational understanding could be applicable in data-related roles, but the lack of direct experience in data science limits the confidence in placing them in this organizational unit. The candidate may be suited for entry-level positions that involve data analysis within the pharmaceutical context.",
+            "original_confidence": 0.5,
+            "feedback_adjustment": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "resume_id": "upload_1207_Miss_Megha_Appasaheb_Solunke.txt_20250527_181859",
+      "timestamp": "2025-05-27T18:19:26.391420",
+      "source": "new_analysis",
+      "expertise": {
+        "expertise": [
+          {
+            "category": "pharmacy",
+            "confidence": 0.9,
+            "justification": "The candidate holds a Master's degree in Pharmacy (M. Pharm.) and a Bachelor's degree in Pharmacy (B. Pharm.), indicating a strong educational background in the field. Their work experience as a Patent Formulation Analyst involves analyzing patent documents and studying formulations, which is closely related to pharmaceutical sciences.",
+            "original_confidence": 0.9,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "category": "clinical research",
+            "confidence": 0.7,
+            "justification": "The candidate's role in analyzing patent documents and formulations suggests involvement in research activities, which is a key component of clinical research. However, there is no explicit mention of clinical trials or direct research experience, leading to a moderate confidence score.",
+            "original_confidence": 0.7,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "category": "data_science",
+            "confidence": 0.5,
+            "justification": "While the candidate does not have direct experience in data science, their analytical skills and methods development (e.g., RP HPLC, Visual Spectroscopy) imply a familiarity with data analysis techniques. However, the lack of specific data science tools or methodologies in their CV results in a lower confidence score.",
+            "original_confidence": 0.5,
+            "feedback_adjustment": 0.0
+          }
+        ]
+      },
+      "role_levels": {
+        "role_levels": [
+          {
+            "expertise": "pharmacy",
+            "level": "mid_level",
+            "confidence": 0.8,
+            "justification": "The candidate has a Master's degree in Pharmacy and relevant work experience as a Patent Formulation Analyst for 6.5 years. Their responsibilities include analyzing patent documents and studying formulations, which indicates a solid understanding of pharmaceutical principles and practices. Given the duration of experience and the complexity of the tasks involved, a mid-level designation is appropriate.",
+            "original_confidence": 0.8,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "expertise": "clinical research",
+            "level": "entry_level",
+            "confidence": 0.6,
+            "justification": "While the candidate's experience in analyzing patent documents suggests some involvement in research activities, there is no direct experience in clinical trials or explicit research roles. The responsibilities do not indicate a level of expertise that would warrant a mid-level designation in clinical research, thus an entry-level classification is more suitable.",
+            "original_confidence": 0.6,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "expertise": "data_science",
+            "level": "entry_level",
+            "confidence": 0.5,
+            "justification": "The candidate's analytical skills and familiarity with methods like RP HPLC and Visual Spectroscopy suggest some foundational knowledge in data analysis. However, the lack of direct experience in data science and specific tools or methodologies limits their classification to entry-level. The confidence score reflects the potential for growth in this area, but current qualifications do not support a higher level.",
+            "original_confidence": 0.5,
+            "feedback_adjustment": 0.0
+          }
+        ]
+      },
+      "org_unit": {
+        "org_units": [
+          {
+            "unit": "pharmacy_industry",
+            "confidence": 0.9,
+            "justification": "The candidate has a strong educational background in pharmacy, holding both a Master's and Bachelor's degree in the field. Their work experience as a Patent Formulation Analyst involves analyzing patent documents and studying pharmaceutical formulations, which aligns closely with roles in the pharmacy industry, particularly in areas like Regulatory Affairs and Quality Assurance. The high confidence score reflects the candidate's relevant experience and educational qualifications.",
+            "original_confidence": 0.9,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "unit": "academic_research",
+            "confidence": 0.7,
+            "justification": "The candidate's experience in analyzing patent documents and formulations suggests a foundational involvement in research activities, which is relevant to academic research. While they do not have direct experience in clinical trials or explicit research roles, their analytical skills and understanding of pharmaceutical principles indicate potential for contributing to academic research projects. The confidence score is moderate due to the lack of direct research experience.",
+            "original_confidence": 0.7,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "unit": "clinical_research",
+            "confidence": 0.6,
+            "justification": "The candidate's role in analyzing patent documents implies some engagement with research activities, which is a component of clinical research. However, the absence of direct experience in clinical trials or specific research roles limits their fit for this organizational unit. The confidence score reflects a potential entry-level fit, but the lack of explicit clinical research experience keeps it lower.",
+            "original_confidence": 0.6,
+            "feedback_adjustment": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "resume_id": "upload_1207_Miss_Megha_Appasaheb_Solunke.txt_20250527_182405",
+      "timestamp": "2025-05-27T18:24:33.661615",
+      "source": "new_analysis",
+      "expertise": {
+        "expertise": [
+          {
+            "category": "pharmacy",
+            "confidence": 0.9,
+            "justification": "The candidate holds a Master's degree in Pharmacy (M. Pharm.) and a Bachelor's degree in Pharmacy (B. Pharm.), indicating a strong educational background in the field. Their work experience as a Patent Formulation Analyst involves analyzing patent documents and studying formulations, which is directly related to pharmaceutical sciences.",
+            "original_confidence": 0.9,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "category": "clinical research",
+            "confidence": 0.7,
+            "justification": "The candidate's role in analyzing patent documents and formulations suggests involvement in research activities, which is a key component of clinical research. However, there is no explicit mention of clinical trials or direct research experience, leading to a slightly lower confidence score.",
+            "original_confidence": 0.7,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "category": "data_science",
+            "confidence": 0.5,
+            "justification": "While the candidate does not explicitly mention data science, their experience with analytical methods and various laboratory instruments (like HPLC and UV-Visible Spectrophotometer) implies a familiarity with data analysis and interpretation, which are essential skills in data science.",
+            "original_confidence": 0.5,
+            "feedback_adjustment": 0.0
+          }
+        ]
+      },
+      "role_levels": {
+        "role_levels": [
+          {
+            "expertise": "pharmacy",
+            "level": "mid_level",
+            "confidence": 0.85,
+            "justification": "The candidate has a Master's degree in Pharmacy and relevant work experience as a Patent Formulation Analyst for 6.5 years. This duration indicates a solid understanding of pharmaceutical sciences and practical application in analyzing patent documents and formulations. While the title includes 'Trainee', the length of experience suggests they have moved beyond entry-level responsibilities, warranting a mid-level classification.",
+            "original_confidence": 0.85,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "expertise": "clinical research",
+            "level": "entry_level",
+            "confidence": 0.65,
+            "justification": "The candidate's involvement in analyzing patent documents and formulations suggests some exposure to research activities, which is relevant to clinical research. However, the lack of explicit experience in clinical trials or direct research roles limits their classification to entry-level. The confidence score reflects this uncertainty, as the candidate may have foundational knowledge but lacks the depth of experience typically required for mid-level roles.",
+            "original_confidence": 0.65,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "expertise": "data_science",
+            "level": "entry_level",
+            "confidence": 0.55,
+            "justification": "The candidate's experience with analytical methods and laboratory instruments indicates some familiarity with data analysis, which is a component of data science. However, there is no direct experience or formal training in data science, leading to an entry-level classification. The confidence score is moderate, reflecting the potential for growth in this area but acknowledging the current lack of substantial experience.",
+            "original_confidence": 0.55,
+            "feedback_adjustment": 0.0
+          }
+        ]
+      },
+      "org_unit": {
+        "org_units": [
+          {
+            "unit": "pharmacy_industry",
+            "confidence": 0.9,
+            "justification": "The candidate has a strong educational background in Pharmacy, holding both a Master's and Bachelor's degree in the field. Their work experience as a Patent Formulation Analyst involves analyzing patent documents and studying various formulations, which aligns closely with roles in the pharmacy industry, particularly in areas like Regulatory Affairs and Quality Assurance. The high confidence score reflects the candidate's relevant skills and experience directly applicable to this organizational unit.",
+            "original_confidence": 0.9,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "unit": "academic_research",
+            "confidence": 0.7,
+            "justification": "The candidate's experience in analyzing patent documents and formulations suggests involvement in research activities, which is relevant to academic research. Although there is no explicit mention of clinical trials or direct research roles, the analytical skills demonstrated through their technical expertise indicate potential for contribution in academic research settings. The confidence score is moderate, reflecting the candidate's foundational knowledge in research-related activities.",
+            "original_confidence": 0.7,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "unit": "healthcare",
+            "confidence": 0.6,
+            "justification": "While the candidate's primary experience is in patent analysis, their educational background in Pharmacy provides a foundational understanding of healthcare-related topics. The skills in analytical methods and laboratory instruments could be beneficial in roles related to Clinical Pharmacy. However, the lack of direct experience in healthcare settings leads to a moderate confidence score for this organizational unit.",
+            "original_confidence": 0.6,
+            "feedback_adjustment": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "resume_id": "upload_1207_Miss_Megha_Appasaheb_Solunke.txt_20250527_183523",
+      "timestamp": "2025-05-27T18:35:50.671172",
+      "source": "new_analysis",
+      "expertise": {
+        "expertise": [
+          {
+            "category": "pharmacy",
+            "confidence": 0.9,
+            "justification": "The candidate holds a Master's degree in Pharmacy (M. Pharm.) and a Bachelor's degree in Pharmacy (B. Pharm.), indicating a strong educational background in the field. Their work experience as a Patent Formulation Analyst involves analyzing patent documents and studying formulations, which is directly related to pharmaceutical sciences.",
+            "original_confidence": 0.9,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "category": "clinical research",
+            "confidence": 0.7,
+            "justification": "The candidate's role in analyzing patent documents and case studies suggests involvement in research activities, which is a key component of clinical research. However, there is no explicit mention of clinical trials or direct research experience, leading to a moderate confidence score.",
+            "original_confidence": 0.7,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "category": "data_science",
+            "confidence": 0.5,
+            "justification": "While the candidate does not explicitly mention data science, their analytical skills and experience with various analytical methods and instruments (like HPLC and UV-Visible Spectrophotometer) suggest a foundational understanding of data analysis, which is a component of data science. The confidence score is moderate due to the lack of direct experience in data science.",
+            "original_confidence": 0.5,
+            "feedback_adjustment": 0.0
+          }
+        ]
+      },
+      "role_levels": {
+        "role_levels": [
+          {
+            "expertise": "pharmacy",
+            "level": "mid_level",
+            "confidence": 0.9,
+            "justification": "The candidate has a Master's degree in Pharmacy and relevant work experience as a Patent Formulation Analyst. Their responsibilities involve analyzing patent documents and studying formulations, which indicates a solid understanding of pharmaceutical sciences. Given the educational background and the nature of the work, a mid-level role is appropriate as they are likely to have developed a good level of expertise in the field.",
+            "original_confidence": 0.9,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "expertise": "clinical research",
+            "level": "entry_level",
+            "confidence": 0.7,
+            "justification": "The candidate's involvement in analyzing patent documents and case studies suggests some exposure to research activities, which is relevant to clinical research. However, the lack of direct experience in clinical trials or more advanced research roles indicates that they are still at an entry-level position in this area. The confidence score reflects a moderate understanding of the field but not enough experience to warrant a higher level.",
+            "original_confidence": 0.7,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "expertise": "data_science",
+            "level": "entry_level",
+            "confidence": 0.5,
+            "justification": "While the candidate has analytical skills and experience with various analytical methods and instruments, there is no direct experience in data science. Their skills suggest a foundational understanding of data analysis, but without explicit experience in data science roles, it is appropriate to classify them at the entry-level. The confidence score is moderate due to the potential for growth in this area.",
+            "original_confidence": 0.5,
+            "feedback_adjustment": 0.0
+          }
+        ]
+      },
+      "org_unit": {
+        "org_units": [
+          {
+            "unit": "pharmacy_industry",
+            "confidence": 0.9,
+            "justification": "The candidate has a strong educational background in Pharmacy with both a Master's and Bachelor's degree. Their work experience as a Patent Formulation Analyst involves analyzing patent documents and studying formulations, which are directly relevant to the pharmaceutical industry. The skills in analytical methods and various laboratory instruments further support their fit for roles in regulatory affairs, quality assurance, or product management within the pharmacy industry.",
+            "original_confidence": 0.9,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "unit": "academic_research",
+            "confidence": 0.7,
+            "justification": "The candidate's experience in analyzing patent documents and case studies indicates a level of involvement in research activities, which aligns with academic research roles. Although they lack direct experience in clinical trials or advanced research roles, their background in pharmacy and analytical skills suggest potential for contributing to research projects, particularly in pharmacy education or clinical research organizations.",
+            "original_confidence": 0.7,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "unit": "healthcare",
+            "confidence": 0.5,
+            "justification": "While the candidate's experience is primarily in patent formulation analysis, their educational background in pharmacy could allow for entry into healthcare roles, particularly in areas related to clinical pharmacy. However, the lack of direct experience in healthcare settings limits the confidence in this fit, making it a lower priority compared to the pharmacy industry and academic research.",
+            "original_confidence": 0.5,
+            "feedback_adjustment": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "resume_id": "upload_1207_Miss_Megha_Appasaheb_Solunke.txt_20250527_184959",
+      "timestamp": "2025-05-27T18:50:22.623627",
+      "source": "new_analysis",
+      "expertise": {
+        "expertise": [
+          {
+            "category": "pharmacy",
+            "confidence": 0.9,
+            "justification": "The candidate holds a Master's degree in Pharmacy (M. Pharm.) and a Bachelor's degree in Pharmacy (B. Pharm.), indicating a strong educational background in the field. Their work experience as a Patent Formulation Analyst involves analyzing patent documents and studying formulations, which is directly related to pharmaceutical sciences.",
+            "original_confidence": 0.9,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "category": "clinical research",
+            "confidence": 0.7,
+            "justification": "The candidate's role in analyzing patent documents and studying formulations suggests involvement in research activities related to drug formulation and development, which aligns with clinical research. However, there is no explicit mention of clinical trials or direct research experience, leading to a slightly lower confidence score.",
+            "original_confidence": 0.7,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "category": "language",
+            "confidence": 0.6,
+            "justification": "The candidate is learning the German language professionally, which indicates a commitment to language skills. While this does not fit into the primary categories listed, it demonstrates an area of expertise that could be valuable in international pharmaceutical contexts.",
+            "original_confidence": 0.6,
+            "feedback_adjustment": 0.0
+          }
+        ]
+      },
+      "role_levels": {
+        "role_levels": [
+          {
+            "expertise": "pharmacy",
+            "level": "entry_level",
+            "confidence": 0.9,
+            "justification": "The candidate has 6.5 years of experience as a Patent Formulation Analyst, which suggests they have moved beyond entry-level tasks. However, the title 'Trainee Chemistry' indicates that they are still in a learning phase and may not yet have full responsibilities typical of mid-level roles. Therefore, while they possess significant knowledge and skills, the role is best classified as entry-level due to the trainee designation.",
+            "original_confidence": 0.9,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "expertise": "clinical research",
+            "level": "entry_level",
+            "confidence": 0.7,
+            "justification": "The candidate's involvement in analyzing patent documents and studying formulations suggests a foundational understanding of clinical research principles. However, the lack of direct experience in clinical trials or advanced research roles indicates that they are still at an entry-level position in this area. The confidence score reflects the potential for growth but acknowledges the current lack of experience.",
+            "original_confidence": 0.7,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "expertise": "language",
+            "level": "entry_level",
+            "confidence": 0.6,
+            "justification": "The candidate is actively learning the German language, which demonstrates a commitment to developing language skills. However, this expertise does not directly correlate with a specific role level in a professional context. Given that they are still in the learning phase, this area is classified as entry-level, with the potential for advancement as they gain proficiency.",
+            "original_confidence": 0.6,
+            "feedback_adjustment": 0.0
+          }
+        ]
+      },
+      "org_unit": {
+        "org_units": [
+          {
+            "unit": "pharmacy_industry",
+            "confidence": 0.9,
+            "justification": "The candidate's educational background in Pharmacy (M. Pharm. and B. Pharm.) and their work experience as a Patent Formulation Analyst directly align with the pharmacy industry. Their responsibilities involve analyzing patent documents and studying formulations, which are critical tasks in regulatory affairs and product management within the pharmaceutical sector. The high confidence score reflects their strong foundation in pharmacy-related knowledge and skills, making them a suitable fit for this organizational unit.",
+            "original_confidence": 0.9,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "unit": "academic_research",
+            "confidence": 0.7,
+            "justification": "The candidate's experience in analyzing patent documents and studying formulations suggests a foundational involvement in research activities related to drug formulation and development. While they do not have explicit experience in clinical trials or advanced research roles, their background indicates potential for growth in academic research settings. The confidence score is moderate, acknowledging their relevant skills while recognizing the need for further experience in more advanced research contexts.",
+            "original_confidence": 0.7,
+            "feedback_adjustment": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "resume_id": "upload_1207_Miss_Megha_Appasaheb_Solunke.txt_20250527_185418",
+      "timestamp": "2025-05-27T18:54:43.799018",
+      "source": "new_analysis",
+      "expertise": {
+        "expertise": [
+          {
+            "category": "pharmacy",
+            "confidence": 0.9,
+            "justification": "The candidate holds a Master's degree in Pharmacy (M. Pharm.) and a Bachelor's degree in Pharmacy (B. Pharm.), indicating a strong educational background in the field. Their work experience as a Patent Formulation Analyst involves analyzing patent documents and studying formulations, which is directly related to pharmaceutical sciences.",
+            "original_confidence": 0.9,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "category": "clinical research",
+            "confidence": 0.7,
+            "justification": "The candidate's role in analyzing patent documents and case studies suggests involvement in research activities, which is a key component of clinical research. However, there is no explicit mention of clinical trials or direct research experience, leading to a slightly lower confidence score.",
+            "original_confidence": 0.7,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "category": "management",
+            "confidence": 0.6,
+            "justification": "The candidate has demonstrated soft skills such as leadership, teamwork, and problem-solving, which are essential for management roles. While there is no direct management experience mentioned, these skills indicate potential for management capabilities.",
+            "original_confidence": 0.6,
+            "feedback_adjustment": 0.0
+          }
+        ]
+      },
+      "role_levels": {
+        "role_levels": [
+          {
+            "expertise": "pharmacy",
+            "level": "mid_level",
+            "confidence": 0.85,
+            "justification": "The candidate has a Master's degree in Pharmacy and relevant work experience as a Patent Formulation Analyst for 6.5 years. Their responsibilities include analyzing patent documents and studying formulations, which indicates a solid understanding of pharmaceutical sciences. Given the duration of experience and the complexity of the tasks, a mid-level designation is appropriate.",
+            "original_confidence": 0.85,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "expertise": "clinical research",
+            "level": "entry_level",
+            "confidence": 0.65,
+            "justification": "While the candidate's role involves analysis related to research, there is no direct experience in clinical trials or research projects. The responsibilities suggest a foundational involvement in research activities, but the lack of explicit clinical research experience supports an entry-level classification.",
+            "original_confidence": 0.65,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "expertise": "management",
+            "level": "entry_level",
+            "confidence": 0.55,
+            "justification": "The candidate demonstrates soft skills such as teamwork and a positive attitude, which are valuable for management roles. However, there is no direct management experience or responsibilities that indicate a management position. Therefore, an entry-level designation is more fitting, reflecting potential rather than proven management capabilities.",
+            "original_confidence": 0.55,
+            "feedback_adjustment": 0.0
+          }
+        ]
+      },
+      "org_unit": {
+        "org_units": [
+          {
+            "unit": "pharmacy_industry",
+            "confidence": 0.9,
+            "justification": "The candidate's educational background in Pharmacy (M. Pharm. and B. Pharm.) and their work experience as a Patent Formulation Analyst directly align with the pharmacy industry. Their responsibilities involve analyzing patent documents and studying formulations, which are critical tasks in regulatory affairs, quality assurance, and product management within the pharmaceutical sector. Given the strong relevance of their skills and experience to this unit, a high confidence score is warranted.",
+            "original_confidence": 0.9,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "unit": "academic_research",
+            "confidence": 0.7,
+            "justification": "The candidate's involvement in analyzing patent documents and case studies suggests a foundational engagement in research activities, which is relevant to academic research. However, the lack of explicit experience in clinical trials or direct research roles limits the confidence in placing them solely in this unit. Nonetheless, their analytical skills and educational background provide a reasonable fit for academic research roles, particularly in pharmacy education or related research organizations.",
+            "original_confidence": 0.7,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "unit": "clinical_research",
+            "confidence": 0.6,
+            "justification": "While the candidate's experience hints at involvement in research through the analysis of patent documents, there is no direct experience in clinical trials or research projects. This leads to a moderate confidence in their fit for clinical research roles. Their analytical skills and understanding of pharmaceutical formulations could be beneficial in a supporting role within clinical research, but the lack of direct experience necessitates a cautious approach in assigning them to this unit.",
+            "original_confidence": 0.6,
+            "feedback_adjustment": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "resume_id": "upload_1207_Miss_Megha_Appasaheb_Solunke.txt_20250527_190532",
+      "timestamp": "2025-05-27T19:05:55.341347",
+      "source": "new_analysis",
+      "expertise": {
+        "expertise": [
+          {
+            "category": "pharmacy",
+            "confidence": 0.9,
+            "justification": "The candidate holds a Master's degree in Pharmacy (M. Pharm.) and a Bachelor's degree in Pharmacy (B. Pharm.), indicating a strong educational background in the field. Their work experience as a Patent Formulation Analyst involves analyzing patent documents and studying formulations, which is directly related to pharmaceutical sciences.",
+            "original_confidence": 0.9,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "category": "clinical research",
+            "confidence": 0.7,
+            "justification": "The candidate's role in analyzing patent documents and formulations suggests involvement in research activities, which is a key component of clinical research. However, there is no explicit mention of clinical trials or direct research experience, leading to a slightly lower confidence score.",
+            "original_confidence": 0.7,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "category": "language",
+            "confidence": 0.6,
+            "justification": "The candidate is learning the German language professionally, which indicates a commitment to language skills. However, this is not a primary area of expertise but rather a supplementary skill.",
+            "original_confidence": 0.6,
+            "feedback_adjustment": 0.0
+          }
+        ]
+      },
+      "role_levels": {
+        "role_levels": [
+          {
+            "expertise": "pharmacy",
+            "level": "entry_level",
+            "confidence": 0.9,
+            "justification": "The candidate has a Master's degree in Pharmacy and is currently working as a Patent Formulation Analyst (Trainee Chemistry) for 6.5 months. This indicates they are at the beginning of their career in the pharmacy field, focusing on learning and gaining experience. The responsibilities outlined suggest they are still in a training phase, which aligns with an entry-level position.",
+            "original_confidence": 0.9,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "expertise": "clinical research",
+            "level": "entry_level",
+            "confidence": 0.7,
+            "justification": "While the candidate's role involves analyzing patent documents and formulations, which relates to research, there is no direct experience in clinical trials or research projects. Given the lack of explicit clinical research experience and the candidate's current position as a trainee, it is appropriate to classify this expertise at the entry-level.",
+            "original_confidence": 0.7,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "expertise": "language",
+            "level": "entry_level",
+            "confidence": 0.6,
+            "justification": "The candidate is learning the German language professionally, which indicates a developing skill rather than established expertise. Since this is a supplementary skill and not a primary focus of their career, it is categorized as entry-level, reflecting their current stage of language acquisition.",
+            "original_confidence": 0.6,
+            "feedback_adjustment": 0.0
+          }
+        ]
+      },
+      "org_unit": {
+        "org_units": [
+          {
+            "unit": "pharmacy_industry",
+            "confidence": 0.9,
+            "justification": "The candidate has a strong educational background in pharmacy, holding both a Master's and Bachelor's degree in the field. Their current role as a Patent Formulation Analyst involves analyzing patent documents and studying formulations, which are critical components of the pharmaceutical industry. This aligns well with the responsibilities typically found in the pharmacy industry, such as regulatory affairs and product management. Given their training phase and focus on formulation analysis, they fit well within this organizational unit.",
+            "original_confidence": 0.9,
+            "feedback_adjustment": 0.0
+          },
+          {
+            "unit": "academic_research",
+            "confidence": 0.7,
+            "justification": "The candidate's experience in analyzing patent documents and formulations suggests involvement in research activities, which is relevant to academic research. However, the lack of explicit experience in clinical trials or direct research projects limits their fit in this area. Nonetheless, their educational background and current role indicate potential for growth in academic research, particularly in areas related to pharmacy education and formulation studies.",
+            "original_confidence": 0.7,
+            "feedback_adjustment": 0.0
+          }
+        ]
+      }
     }
   ]
 }
