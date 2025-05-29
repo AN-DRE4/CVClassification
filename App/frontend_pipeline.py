@@ -16,6 +16,8 @@ zero_shot_module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(zero_shot_module)
 extract_resume_info = zero_shot_module.extract_resume_info
 
+results = []
+
 from process_cvs import CVProcessor
 
 # Set page configuration
@@ -315,42 +317,53 @@ def create_interpreter_config():
     
     return interpreter_configs if interpreter_configs else None
 
-def display_feedback_section(results):
-    """Display feedback section using forms to avoid page reloads"""
+def display_feedback_message(results):
+    """Display a message directing users to the feedback tab instead of immediate feedback form"""
     st.write("---")
-    st.write("### Provide Feedback")
-    st.write("Help us improve our classification by providing feedback on these results.")
+    st.write("### 📝 Feedback")
+    st.info("🎯 **Help us improve our classification!** Go to the **Feedback Dashboard** tab to review and provide feedback on these results.")
+    
+    # Show quick stats if orchestrator is available
+    if "orchestrator" in st.session_state:
+        feedback_stats = st.session_state.orchestrator.get_feedback_stats()
+        if feedback_stats["total_positive"] > 0 or feedback_stats["total_negative"] > 0:
+            st.write(f"📊 **Current feedback:** {feedback_stats['total_positive']} positive, {feedback_stats['total_negative']} negative")
+
+def display_feedback_for_result(result, result_index):
+    """Display feedback form for a specific result"""
+    st.write(f"### CV Classification #{result_index + 1}")
+    st.write(f"**Resume ID:** {result.get('resume_id', 'Unknown')}")
+    st.write(f"**Processed:** {result.get('timestamp', 'Unknown')}")
     
     # Check if feedback was already provided for this CV
-    feedback_key = f"feedback_saved_{results.get('resume_id', 'unknown')}"
+    feedback_key = f"feedback_saved_{result.get('resume_id', 'unknown')}"
     feedback_already_provided = st.session_state.get(feedback_key, False)
     
     if feedback_already_provided:
         st.success("✅ Thank you! Feedback has already been provided for this classification.")
         
-        # Show feedback statistics
-        if "orchestrator" in st.session_state:
-            feedback_stats = st.session_state.orchestrator.get_feedback_stats()
-            if feedback_stats["total_positive"] > 0 or feedback_stats["total_negative"] > 0:
-                st.info(f"📊 Total feedback received: {feedback_stats['total_positive']} positive, {feedback_stats['total_negative']} negative")
-        
         # Option to provide new feedback
-        if st.button("Provide Additional Feedback", key="additional_feedback"):
+        if st.button("Provide Additional Feedback", key=f"additional_feedback_{result_index}"):
             # Reset the feedback key to allow new feedback
             if feedback_key in st.session_state:
                 del st.session_state[feedback_key]
             st.rerun()
         return
     
+    # Display the results in a compact format
+    with st.expander("View Classification Results", expanded=False):
+        display_results(result)
+    
     # Use a form to collect feedback without page reloads
-    with st.form(key="feedback_form", clear_on_submit=True):
+    with st.form(key=f"feedback_form_{result_index}", clear_on_submit=True):
         st.write("**How would you rate this classification?**")
         
         # Rating selection
         rating = st.selectbox(
             "Select your rating:",
             options=["Select an option", "👍 Good Classification", "👎 Needs Improvement"],
-            index=0
+            index=0,
+            key=f"rating_{result_index}"
         )
         
         # Feedback details
@@ -358,7 +371,8 @@ def display_feedback_section(results):
             "Please provide details about your feedback (optional):",
             help="Your feedback helps us improve the classification system. Please share any specific aspects that could be improved or what worked well.",
             height=100,
-            placeholder="What specifically worked well or could be improved?"
+            placeholder="What specifically worked well or could be improved?",
+            key=f"feedback_reason_{result_index}"
         )
         
         # Submit button
@@ -372,24 +386,22 @@ def display_feedback_section(results):
                 rating_type = "positive" if "Good" in rating else "negative"
                 
                 # Save feedback
-                results["user_feedback"] = {
+                result["user_feedback"] = {
                     "rating": rating_type,
                     "reason": feedback_reason.strip() if feedback_reason.strip() else "No additional details provided",
                     "timestamp": datetime.now().isoformat()
                 }
-
-                print(results)
                 
                 # Save to orchestrator
                 if "orchestrator" in st.session_state:
-                    st.session_state.orchestrator.add_feedback(results)
+                    st.session_state.orchestrator.add_feedback(result)
                     st.session_state[feedback_key] = True
                     
                     # Show success message
                     if rating_type == "positive":
                         st.success("👍 Thank you for your positive feedback!")
                     else:
-                        st.success("👎 Thank you for your feedback. We'll use this to improve our classification.")
+                        st.success("Thank you for your feedback. We'll use this to improve our classification.")
                     
                     # Show feedback statistics
                     feedback_stats = st.session_state.orchestrator.get_feedback_stats()
@@ -407,6 +419,10 @@ def main():
     
     You can also customize the classification parameters using the customization options.
     """)
+    
+    # Initialize processed results in session state if not exists
+    if "processed_results" not in st.session_state:
+        st.session_state.processed_results = []
     
     # Add tabs for CV upload and customization
     tabs = st.tabs(["CV Upload & Processing", "Classification Customization", "Advanced File Interpretation", "Feedback Dashboard"])
@@ -481,7 +497,7 @@ def main():
                     interpreter_configs = st.session_state.interpreter_configs
                 
                 # Process the CV
-                results = process_cv_text(
+                result = process_cv_text(
                     cv_text, 
                     file_name, 
                     custom_config=custom_config, 
@@ -489,20 +505,24 @@ def main():
                     interpreter_configs=interpreter_configs
                 )
                 
-                if results:
-                    display_results(results[-1])
+                if result:
+                    # Store the result in session state
+                    st.session_state.processed_results.append(result[-1])
+                    
+                    # Display results
+                    display_results(result[-1])
                     
                     # Option to download results
                     st.download_button(
                         label="Download Results as JSON",
-                        data=json.dumps(results[-1], indent=2),
+                        data=json.dumps(result[-1], indent=2),
                         file_name=f"cv_results_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
                         mime="application/json"
                     )
                     
-                    # Add feedback section after download button
-                    display_feedback_section(results[-1])
-                    
+                    # Display feedback message instead of immediate feedback form
+                    display_feedback_message(result[-1])
+                                                           
                 # Clean up temporary config files
                 for temp_file in config_files:
                     if os.path.exists(temp_file):
@@ -620,10 +640,15 @@ def main():
         st.write("""
         ## Feedback Dashboard
         
-        View and manage feedback received from users to understand how the system is performing.
+        Review all processed CV classifications and provide feedback to help improve the system.
         """)
         
-        # Check if orchestrator is available
+        # Check if there are any processed results
+        if not st.session_state.processed_results:
+            st.info("No CV classifications available for feedback. Please process a CV first in the **CV Upload & Processing** tab.")
+            return
+        
+        # Display overall statistics if orchestrator is available
         if "orchestrator" in st.session_state:
             feedback_stats = st.session_state.orchestrator.get_feedback_stats()
             
@@ -647,8 +672,30 @@ def main():
             # Show last updated
             if feedback_stats.get('last_updated'):
                 st.write(f"**Last updated:** {feedback_stats['last_updated']}")
-            
-            # Feedback management
+        
+        st.write("---")
+        
+        # Display all processed results for feedback
+        st.write(f"### All Processed CVs ({len(st.session_state.processed_results)} total)")
+        
+        # Option to select which CV to provide feedback on
+        if len(st.session_state.processed_results) > 1:
+            selected_cv = st.selectbox(
+                "Select a CV to provide feedback on:",
+                range(len(st.session_state.processed_results)),
+                format_func=lambda x: f"CV #{x + 1}: {st.session_state.processed_results[x].get('resume_id', 'Unknown')[:50]}..."
+            )
+        else:
+            selected_cv = 0
+        
+        if selected_cv is not None and selected_cv < len(st.session_state.processed_results):
+            result = st.session_state.processed_results[selected_cv]
+            display_feedback_for_result(result, selected_cv)
+        
+        st.write("---")
+        
+        # Feedback management section
+        if "orchestrator" in st.session_state:
             st.write("### Feedback Management")
             
             col1, col2 = st.columns(2)
@@ -696,11 +743,18 @@ def main():
                     if st.button("Confirm Clear Feedback", type="primary"):
                         st.session_state.orchestrator.clear_feedback()
                         st.success("All feedback has been cleared!")
-                        st.experimental_rerun()
+                        st.rerun()
                     else:
                         st.warning("Click 'Confirm Clear Feedback' to permanently delete all feedback data")
-        else:
-            st.info("No feedback data available. Please process a CV first to enable feedback tracking.")
+                
+                # Option to clear processed results
+                if st.button("Clear Processed CVs", type="secondary"):
+                    if st.button("Confirm Clear CVs", type="primary"):
+                        st.session_state.processed_results = []
+                        st.success("All processed CV results have been cleared!")
+                        st.rerun()
+                    else:
+                        st.warning("Click 'Confirm Clear CVs' to remove all processed CV results from this session")
 
 if __name__ == "__main__":
     main()
