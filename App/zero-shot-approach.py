@@ -89,11 +89,11 @@ def extract_resume_info(resume_text):
                 print(f"Error processing resume after {max_retries} attempts: {e}")
                 return None
             
-def process_folder(folder_path):
+def process_folder(folder_path, output_file):
     # Load existing labeled data if it exists
     existing_data = []
-    if os.path.exists('silver_labeled_resumes.json'):
-        with open('silver_labeled_resumes.json', 'r') as f:
+    if os.path.exists(output_file):
+        with open(output_file, 'r') as f:
             existing_data = json.load(f)
         print(f"Loaded {len(existing_data)} existing labeled resumes")
 
@@ -132,8 +132,8 @@ def process_folder(folder_path):
 
     # Save as silver data
     silver_df = pd.DataFrame(processed_data)
-    silver_df.to_json('silver_labeled_resumes.json', orient='records')
-    print(f"Saved {len(processed_data)} total resumes to silver_labeled_resumes.json")
+    silver_df.to_json(output_file, orient='records')
+    print(f"Saved {len(processed_data)} total resumes to {output_file}")
 
 def process_cv(cv_path):
     with open(cv_path, 'r', encoding='utf-8') as f:
@@ -157,7 +157,7 @@ def main():
     args = parser.parse_args()
 
     if args.folder:
-        process_folder(args.folder)
+        process_folder(args.folder, 'silver_labeled_resumes.json')
     if args.cv:
         process_cv(args.cv)
 

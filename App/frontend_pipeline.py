@@ -410,242 +410,649 @@ def display_feedback_for_result(result, result_index):
                 else:
                     st.warning("Could not save feedback - orchestrator not available")
 
+def process_folder_for_frontend(folder_path, output_file):
+    """Modified version of process_folder for frontend use"""
+    # Load existing labeled data if it exists
+    existing_data = []
+    if os.path.exists(output_file):
+        with open(output_file, 'r') as f:
+            existing_data = json.load(f)
+
+    # Get list of already processed resume IDs
+    processed_ids = {item['resume_id'] for item in existing_data}
+
+    # Load all resumes
+    resumes = []
+    supported_extensions = ['.txt', '.pdf', '.docx']
+    
+    for root, dirs, files in os.walk(folder_path):
+        for file in files:
+            # Check if file has supported extension
+            if any(file.lower().endswith(ext) for ext in supported_extensions):
+                file_path = os.path.join(root, file)
+                if file_path not in processed_ids:  # Only add unprocessed resumes
+                    try:
+                        if file.lower().endswith('.txt'):
+                            with open(file_path, 'r', encoding='utf-8') as f:
+                                resume_text = f.read()
+                        else:
+                            # For PDF and DOCX files, we'll just read them as text for now
+                            # In a production environment, you'd want proper PDF/DOCX parsing
+                            with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+                                resume_text = f.read()
+                        
+                        resumes.append({
+                            'id': file_path,
+                            'text': resume_text
+                        })
+                    except Exception as e:
+                        st.warning(f"Could not read file {file_path}: {str(e)}")
+
+    # Process all remaining resumes
+    processed_data = existing_data  # Start with existing data
+    
+    progress_bar = st.progress(0)
+    status_text = st.empty()
+    
+    for i, resume in enumerate(resumes):
+        progress = (i + 1) / len(resumes)
+        progress_bar.progress(progress)
+        status_text.text(f"Processing CV {i + 1} of {len(resumes)}: {os.path.basename(resume['id'])}")
+        
+        extracted_info = extract_resume_info(resume['text'])
+        if extracted_info:
+            processed_data.append({
+                'resume_id': resume['id'],
+                'resume_text': resume['text'],
+                'extracted_info': extracted_info
+            })
+
+    # Save as silver data
+    with open(output_file, 'w') as f:
+        json.dump(processed_data, f, indent=2)
+    
+    progress_bar.progress(1.0)
+    status_text.text(f"Completed! Processed {len(resumes)} new CVs, total: {len(processed_data)}")
+    
+    return processed_data
+
+def process_cv_folder(folder_path, custom_config=None, config_files=None, interpreter_configs=None):
+    """Process an entire folder of CVs through the pipeline"""
+    import tempfile
+    
+    # Validate folder path
+    if not os.path.exists(folder_path):
+        st.error(f"Folder path does not exist: {folder_path}")
+        return None
+    
+    # Check if folder contains any supported files
+    supported_extensions = ['.txt', '.pdf', '.docx']
+    cv_files = []
+    for root, dirs, files in os.walk(folder_path):
+        for file in files:
+            if any(file.lower().endswith(ext) for ext in supported_extensions):
+                cv_files.append(os.path.join(root, file))
+    
+    if not cv_files:
+        st.warning(f"No supported CV files (.txt, .pdf, .docx) found in folder: {folder_path}")
+        return None
+    
+    st.info(f"Found {len(cv_files)} CV files to process")
+    
+    # Step 1: Extract basic information from all CVs using zero-shot approach
+    st.write("### Step 1: Extracting information from all CVs in folder")
+    with st.spinner("Processing CVs with zero-shot approach..."):
+        # Create a temporary file for the silver labeled data
+        temp_silver_file = tempfile.mktemp(suffix='.json')
+        
+        try:
+            # Use our modified process_folder function
+            cv_data = process_folder_for_frontend(folder_path, temp_silver_file)
+            
+            if not cv_data:
+                st.error("No CVs were successfully processed")
+                return None
+            
+            st.success(f"Successfully processed {len(cv_data)} CVs from folder")
+            
+        except Exception as e:
+            st.error(f"Error processing folder: {str(e)}")
+            return None
+        finally:
+            # Clean up temp file
+            if os.path.exists(temp_silver_file):
+                os.remove(temp_silver_file)
+    
+    # Step 2: Process with classification agents
+    st.write("### Step 2: Advanced CV Classification for all CVs")
+    with st.spinner("Classifying all CVs with agents..."):
+        try:
+            # Create another temp file for the CV data input to CVProcessor
+            temp_input_file = tempfile.mktemp(suffix='.json')
+            with open(temp_input_file, 'w') as f:
+                json.dump(cv_data, f)
+            
+            # Use CVProcessor for full classification
+            processor = CVProcessor(
+                input_file=temp_input_file,
+                output_dir="batch_results",
+                custom_config=custom_config,
+                config_files=config_files,
+                interpreter_configs=interpreter_configs
+            )
+            
+            results = processor.process_cvs(
+                batch_size=5,  # Smaller batch size for frontend
+                save_interval=2, 
+                max_cvs=len(cv_data)
+            )
+            
+            # Store orchestrator in session state for feedback handling
+            st.session_state.orchestrator = processor.orchestrator
+            
+            # Store batch results in session state for feedback
+            if "batch_results" not in st.session_state:
+                st.session_state.batch_results = []
+            st.session_state.batch_results.extend(results)
+            
+            return results
+            
+        except Exception as e:
+            st.error(f"Error during batch classification: {str(e)}")
+            return None
+        finally:
+            # Clean up temp file
+            if os.path.exists(temp_input_file):
+                os.remove(temp_input_file)
+
+def display_batch_results(results):
+    """Display batch processing results in a formatted way"""
+    st.write("## Batch Processing Results")
+    st.write(f"**Total CVs Processed:** {len(results)}")
+    
+    # Create summary statistics
+    st.write("### Summary Statistics")
+    
+    # Count expertise areas
+    expertise_counts = {}
+    role_level_counts = {}
+    org_unit_counts = {}
+    
+    for result in results:
+        # Count expertise areas
+        expertise_list = result.get("expertise", {}).get("expertise", [])
+        for exp in expertise_list:
+            category = exp.get("category")
+            if category:
+                expertise_counts[category] = expertise_counts.get(category, 0) + 1
+        
+        # Count role levels
+        role_levels = result.get("role_levels", {}).get("role_levels", [])
+        for role in role_levels:
+            level_key = f"{role.get('expertise')} - {role.get('level')}"
+            if level_key:
+                role_level_counts[level_key] = role_level_counts.get(level_key, 0) + 1
+        
+        # Count org units
+        org_units = result.get("org_unit", {}).get("org_units", [])
+        for unit in org_units:
+            unit_name = unit.get("unit")
+            if unit_name:
+                org_unit_counts[unit_name] = org_unit_counts.get(unit_name, 0) + 1
+    
+    # Display summary in columns
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        st.write("#### Top Expertise Areas")
+        sorted_expertise = sorted(expertise_counts.items(), key=lambda x: x[1], reverse=True)[:5]
+        for category, count in sorted_expertise:
+            st.write(f"**{category}:** {count} CVs")
+    
+    with col2:
+        st.write("#### Top Role Levels")
+        sorted_roles = sorted(role_level_counts.items(), key=lambda x: x[1], reverse=True)[:5]
+        for role, count in sorted_roles:
+            st.write(f"**{role}:** {count} CVs")
+    
+    with col3:
+        st.write("#### Top Org Units")
+        sorted_units = sorted(org_unit_counts.items(), key=lambda x: x[1], reverse=True)[:5]
+        for unit, count in sorted_units:
+            st.write(f"**{unit}:** {count} CVs")
+    
+    st.write("---")
+    
+    # Individual CV results
+    st.write("### Individual CV Results")
+    
+    # Option to select which CV to view in detail
+    if len(results) > 0:
+        selected_cv_index = st.selectbox(
+            "Select a CV to view detailed results:",
+            range(len(results)),
+            format_func=lambda x: f"CV #{x + 1}: {results[x].get('resume_id', 'Unknown')}"
+        )
+        
+        if selected_cv_index is not None:
+            selected_result = results[selected_cv_index]
+            
+            # Display detailed results for selected CV
+            with st.expander(f"Detailed Results for CV #{selected_cv_index + 1}", expanded=True):
+                display_results(selected_result)
+    
+    # Download options
+    st.write("### Download Options")
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        # Download all results
+        st.download_button(
+            label="Download All Results (JSON)",
+            data=json.dumps(results, indent=2),
+            file_name=f"batch_cv_results_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
+            mime="application/json"
+        )
+    
+    with col2:
+        # Download summary report
+        summary_report = {
+            "processing_date": datetime.now().isoformat(),
+            "total_cvs": len(results),
+            "summary_statistics": {
+                "top_expertise_areas": dict(sorted_expertise),
+                "top_role_levels": dict(sorted_roles),
+                "top_org_units": dict(sorted_units)
+            }
+        }
+        
+        st.download_button(
+            label="Download Summary Report (JSON)",
+            data=json.dumps(summary_report, indent=2),
+            file_name=f"batch_summary_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
+            mime="application/json"
+        )
+
 def main():
     st.title("CV Classification Pipeline")
-    st.write("""
-    Upload a CV to classify it using our AI-powered pipeline. The system will:
-    1. Extract key information from your CV
-    2. Classify your expertise areas, role levels, and organizational unit fit
-    
-    You can also customize the classification parameters using the customization options.
-    """)
     
     # Initialize processed results in session state if not exists
     if "processed_results" not in st.session_state:
         st.session_state.processed_results = []
     
-    # Add tabs for CV upload and customization
-    tabs = st.tabs(["CV Upload & Processing", "Classification Customization", "Advanced File Interpretation", "Feedback Dashboard"])
+    # Sidebar navigation
+    with st.sidebar:
+        st.title("🗂️ Navigation")
+        st.write("### Pages")
+        page = st.session_state.get("current_page", "🏠 Main Dashboard")
+        if st.sidebar.button("🏠 Main Dashboard", use_container_width=True):
+            page = "🏠 Main Dashboard"
+            st.session_state.current_page = page
+        if st.sidebar.button("📝 Feedback Dashboard", use_container_width=True):
+            page = "📝 Feedback Dashboard"
+            st.session_state.current_page = page
+        
+        # Display quick stats in sidebar if available
+        if "orchestrator" in st.session_state:
+            feedback_stats = st.session_state.orchestrator.get_feedback_stats()
+            if feedback_stats["total_positive"] > 0 or feedback_stats["total_negative"] > 0:
+                st.write("---")
+                st.write("**📊 Feedback Stats:**")
+                st.write(f"👍 Positive: {feedback_stats['total_positive']}")
+                st.write(f"👎 Negative: {feedback_stats['total_negative']}")
+                total_feedback = feedback_stats['total_positive'] + feedback_stats['total_negative']
+                if total_feedback > 0:
+                    positive_rate = (feedback_stats['total_positive'] / total_feedback) * 100
+                    st.write(f"✅ Positive Rate: {positive_rate:.1f}%")
     
-    # Tab 1: CV Upload & Processing
-    with tabs[0]:
-        # File uploader for CV text
-        uploaded_file = st.file_uploader("Upload your CV (text format)", type=["txt", "pdf", "docx"])
+    # Main Dashboard Page
+    if page == "🏠 Main Dashboard":
+        st.write("""
+        Upload a CV to classify it using our AI-powered pipeline. The system will:
+        1. Extract key information from your CV
+        2. Classify your expertise areas, role levels, and organizational unit fit
         
-        # Get CV text from either file or text area
-        cv_text = ""
-        file_name = None
+        You can also customize the classification parameters using the customization options.
+        """)
         
-        if uploaded_file is not None:
-            file_name = uploaded_file.name
-            try:
-                cv_text = uploaded_file.getvalue().decode("utf-8")
-                st.success(f"Successfully loaded CV from file: {file_name}")
-            except Exception as e:
-                st.error(f"Error reading file: {str(e)}")
+        # Add tabs for CV upload and customization (original tabs 1-3)
+        tabs = st.tabs(["CV Upload & Processing", "Batch Processing", "Classification Customization", "Advanced File Interpretation"])
         
-        # Text area for direct input
-        st.write("#### Or paste your CV text below")
-        text_input = st.text_area("CV Text", height=200)
-        
-        # Use text input if no file was uploaded or if text was entered
-        if not cv_text and text_input:
-            cv_text = text_input
-            file_name = "manual_entry"
-        
-        # Display the CV text if available
-        if cv_text:
-            with st.expander("View CV text", expanded=False):
-                st.text(cv_text)
-        
-        # Configuration file uploads
-        st.write("#### Optional: Upload configuration files")
-        st.info("You can upload pre-configured JSON files here, or create your own custom configuration in the **Classification Customization** tab or use **Advanced File Interpretation** for more complex configurations.")
-        uploaded_config_files = st.file_uploader("Upload JSON configuration files", type=["json"], accept_multiple_files=True)
-        
-        config_files = []
-        if uploaded_config_files:
-            for config_file in uploaded_config_files:
-                # Save the uploaded file temporarily
-                temp_path = f"temp_config_{config_file.name}"
-                with open(temp_path, "wb") as f:
-                    f.write(config_file.getbuffer())
-                config_files.append(temp_path)
-                st.success(f"Loaded configuration file: {config_file.name}")
-        
-        # Process button
-        process_clicked = st.button("Process CV")
-        
-        if process_clicked:
-            if not cv_text:
-                st.warning("Please upload a file or paste CV text")
-            else:
-                # Collect custom configuration from the customization tab
-                custom_config = {}
-                if "expertise_config" in st.session_state and st.session_state.expertise_config:
-                    custom_config["expertise"] = st.session_state.expertise_config
-                
-                if "role_levels_config" in st.session_state and st.session_state.role_levels_config:
-                    custom_config["role_levels"] = st.session_state.role_levels_config
-                
-                if "org_units_config" in st.session_state and st.session_state.org_units_config:
-                    custom_config["org_units"] = st.session_state.org_units_config
-                
-                # Get interpreter configurations
-                interpreter_configs = None
-                if "interpreter_configs" in st.session_state and st.session_state.interpreter_configs:
-                    interpreter_configs = st.session_state.interpreter_configs
-                
-                # Process the CV
-                result = process_cv_text(
-                    cv_text, 
-                    file_name, 
-                    custom_config=custom_config, 
-                    config_files=config_files,
-                    interpreter_configs=interpreter_configs
-                )
-                
-                if result:
-                    # Store the result in session state
-                    st.session_state.processed_results.append(result[-1])
+        # Tab 1: CV Upload & Processing
+        with tabs[0]:
+            # File uploader for CV text
+            uploaded_file = st.file_uploader("Upload your CV (text format)", type=["txt", "pdf", "docx"])
+            
+            # Get CV text from either file or text area
+            cv_text = ""
+            file_name = None
+            
+            if uploaded_file is not None:
+                file_name = uploaded_file.name
+                try:
+                    cv_text = uploaded_file.getvalue().decode("utf-8")
+                    st.success(f"Successfully loaded CV from file: {file_name}")
+                except Exception as e:
+                    st.error(f"Error reading file: {str(e)}")
+            
+            # Text area for direct input
+            st.write("#### Or paste your CV text below")
+            text_input = st.text_area("CV Text", height=200)
+            
+            # Use text input if no file was uploaded or if text was entered
+            if not cv_text and text_input:
+                cv_text = text_input
+                file_name = "manual_entry"
+            
+            # Display the CV text if available
+            if cv_text:
+                with st.expander("View CV text", expanded=False):
+                    st.text(cv_text)
+            
+            # Configuration file uploads
+            st.write("#### Optional: Upload configuration files")
+            st.info("You can upload pre-configured JSON files here, or create your own custom configuration in the **Classification Customization** tab or use **Advanced File Interpretation** for more complex configurations.")
+            uploaded_config_files = st.file_uploader("Upload JSON configuration files", type=["json"], accept_multiple_files=True)
+            
+            config_files = []
+            if uploaded_config_files:
+                for config_file in uploaded_config_files:
+                    # Save the uploaded file temporarily
+                    temp_path = f"temp_config_{config_file.name}"
+                    with open(temp_path, "wb") as f:
+                        f.write(config_file.getbuffer())
+                    config_files.append(temp_path)
+                    st.success(f"Loaded configuration file: {config_file.name}")
+            
+            # Process button
+            process_clicked = st.button("Process CV")
+            
+            if process_clicked:
+                if not cv_text:
+                    st.warning("Please upload a file or paste CV text")
+                else:
+                    # Collect custom configuration from the customization tab
+                    custom_config = {}
+                    if "expertise_config" in st.session_state and st.session_state.expertise_config:
+                        custom_config["expertise"] = st.session_state.expertise_config
                     
-                    # Display results
-                    display_results(result[-1])
+                    if "role_levels_config" in st.session_state and st.session_state.role_levels_config:
+                        custom_config["role_levels"] = st.session_state.role_levels_config
                     
-                    # Option to download results
-                    st.download_button(
-                        label="Download Results as JSON",
-                        data=json.dumps(result[-1], indent=2),
-                        file_name=f"cv_results_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
-                        mime="application/json"
+                    if "org_units_config" in st.session_state and st.session_state.org_units_config:
+                        custom_config["org_units"] = st.session_state.org_units_config
+                    
+                    # Get interpreter configurations
+                    interpreter_configs = None
+                    if "interpreter_configs" in st.session_state and st.session_state.interpreter_configs:
+                        interpreter_configs = st.session_state.interpreter_configs
+                    
+                    # Process the CV
+                    result = process_cv_text(
+                        cv_text, 
+                        file_name, 
+                        custom_config=custom_config, 
+                        config_files=config_files,
+                        interpreter_configs=interpreter_configs
                     )
                     
-                    # Display feedback message instead of immediate feedback form
-                    display_feedback_message(result[-1])
-                                                           
-                # Clean up temporary config files
-                for temp_file in config_files:
-                    if os.path.exists(temp_file):
-                        os.remove(temp_file)
-                
-                # Clean up temporary interpreter files
-                if interpreter_configs:
-                    for file_path, _, _ in interpreter_configs:
-                        if os.path.exists(file_path):
-                            os.remove(file_path)
-    
-    # Tab 2: Classification Customization
-    with tabs[1]:
-        st.write("""
-        ## Classification Customization
+                    if result:
+                        # Store the result in session state
+                        st.session_state.processed_results.append(result[-1])
+                        
+                        # Display results
+                        display_results(result[-1])
+                        
+                        # Option to download results
+                        st.download_button(
+                            label="Download Results as JSON",
+                            data=json.dumps(result[-1], indent=2),
+                            file_name=f"cv_results_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
+                            mime="application/json"
+                        )
+                        
+                        # Display feedback message instead of immediate feedback form
+                        display_feedback_message(result[-1])
+                                                               
+                    # Clean up temporary config files
+                    for temp_file in config_files:
+                        if os.path.exists(temp_file):
+                            os.remove(temp_file)
+                    
+                    # Clean up temporary interpreter files
+                    if interpreter_configs:
+                        for file_path, _, _ in interpreter_configs:
+                            if os.path.exists(file_path):
+                                os.remove(file_path)
         
-        Use the options below to customize how CVs are classified. You can:
-        - Define custom expertise categories
-        - Define custom role levels
-        - Define custom organizational units
-        
-        Your customizations will be applied when you process a CV.
-        """)
-        
-        # Create expanders for each customization option
-        with st.expander("Customize Expertise Categories", expanded=False):
-            expertise_config = create_custom_expertise_config()
-            if expertise_config:
-                # Save to session state
-                st.session_state.expertise_config = expertise_config
-                
-                # Option to download config
-                st.download_button(
-                    label="Download Expertise Configuration",
-                    data=json.dumps({"expertise": expertise_config}, indent=2),
-                    file_name=f"expertise_config_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
-                    mime="application/json"
-                )
-        
-        with st.expander("Customize Role Levels", expanded=False):
-            role_levels_config = create_custom_role_levels_config()
-            if role_levels_config:
-                # Save to session state
-                st.session_state.role_levels_config = role_levels_config
-                
-                # Option to download config
-                st.download_button(
-                    label="Download Role Levels Configuration",
-                    data=json.dumps({"role_levels": role_levels_config}, indent=2),
-                    file_name=f"role_levels_config_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
-                    mime="application/json"
-                )
-        
-        with st.expander("Customize Organizational Units", expanded=False):
-            org_units_config = create_custom_org_units_config()
-            if org_units_config:
-                # Save to session state
-                st.session_state.org_units_config = org_units_config
-                
-                # Option to download config
-                st.download_button(
-                    label="Download Org Units Configuration",
-                    data=json.dumps({"org_units": org_units_config}, indent=2),
-                    file_name=f"org_units_config_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
-                    mime="application/json"
-                )
-        
-        # Option to combine all configurations into a single file
-        if (
-            "expertise_config" in st.session_state or 
-            "role_levels_config" in st.session_state or 
-            "org_units_config" in st.session_state
-        ):
-            st.write("### Download Complete Configuration")
+        # Tab 2: Batch Processing
+        with tabs[1]:
+            st.write("""
+            ## Batch Processing
             
-            combined_config = {}
+            Process multiple CVs at once by specifying a folder containing CV files.
             
-            if "expertise_config" in st.session_state:
-                combined_config["expertise"] = st.session_state.expertise_config
-                
-            if "role_levels_config" in st.session_state:
-                combined_config["role_levels"] = st.session_state.role_levels_config
-                
-            if "org_units_config" in st.session_state:
-                combined_config["org_units"] = st.session_state.org_units_config
+            **Supported file formats:** .txt, .pdf, .docx
+            """)
             
-            st.download_button(
-                label="Download Complete Configuration",
-                data=json.dumps(combined_config, indent=2),
-                file_name=f"cv_classification_config_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
-                mime="application/json"
+            # Folder input section
+            st.write("### Select Folder")
+            
+            col1, col2 = st.columns([3, 1])
+            
+            with col1:
+                folder_path = st.text_input(
+                    "Enter the path to the folder containing CVs",
+                    placeholder="e.g., /path/to/cv/folder or C:\\path\\to\\cv\\folder",
+                    help="Enter the full path to the folder containing CV files"
+                )
+            
+            with col2:
+                st.write("")  # Add some spacing
+                st.write("")  # Add some spacing
+                if st.button("📁 Browse", help="You can manually enter the path in the text field"):
+                    st.info("💡 **Tip:** Copy and paste the folder path from your file explorer into the text field above.")
+            
+            # Configuration section
+            st.write("### Optional: Configuration")
+            st.info("You can use the same customization options from the **Classification Customization** and **Advanced File Interpretation** tabs.")
+            
+            # Configuration file uploads for batch processing
+            uploaded_batch_config_files = st.file_uploader(
+                "Upload JSON configuration files for batch processing", 
+                type=["json"], 
+                accept_multiple_files=True,
+                key="batch_config_files"
             )
-    
-    # Tab 3: Advanced File Interpretation
-    with tabs[2]:
-        st.write("""
-        ## Advanced File Interpretation
-        
-        Use this feature to provide custom files with detailed descriptions of how the system should interpret them.
-        Upload files containing your own categorization schemes, role level definitions, or organizational structures.
-        
-        For each uploaded file, provide a clear description of how it should be interpreted.
-        The system will use an AI interpreter to convert your data into a format that the classification agents can use.
-        """)
-        
-        interpreter_configs = create_interpreter_config()
-        if interpreter_configs:
-            # Save to session state
-            st.session_state.interpreter_configs = interpreter_configs
             
-            st.success("File interpretation configurations saved. These will be applied when you process a CV.")
+            batch_config_files = []
+            if uploaded_batch_config_files:
+                for config_file in uploaded_batch_config_files:
+                    # Save the uploaded file temporarily
+                    temp_path = f"temp_batch_config_{config_file.name}"
+                    with open(temp_path, "wb") as f:
+                        f.write(config_file.getbuffer())
+                    batch_config_files.append(temp_path)
+                    st.success(f"Loaded configuration file: {config_file.name}")
+            
+            # Process button
+            if st.button("🚀 Process Folder", type="primary"):
+                if not folder_path:
+                    st.warning("Please enter a folder path")
+                elif not os.path.exists(folder_path):
+                    st.error("The specified folder path does not exist. Please check the path and try again.")
+                else:
+                    # Collect custom configuration from session state
+                    custom_config = {}
+                    if "expertise_config" in st.session_state and st.session_state.expertise_config:
+                        custom_config["expertise"] = st.session_state.expertise_config
+                    
+                    if "role_levels_config" in st.session_state and st.session_state.role_levels_config:
+                        custom_config["role_levels"] = st.session_state.role_levels_config
+                    
+                    if "org_units_config" in st.session_state and st.session_state.org_units_config:
+                        custom_config["org_units"] = st.session_state.org_units_config
+                    
+                    # Get interpreter configurations
+                    interpreter_configs = None
+                    if "interpreter_configs" in st.session_state and st.session_state.interpreter_configs:
+                        interpreter_configs = st.session_state.interpreter_configs
+                    
+                    # Process the folder
+                    result = process_cv_folder(
+                        folder_path,
+                        custom_config=custom_config,
+                        config_files=batch_config_files,
+                        interpreter_configs=interpreter_configs
+                    )
+                    
+                    if result:
+                        # Display batch results
+                        display_batch_results(result)
+                        
+                        # Show feedback message
+                        st.write("---")
+                        st.write("### 📝 Feedback")
+                        st.info("🎯 **Help us improve our classification!** Go to the **Feedback Dashboard** to review and provide feedback on these batch results.")
+                    
+                    # Clean up temporary config files
+                    for temp_file in batch_config_files:
+                        if os.path.exists(temp_file):
+                            os.remove(temp_file)
+            
+            # Show previous batch results if available
+            if "batch_results" in st.session_state and st.session_state.batch_results:
+                st.write("---")
+                st.write("### Previous Batch Results")
+                
+                if st.button("Show Previous Batch Results"):
+                    display_batch_results(st.session_state.batch_results)
+                
+                if st.button("Clear Previous Batch Results", type="secondary"):
+                    st.session_state.batch_results = []
+                    st.success("Previous batch results cleared!")
+                    st.rerun()
+        
+        # Tab 2: Classification Customization
+        with tabs[2]:
+            st.write("""
+            ## Classification Customization
+            
+            Use the options below to customize how CVs are classified. You can:
+            - Define custom expertise categories
+            - Define custom role levels
+            - Define custom organizational units
+            
+            Your customizations will be applied when you process a CV.
+            """)
+            
+            # Create expanders for each customization option
+            with st.expander("Customize Expertise Categories", expanded=False):
+                expertise_config = create_custom_expertise_config()
+                if expertise_config:
+                    # Save to session state
+                    st.session_state.expertise_config = expertise_config
+                    
+                    # Option to download config
+                    st.download_button(
+                        label="Download Expertise Configuration",
+                        data=json.dumps({"expertise": expertise_config}, indent=2),
+                        file_name=f"expertise_config_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
+                        mime="application/json"
+                    )
+            
+            with st.expander("Customize Role Levels", expanded=False):
+                role_levels_config = create_custom_role_levels_config()
+                if role_levels_config:
+                    # Save to session state
+                    st.session_state.role_levels_config = role_levels_config
+                    
+                    # Option to download config
+                    st.download_button(
+                        label="Download Role Levels Configuration",
+                        data=json.dumps({"role_levels": role_levels_config}, indent=2),
+                        file_name=f"role_levels_config_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
+                        mime="application/json"
+                    )
+            
+            with st.expander("Customize Organizational Units", expanded=False):
+                org_units_config = create_custom_org_units_config()
+                if org_units_config:
+                    # Save to session state
+                    st.session_state.org_units_config = org_units_config
+                    
+                    # Option to download config
+                    st.download_button(
+                        label="Download Org Units Configuration",
+                        data=json.dumps({"org_units": org_units_config}, indent=2),
+                        file_name=f"org_units_config_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
+                        mime="application/json"
+                    )
+            
+            # Option to combine all configurations into a single file
+            if (
+                "expertise_config" in st.session_state or 
+                "role_levels_config" in st.session_state or 
+                "org_units_config" in st.session_state
+            ):
+                st.write("### Download Complete Configuration")
+                
+                combined_config = {}
+                
+                if "expertise_config" in st.session_state:
+                    combined_config["expertise"] = st.session_state.expertise_config
+                    
+                if "role_levels_config" in st.session_state:
+                    combined_config["role_levels"] = st.session_state.role_levels_config
+                    
+                if "org_units_config" in st.session_state:
+                    combined_config["org_units"] = st.session_state.org_units_config
+                
+                st.download_button(
+                    label="Download Complete Configuration",
+                    data=json.dumps(combined_config, indent=2),
+                    file_name=f"cv_classification_config_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
+                    mime="application/json"
+                )
+        
+        # Tab 3: Advanced File Interpretation
+        with tabs[3]:
+            st.write("""
+            ## Advanced File Interpretation
+            
+            Use this feature to provide custom files with detailed descriptions of how the system should interpret them.
+            Upload files containing your own categorization schemes, role level definitions, or organizational structures.
+            
+            For each uploaded file, provide a clear description of how it should be interpreted.
+            The system will use an AI interpreter to convert your data into a format that the classification agents can use.
+            """)
+            
+            interpreter_configs = create_interpreter_config()
+            if interpreter_configs:
+                # Save to session state
+                st.session_state.interpreter_configs = interpreter_configs
+                
+                st.success("File interpretation configurations saved. These will be applied when you process a CV.")
 
-    # Tab 4: Feedback Dashboard
-    with tabs[3]:
+    # Feedback Dashboard Page  
+    elif page == "📝 Feedback Dashboard":
         st.write("""
         ## Feedback Dashboard
         
         Review all processed CV classifications and provide feedback to help improve the system.
         """)
         
+        # Combine individual and batch results
+        all_results = []
+        if st.session_state.processed_results:
+            all_results.extend(st.session_state.processed_results)
+        if "batch_results" in st.session_state and st.session_state.batch_results:
+            all_results.extend(st.session_state.batch_results)
+        
         # Check if there are any processed results
-        if not st.session_state.processed_results:
-            st.info("No CV classifications available for feedback. Please process a CV first in the **CV Upload & Processing** tab.")
+        if not all_results:
+            st.info("No CV classifications available for feedback. Please process CVs first in the **Main Dashboard**.")
             return
         
         # Display overall statistics if orchestrator is available
@@ -653,15 +1060,18 @@ def main():
             feedback_stats = st.session_state.orchestrator.get_feedback_stats()
             
             # Display overall statistics
-            col1, col2, col3 = st.columns(3)
+            col1, col2, col3, col4 = st.columns(4)
             
             with col1:
-                st.metric("Positive Feedback", feedback_stats.get('total_positive', 0))
+                st.metric("Total CVs", len(all_results))
             
             with col2:
-                st.metric("Negative Feedback", feedback_stats.get('total_negative', 0))
+                st.metric("Positive Feedback", feedback_stats.get('total_positive', 0))
             
             with col3:
+                st.metric("Negative Feedback", feedback_stats.get('total_negative', 0))
+            
+            with col4:
                 total_feedback = feedback_stats.get('total_positive', 0) + feedback_stats.get('total_negative', 0)
                 if total_feedback > 0:
                     positive_rate = (feedback_stats.get('total_positive', 0) / total_feedback) * 100
@@ -675,86 +1085,59 @@ def main():
         
         st.write("---")
         
-        # Display all processed results for feedback
-        st.write(f"### All Processed CVs ({len(st.session_state.processed_results)} total)")
+        # Filter options
+        st.write("### Filter Results")
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            result_type_filter = st.selectbox(
+                "Filter by source:",
+                ["All Results", "Individual CVs", "Batch Processed CVs"],
+                index=0
+            )
+        
+        with col2:
+            feedback_filter = st.selectbox(
+                "Filter by feedback status:",
+                ["All", "With Feedback", "Without Feedback"],
+                index=0
+            )
+        
+        # Apply filters
+        filtered_results = all_results.copy()
+        
+        if result_type_filter == "Individual CVs":
+            filtered_results = st.session_state.processed_results or []
+        elif result_type_filter == "Batch Processed CVs":
+            filtered_results = st.session_state.get("batch_results", [])
+        
+        if feedback_filter == "With Feedback":
+            filtered_results = [r for r in filtered_results if r.get("user_feedback")]
+        elif feedback_filter == "Without Feedback":
+            filtered_results = [r for r in filtered_results if not r.get("user_feedback")]
+        
+        # Display filtered results for feedback
+        st.write(f"### Filtered Results ({len(filtered_results)} total)")
+        
+        if not filtered_results:
+            st.info("No results match the selected filters.")
+            return
         
         # Option to select which CV to provide feedback on
-        if len(st.session_state.processed_results) > 1:
+        if len(filtered_results) > 1:
             selected_cv = st.selectbox(
                 "Select a CV to provide feedback on:",
-                range(len(st.session_state.processed_results)),
-                format_func=lambda x: f"CV #{x + 1}: {st.session_state.processed_results[x].get('resume_id', 'Unknown')[:50]}..."
+                range(len(filtered_results)),
+                format_func=lambda x: f"CV #{x + 1}: {os.path.basename(filtered_results[x].get('resume_id', 'Unknown'))}"
             )
         else:
             selected_cv = 0
         
-        if selected_cv is not None and selected_cv < len(st.session_state.processed_results):
-            result = st.session_state.processed_results[selected_cv]
+        if selected_cv is not None and selected_cv < len(filtered_results):
+            result = filtered_results[selected_cv]
             display_feedback_for_result(result, selected_cv)
         
         st.write("---")
-        
-        # Feedback management section
-        if "orchestrator" in st.session_state:
-            st.write("### Feedback Management")
-            
-            col1, col2 = st.columns(2)
-            
-            with col1:
-                if st.button("View Detailed Feedback"):
-                    # Show detailed feedback breakdown
-                    feedback_manager = st.session_state.orchestrator.feedback_manager
-                    
-                    st.write("#### Recent Expertise Feedback")
-                    expertise_feedback = feedback_manager.get_expertise_feedback()[-10:]  # Last 10
-                    if expertise_feedback:
-                        for feedback in expertise_feedback:
-                            rating_emoji = "👍" if feedback["rating"] == "positive" else "👎"
-                            st.write(f"{rating_emoji} **{feedback['category']}** (Confidence: {feedback['confidence']:.2f})")
-                            if feedback.get('reason'):
-                                st.write(f"   Reason: {feedback['reason'][:100]}...")
-                    else:
-                        st.write("No expertise feedback available")
-                    
-                    st.write("#### Recent Role Level Feedback")
-                    role_feedback = feedback_manager.get_role_level_feedback()[-10:]  # Last 10
-                    if role_feedback:
-                        for feedback in role_feedback:
-                            rating_emoji = "👍" if feedback["rating"] == "positive" else "👎"
-                            st.write(f"{rating_emoji} **{feedback['expertise']} - {feedback['level']}** (Confidence: {feedback['confidence']:.2f})")
-                            if feedback.get('reason'):
-                                st.write(f"   Reason: {feedback['reason'][:100]}...")
-                    else:
-                        st.write("No role level feedback available")
-                    
-                    st.write("#### Recent Org Unit Feedback")
-                    org_feedback = feedback_manager.get_org_unit_feedback()[-10:]  # Last 10
-                    if org_feedback:
-                        for feedback in org_feedback:
-                            rating_emoji = "👍" if feedback["rating"] == "positive" else "👎"
-                            st.write(f"{rating_emoji} **{feedback['unit']}** (Confidence: {feedback['confidence']:.2f})")
-                            if feedback.get('reason'):
-                                st.write(f"   Reason: {feedback['reason'][:100]}...")
-                    else:
-                        st.write("No org unit feedback available")
-            
-            with col2:
-                if st.button("Clear All Feedback", type="secondary"):
-                    if st.button("Confirm Clear Feedback", type="primary"):
-                        st.session_state.orchestrator.clear_feedback()
-                        st.success("All feedback has been cleared!")
-                        st.rerun()
-                    else:
-                        st.warning("Click 'Confirm Clear Feedback' to permanently delete all feedback data")
-                
-                # Option to clear processed results
-                if st.button("Clear Processed CVs", type="secondary"):
-                    if st.button("Confirm Clear CVs", type="primary"):
-                        st.session_state.processed_results = []
-                        st.success("All processed CV results have been cleared!")
-                        st.rerun()
-                    else:
-                        st.warning("Click 'Confirm Clear CVs' to remove all processed CV results from this session")
 
 if __name__ == "__main__":
     main()
