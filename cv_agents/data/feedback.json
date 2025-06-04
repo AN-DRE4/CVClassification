@@ -1,0 +1,23 @@
+{
+  "expertise_feedback": [
+    {
+      "resume_id": "upload_1207_Miss_Megha_Appasaheb_Solunke.txt_20250604_154047",
+      "timestamp": "2025-06-04T15:58:13.499572",
+      "rating": "negative",
+      "reason": "The cv has no indicators that the person has any skills working in this area, plus all skills/responsibilities listed have no correlation to this area",
+      "key": "data_science",
+      "line_number": 1,
+      "category": "data_science",
+      "confidence": 0.5,
+      "justification": "The candidate's experience with analytical methods and data analysis in the context of patent formulation could imply some level of data science skills, particularly in data interpretation and analysis. However, this is not a primary focus of their experience."
+    }
+  ],
+  "role_level_feedback": [],
+  "org_unit_feedback": [],
+  "general_feedback": [],
+  "feedback_stats": {
+    "total_positive": 0,
+    "total_negative": 1,
+    "last_updated": "2025-06-04T15:58:13.499572"
+  }
+}

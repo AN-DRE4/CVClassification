@@ -146,7 +146,7 @@ class RoleLevelAgent(BaseAgent):
         return super().process(cv_data)
 
     def _apply_feedback_adjustments(self, result):
-        """Apply feedback-based adjustments to role level classifications"""
+        """Apply feedback-based adjustments to role level classifications using targeted feedback"""
         if "role_levels" not in result:
             return result
         
@@ -156,20 +156,33 @@ class RoleLevelAgent(BaseAgent):
             level = role["level"]
             confidence = role["confidence"]
             
-            # Create a key for feedback lookup
+            # Create a key for targeted feedback lookup
             role_key = f"{expertise}_{level}"
             
-            # Get feedback summary for this role level
+            # Get targeted feedback summary for this specific role level
             feedback_summary = self.feedback_manager.get_feedback_summary("role_level", role_key)
             
-            # Apply confidence adjustment based on feedback
+            # Apply confidence adjustment based on targeted feedback
             confidence_adjustment = feedback_summary.get("confidence_adjustment", 0.0)
             adjusted_confidence = max(0.0, min(1.0, confidence + confidence_adjustment))
             
-            # Add feedback information to justification if there's significant feedback
+            # Create more detailed justification with feedback context
             justification = role.get("justification", "")
-            if feedback_summary.get("positive_count", 0) > 0 or feedback_summary.get("negative_count", 0) > 0:
-                feedback_info = f" [Confidence adjusted based on {feedback_summary['positive_count']} positive and {feedback_summary['negative_count']} negative user feedback]"
+            
+            # Add feedback information if there's meaningful feedback
+            feedback_strength = feedback_summary.get("feedback_strength", 0)
+            if feedback_strength > 0:
+                positive_count = feedback_summary.get("positive_count", 0)
+                negative_count = feedback_summary.get("negative_count", 0)
+                
+                if confidence_adjustment != 0:
+                    if confidence_adjustment > 0:
+                        feedback_info = f" [Confidence boosted by +{confidence_adjustment:.3f} based on {positive_count} positive user feedback for '{expertise}-{level}']"
+                    else:
+                        feedback_info = f" [Confidence reduced by {confidence_adjustment:.3f} based on {negative_count} negative user feedback for '{expertise}-{level}']"
+                else:
+                    feedback_info = f" [Based on {positive_count} positive and {negative_count} negative user feedback for '{expertise}-{level}']"
+                
                 justification += feedback_info
             
             adjusted_role_levels.append({

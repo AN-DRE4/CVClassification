@@ -329,6 +329,58 @@ def display_feedback_message(results):
         if feedback_stats["total_positive"] > 0 or feedback_stats["total_negative"] > 0:
             st.write(f"📊 **Current feedback:** {feedback_stats['total_positive']} positive, {feedback_stats['total_negative']} negative")
 
+def validate_structured_feedback(feedback_text: str, result: Dict) -> Tuple[List[Dict], List[str]]:
+    """Validate structured feedback and return parsed items and errors"""
+    from cv_agents.utils.feedback_manager import FeedbackManager
+    
+    if not feedback_text or not feedback_text.strip():
+        return [], []
+    
+    temp_feedback_manager = FeedbackManager()
+    parsed_feedback = temp_feedback_manager.parse_structured_feedback(feedback_text)
+    
+    errors = []
+    valid_feedback = []
+    
+    # Get available keys from the result
+    expertise_keys = [exp.get('category', '').lower() for exp in result.get("expertise", {}).get("expertise", [])]
+    role_keys = []
+    for role in result.get("role_levels", {}).get("role_levels", []):
+        expertise = role.get('expertise', '')
+        level = role.get('level', '')
+        role_keys.extend([expertise.lower(), level.lower(), f"{expertise}-{level}".lower()])
+    org_keys = [unit.get('unit', '').lower() for unit in result.get("org_unit", {}).get("org_units", [])]
+    
+    for feedback_item in parsed_feedback:
+        area = feedback_item['area']
+        key = feedback_item['key'].lower()
+        
+        # Check if key exists in the classification results
+        key_found = False
+        if area == 'expertise' and key in expertise_keys:
+            key_found = True
+        elif area == 'role_level' and key in role_keys:
+            key_found = True
+        elif area == 'org_unit' and key in org_keys:
+            key_found = True
+        
+        if key_found:
+            valid_feedback.append(feedback_item)
+        else:
+            if area == 'expertise':
+                errors.append(f"Expertise key '{feedback_item['key']}' not found. Available: {[exp.get('category', '') for exp in result.get('expertise', {}).get('expertise', [])]}")
+            elif area == 'role_level':
+                available_roles = []
+                for role in result.get("role_levels", {}).get("role_levels", []):
+                    expertise = role.get('expertise', '')
+                    level = role.get('level', '')
+                    available_roles.extend([expertise, level, f"{expertise}-{level}"])
+                errors.append(f"Role level key '{feedback_item['key']}' not found. Available: {available_roles}")
+            elif area == 'org_unit':
+                errors.append(f"Org unit key '{feedback_item['key']}' not found. Available: {[unit.get('unit', '') for unit in result.get('org_unit', {}).get('org_units', [])]}")
+    
+    return valid_feedback, errors
+
 def display_feedback_for_result(result, result_index):
     """Display feedback form for a specific result"""
     st.write(f"### CV Classification #{result_index + 1}")
@@ -354,25 +406,113 @@ def display_feedback_for_result(result, result_index):
     with st.expander("View Classification Results", expanded=False):
         display_results(result)
     
+    # Display feedback format instructions
+    st.write("### 🎯 Provide Targeted Feedback")
+    
+    with st.expander("📋 How to Provide Structured Feedback", expanded=False):
+        st.write("""
+        **New Targeted Feedback Format:**
+        
+        Provide feedback on specific classification results using this format on each line:
+        `area ::  key :: feedback`
+        
+        **Areas:**
+        - `expertise` - for expertise area classifications
+        - `role_level` - for role level classifications  
+        - `org_unit` - for organizational unit classifications
+        
+        **Keys:**
+        - For expertise: use the exact category name (e.g., `software_development`, `data_science`)
+        - For role levels: use expertise name, level name, or "expertise-level" format
+        - For org units: use the exact unit name (e.g., `engineering`, `marketing`)
+        
+        **Examples:**
+        ```
+        expertise :: software_development :: This classification is accurate
+        role_level :: data_science-senior_level :: The level should be mid_level instead
+        org_unit :: engineering :: Perfect match for this candidate
+        expertise :: marketing :: This should not be classified as marketing
+        ```
+        
+        **Benefits:**
+        - Your feedback will be applied specifically to the items you mention
+        - The system learns more precisely from your input
+        - Future classifications of the same items will be improved
+        """)
+    
     # Use a form to collect feedback without page reloads
     with st.form(key=f"feedback_form_{result_index}", clear_on_submit=True):
-        st.write("**How would you rate this classification?**")
+        st.write("**How would you rate this classification overall?**")
         
         # Rating selection
         rating = st.selectbox(
-            "Select your rating:",
+            "Select your overall rating:",
             options=["Select an option", "👍 Good Classification", "👎 Needs Improvement"],
             index=0,
             key=f"rating_{result_index}"
         )
         
-        # Feedback details
+        # Detailed feedback with new format
+        st.write("**Provide specific feedback using the structured format:**")
+        
+        # Get the actual results to help users with key names
+        expertise_areas = result.get("expertise", {}).get("expertise", [])
+        role_levels = result.get("role_levels", {}).get("role_levels", [])
+        org_units = result.get("org_unit", {}).get("org_units", [])
+        
+        # Show available keys to help users
+        col1, col2, col3 = st.columns(3)
+        
+        with col1:
+            if expertise_areas:
+                st.write("**Available Expertise Areas:**")
+                for exp in expertise_areas:
+                    st.write(f"- `{exp.get('category', '')}`")
+        
+        with col2:
+            if role_levels:
+                st.write("**Available Role Levels:**")
+                for role in role_levels:
+                    expertise = role.get('expertise', '')
+                    level = role.get('level', '')
+                    st.write(f"- `{expertise}` or `{expertise}-{level}`")
+        
+        with col3:
+            if org_units:
+                st.write("**Available Org Units:**")
+                for unit in org_units:
+                    st.write(f"- `{unit.get('unit', '')}`")
+        
         feedback_reason = st.text_area(
-            "Please provide details about your feedback (optional):",
-            help="Your feedback helps us improve the classification system. Please share any specific aspects that could be improved or what worked well.",
-            height=100,
-            placeholder="What specifically worked well or could be improved?",
+            "Structured feedback (one item per line):",
+            help="Use format: area :: key :: feedback. Example: expertise :: software_development :: This classification is accurate",
+            height=150,
+            placeholder="expertise :: software_development :: This classification is accurate\nrole_level :: data_science-senior_level :: Should be mid_level instead\norg_unit :: engineering :: Perfect match",
             key=f"feedback_reason_{result_index}"
+        )
+        
+        # Live validation of structured feedback
+        if feedback_reason.strip():
+            valid_feedback, errors = validate_structured_feedback(feedback_reason, result)
+            
+            if valid_feedback:
+                st.success(f"✅ {len(valid_feedback)} valid feedback item(s) detected:")
+                for item in valid_feedback:
+                    st.write(f"  - **{item['area']}** → `{item['key']}`: {item['feedback']}")
+            
+            if errors:
+                st.error("❌ Issues found:")
+                for error in errors:
+                    st.write(f"  - {error}")
+        
+        # Option for general feedback if structured format isn't used
+        st.write("**Or provide general feedback (optional):**")
+        general_feedback = st.text_area(
+            "General comments:",
+            help="Use this for overall comments that don't target specific classifications",
+            height=80,
+            placeholder="General comments about the overall classification quality...",
+            key=f"general_feedback_{result_index}"
         )
         
         # Submit button
@@ -385,10 +525,30 @@ def display_feedback_for_result(result, result_index):
                 # Determine rating type
                 rating_type = "positive" if "Good" in rating else "negative"
                 
+                # Combine feedback text
+                combined_feedback = ""
+                if feedback_reason.strip():
+                    combined_feedback = feedback_reason.strip()
+                if general_feedback.strip():
+                    if combined_feedback:
+                        combined_feedback += "\n" + general_feedback.strip()
+                    else:
+                        combined_feedback = general_feedback.strip()
+                
+                if not combined_feedback:
+                    combined_feedback = "No additional details provided"
+                
+                # Validate before submitting
+                valid_feedback, errors = validate_structured_feedback(feedback_reason, result)
+                
+                if feedback_reason.strip() and errors:
+                    st.error("Please fix the feedback format errors above before submitting.")
+                    return
+                
                 # Save feedback
                 result["user_feedback"] = {
                     "rating": rating_type,
-                    "reason": feedback_reason.strip() if feedback_reason.strip() else "No additional details provided",
+                    "reason": combined_feedback,
                     "timestamp": datetime.now().isoformat()
                 }
                 
@@ -402,6 +562,12 @@ def display_feedback_for_result(result, result_index):
                         st.success("👍 Thank you for your positive feedback!")
                     else:
                         st.success("Thank you for your feedback. We'll use this to improve our classification.")
+                    
+                    # Show what was parsed if structured feedback was used
+                    if valid_feedback:
+                        st.info("**Structured feedback successfully processed:**")
+                        for feedback_item in valid_feedback:
+                            st.write(f"- **{feedback_item['area']}** - '{feedback_item['key']}': {feedback_item['feedback']}")
                     
                     # Show feedback statistics
                     feedback_stats = st.session_state.orchestrator.get_feedback_stats()

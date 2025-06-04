@@ -120,37 +120,45 @@ class BaseAgent:
         if feedback_stats["total_positive"] == 0 and feedback_stats["total_negative"] == 0:
             return ""
         
-        context = f"\n\nIMPORTANT: Based on user feedback from previous classifications:\n"
-        context += f"- Total positive feedback: {feedback_stats['total_positive']}\n"
-        context += f"- Total negative feedback: {feedback_stats['total_negative']}\n"
+        # Use the new targeted feedback context method
+        targeted_context = self.feedback_manager.get_targeted_feedback_context(agent_type)
         
-        # Add specific feedback insights
-        if agent_type == "expertise":
-            recent_feedback = self.feedback_manager.feedback_data.get("expertise_feedback", [])[-10:]  # Last 10
-        elif agent_type == "role_level":
-            recent_feedback = self.feedback_manager.feedback_data.get("role_level_feedback", [])[-10:]
-        elif agent_type == "org_unit":
-            recent_feedback = self.feedback_manager.feedback_data.get("org_unit_feedback", [])[-10:]
+        if targeted_context:
+            # We have targeted feedback, use that
+            return targeted_context
         else:
-            recent_feedback = []
-        
-        if recent_feedback:
-            context += "\nRecent feedback patterns:\n"
-            positive_feedback = [f for f in recent_feedback if f["rating"] == "positive"]
-            negative_feedback = [f for f in recent_feedback if f["rating"] == "negative"]
+            # Fall back to general feedback context for backwards compatibility
+            context = f"\n\nIMPORTANT: Based on user feedback from previous classifications:\n"
+            context += f"- Total positive feedback: {feedback_stats['total_positive']}\n"
+            context += f"- Total negative feedback: {feedback_stats['total_negative']}\n"
             
-            if positive_feedback:
-                context += "✓ Users appreciated classifications that:\n"
-                for feedback in positive_feedback[-3:]:  # Last 3 positive
-                    if feedback.get("reason"):
-                        context += f"  - {feedback['reason'][:100]}...\n"
+            # Add general feedback insights
+            if agent_type == "expertise":
+                recent_feedback = self.feedback_manager.feedback_data.get("expertise_feedback", [])[-10:]
+            elif agent_type == "role_level":
+                recent_feedback = self.feedback_manager.feedback_data.get("role_level_feedback", [])[-10:]
+            elif agent_type == "org_unit":
+                recent_feedback = self.feedback_manager.feedback_data.get("org_unit_feedback", [])[-10:]
+            else:
+                recent_feedback = []
             
-            if negative_feedback:
-                context += "✗ Users found issues with classifications that:\n"
-                for feedback in negative_feedback[-3:]:  # Last 3 negative
-                    if feedback.get("reason"):
-                        context += f"  - {feedback['reason'][:100]}...\n"
+            if recent_feedback:
+                context += "\nRecent feedback patterns:\n"
+                positive_feedback = [f for f in recent_feedback if f.get("rating") == "positive"]
+                negative_feedback = [f for f in recent_feedback if f.get("rating") == "negative"]
+                
+                if positive_feedback:
+                    context += "✓ Users appreciated classifications that:\n"
+                    for feedback in positive_feedback[-3:]:  # Last 3 positive
+                        if feedback.get("reason"):
+                            context += f"  - {feedback['reason'][:100]}...\n"
+                
+                if negative_feedback:
+                    context += "✗ Users found issues with classifications that:\n"
+                    for feedback in negative_feedback[-3:]:  # Last 3 negative
+                        if feedback.get("reason"):
+                            context += f"  - {feedback['reason'][:100]}...\n"
+                
+                context += "\nPlease consider this feedback when making your classification.\n"
             
-            context += "\nPlease consider this feedback when making your classification.\n"
-        
-        return context
+            return context
