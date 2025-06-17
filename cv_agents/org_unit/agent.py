@@ -11,10 +11,20 @@ Based on the candidate's expertise areas and role levels, determine the most app
 {org_units}
 
 Provide a confidence score (0-1) and justification for your determination.
+
+Before making any classification:
+1. Carefully analyze the candidate's specific experience and skills
+2. Consider the depth and breadth of experience in each area
+3. Only assign high confidence (>0.7) if there's clear, substantial evidence
+4. Assign medium confidence (0.4-0.7) for partial or indirect evidence
+5. Assign low confidence (<0.4) for minimal or unclear evidence
+
+Always explain your reasoning thoroughly and be conservative with confidence scores.
 Provide an in depth justification for your response. Be clear and concise but also thorough and with a good level of detail.
 Format your response as a valid JSON object with "org_units" as the key containing an array of objects, 
 each with "unit", "confidence", and "justification" fields.
-Your entire response/output is going to consist of a single JSON object, and you will NOT wrap it within JSON md markers.{feedback_context}"""
+Your entire response/output is going to consist of a single JSON object, and you will NOT wrap it within JSON md markers.
+{feedback_context}"""
 
 # Default org units for backward compatibility
 DEFAULT_ORG_UNITS = [

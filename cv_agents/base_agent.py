@@ -47,6 +47,7 @@ class BaseAgent:
                 # For additional validation, check if the result is somewhat valid
                 if self._validate_result(result):
                     # Apply feedback adjustments to the result
+                    print(f"Result before feedback adjustments: {result}")
                     result = self._apply_feedback_adjustments(result)
                     return result
                 else:

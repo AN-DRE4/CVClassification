@@ -13,10 +13,20 @@ For each expertise area identified, determine the appropriate role level:
 Base your assessment on job titles, responsibilities, and duration of experience.
 Consider the level of the responsibilities the person has. If some of these responsibilities are at a higher level, then consider leveling up the role.
 Provide a confidence score (0-1) and justification for each determination.
+
+Before making any classification:
+1. Carefully analyze the candidate's specific experience and skills
+2. Consider the depth and breadth of experience in each area
+3. Only assign high confidence (>0.7) if there's clear, substantial evidence
+4. Assign medium confidence (0.4-0.7) for partial or indirect evidence
+5. Assign low confidence (<0.4) for minimal or unclear evidence
+
+Always explain your reasoning thoroughly and be conservative with confidence scores.
 Provide an in depth justification for your response. Be clear and concise but also thorough and with a good level of detail.
 Format your response as a valid JSON object with "role_levels" as the key containing an array of objects, 
 each with "expertise", "level", "confidence", and "justification" fields.
-Your entire response/output is going to consist of a single JSON object, and you will NOT wrap it within JSON md markers. This is very important since it will be parsed directly as JSON.{feedback_context}"""
+Your entire response/output is going to consist of a single JSON object, and you will NOT wrap it within JSON md markers. This is very important since it will be parsed directly as JSON.
+{feedback_context}"""
 
 # Default role levels for backward compatibility
 DEFAULT_ROLE_LEVELS = [

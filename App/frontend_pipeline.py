@@ -734,7 +734,7 @@ def process_cv_folder(folder_path, custom_config=None, config_files=None, interp
 def display_batch_results(results):
     """Display batch processing results in a formatted way"""
     st.write("## Batch Processing Results")
-    st.write(f"**Total CVs Processed:** {len(results)}")
+    st.write(f"**Total CVs Processed:** {len(results) + len(st.session_state.orchestrator.get_feedback_stats()['processed_cvs'])}")
     
     # Create summary statistics
     st.write("### Summary Statistics")

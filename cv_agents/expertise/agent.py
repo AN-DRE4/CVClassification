@@ -11,12 +11,22 @@ Analyze the provided CV information and identify the candidate's areas of expert
 {expertise_categories}
 
 If a candidate has experience in multiple areas, you should identify all of them.
-If a candidate has expertise in a field that is not listed above, identify it using the actual category name.
+Only use the categories listed above and do not make up any categories.
 For each identified expertise area, provide a confidence score (0-1) and justification.
+
+Before making any classification:
+1. Carefully analyze the candidate's specific experience and skills
+2. Consider the depth and breadth of experience in each area
+3. Only assign high confidence (>0.7) if there's clear, substantial evidence
+4. Assign medium confidence (0.4-0.7) for partial or indirect evidence
+5. Assign low confidence (<0.4) for minimal or unclear evidence
+
+Always explain your reasoning thoroughly and be conservative with confidence scores.
 Provide an in depth justification for your response. Be clear and concise but also thorough and with a good level of detail.
 Format the response as a valid JSON object with "expertise" as the key containing an array of objects, 
 each with "category", "confidence", and "justification" fields.
-Your entire response/output is going to consist of a single JSON object, and you will NOT wrap it within JSON md markers. This is very important since it will be parsed directly as JSON.{feedback_context}"""
+Your entire response/output is going to consist of a single JSON object, and you will NOT wrap it within JSON md markers. This is very important since it will be parsed directly as JSON.
+{feedback_context}"""
 
 # Default expertise categories for backward compatibility
 DEFAULT_EXPERTISE_CATEGORIES = [
@@ -43,7 +53,8 @@ Education:
 
 Note that the duration in the work experience is in years.
 
-Your entire response/output is going to consist of a single JSON object, and you will NOT wrap it within JSON md markers. This is very important since it will be parsed directly as JSON."""
+Your entire response/output is going to consist of a single JSON object, and you will NOT wrap it within JSON md markers. This is very important since it will be parsed directly as JSON.
+"""
 
 class ExpertiseAgent(BaseAgent):
     def __init__(self, model_name="gpt-4o-mini-2024-07-18", temperature=0.1, max_retries=3, retry_delay=2, custom_config: Optional[Dict[str, Any]] = None):

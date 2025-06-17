@@ -35,7 +35,8 @@ class FeedbackManager:
             "feedback_stats": {
                 "total_positive": 0,
                 "total_negative": 0,
-                "last_updated": None
+                "last_updated": None,
+                "processed_cvs": []
             }
         }
     
@@ -120,6 +121,9 @@ class FeedbackManager:
             self.feedback_data["feedback_stats"]["total_positive"] += 1
         else:
             self.feedback_data["feedback_stats"]["total_negative"] += 1
+
+        if resume_id not in self.feedback_data["feedback_stats"]["processed_cvs"]:
+            self.feedback_data["feedback_stats"]["processed_cvs"].append(resume_id)
         
         self.feedback_data["feedback_stats"]["last_updated"] = datetime.now().isoformat()
         
