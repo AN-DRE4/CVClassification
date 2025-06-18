@@ -119,6 +119,21 @@ def display_results(results):
                         st.write(f"**Justification for {exp.get('category')}:**")
                         st.write(exp.get("justification", "No justification provided"))
                         
+                        # Show validation info if available
+                        if exp.get("validation_applied"):
+                            validation_action = exp.get("validation_action", "unknown")
+                            validation_reason = exp.get("validation_reason", "")
+                            original_conf = exp.get("original_confidence", exp.get("confidence", 0))
+                            
+                            if validation_action == "correct":
+                                st.warning(f"🤖 **Validation Agent Correction Applied**")
+                                st.write(f"Original confidence: {original_conf:.2f}")
+                                st.write(f"Correction reason: {validation_reason}")
+                            else:
+                                st.success(f"🤖 **Validation Agent Confirmed**")
+                                st.write(f"Original confidence: {original_conf:.2f}")
+                                st.write(f"Validation reason: {validation_reason}")
+                        
                         # Show feedback adjustment info if available
                         if exp.get("feedback_adjustment") is not None:
                             original_conf = exp.get("original_confidence", exp.get("confidence", 0))
@@ -150,6 +165,21 @@ def display_results(results):
                         st.write(f"**Justification for {role.get('expertise')} - {role.get('level')}:**")
                         st.write(role.get("justification", "No justification provided"))
                         
+                        # Show validation info if available
+                        if role.get("validation_applied"):
+                            validation_action = role.get("validation_action", "unknown")
+                            validation_reason = role.get("validation_reason", "")
+                            original_conf = role.get("original_confidence", role.get("confidence", 0))
+                            
+                            if validation_action == "correct":
+                                st.warning(f"🤖 **Validation Agent Correction Applied**")
+                                st.write(f"Original confidence: {original_conf:.2f}")
+                                st.write(f"Correction reason: {validation_reason}")
+                            else:
+                                st.success(f"🤖 **Validation Agent Confirmed**")
+                                st.write(f"Original confidence: {original_conf:.2f}")
+                                st.write(f"Validation reason: {validation_reason}")
+                        
                         # Show feedback adjustment info if available
                         if role.get("feedback_adjustment") is not None:
                             original_conf = role.get("original_confidence", role.get("confidence", 0))
@@ -180,6 +210,21 @@ def display_results(results):
                     with st.popover("ℹ️", help="View justification"):
                         st.write(f"**Justification for {unit.get('unit')}:**")
                         st.write(unit.get("justification", "No justification provided"))
+                        
+                        # Show validation info if available
+                        if unit.get("validation_applied"):
+                            validation_action = unit.get("validation_action", "unknown")
+                            validation_reason = unit.get("validation_reason", "")
+                            original_conf = unit.get("original_confidence", unit.get("confidence", 0))
+                            
+                            if validation_action == "correct":
+                                st.warning(f"🤖 **Validation Agent Correction Applied**")
+                                st.write(f"Original confidence: {original_conf:.2f}")
+                                st.write(f"Correction reason: {validation_reason}")
+                            else:
+                                st.success(f"🤖 **Validation Agent Confirmed**")
+                                st.write(f"Original confidence: {original_conf:.2f}")
+                                st.write(f"Validation reason: {validation_reason}")
                         
                         # Show feedback adjustment info if available
                         if unit.get("feedback_adjustment") is not None:
@@ -734,7 +779,7 @@ def process_cv_folder(folder_path, custom_config=None, config_files=None, interp
 def display_batch_results(results):
     """Display batch processing results in a formatted way"""
     st.write("## Batch Processing Results")
-    st.write(f"**Total CVs Processed:** {len(results) + len(st.session_state.orchestrator.get_feedback_stats()['processed_cvs'])}")
+    st.write(f"**Total CVs Processed:** {len(results)}")
     
     # Create summary statistics
     st.write("### Summary Statistics")
@@ -862,15 +907,25 @@ def main():
         # Display quick stats in sidebar if available
         if "orchestrator" in st.session_state:
             feedback_stats = st.session_state.orchestrator.get_feedback_stats()
-            if feedback_stats["total_positive"] > 0 or feedback_stats["total_negative"] > 0:
+            total_feedback = feedback_stats.get('total_positive', 0) + feedback_stats.get('total_negative', 0)
+            if total_feedback > 0:
                 st.write("---")
                 st.write("**📊 Feedback Stats:**")
-                st.write(f"👍 Positive: {feedback_stats['total_positive']}")
-                st.write(f"👎 Negative: {feedback_stats['total_negative']}")
-                total_feedback = feedback_stats['total_positive'] + feedback_stats['total_negative']
+                
+                # Human feedback
+                human_positive = feedback_stats.get('human_positive', 0)
+                human_negative = feedback_stats.get('human_negative', 0)
+                st.write(f"👤 **Human:** {human_positive}👍 / {human_negative}👎")
+                
+                # Agent feedback
+                agent_positive = feedback_stats.get('agent_positive', 0)
+                agent_negative = feedback_stats.get('agent_negative', 0)
+                st.write(f"🤖 **Agent:** {agent_positive}👍 / {agent_negative}👎")
+                
+                # Overall rate
                 if total_feedback > 0:
                     positive_rate = (feedback_stats['total_positive'] / total_feedback) * 100
-                    st.write(f"✅ Positive Rate: {positive_rate:.1f}%")
+                    st.write(f"✅ **Overall Rate:** {positive_rate:.1f}%")
     
     # Main Dashboard Page
     if page == "🏠 Main Dashboard":
@@ -1225,25 +1280,36 @@ def main():
         if "orchestrator" in st.session_state:
             feedback_stats = st.session_state.orchestrator.get_feedback_stats()
             
-            # Display overall statistics
-            col1, col2, col3, col4 = st.columns(4)
+            # Display overall statistics with human/agent breakdown
+            col1, col2, col3, col4, col5 = st.columns(5)
             
             with col1:
-                st.metric("Total CVs", len(all_results))
+                human_positive = feedback_stats.get('human_positive', 0)
+                agent_positive = feedback_stats.get('agent_positive', 0)
+                st.metric("👤 Human Positive", human_positive)
+                st.caption(f"🤖 Agent: {agent_positive}")
             
             with col2:
-                st.metric("Positive Feedback", feedback_stats.get('total_positive', 0))
+                human_negative = feedback_stats.get('human_negative', 0)
+                agent_negative = feedback_stats.get('agent_negative', 0)
+                st.metric("👤 Human Negative", human_negative)
+                st.caption(f"🤖 Agent: {agent_negative}")
             
             with col3:
-                st.metric("Negative Feedback", feedback_stats.get('total_negative', 0))
+                total_positive = feedback_stats.get('total_positive', 0)
+                st.metric("Total Positive", total_positive)
             
             with col4:
-                total_feedback = feedback_stats.get('total_positive', 0) + feedback_stats.get('total_negative', 0)
+                total_negative = feedback_stats.get('total_negative', 0)
+                st.metric("Total Negative", total_negative)
+            
+            with col5:
+                total_feedback = total_positive + total_negative
                 if total_feedback > 0:
-                    positive_rate = (feedback_stats.get('total_positive', 0) / total_feedback) * 100
-                    st.metric("Positive Rate", f"{positive_rate:.1f}%")
+                    positive_rate = (total_positive / total_feedback) * 100
+                    st.metric("Overall Positive Rate", f"{positive_rate:.1f}%")
                 else:
-                    st.metric("Positive Rate", "N/A")
+                    st.metric("Overall Positive Rate", "N/A")
             
             # Show last updated
             if feedback_stats.get('last_updated'):

@@ -124,7 +124,7 @@ class CVProcessor:
                     result = self.orchestrator.process_cv(cv)
                     self.results.append(result)
                 except Exception as e:
-                    print(f"Error processing CV: {e}")
+                    print(f"Error processing CV in processing_cvs.py: {e}")
                     self.errors.append({
                         "resume_id": cv.get("resume_id", "unknown"),
                         "error": str(e),

@@ -2,6 +2,7 @@ from ..expertise.agent import ExpertiseAgent
 from ..role.agent import RoleLevelAgent
 from ..org_unit.agent import OrgUnitAgent
 from ..interpreter.agent import InterpreterAgent
+from ..validation.agent import ValidationAgent
 from ..utils.data_extractor import extract_cv_sections
 from ..utils.vector_utils import CVVectorizer
 from ..utils.feedback_manager import FeedbackManager
@@ -22,6 +23,7 @@ class CVClassificationOrchestrator:
         self.expertise_agent = ExpertiseAgent(custom_config=expertise_config)
         self.role_level_agent = RoleLevelAgent(custom_config=role_config)
         self.org_unit_agent = OrgUnitAgent(custom_config=org_unit_config)
+        self.validation_agent = ValidationAgent()  # Add validation agent
         
         self.memory_path = memory_path
         self.memory = self._load_memory()
@@ -276,13 +278,25 @@ class CVClassificationOrchestrator:
             print("Processing expertise areas...")
             expertise_results = self.expertise_agent.process(cv_sections)
             
+            # Validate expertise classifications if needed
+            print("Validating expertise classifications...")
+            expertise_results = self.validation_agent.validate_classification(cv_sections, "expertise", expertise_results)
+            
             print("Processing role levels...")
             role_input = {**cv_sections, "expertise_results": expertise_results}
             role_results = self.role_level_agent.process(role_input)
             
+            # Validate role level classifications if needed  
+            print("Validating role level classifications...")
+            role_results = self.validation_agent.validate_classification(cv_sections, "role_levels", role_results)
+            
             print("Processing organizational unit...")
             org_input = {**cv_sections, "expertise_results": expertise_results, "role_results": role_results}
             org_results = self.org_unit_agent.process(org_input)
+            
+            # Validate org unit classifications if needed
+            print("Validating organizational unit classifications...")
+            org_results = self.validation_agent.validate_classification(cv_sections, "org_unit", org_results)
             
             # Combine results
             result = {
@@ -294,6 +308,17 @@ class CVClassificationOrchestrator:
                 "org_unit": org_results
             }
             
+            # Collect validation feedback from all agents and add to feedback manager
+            all_validation_feedback = []
+            for agent_result in [expertise_results, role_results, org_results]:
+                if agent_result.get("validation_feedback"):
+                    all_validation_feedback.extend(agent_result["validation_feedback"])
+            
+            if all_validation_feedback: # Rever isto
+                print(f"Adding {len(all_validation_feedback)} validation feedback entries...")
+                self.feedback_manager.add_validation_feedback(cv_data.get("resume_id", ""), all_validation_feedback)
+                result["validation_feedback_count"] = len(all_validation_feedback)
+            
             # Store in memory
             self.memory["classifications"].append(result)
             self._save_memory()
@@ -301,7 +326,7 @@ class CVClassificationOrchestrator:
             return result
             
         except Exception as e:
-            print(f"Error processing CV: {str(e)}")
+            print(f"Error processing CV in classification_chain.py: {str(e)}")
             return {
                 "resume_id": cv_data.get("resume_id", ""),
                 "error": str(e),

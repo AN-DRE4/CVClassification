@@ -35,8 +35,7 @@ class FeedbackManager:
             "feedback_stats": {
                 "total_positive": 0,
                 "total_negative": 0,
-                "last_updated": None,
-                "processed_cvs": []
+                "last_updated": None
             }
         }
     
@@ -105,32 +104,97 @@ class FeedbackManager:
         """Add user feedback for a classification result with new structured format"""
         feedback_text = user_feedback.get("reason", "")
         rating = user_feedback.get("rating", "neutral")
+        feedback_source = user_feedback.get("source", "human")  # New: track feedback source
         
         # Try to parse structured feedback first
         parsed_feedback = self.parse_structured_feedback(feedback_text)
         
         if parsed_feedback:
             # Handle structured feedback
-            self._add_structured_feedback(resume_id, classification_result, parsed_feedback, rating)
+            self._add_structured_feedback(resume_id, classification_result, parsed_feedback, rating, feedback_source)
         else:
             # Fall back to old general feedback approach for backwards compatibility
             self._add_general_feedback(resume_id, classification_result, user_feedback)
         
-        # Update overall stats
+        # Update overall stats with source tracking
         if rating == "positive":
             self.feedback_data["feedback_stats"]["total_positive"] += 1
+            if feedback_source == "validation_agent":
+                self.feedback_data["feedback_stats"]["agent_positive"] = self.feedback_data["feedback_stats"].get("agent_positive", 0) + 1
+            else:
+                self.feedback_data["feedback_stats"]["human_positive"] = self.feedback_data["feedback_stats"].get("human_positive", 0) + 1
         else:
             self.feedback_data["feedback_stats"]["total_negative"] += 1
+            if feedback_source == "validation_agent":
+                self.feedback_data["feedback_stats"]["agent_negative"] = self.feedback_data["feedback_stats"].get("agent_negative", 0) + 1
+            else:
+                self.feedback_data["feedback_stats"]["human_negative"] = self.feedback_data["feedback_stats"].get("human_negative", 0) + 1
 
-        if resume_id not in self.feedback_data["feedback_stats"]["processed_cvs"]:
-            self.feedback_data["feedback_stats"]["processed_cvs"].append(resume_id)
-        
         self.feedback_data["feedback_stats"]["last_updated"] = datetime.now().isoformat()
         
         # Save to file
         self._save_feedback()
     
-    def _add_structured_feedback(self, resume_id: str, classification_result: Dict, parsed_feedback: List[Dict], rating: str):
+    def add_validation_feedback(self, resume_id: str, validation_feedback_list: List[Dict]):
+        """Add feedback from validation agent"""
+        for validation_feedback in validation_feedback_list:
+            # Convert validation feedback to user feedback format
+
+            area = validation_feedback.get("reason").split("::")[0].strip()
+            key = validation_feedback.get("reason").split("::")[1].strip()
+            feedback = validation_feedback.get("reason").split("::")[2].strip()
+
+            user_feedback = {
+                "rating": validation_feedback.get("rating"),
+                "reason": validation_feedback.get("reason"),
+                "source": "validation_agent"
+            }
+
+            print("DEBUG: validation_feedback_list", validation_feedback_list)
+            
+            # Create a dummy classification result for the feedback
+            if area == "expertise":
+                classification_result = {
+                    "expertise": {"expertise": [{
+                        "category": key,
+                        "confidence": validation_feedback.get("original_confidence"),
+                        "justification": feedback
+                    }]},
+                    "role_levels": {"role_levels": []},
+                    "org_unit": {"org_units": []}
+                }
+            elif area == "role_level":
+                classification_result = {
+                    "expertise": {"expertise": []},
+                    "role_levels": {"role_levels": [{
+                        "expertise": key.split("-")[0],
+                        "level": key.split("-")[1],
+                        "confidence": validation_feedback.get("original_confidence"),
+                        "justification": feedback
+                    }]},
+                    "org_unit": {"org_units": []}
+                }
+            elif area == "org_unit":
+                classification_result = {
+                    "expertise": {"expertise": []},
+                    "role_levels": {"role_levels": []},
+                    "org_unit": {"org_units": [{
+                        "unit": key,
+                        "confidence": validation_feedback.get("original_confidence"),
+                        "justification": feedback
+                    }]}
+                }
+            else:
+                classification_result = {
+                    "expertise": {"expertise": []},
+                    "role_levels": {"role_levels": []},
+                    "org_unit": {"org_units": []}
+                }           
+            
+            # Add the feedback
+            self.add_feedback(resume_id, classification_result, user_feedback)
+    
+    def _add_structured_feedback(self, resume_id: str, classification_result: Dict, parsed_feedback: List[Dict], rating: str, source: str = "human"):
         """Add structured feedback entries"""
         timestamp = datetime.now().isoformat()
         
@@ -146,7 +210,8 @@ class FeedbackManager:
                 "rating": rating,
                 "reason": feedback,
                 "key": key,
-                "line_number": feedback_entry['line_number']
+                "line_number": feedback_entry.get('line_number', 0),
+                "source": source  # Track feedback source
             }
             
             # Add classification context based on area
