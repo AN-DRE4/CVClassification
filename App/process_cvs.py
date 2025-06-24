@@ -9,12 +9,14 @@ from cv_agents.chains.classification_chain import CVClassificationOrchestrator
 class CVProcessor:
     def __init__(self, input_file: str, output_dir: str = "results", custom_config: Optional[Dict[str, Any]] = None, 
                  config_files: Optional[List[str]] = None, 
-                 interpreter_configs: Optional[List[Tuple[str, str, str]]] = None):
+                 interpreter_configs: Optional[List[Tuple[str, str, str]]] = None,
+                 model_name: str = "gpt-4o-mini-2024-07-18"):
         self.input_file = input_file
         self.output_dir = output_dir
+        self.model_name = model_name
         
-        # Initialize orchestrator with base custom configuration
-        self.orchestrator = CVClassificationOrchestrator(custom_config=custom_config)
+        # Initialize orchestrator with base custom configuration and model
+        self.orchestrator = CVClassificationOrchestrator(custom_config=custom_config, model_name=model_name)
         
         # Load additional configuration from files if provided
         if config_files:
@@ -152,6 +154,7 @@ def main():
     parser.add_argument('--max_cvs', type=int, default=None, help='Maximum number of CVs to process, if None, all CVs will be processed')
     parser.add_argument('--clear_memory', type=bool, default=False, help='Clear memory before processing')
     parser.add_argument('--config', type=str, action='append', help='Path to configuration file(s) for customizing agent behavior')
+    parser.add_argument('--model', type=str, default='gpt-4o-mini-2024-07-18', help='OpenAI model to use for classification')
     
     # Add interpreter configuration arguments
     parser.add_argument('--expertise-file', type=str, help='Path to file containing expertise categories information')
@@ -172,6 +175,7 @@ def main():
     max_cvs = args.max_cvs if args.max_cvs else None
     clear_memory = args.clear_memory if args.clear_memory else False
     config_files = args.config if args.config else []
+    model_name = args.model if args.model else "gpt-4o-mini-2024-07-18"
     
     # Process interpreter configurations
     interpreter_configs = []
@@ -190,7 +194,8 @@ def main():
         input_file=input_file, 
         output_dir=output_dir, 
         config_files=config_files,
-        interpreter_configs=interpreter_configs
+        interpreter_configs=interpreter_configs,
+        model_name=model_name
     )
     
     if clear_memory:

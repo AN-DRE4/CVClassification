@@ -8,6 +8,7 @@ from typing import Dict, Optional, Any
 
 class BaseAgent:
     def __init__(self, model_name="gpt-4o-mini-2024-07-18", temperature=0.1, max_retries=3, retry_delay=2, custom_config: Optional[Dict[str, Any]] = None):
+        self.model_name = model_name  # Store model name for reference
         self.llm = ChatOpenAI(
             model=model_name,
             temperature=temperature,
@@ -107,6 +108,17 @@ class BaseAgent:
         """Update the agent's custom configuration"""
         self.custom_config.update(new_config)
         # Optionally rebuild prompts or other components when config changes
+        self._on_config_updated()
+    
+    def update_model(self, model_name: str):
+        """Update the model used by this agent"""
+        self.model_name = model_name
+        self.llm = ChatOpenAI(
+            model=model_name,
+            temperature=self.llm.temperature,
+            api_key=os.environ.get("OPENAI_API_KEY")
+        )
+        # Rebuild prompts if they include model-specific context
         self._on_config_updated()
         
     def _on_config_updated(self):

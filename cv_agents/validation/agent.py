@@ -17,9 +17,10 @@ When reviewing a classification, you should:
 
 For corrections, you should:
 - Provide a new classification with proper confidence and justification
-- Do not alter the classification category, expertise, level or unit, only the confidence and justification
+- DO NOT IN ANY WAY alter the classification category, expertise, level or unit, only the confidence and justification
 - If the category, expertise, level or unit is not correct, simply provide an even lower confidence score and a justification for why it is not correct
 - The confidence score should be between 0 and 1
+- If the confidence is 0 or 1, do not change it
 - Explain why the original classification was incorrect
 - Be conservative with confidence scores - only use high confidence when evidence is clear
 

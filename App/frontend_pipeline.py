@@ -20,6 +20,17 @@ results = []
 
 from process_cvs import CVProcessor
 
+# Available OpenAI models for CV classification
+AVAILABLE_MODELS = {
+    "gpt-4o-mini-2024-07-18": "GPT-4o Mini (Fast, Cost-effective)",
+    "gpt-4o-2024-08-06": "GPT-4o (High Quality)",
+    "gpt-4.1-2025-04-14": "GPT-4.1 (Smartest model for complex tasks)",
+    "gpt-4.1-mini-2025-04-14": "GPT-4.1 Mini (Affordable model balancing speed and intelligence)",
+    "gpt-4.1-nano-2025-04-14": "GPT-4.1 Nano (Fastest, most cost-effective model for low-latency tasks)",
+    "o3-2025-04-16": "O3 (Most powerful model for complex tasks)",
+    "o4-mini-2025-04-16": "O4 Mini (Cost-efficient reasoning model delivering )"
+}
+
 # Set page configuration
 st.set_page_config(
     page_title="CV Classification Pipeline",
@@ -29,16 +40,17 @@ st.set_page_config(
 
 # Initialize orchestrator
 @st.cache_resource
-def get_orchestrator(input_file: str, output_dir: str = "results", custom_config=None, config_files=None, interpreter_configs=None):
+def get_orchestrator(input_file: str, output_dir: str = "results", custom_config=None, config_files=None, interpreter_configs=None, model_name="gpt-4o-mini-2024-07-18"):
     return CVProcessor(
         input_file=input_file, 
         output_dir=output_dir, 
         custom_config=custom_config, 
         config_files=config_files,
-        interpreter_configs=interpreter_configs
+        interpreter_configs=interpreter_configs,
+        model_name=model_name
     )
 
-def process_cv_text(cv_text, file_name, custom_config=None, config_files=None, interpreter_configs=None):
+def process_cv_text(cv_text, file_name, custom_config=None, config_files=None, interpreter_configs=None, model_name="gpt-4o-mini-2024-07-18"):
     """Process a CV text through the entire pipeline"""
     # Step 1: Initial processing with zero-shot approach
     st.write("### Step 1: Initial CV information extraction")
@@ -73,7 +85,8 @@ def process_cv_text(cv_text, file_name, custom_config=None, config_files=None, i
             output_dir="agents_results",
             custom_config=custom_config,
             config_files=config_files,
-            interpreter_configs=interpreter_configs
+            interpreter_configs=interpreter_configs,
+            model_name=model_name
         )
         try:
             results = processor.process_cvs(batch_size=1, save_interval=1, max_cvs=1)
@@ -432,6 +445,19 @@ def display_feedback_for_result(result, result_index):
     st.write(f"**Resume ID:** {result.get('resume_id', 'Unknown')}")
     st.write(f"**Processed:** {result.get('timestamp', 'Unknown')}")
     
+    # Show comparison metadata if this is a comparison result
+    if result.get("comparison_metadata", {}).get("is_comparison_result", False):
+        metadata = result["comparison_metadata"]
+        model_used = metadata.get("model_used", "Unknown")
+        compared_with = metadata.get("compared_with", [])
+        
+        st.info(f"🔬 **Model Comparison Result**")
+        st.write(f"**Model Used:** {AVAILABLE_MODELS.get(model_used, model_used)}")
+        if compared_with:
+            compared_models = [AVAILABLE_MODELS.get(m, m) for m in compared_with]
+            st.write(f"**Compared With:** {', '.join(compared_models)}")
+        st.write("*Provide feedback specifically for this model's classification performance.*")
+    
     # Check if feedback was already provided for this CV
     feedback_key = f"feedback_saved_{result.get('resume_id', 'unknown')}"
     feedback_already_provided = st.session_state.get(feedback_key, False)
@@ -687,7 +713,7 @@ def process_folder_for_frontend(folder_path, output_file):
     
     return processed_data
 
-def process_cv_folder(folder_path, custom_config=None, config_files=None, interpreter_configs=None):
+def process_cv_folder(folder_path, custom_config=None, config_files=None, interpreter_configs=None, model_name="gpt-4o-mini-2024-07-18"):
     """Process an entire folder of CVs through the pipeline"""
     import tempfile
     
@@ -749,7 +775,8 @@ def process_cv_folder(folder_path, custom_config=None, config_files=None, interp
                 output_dir="batch_results",
                 custom_config=custom_config,
                 config_files=config_files,
-                interpreter_configs=interpreter_configs
+                interpreter_configs=interpreter_configs,
+                model_name=model_name
             )
             
             results = processor.process_cvs(
@@ -775,6 +802,178 @@ def process_cv_folder(folder_path, custom_config=None, config_files=None, interp
             # Clean up temp file
             if os.path.exists(temp_input_file):
                 os.remove(temp_input_file)
+
+def process_cv_with_model_comparison(cv_text, file_name, model_names, custom_config=None, config_files=None, interpreter_configs=None):
+    """Process a CV with multiple models and compare results"""
+    # Step 1: Initial processing with zero-shot approach
+    st.write("### Step 1: Initial CV information extraction")
+    with st.spinner("Extracting CV information..."):
+        extracted_info = extract_resume_info(cv_text)
+    
+    if not extracted_info:
+        st.error("Failed to extract information from the CV")
+        return None
+    
+    # Step 2: Create a processed CV object
+    cv_data = {
+        'resume_id': f"comparison_{file_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}",
+        'resume_text': cv_text,
+        'extracted_info': extracted_info
+    }
+
+    cv_data_list = [cv_data]
+
+    # Save the processed CV data to a file
+    with open("processed_cv_data.json", "w") as f:
+        json.dump(cv_data_list, f)
+    
+    # Step 3: Process with multiple models
+    st.write("### Step 2: Model Comparison Analysis")
+    with st.spinner("Comparing different models..."):
+        processor = CVProcessor(
+            input_file="processed_cv_data.json", 
+            output_dir="agents_results",
+            custom_config=custom_config,
+            config_files=config_files,
+            interpreter_configs=interpreter_configs,
+            model_name=model_names[0]  # Start with first model
+        )
+        
+        try:
+            # Use the new multiple model processing method
+            results = processor.orchestrator.process_cv_with_multiple_models(cv_data, model_names)
+            
+            # Store orchestrator in session state for feedback handling
+            st.session_state.orchestrator = processor.orchestrator
+            return results
+        except Exception as e:
+            st.error(f"Error during model comparison: {str(e)}")
+            return None
+
+def display_model_comparison_results(comparison_results):
+    """Display model comparison results in a formatted way"""
+    st.write("## Model Comparison Results")
+    
+    models_tested = comparison_results.get("models_tested", [])
+    individual_results = comparison_results.get("individual_results", {})
+    comparisons = comparison_results.get("comparisons", {})
+    
+    st.write(f"**Models Tested:** {', '.join(models_tested)}")
+    st.write(f"**CV ID:** {comparison_results.get('cv_id', 'Unknown')}")
+    
+    # Display individual model results
+    st.write("### Individual Model Results")
+    
+    for model_name in models_tested:
+        with st.expander(f"Results from {AVAILABLE_MODELS.get(model_name, model_name)}", expanded=False):
+            if model_name in individual_results:
+                display_results(individual_results[model_name])
+            else:
+                st.error(f"No results available for {model_name}")
+    
+    # Display comparison analysis
+    if comparisons:
+        st.write("### 🤖 AI Comparison Analysis")
+        
+        # Expertise comparison
+        if "expertise_comparison" in comparisons:
+            with st.expander("Expertise Classification Comparison", expanded=True):
+                exp_comp = comparisons["expertise_comparison"]
+                
+                if not exp_comp.get("error"):
+                    winner = exp_comp.get("winner", "unknown")
+                    confidence = exp_comp.get("confidence", 0)
+                    
+                    if winner == "model_1":
+                        st.success(f"🏆 **Winner: {models_tested[0]}** (Confidence: {confidence:.2f})")
+                    elif winner == "model_2":
+                        st.success(f"🏆 **Winner: {models_tested[1]}** (Confidence: {confidence:.2f})")
+                    else:
+                        st.info("🤝 **Result: Tie** - Both models performed similarly")
+                    
+                    st.write("**Analysis:**")
+                    st.write(exp_comp.get("reasoning", "No reasoning provided"))
+                    
+                    if exp_comp.get("model_1_analysis"):
+                        st.write(f"**{models_tested[0]} Analysis:**")
+                        st.write(exp_comp.get("model_1_analysis"))
+                    
+                    if exp_comp.get("model_2_analysis"):
+                        st.write(f"**{models_tested[1]} Analysis:**")
+                        st.write(exp_comp.get("model_2_analysis"))
+                    
+                    if exp_comp.get("recommendations"):
+                        st.write("**Recommendations:**")
+                        st.write(exp_comp.get("recommendations"))
+                else:
+                    st.error("Expertise comparison failed")
+        
+        # Role levels comparison
+        if "role_levels_comparison" in comparisons:
+            with st.expander("Role Levels Classification Comparison", expanded=True):
+                role_comp = comparisons["role_levels_comparison"]
+                
+                if not role_comp.get("error"):
+                    winner = role_comp.get("winner", "unknown")
+                    confidence = role_comp.get("confidence", 0)
+                    
+                    if winner == "model_1":
+                        st.success(f"🏆 **Winner: {models_tested[0]}** (Confidence: {confidence:.2f})")
+                    elif winner == "model_2":
+                        st.success(f"🏆 **Winner: {models_tested[1]}** (Confidence: {confidence:.2f})")
+                    else:
+                        st.info("🤝 **Result: Tie** - Both models performed similarly")
+                    
+                    st.write("**Analysis:**")
+                    st.write(role_comp.get("reasoning", "No reasoning provided"))
+                    
+                    if role_comp.get("model_1_analysis"):
+                        st.write(f"**{models_tested[0]} Analysis:**")
+                        st.write(role_comp.get("model_1_analysis"))
+                    
+                    if role_comp.get("model_2_analysis"):
+                        st.write(f"**{models_tested[1]} Analysis:**")
+                        st.write(role_comp.get("model_2_analysis"))
+                else:
+                    st.error("Role levels comparison failed")
+        
+        # Org unit comparison
+        if "org_unit_comparison" in comparisons:
+            with st.expander("Organizational Unit Classification Comparison", expanded=True):
+                org_comp = comparisons["org_unit_comparison"]
+                
+                if not org_comp.get("error"):
+                    winner = org_comp.get("winner", "unknown")
+                    confidence = org_comp.get("confidence", 0)
+                    
+                    if winner == "model_1":
+                        st.success(f"🏆 **Winner: {models_tested[0]}** (Confidence: {confidence:.2f})")
+                    elif winner == "model_2":
+                        st.success(f"🏆 **Winner: {models_tested[1]}** (Confidence: {confidence:.2f})")
+                    else:
+                        st.info("🤝 **Result: Tie** - Both models performed similarly")
+                    
+                    st.write("**Analysis:**")
+                    st.write(org_comp.get("reasoning", "No reasoning provided"))
+                    
+                    if org_comp.get("model_1_analysis"):
+                        st.write(f"**{models_tested[0]} Analysis:**")
+                        st.write(org_comp.get("model_1_analysis"))
+                    
+                    if org_comp.get("model_2_analysis"):
+                        st.write(f"**{models_tested[1]} Analysis:**")
+                        st.write(org_comp.get("model_2_analysis"))
+                else:
+                    st.error("Organizational unit comparison failed")
+    
+    # Download option
+    st.write("### Download Results")
+    st.download_button(
+        label="Download Comparison Results (JSON)",
+        data=json.dumps(comparison_results, indent=2),
+        file_name=f"model_comparison_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
+        mime="application/json"
+    )
 
 def display_batch_results(results):
     """Display batch processing results in a formatted way"""
@@ -937,11 +1136,21 @@ def main():
         You can also customize the classification parameters using the customization options.
         """)
         
-        # Add tabs for CV upload and customization (original tabs 1-3)
-        tabs = st.tabs(["CV Upload & Processing", "Batch Processing", "Classification Customization", "Advanced File Interpretation"])
+        # Add tabs for CV upload and customization (original tabs 1-4)
+        tabs = st.tabs(["CV Upload & Processing", "Batch Processing", "Model Comparison", "Classification Customization", "Advanced File Interpretation"])
         
         # Tab 1: CV Upload & Processing
         with tabs[0]:
+            # Model selection
+            st.write("#### AI Model Selection")
+            selected_model = st.selectbox(
+                "Choose the AI model for classification:",
+                options=list(AVAILABLE_MODELS.keys()),
+                format_func=lambda x: AVAILABLE_MODELS[x],
+                index=0,
+                help="Different models have different capabilities and costs. GPT-4o Mini is fast and cost-effective, while GPT-4o provides higher quality results."
+            )
+            
             # File uploader for CV text
             uploaded_file = st.file_uploader("Upload your CV (text format)", type=["txt", "pdf", "docx"])
             
@@ -1015,7 +1224,8 @@ def main():
                         file_name, 
                         custom_config=custom_config, 
                         config_files=config_files,
-                        interpreter_configs=interpreter_configs
+                        interpreter_configs=interpreter_configs,
+                        model_name=selected_model
                     )
                     
                     if result:
@@ -1056,6 +1266,17 @@ def main():
             
             **Supported file formats:** .txt, .pdf, .docx
             """)
+            
+            # Model selection for batch processing
+            st.write("#### AI Model Selection")
+            batch_selected_model = st.selectbox(
+                "Choose the AI model for batch processing:",
+                options=list(AVAILABLE_MODELS.keys()),
+                format_func=lambda x: AVAILABLE_MODELS[x],
+                index=0,
+                key="batch_model_selection",
+                help="Different models have different capabilities and costs. Consider processing time for large batches."
+            )
             
             # Folder input section
             st.write("### Select Folder")
@@ -1125,7 +1346,8 @@ def main():
                         folder_path,
                         custom_config=custom_config,
                         config_files=batch_config_files,
-                        interpreter_configs=interpreter_configs
+                        interpreter_configs=interpreter_configs,
+                        model_name=batch_selected_model
                     )
                     
                     if result:
@@ -1155,8 +1377,142 @@ def main():
                     st.success("Previous batch results cleared!")
                     st.rerun()
         
-        # Tab 2: Classification Customization
+        # Tab 3: Model Comparison
         with tabs[2]:
+            st.write("""
+            ## Model Comparison Testing
+            
+            Test different AI models on the same CV to see which performs better. 
+            Our AI comparison agent will analyze each model's output and provide detailed insights.
+            
+            **Features:**
+            - Side-by-side model comparison
+            - AI-powered analysis of classification quality
+            - Detailed recommendations for each model
+            - Performance insights across different classification types
+            """)
+            
+            # Model selection for comparison
+            st.write("### Select Models to Compare")
+            
+            col1, col2 = st.columns(2)
+            
+            with col1:
+                model_1 = st.selectbox(
+                    "First Model:",
+                    options=list(AVAILABLE_MODELS.keys()),
+                    format_func=lambda x: AVAILABLE_MODELS[x],
+                    index=0,
+                    key="comparison_model_1"
+                )
+            
+            with col2:
+                model_2 = st.selectbox(
+                    "Second Model:",
+                    options=list(AVAILABLE_MODELS.keys()),
+                    format_func=lambda x: AVAILABLE_MODELS[x],
+                    index=1 if len(AVAILABLE_MODELS) > 1 else 0,
+                    key="comparison_model_2"
+                )
+            
+            if model_1 == model_2:
+                st.warning("⚠️ Please select different models for comparison.")
+            else:
+                st.success(f"✅ Ready to compare: **{AVAILABLE_MODELS[model_1]}** vs **{AVAILABLE_MODELS[model_2]}**")
+            
+            # CV input for comparison
+            st.write("### CV Input")
+            
+            # File uploader for comparison
+            comparison_uploaded_file = st.file_uploader(
+                "Upload CV for model comparison", 
+                type=["txt", "pdf", "docx"],
+                key="comparison_file_upload"
+            )
+            
+            # Text area for direct input
+            comparison_text_input = st.text_area(
+                "Or paste CV text below:",
+                height=150,
+                key="comparison_text_input"
+            )
+            
+            # Get CV text
+            comparison_cv_text = ""
+            comparison_file_name = None
+            
+            if comparison_uploaded_file is not None:
+                comparison_file_name = comparison_uploaded_file.name
+                try:
+                    comparison_cv_text = comparison_uploaded_file.getvalue().decode("utf-8")
+                    st.success(f"Successfully loaded CV: {comparison_file_name}")
+                except Exception as e:
+                    st.error(f"Error reading file: {str(e)}")
+            
+            if not comparison_cv_text and comparison_text_input:
+                comparison_cv_text = comparison_text_input
+                comparison_file_name = "manual_entry"
+            
+            # Display the CV text if available
+            if comparison_cv_text:
+                with st.expander("View CV text", expanded=False):
+                    st.text(comparison_cv_text)
+            
+            # Configuration
+            st.write("### Optional Configuration")
+            st.info("Use the same customization options from the **Classification Customization** and **Advanced File Interpretation** tabs.")
+            
+            # Process button
+            if st.button("🚀 Compare Models", type="primary", disabled=(not comparison_cv_text or model_1 == model_2)):
+                if not comparison_cv_text:
+                    st.warning("Please upload a file or paste CV text")
+                elif model_1 == model_2:
+                    st.warning("Please select different models for comparison")
+                else:
+                    # Collect custom configuration
+                    custom_config = {}
+                    if "expertise_config" in st.session_state and st.session_state.expertise_config:
+                        custom_config["expertise"] = st.session_state.expertise_config
+                    
+                    if "role_levels_config" in st.session_state and st.session_state.role_levels_config:
+                        custom_config["role_levels"] = st.session_state.role_levels_config
+                    
+                    if "org_units_config" in st.session_state and st.session_state.org_units_config:
+                        custom_config["org_units"] = st.session_state.org_units_config
+                    
+                    # Get interpreter configurations
+                    interpreter_configs = None
+                    if "interpreter_configs" in st.session_state and st.session_state.interpreter_configs:
+                        interpreter_configs = st.session_state.interpreter_configs
+                    
+                    # Process with model comparison
+                    models_to_compare = [model_1, model_2]
+                    
+                    result = process_cv_with_model_comparison(
+                        comparison_cv_text,
+                        comparison_file_name,
+                        models_to_compare,
+                        custom_config=custom_config,
+                        config_files=None,
+                        interpreter_configs=interpreter_configs
+                    )
+                    
+                    if result:
+                        # Store the comparison results in session state for feedback
+                        if "comparison_results" not in st.session_state:
+                            st.session_state.comparison_results = []
+                        st.session_state.comparison_results.append(result)
+                        
+                        # Display comparison results
+                        display_model_comparison_results(result)
+                        
+                        # Show feedback message
+                        st.write("---")
+                        st.write("### 📝 Feedback")
+                        st.info("🎯 **Help us improve our model comparison!** Go to the **Feedback Dashboard** to provide feedback on these comparison results.")
+
+        # Tab 4: Classification Customization
+        with tabs[3]:
             st.write("""
             ## Classification Customization
             
@@ -1237,8 +1593,8 @@ def main():
                     mime="application/json"
                 )
         
-        # Tab 3: Advanced File Interpretation
-        with tabs[3]:
+        # Tab 5: Advanced File Interpretation
+        with tabs[4]:
             st.write("""
             ## Advanced File Interpretation
             
@@ -1264,12 +1620,32 @@ def main():
         Review all processed CV classifications and provide feedback to help improve the system.
         """)
         
-        # Combine individual and batch results
+        # Combine individual, batch, and comparison results
         all_results = []
         if st.session_state.processed_results:
             all_results.extend(st.session_state.processed_results)
         if "batch_results" in st.session_state and st.session_state.batch_results:
             all_results.extend(st.session_state.batch_results)
+        
+        # Add individual model results from comparisons for feedback
+        if "comparison_results" in st.session_state and st.session_state.comparison_results:
+            for comparison_result in st.session_state.comparison_results:
+                individual_results = comparison_result.get("individual_results", {})
+                models_tested = comparison_result.get("models_tested", [])
+                cv_id = comparison_result.get("cv_id", "unknown")
+                
+                # Add each model's result as a separate item for feedback
+                for model_name in models_tested:
+                    if model_name in individual_results:
+                        model_result = individual_results[model_name].copy()
+                        # Add metadata to identify this as a comparison result
+                        model_result["comparison_metadata"] = {
+                            "is_comparison_result": True,
+                            "model_used": model_name,
+                            "compared_with": [m for m in models_tested if m != model_name],
+                            "comparison_cv_id": cv_id
+                        }
+                        all_results.append(model_result)
         
         # Check if there are any processed results
         if not all_results:
@@ -1324,7 +1700,7 @@ def main():
         with col1:
             result_type_filter = st.selectbox(
                 "Filter by source:",
-                ["All Results", "Individual CVs", "Batch Processed CVs"],
+                ["All Results", "Individual CVs", "Batch Processed CVs", "Model Comparison Results"],
                 index=0
             )
         
@@ -1342,6 +1718,8 @@ def main():
             filtered_results = st.session_state.processed_results or []
         elif result_type_filter == "Batch Processed CVs":
             filtered_results = st.session_state.get("batch_results", [])
+        elif result_type_filter == "Model Comparison Results":
+            filtered_results = [r for r in all_results if r.get("comparison_metadata", {}).get("is_comparison_result", False)]
         
         if feedback_filter == "With Feedback":
             filtered_results = [r for r in filtered_results if r.get("user_feedback")]
@@ -1357,10 +1735,23 @@ def main():
         
         # Option to select which CV to provide feedback on
         if len(filtered_results) > 1:
+            def format_cv_option(x):
+                result = filtered_results[x]
+                base_name = os.path.basename(result.get('resume_id', 'Unknown'))
+                
+                # Add comparison metadata if available
+                if result.get("comparison_metadata", {}).get("is_comparison_result", False):
+                    model_used = result["comparison_metadata"].get("model_used", "Unknown Model")
+                    compared_with = result["comparison_metadata"].get("compared_with", [])
+                    model_display = AVAILABLE_MODELS.get(model_used, model_used)
+                    return f"CV #{x + 1}: {base_name} [Model: {model_display}]"
+                else:
+                    return f"CV #{x + 1}: {base_name}"
+            
             selected_cv = st.selectbox(
                 "Select a CV to provide feedback on:",
                 range(len(filtered_results)),
-                format_func=lambda x: f"CV #{x + 1}: {os.path.basename(filtered_results[x].get('resume_id', 'Unknown'))}"
+                format_func=format_cv_option
             )
         else:
             selected_cv = 0

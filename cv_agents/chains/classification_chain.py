@@ -3,6 +3,7 @@ from ..role.agent import RoleLevelAgent
 from ..org_unit.agent import OrgUnitAgent
 from ..interpreter.agent import InterpreterAgent
 from ..validation.agent import ValidationAgent
+from ..comparison.agent import ModelComparisonAgent
 from ..utils.data_extractor import extract_cv_sections
 from ..utils.vector_utils import CVVectorizer
 from ..utils.feedback_manager import FeedbackManager
@@ -12,18 +13,19 @@ from typing import Dict, List, Optional, Tuple, Any
 from datetime import datetime
 
 class CVClassificationOrchestrator:
-    def __init__(self, memory_path: str = "memory/cv_classifications.json", custom_config: Optional[Dict[str, Any]] = None):
+    def __init__(self, memory_path: str = "memory/cv_classifications.json", custom_config: Optional[Dict[str, Any]] = None, model_name: str = "gpt-4o-mini-2024-07-18"):
         self.custom_config = custom_config or {}
+        self.model_name = model_name
         
-        # Initialize agents with custom configuration
+        # Initialize agents with custom configuration and model
         expertise_config = self.custom_config.get("expertise", {})
         role_config = self.custom_config.get("role_levels", {})
         org_unit_config = self.custom_config.get("org_units", {})
         
-        self.expertise_agent = ExpertiseAgent(custom_config=expertise_config)
-        self.role_level_agent = RoleLevelAgent(custom_config=role_config)
-        self.org_unit_agent = OrgUnitAgent(custom_config=org_unit_config)
-        self.validation_agent = ValidationAgent()  # Add validation agent
+        self.expertise_agent = ExpertiseAgent(model_name=model_name, custom_config=expertise_config)
+        self.role_level_agent = RoleLevelAgent(model_name=model_name, custom_config=role_config)
+        self.org_unit_agent = OrgUnitAgent(model_name=model_name, custom_config=org_unit_config)
+        self.validation_agent = ValidationAgent(model_name=model_name)  # Add validation agent
         
         self.memory_path = memory_path
         self.memory = self._load_memory()
@@ -31,6 +33,17 @@ class CVClassificationOrchestrator:
         
         # Initialize feedback manager
         self.feedback_manager = FeedbackManager()
+        
+        # Initialize comparison agent (uses best model for comparisons)
+        self.comparison_agent = ModelComparisonAgent()
+    
+    def update_model(self, model_name: str):
+        """Update the model used by all agents"""
+        self.model_name = model_name
+        self.expertise_agent.update_model(model_name)
+        self.role_level_agent.update_model(model_name)
+        self.org_unit_agent.update_model(model_name)
+        self.validation_agent.update_model(model_name)
     
     def update_config(self, new_config: Dict[str, Any]):
         """Update the configuration for the orchestrator and its agents"""
@@ -374,3 +387,80 @@ class CVClassificationOrchestrator:
     def clear_feedback(self):
         """Clear all feedback data"""
         self.feedback_manager.clear_feedback()
+    
+    def process_cv_with_multiple_models(self, cv_data: Dict, model_names: List[str]) -> Dict: # Rever isto
+        """Process a CV with multiple models and compare results"""
+        results = {}
+        model_outputs = []
+        
+        # Store original model
+        original_model = self.model_name
+        
+        try:
+            # Process with each model
+            for model_name in model_names:
+                print(f"Processing with model: {model_name}")
+                
+                # Update all agents to use this model
+                self.update_model(model_name)
+                
+                # Process CV with this model
+                result = self.process_cv(cv_data)
+                results[model_name] = result
+                
+                # Store for comparison
+                model_outputs.append((model_name, result))
+            
+            # Compare results if we have multiple models
+            if len(model_outputs) >= 2:
+                print("Comparing model outputs...")
+                
+                # Compare expertise results
+                expertise_comparison = self.comparison_agent.compare_models(
+                    cv_data,
+                    model_outputs[0][0], model_outputs[0][1].get("expertise", {}),
+                    model_outputs[1][0], model_outputs[1][1].get("expertise", {}),
+                    "expertise"
+                )
+                
+                # Compare role level results
+                role_comparison = self.comparison_agent.compare_models(
+                    cv_data,
+                    model_outputs[0][0], model_outputs[0][1].get("role_levels", {}),
+                    model_outputs[1][0], model_outputs[1][1].get("role_levels", {}),
+                    "role_levels"
+                )
+                
+                # Compare org unit results
+                org_comparison = self.comparison_agent.compare_models(
+                    cv_data,
+                    model_outputs[0][0], model_outputs[0][1].get("org_unit", {}),
+                    model_outputs[1][0], model_outputs[1][1].get("org_unit", {}),
+                    "org_unit"
+                )
+                
+                # Combine comparison results
+                comparison_results = {
+                    "expertise_comparison": expertise_comparison,
+                    "role_levels_comparison": role_comparison,
+                    "org_unit_comparison": org_comparison
+                }
+                
+                return {
+                    "cv_id": cv_data.get("resume_id", ""),
+                    "models_tested": model_names,
+                    "individual_results": results,
+                    "comparisons": comparison_results,
+                    "timestamp": datetime.now().isoformat()
+                }
+            else:
+                return {
+                    "cv_id": cv_data.get("resume_id", ""),
+                    "models_tested": model_names,
+                    "individual_results": results,
+                    "timestamp": datetime.now().isoformat()
+                }
+                
+        finally:
+            # Restore original model
+            self.update_model(original_model)
