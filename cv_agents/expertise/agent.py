@@ -17,9 +17,18 @@ For each identified expertise area, provide a confidence score (0-1) and justifi
 Before making any classification:
 1. Carefully analyze the candidate's specific experience and skills
 2. Consider the depth and breadth of experience in each area
-3. Only assign high confidence (>0.7) if there's clear, substantial evidence
-4. Assign medium confidence (0.4-0.7) for partial or indirect evidence
-5. Assign low confidence (<0.4) for minimal or unclear evidence
+3. Use improved confidence scoring:
+   - Very High confidence (0.90-0.95): Extensive, clear evidence with multiple years of experience
+   - High confidence (0.80-0.89): Strong evidence with solid experience and clear skills match
+   - Medium High confidence (0.70-0.79): Good evidence with some experience and relevant skills
+   - Medium confidence (0.50-0.69): Moderate evidence or indirect indicators
+   - Low confidence (0.30-0.49): Minimal evidence or weak indicators
+   - Very Low confidence (0.10-0.29): Very little evidence or unclear match
+
+If you receive validation feedback, carefully review the feedback points and adjust your classification accordingly. Pay attention to:
+- Specific strengths and weaknesses mentioned
+- Evidence gaps identified by the validator
+- Confidence level appropriateness feedback
 
 Always explain your reasoning thoroughly and be conservative with confidence scores.
 Provide an in depth justification for your response. Be clear and concise but also thorough and with a good level of detail.
@@ -52,6 +61,8 @@ Education:
 {education}
 
 Note that the duration in the work experience is in years.
+
+{validation_feedback_section}
 
 Your entire response/output is going to consist of a single JSON object, and you will NOT wrap it within JSON md markers. This is very important since it will be parsed directly as JSON.
 """
@@ -135,8 +146,102 @@ class ExpertiseAgent(BaseAgent):
         """Process a CV with the agent with retries and input caching"""
         # Store input for potential fallback use
         self.last_input = cv_data
+        
+        # Add validation feedback section if present
+        validation_feedback_section = ""
+        if cv_data.get("validation_feedback"):
+            feedback = cv_data["validation_feedback"]
+            validation_feedback_section = f"""
+VALIDATION FEEDBACK (Iteration {cv_data.get('iteration', 1)}):
+
+{feedback.get('feedback_summary', 'No summary provided')}
+
+DETAILED FEEDBACK:
+{feedback.get('detailed_feedback', {})}
+
+STRENGTHS IDENTIFIED:
+{', '.join(feedback.get('strengths', []))}
+
+IMPROVEMENTS NEEDED:
+{', '.join(feedback.get('improvements_needed', []))}
+
+CONFIDENCE ASSESSMENT:
+{feedback.get('confidence_assessment', 'No assessment')}
+
+Please address the feedback points above when revising your classification.
+"""
+        cv_data["validation_feedback_section"] = validation_feedback_section
+        
         return super().process(cv_data)
     
+    def _apply_improved_confidence_scoring(self, result): # TODO: eliminar isto
+        """Apply improved confidence scoring with better granularity"""
+        if "expertise" not in result:
+            return result
+        
+        improved_expertise = []
+        for exp in result["expertise"]:
+            category = exp["category"]
+            confidence = exp["confidence"]
+            justification = exp.get("justification", "")
+            
+            # Analyze justification and adjust confidence based on evidence strength
+            confidence_tier = self._get_confidence_tier(confidence)
+            
+            # Look for evidence strength indicators in justification
+            evidence_strength = self._assess_evidence_strength(justification)
+            
+            # Adjust confidence based on evidence assessment
+            adjusted_confidence = self._adjust_confidence_scoring(confidence, evidence_strength)
+            
+            # Add evidence assessment to justification
+            if evidence_strength != "medium":
+                justification += f" [Evidence assessment: {evidence_strength}, confidence tier: {confidence_tier}]"
+            
+            improved_expertise.append({
+                "category": category,
+                "confidence": adjusted_confidence,
+                "justification": justification,
+                "original_confidence": confidence,
+                "evidence_strength": evidence_strength,
+                "confidence_tier": confidence_tier
+            })
+        
+        result["expertise"] = improved_expertise
+        return result
+    
+    def _assess_evidence_strength(self, justification: str) -> str: # TODO: eliminar isto
+        """Assess evidence strength based on justification content"""
+        justification_lower = justification.lower()
+        
+        # Strong evidence indicators
+        strong_indicators = ["years of experience", "extensive", "deep expertise", "proven track record", 
+                           "multiple projects", "senior", "lead", "manager", "architect"]
+        
+        # Weak evidence indicators  
+        weak_indicators = ["minimal", "limited", "unclear", "indirect", "partial", "brief", 
+                          "mentioned", "some exposure", "basic"]
+        
+        # Very strong evidence indicators
+        very_strong_indicators = ["decade", "10+ years", "expert level", "specialized", "advanced", 
+                                "comprehensive", "extensive background"]
+        
+        # Count indicators
+        strong_count = sum(1 for indicator in strong_indicators if indicator in justification_lower)
+        weak_count = sum(1 for indicator in weak_indicators if indicator in justification_lower)  
+        very_strong_count = sum(1 for indicator in very_strong_indicators if indicator in justification_lower)
+        
+        if very_strong_count > 0:
+            return "very_strong"
+        elif strong_count > weak_count and strong_count > 0:
+            return "strong"
+        elif weak_count > strong_count and weak_count > 0:
+            return "weak"
+        elif weak_count > 1:
+            return "very_weak"
+        else:
+            return "medium"
+
     def _apply_feedback_adjustments(self, result):
         """Apply feedback-based adjustments to expertise classifications using targeted feedback"""
         if "expertise" not in result:

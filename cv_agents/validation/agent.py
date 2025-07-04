@@ -5,322 +5,365 @@ import logging
 import re
 from typing import Dict, Any, List, Optional
 
-VALIDATION_SYSTEM_PROMPT = """You are a CV Classification Validation Agent specializing in reviewing and correcting low-confidence classifications.
+# New feedback-oriented system prompt for conversational validation
+VALIDATION_FEEDBACK_SYSTEM_PROMPT = """You are a CV Classification Validation Agent specializing in providing detailed feedback on classification results.
 
-Your role is to evaluate classifications that have confidence scores below 80% and determine if they are correct or need to be corrected.
+CV CONTENT:
+{cv_content}
 
-When reviewing a classification, you should:
-1. Carefully analyze the CV content and the proposed classification
-2. Check if the justification provided makes logical sense given the CV content
-3. Determine if the confidence score is appropriate for the evidence presented
-4. Either VALIDATE the classification (if correct) or CORRECT it (if incorrect)
+CLASSIFICATION RESULT:
+{classification_result}
 
-For corrections, you should:
-- Provide a new classification with proper confidence and justification
-- DO NOT IN ANY WAY alter the classification category, expertise, level or unit, only the confidence and justification
-- If the category, expertise, level or unit is not correct, simply provide an even lower confidence score and a justification for why it is not correct
-- The confidence score should be between 0 and 1
-- If the confidence is 0 or 1, do not change it
-- Explain why the original classification was incorrect
-- Be conservative with confidence scores - only use high confidence when evidence is clear
+AGENT TYPE:
+{agent_type}
 
-For validations, you should:
-- Confirm why the classification is correct despite low confidence
-- Optionally adjust the confidence score if it was too conservative
-- Provide additional justification if helpful
+Your role is to:
+1. Review classification results from other agents (expertise, role levels, or organizational units)
+2. Analyze the quality, accuracy, and appropriateness of each classification
+3. Provide constructive feedback indicating what's correct and what needs improvement
+4. Decide whether the overall classification is satisfactory or needs further refinement
+
+When reviewing a classification, analyze:
+- **Accuracy**: How well do the classifications match the CV content?
+- **Evidence**: Is there sufficient evidence in the CV to support each classification?
+- **Confidence**: Are the confidence scores appropriate for the evidence provided?
+- **Completeness**: Are all relevant classifications included from the available categories?
+- **Justifications**: Are the explanations logical and well-reasoned?
+- **Category Usage**: Are the classifications using only the available categories listed above?
+
+Provide feedback in this format:
+- Identify specific strengths in the classification
+- Point out specific issues that need addressing
+- Suggest improvements for problematic classifications
+- Verify that only available categories are being used
+- Indicate overall satisfaction level
 
 Response format: Return a JSON object with:
-- "action": "validate" or "correct"
-- "validated_classification": the final classification (corrected or validated)
-- "validation_reason": explanation of your decision
-- "original_confidence": the original confidence score
-- "final_confidence": the final confidence score
-- "confidence_change": the change in confidence (positive or negative)
+{{
+"validator_satisfied": True | False,
+"feedback_summary": "brief overview of your assessment",
+"detailed_feedback": "object with feedback for each classification item, in this format (only include the classifications that are present in the current classification_result): 
+    {{
+    # For expertise classifications from the expertise agent:
+    'expertise': {{
+        '[expertise_category]': {{
+            'accuracy': 'how well the expertise classification matches the CV content',
+            'evidence': 'strength of evidence supporting this expertise area',
+            'confidence': 'appropriateness of the confidence score given the evidence',
+            'completeness': 'whether this expertise area is fully captured',
+            'justifications': 'quality and clarity of the justification provided',
+            'category_validity': 'whether this expertise category is in the available categories list'
+        }},
+        '[another_expertise_category]': {{
+            'accuracy': 'how well the expertise classification matches the CV content',
+            'evidence': 'strength of evidence supporting this expertise area',
+            'confidence': 'appropriateness of the confidence score given the evidence',
+            'completeness': 'whether this expertise area is fully captured',
+            'justifications': 'quality and clarity of the justification provided',
+            'category_validity': 'whether this expertise category is in the available categories list'
+        }}
+        ...
+    }},
+    
+    # For role level classifications from the role levels agent:
+    'role_levels': {{
+        '[expertise_area]-[role_level]' (Note: the key is a concatenation of the expertise area and its associated role level that the classification result returned): {{
+            'accuracy': 'how well the role level matches the candidate\'s experience and responsibilities',
+            'evidence': 'strength of evidence supporting this role level assessment',
+            'confidence': 'appropriateness of the confidence score for the role level',
+            'completeness': 'whether the role level assessment is comprehensive',
+            'justifications': 'quality of reasoning for the role level determination',
+            'category_validity': 'whether this role level is in the available categories list'
+        }},
+        '[another_expertise_area]-[another_role_level]' (Note: the key is a concatenation of the expertise area and its associated role level that the classification result returned): {{
+            'accuracy': 'how well the role level matches the candidate\'s experience and responsibilities',
+            'evidence': 'strength of evidence supporting this role level assessment',
+            'confidence': 'appropriateness of the confidence score for the role level',
+            'completeness': 'whether the role level assessment is comprehensive',
+            'justifications': 'quality of reasoning for the role level determination',
+            'category_validity': 'whether this role level is in the available categories list'
+        }}
+        ...
+    }},
+    
+    # For organizational unit classifications from the organizational units agent:
+    'org_unit': {{
+        '[org_unit_name]': {{
+            'accuracy': 'how well the organizational unit classification fits the candidate\'s background',
+            'evidence': 'strength of evidence supporting this organizational unit assignment',
+            'confidence': 'appropriateness of the confidence score for the org unit',
+            'completeness': 'whether the organizational unit assessment is comprehensive',
+            'justifications': 'quality of reasoning for the organizational unit determination',
+            'category_validity': 'whether this organizational unit is in the available categories list'
+        }},
+        '[another_org_unit_name]': {{
+            'accuracy': 'how well the organizational unit classification fits the candidate\'s background',
+            'evidence': 'strength of evidence supporting this organizational unit assignment',
+            'confidence': 'appropriateness of the confidence score for the org unit',
+            'completeness': 'whether the organizational unit assessment is comprehensive',
+            'justifications': 'quality of reasoning for the organizational unit determination',
+            'category_validity': 'whether this organizational unit is in the available categories list'
+        }}
+        ...
+    }}
+}}
+"strengths": "list of things done well",
+"improvements_needed": "list of specific improvements required",
+"confidence_assessment": "assessment of whether confidence scores are appropriate",
+"category_compliance": "assessment of whether only available categories were used",
+"overall_quality": 1-10
+}}
+
+Note that the agent that classified the CV may have used different categories than the ones he has access to.
+To prevent this, you should check the available categories and make sure that the classification result is using only the available categories.
+If there is a category that is not in the available categories, you should not accept the classification result and report it as an error in the category_validity field.
+On the other hand, if there is a category in the available ones that makes sense for the classification result, you should report it to the agent.
+
+AVAILABLE CATEGORIES FOR THIS CLASSIFICATION:
+{available_categories}
 
 Your entire response must be a valid JSON object without markdown formatting.
-"""
 
-VALIDATION_USER_PROMPT = """Please review this CV classification:
+Current iteration: {iteration}
+Maximum iterations allowed: {max_iterations}
 
-CV Content:
-Work Experience: {work_experience}
-Skills: {skills}
-Education: {education}
-
-Original Classification:
-Agent Type: {agent_type}
-Classification: {classification}
-Confidence: {confidence}
-Justification: {justification}
-
-Please validate or correct this classification based on the CV content provided.
+If this is the final iteration (iteration == max_iterations), you should be more lenient and accept reasonable classifications even if not perfect.
 """
 
 class ValidationAgent(BaseAgent):
     def __init__(self, model_name="gpt-4o-mini-2024-07-18", temperature=0.1, max_retries=3, retry_delay=2, custom_config: Optional[Dict[str, Any]] = None):
         super().__init__(model_name, temperature, max_retries, retry_delay, custom_config)
-        self._build_prompt()
+        
+        # Initialize the validation prompt
+        self.prompt = ChatPromptTemplate.from_template(VALIDATION_FEEDBACK_SYSTEM_PROMPT)
+        
+        # Configuration for validation thresholds
+        self.satisfaction_threshold = 7.0  # Out of 10 TODO: rever isto, talvez deixar o utilizador definir
+        self.minimum_confidence_threshold = 0.3  # 30% minimum confidence
+        self.maximum_confidence_threshold = 0.95  # 95% maximum confidence
     
-    def _build_prompt(self):
-        """Build the prompt template for validation"""
-        self.prompt = ChatPromptTemplate.from_messages([
-            ("system", VALIDATION_SYSTEM_PROMPT),
-            ("human", VALIDATION_USER_PROMPT)
-        ])
-    
-    def validate_classification(self, cv_data: Dict, agent_type: str, classification_result: Dict) -> Dict:
-        """Validate a single classification result"""
-        # Check if validation is needed (confidence < 0.8)
-        if not self._needs_validation(classification_result, agent_type):
-            return classification_result
-        
-        # Extract low-confidence items
-        low_confidence_items = self._extract_low_confidence_items(classification_result, agent_type)
-        
-        if not low_confidence_items:
-            return classification_result
-        
-        # Validate each low-confidence item
-        validated_result = classification_result.copy()
-        validation_feedback = []
-        
-        for item in low_confidence_items:
-            validation_input = {
-                "work_experience": cv_data.get("work_experience", ""),
-                "skills": cv_data.get("skills", ""),
-                "education": cv_data.get("education", ""),
-                "agent_type": agent_type,
-                "classification": json.dumps(item["classification"], indent=2),
-                "confidence": item["confidence"],
-                "justification": item["justification"]
-            }
+    def provide_feedback(self, cv_data: Dict, agent_type: str, classification_result: Dict, iteration: int, available_categories: Optional[Dict[str, Any]] = None) -> Dict:
+        """Provide feedback on a classification result"""
+        try:
+            # Format available categories for the prompt
+            available_categories_text = self._format_available_categories(agent_type, available_categories)
+
+            print("DEBUG: available_categories_text: ", available_categories_text) if agent_type == "role_levels" else None
             
-            try:
-                # Get validation from LLM
-                validation_response = self.process(validation_input)
+            # Prepare input for the validation LLM
+            validation_input = {
+                "cv_content": self._extract_cv_content(cv_data),
+                "agent_type": agent_type,
+                "classification_result": json.dumps(classification_result, indent=2),
+                "iteration": iteration,
+                "max_iterations": self.max_validation_iterations,
+                "available_categories": available_categories_text
+            }
+
+            # Format the prompt
+            formatted_prompt = self.prompt.format_prompt(**validation_input)
+            
+            # Get feedback from LLM
+            response = self.llm.invoke(formatted_prompt.to_messages())
+            feedback = self._parse_response(response.content)
+            
+            if feedback and not feedback.get("error"):
+                # Add metadata
+                feedback["agent_type"] = agent_type
+                feedback["iteration"] = iteration
+                feedback["cv_id"] = cv_data.get("resume_id", "unknown")
                 
-                if validation_response and not validation_response.get("error"):
-                    # Apply the validation result
-                    validated_result = self._apply_validation_result(
-                        validated_result, item, validation_response, agent_type
-                    )
-                    
-                    # Create feedback for the feedback manager
-                    feedback = self._create_validation_feedback(
-                        cv_data.get("resume_id", ""), item, validation_response, agent_type
-                    )
-                    validation_feedback.append(feedback)
-                    
-            except Exception as e:
-                logging.error(f"Error validating classification: {e}")
-                continue
-        
-        # Add validation metadata
-        validated_result["validation_applied"] = True
-        validated_result["validation_feedback"] = validation_feedback
-        
-        return validated_result
+                # Ensure validator_satisfied is boolean
+                if "validator_satisfied" not in feedback:
+                    # Fallback: satisfied if overall quality >= threshold
+                    overall_quality = feedback.get("overall_quality", 0)
+                    feedback["validator_satisfied"] = overall_quality >= self.satisfaction_threshold
+                
+                return feedback
+            else:
+                # Fallback feedback if LLM fails
+                return self._get_fallback_feedback(classification_result, iteration)
+                
+        except Exception as e:
+            logging.error(f"Error providing validation feedback: {e}")
+            return self._get_fallback_feedback(classification_result, iteration)
     
-    def _needs_validation(self, classification_result: Dict, agent_type: str) -> bool:
-        """Check if any classification needs validation (confidence < 0.8)"""
-        if agent_type == "expertise":
-            expertise_list = classification_result.get("expertise", [])
-            return any(exp.get("confidence", 1.0) < 0.8 for exp in expertise_list)
-        
-        elif agent_type == "role_levels":
-            role_list = classification_result.get("role_levels", [])
-            return any(role.get("confidence", 1.0) < 0.8 for role in role_list)
-        
-        elif agent_type == "org_unit":
-            org_list = classification_result.get("org_units", [])
-            return any(org.get("confidence", 1.0) < 0.8 for org in org_list)
-        
-        return False
-    
-    def _extract_low_confidence_items(self, classification_result: Dict, agent_type: str) -> List[Dict]:
-        """Extract items with confidence < 0.8"""
-        low_confidence_items = []
+    def _format_available_categories(self, agent_type: str, available_categories: Optional[Dict[str, Any]]) -> str:
+        """Format available categories for display in the prompt"""
+        if not available_categories:
+            return "No category information provided"
         
         if agent_type == "expertise":
-            expertise_list = classification_result.get("expertise", [])
-            for i, exp in enumerate(expertise_list):
-                if exp.get("confidence", 1.0) < 0.8:
-                    low_confidence_items.append({
-                        "classification": {"category": exp.get("category")},
-                        "confidence": exp.get("confidence"),
-                        "justification": exp.get("justification", ""),
-                        "index": i,
-                        "type": "expertise"
-                    })
+            categories = available_categories.get("expertise_categories", [])
+            if categories:
+                return "Available Expertise Categories:\n" + "\n".join([f"- {cat}" for cat in categories])
         
         elif agent_type == "role_levels":
-            role_list = classification_result.get("role_levels", [])
-            for i, role in enumerate(role_list):
-                if role.get("confidence", 1.0) < 0.8:
-                    low_confidence_items.append({
-                        "classification": {
-                            "expertise": role.get("expertise"),
-                            "level": role.get("level")
-                        },
-                        "confidence": role.get("confidence"),
-                        "justification": role.get("justification", ""),
-                        "index": i,
-                        "type": "role_level"
-                    })
+            role_levels = available_categories.get("role_levels", [])
+            expertise_categories = available_categories.get("expertise_categories", [])
+            if role_levels:
+                formatted_levels = []
+                for level in role_levels:
+                    name = level.get("name", "unknown")
+                    description = level.get("description", "no description")
+                    formatted_levels.append(f"- {name}: {description}")
+                categories = [f"{cat}-{level}" for cat in expertise_categories for level in role_levels]
+                return "Available Role Levels Combinations:\n" + "\n".join(categories)
         
         elif agent_type == "org_unit":
-            org_list = classification_result.get("org_units", [])
-            for i, org in enumerate(org_list):
-                if org.get("confidence", 1.0) < 0.8:
-                    low_confidence_items.append({
-                        "classification": {"unit": org.get("unit")},
-                        "confidence": org.get("confidence"),
-                        "justification": org.get("justification", ""),
-                        "index": i,
-                        "type": "org_unit"
-                    })
+            org_units = available_categories.get("org_units", [])
+            if org_units:
+                formatted_units = []
+                for unit in org_units:
+                    name = unit.get("name", "unknown")
+                    description = unit.get("description", "no description")
+                    formatted_units.append(f"- {name}: {description}")
+                return "Available Organizational Units:\n" + "\n".join(formatted_units)
         
-        return low_confidence_items
+        return f"No categories defined for agent type: {agent_type}"
     
-    def _apply_validation_result(self, classification_result: Dict, original_item: Dict, 
-                               validation_response: Dict, agent_type: str) -> Dict:
-        """Apply the validation result to the classification"""
-        action = validation_response.get("action", "validate")
-        validated_classification = validation_response.get("validated_classification", {})
-        validation_reason = validation_response.get("validation_reason", "")
-        final_confidence = validation_response.get("final_confidence", original_item["confidence"])
+    def _extract_cv_content(self, cv_data: Dict) -> str:
+        """Extract relevant CV content for validation"""
+        content_parts = []
         
-        # Find and update the item in the classification result
-        if agent_type == "expertise":
-            expertise_list = classification_result.get("expertise", [])
-            index = original_item["index"]
-            if 0 <= index < len(expertise_list):
-                if action == "correct":
-                    # Replace with corrected classification
-                    expertise_list[index] = {
-                        "category": validated_classification.get("category", expertise_list[index]["category"]),
-                        "confidence": final_confidence,
-                        "justification": validated_classification.get("justification", expertise_list[index]["justification"]),
-                        "validation_applied": True,
-                        "validation_action": action,
-                        "validation_reason": validation_reason,
-                        "original_confidence": original_item["confidence"]
-                    }
-                else:  # validate
-                    # Keep original but update confidence and add validation info
-                    expertise_list[index]["confidence"] = final_confidence
-                    expertise_list[index]["validation_applied"] = True
-                    expertise_list[index]["validation_action"] = action
-                    expertise_list[index]["validation_reason"] = validation_reason
-                    expertise_list[index]["original_confidence"] = original_item["confidence"]
+        # Add work experience
+        work_exp = cv_data.get("work_experience", "")
+        if work_exp:
+            content_parts.append(f"Work Experience:\n{work_exp}")
         
-        elif agent_type == "role_levels":
-            role_list = classification_result.get("role_levels", [])
-            index = original_item["index"]
-            if 0 <= index < len(role_list):
-                if action == "correct":
-                    role_list[index] = {
-                        "expertise": validated_classification.get("expertise", role_list[index]["expertise"]),
-                        "level": validated_classification.get("level", role_list[index]["level"]),
-                        "confidence": final_confidence,
-                        "justification": validated_classification.get("justification", role_list[index]["justification"]),
-                        "validation_applied": True,
-                        "validation_action": action,
-                        "validation_reason": validation_reason,
-                        "original_confidence": original_item["confidence"]
-                    }
-                else:  # validate
-                    role_list[index]["confidence"] = final_confidence
-                    role_list[index]["validation_applied"] = True
-                    role_list[index]["validation_action"] = action
-                    role_list[index]["validation_reason"] = validation_reason
-                    role_list[index]["original_confidence"] = original_item["confidence"]
+        # Add skills
+        skills = cv_data.get("skills", "")
+        if skills:
+            content_parts.append(f"Skills:\n{skills}")
         
-        elif agent_type == "org_unit":
-            org_list = classification_result.get("org_units", [])
-            index = original_item["index"]
-            if 0 <= index < len(org_list):
-                if action == "correct":
-                    org_list[index] = {
-                        "unit": validated_classification.get("unit", org_list[index]["unit"]),
-                        "confidence": final_confidence,
-                        "justification": validated_classification.get("justification", org_list[index]["justification"]),
-                        "validation_applied": True,
-                        "validation_action": action,
-                        "validation_reason": validation_reason,
-                        "original_confidence": original_item["confidence"]
-                    }
-                else:  # validate
-                    org_list[index]["confidence"] = final_confidence
-                    org_list[index]["validation_applied"] = True
-                    org_list[index]["validation_action"] = action
-                    org_list[index]["validation_reason"] = validation_reason
-                    org_list[index]["original_confidence"] = original_item["confidence"]
+        # Add education
+        education = cv_data.get("education", "")
+        if education:
+            content_parts.append(f"Education:\n{education}")
         
-        return classification_result
+        # Add resume text if available
+        resume_text = cv_data.get("resume_text", "")
+        if resume_text and not any(content_parts):  # Only if other sections are empty
+            content_parts.append(f"Resume Text:\n{resume_text[:2000]}...")  # Limit length
+        
+        return "\n\n".join(content_parts) if content_parts else "No CV content available"
     
-    def _create_validation_feedback(self, resume_id: str, original_item: Dict, 
-                                  validation_response: Dict, agent_type: str) -> Dict:
-        """Create feedback for the feedback manager based on validation"""
-        action = validation_response.get("action", "validate")
-        validation_reason = validation_response.get("validation_reason", "")
+    def _get_fallback_feedback(self, classification_result: Dict, iteration: int) -> Dict:
+        """Provide fallback feedback when LLM fails"""
+        # Simple heuristic: check if there are any classifications with very low confidence
+        has_low_confidence = False
         
-        # Determine if this is positive or negative feedback
-        rating = "positive" if action == "validate" else "negative"
+        # Check for low confidence items
+        for key in ["expertise", "role_levels", "org_units"]:
+            if key in classification_result:
+                items = classification_result[key]
+                if isinstance(items, list):
+                    for item in items:
+                        if item.get("confidence", 1.0) < 0.4:
+                            has_low_confidence = True
+                            break
+                elif isinstance(items, dict) and key in items:
+                    for item in items[key]:
+                        if item.get("confidence", 1.0) < 0.4:
+                            has_low_confidence = True
+                            break
         
-        # Create structured feedback text
-        if agent_type == "expertise":
-            key = original_item["classification"]["category"]
-            feedback_text = f"expertise :: {key} :: {validation_reason}"
-        elif agent_type == "role_levels":
-            expertise = original_item["classification"]["expertise"]
-            level = original_item["classification"]["level"]
-            key = f"{expertise}-{level}"
-            feedback_text = f"role_level :: {key} :: {validation_reason}"
-        elif agent_type == "org_unit":
-            key = original_item["classification"]["unit"]
-            feedback_text = f"org_unit :: {key} :: {validation_reason}"
-        else:
-            feedback_text = validation_reason
+        # Be more lenient on later iterations
+        satisfied = not has_low_confidence or iteration >= self.max_validation_iterations
         
         return {
-            "resume_id": resume_id,
-            "rating": rating,
-            "reason": feedback_text,
-            "source": "validation_agent",  # Mark as agent feedback
-            "original_confidence": original_item["confidence"],
-            "final_confidence": validation_response.get("final_confidence"),
-            "validation_action": action
+            "validator_satisfied": satisfied,
+            "feedback_summary": "Automatic validation due to system error",
+            "detailed_feedback": {},
+            "strengths": ["Classification completed without errors"],
+            "improvements_needed": ["Low confidence items detected"] if has_low_confidence else [],
+            "confidence_assessment": "Unable to assess due to system error",
+            "overall_quality": 7 if satisfied else 5,
+            "agent_type": "validation",
+            "iteration": iteration,
+            "fallback": True
         }
     
-    def _parse_response(self, response_text):
-        """Parse the validation response JSON"""
+    def _parse_response(self, response_text: str) -> Dict:
+        """Parse the validation response from the LLM"""
         try:
-            response_text = clean_json_string(response_text)
-            response_json = json.loads(response_text)
-            return response_json
-        except json.JSONDecodeError:
-            logging.error(f"Failed to parse validation response: {response_text}")
-            raise ValueError("Validation response is not valid JSON")
+            # Clean the response text
+            cleaned_text = response_text.strip()
+            
+            # Remove markdown formatting if present
+            if cleaned_text.startswith("```json"):
+                cleaned_text = cleaned_text[7:]
+            if cleaned_text.endswith("```"):
+                cleaned_text = cleaned_text[:-3]
+            
+            # Parse JSON
+            result = json.loads(cleaned_text)
+            
+            # Validate required fields
+            required_fields = ["validator_satisfied", "feedback_summary"]
+            for field in required_fields:
+                if field not in result:
+                    logging.warning(f"Missing required field in validation response: {field}")
+                    if field == "validator_satisfied":
+                        result[field] = False
+                    else:
+                        result[field] = "No information provided"
+            
+            return result
+            
+        except json.JSONDecodeError as e:
+            logging.error(f"Failed to parse validation JSON response: {e}")
+            logging.error(f"Response text: {response_text}")
+            return {"error": f"JSON parsing failed: {str(e)}"}
+        except Exception as e:
+            logging.error(f"Error parsing validation response: {e}")
+            return {"error": f"Parsing error: {str(e)}"}
     
-    def _validate_result(self, result):
-        """Validate the structure of the validation response"""
+    def _validate_result(self, result: Dict) -> bool:
+        """Validate the parsed result"""
         if not isinstance(result, dict):
             return False
         
-        required_fields = ["action", "validated_classification", "validation_reason"]
+        # Check for error
+        if result.get("error"):
+            return False
+        
+        # Check for required fields
+        required_fields = ["validator_satisfied", "feedback_summary"]
         return all(field in result for field in required_fields)
     
-    def _get_fallback_result(self, errors):
-        """Generate fallback validation result"""
+    def _get_fallback_result(self, errors: List[str]) -> Dict:
+        """Provide fallback result when all retries fail"""
         return {
-            "action": "validate",
-            "validated_classification": {},
-            "validation_reason": "Validation failed due to processing errors",
             "error": True,
-            "errors": errors
+            "validator_satisfied": False,
+            "feedback_summary": "Validation failed due to system errors",
+            "detailed_feedback": {},
+            "strengths": [],
+            "improvements_needed": ["Validation system unavailable"],
+            "confidence_assessment": "Unable to assess",
+            "overall_quality": 1,
+            "details": errors
         }
 
+    # Legacy methods for backward compatibility (though we're moving away from this approach)
+    def validate_classification(self, cv_data: Dict, agent_type: str, classification_result: Dict) -> Dict:
+        """Legacy method - for backward compatibility only"""
+        logging.warning("validate_classification is deprecated. Use provide_feedback instead.")
+        
+        # Provide feedback using new method
+        feedback = self.provide_feedback(cv_data, agent_type, classification_result, 1)
+        
+        # Convert feedback to old format for compatibility
+        if feedback.get("validator_satisfied", False):
+            # If satisfied, return original classification
+            return classification_result
+        else:
+            # If not satisfied, add validation info
+            result = classification_result.copy()
+            result["validation_applied"] = True
+            result["validation_feedback"] = feedback
+            return result
 
 def clean_json_string(json_string):
     """Clean JSON string by removing markdown formatting"""

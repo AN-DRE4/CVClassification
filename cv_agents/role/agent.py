@@ -10,6 +10,9 @@ ROLE_SYSTEM_PROMPT_TEMPLATE = """You are an expert CV Analyzer specializing in d
 For each expertise area identified, determine the appropriate role level:
 {role_levels}
 
+Only use the role levels provided above. Do not make up your own role levels.
+Do not alter the expertise areas that are provided or create new ones.
+
 Base your assessment on job titles, responsibilities, and duration of experience.
 Consider the level of the responsibilities the person has. If some of these responsibilities are at a higher level, then consider leveling up the role.
 Provide a confidence score (0-1) and justification for each determination.
@@ -17,9 +20,18 @@ Provide a confidence score (0-1) and justification for each determination.
 Before making any classification:
 1. Carefully analyze the candidate's specific experience and skills
 2. Consider the depth and breadth of experience in each area
-3. Only assign high confidence (>0.7) if there's clear, substantial evidence
-4. Assign medium confidence (0.4-0.7) for partial or indirect evidence
-5. Assign low confidence (<0.4) for minimal or unclear evidence
+3. Use improved confidence scoring:
+   - Very High confidence (0.90-0.95): Extensive, clear evidence with multiple years of experience
+   - High confidence (0.80-0.89): Strong evidence with solid experience and clear skills match
+   - Medium High confidence (0.70-0.79): Good evidence with some experience and relevant skills
+   - Medium confidence (0.50-0.69): Moderate evidence or indirect indicators
+   - Low confidence (0.30-0.49): Minimal evidence or weak indicators
+   - Very Low confidence (0.10-0.29): Very little evidence or unclear match
+
+If you receive validation feedback, carefully review the feedback points and adjust your classification accordingly. Pay attention to:
+- Specific strengths and weaknesses mentioned
+- Evidence gaps identified by the validator
+- Confidence level appropriateness feedback
 
 Always explain your reasoning thoroughly and be conservative with confidence scores.
 Provide an in depth justification for your response. Be clear and concise but also thorough and with a good level of detail.
@@ -45,6 +57,8 @@ Previously identified expertise areas:
 {expertise_results}
 
 Note that the duration in the work experience is in years.
+
+{validation_feedback_section}
 
 For each expertise area, determine the most appropriate role level with justification.
 Your entire response/output is going to consist of a single JSON object, and you will NOT wrap it within JSON md markers.  This is very important since it will be parsed directly as JSON."""
@@ -153,7 +167,103 @@ class RoleLevelAgent(BaseAgent):
         """Process a CV with the agent with retries and input caching"""
         # Store input for potential fallback use
         self.last_input = cv_data
+        
+        # Add validation feedback section if present
+        validation_feedback_section = ""
+        if cv_data.get("validation_feedback"):
+            feedback = cv_data["validation_feedback"]
+            validation_feedback_section = f"""
+VALIDATION FEEDBACK (Iteration {cv_data.get('iteration', 1)}):
+
+{feedback.get('feedback_summary', 'No summary provided')}
+
+DETAILED FEEDBACK:
+{feedback.get('detailed_feedback', {})}
+
+STRENGTHS IDENTIFIED:
+{', '.join(feedback.get('strengths', []))}
+
+IMPROVEMENTS NEEDED:
+{', '.join(feedback.get('improvements_needed', []))}
+
+CONFIDENCE ASSESSMENT:
+{feedback.get('confidence_assessment', 'No assessment')}
+
+Please address the feedback points above when revising your classification.
+"""
+        cv_data["validation_feedback_section"] = validation_feedback_section
+        
         return super().process(cv_data)
+
+    def _apply_improved_confidence_scoring(self, result): # TODO: rever isto, nao vejo a necessidade de ter isto
+        """Apply improved confidence scoring with better granularity"""
+        if "role_levels" not in result:
+            return result
+        
+        improved_role_levels = []
+        for role in result["role_levels"]:
+            expertise = role["expertise"]
+            level = role["level"]
+            confidence = role["confidence"]
+            justification = role.get("justification", "")
+            
+            # Analyze justification and adjust confidence based on evidence strength
+            confidence_tier = self._get_confidence_tier(confidence)
+            
+            # Look for evidence strength indicators in justification
+            evidence_strength = self._assess_evidence_strength(justification)
+            
+            # Adjust confidence based on evidence assessment
+            adjusted_confidence = self._adjust_confidence_scoring(confidence, evidence_strength)
+            
+            # Add evidence assessment to justification
+            if evidence_strength != "medium":
+                justification += f" [Evidence assessment: {evidence_strength}, confidence tier: {confidence_tier}]"
+            
+            improved_role_levels.append({
+                "expertise": expertise,
+                "level": level,
+                "confidence": adjusted_confidence,
+                "justification": justification,
+                "original_confidence": confidence,
+                "evidence_strength": evidence_strength,
+                "confidence_tier": confidence_tier
+            })
+        
+        result["role_levels"] = improved_role_levels
+        return result
+    
+    def _assess_evidence_strength(self, justification: str) -> str: # TODO: eliminar isto
+        """Assess evidence strength based on justification content"""
+        justification_lower = justification.lower()
+        
+        # Strong evidence indicators for role levels
+        strong_indicators = ["years of experience", "extensive", "leadership", "management", "senior position",
+                           "team lead", "project lead", "responsible for", "managed", "led", "supervised"]
+        
+        # Weak evidence indicators  
+        weak_indicators = ["minimal", "limited", "unclear", "indirect", "partial", "brief", 
+                          "mentioned", "some exposure", "basic", "entry level"]
+        
+        # Very strong evidence indicators
+        very_strong_indicators = ["decade", "10+ years", "director", "vp", "cto", "ceo", "executive",
+                                "senior management", "extensive leadership", "proven leadership"]
+        
+        # Count indicators
+        strong_count = sum(1 for indicator in strong_indicators if indicator in justification_lower)
+        weak_count = sum(1 for indicator in weak_indicators if indicator in justification_lower)  
+        very_strong_count = sum(1 for indicator in very_strong_indicators if indicator in justification_lower)
+        
+        if very_strong_count > 0:
+            return "very_strong"
+        elif strong_count > weak_count and strong_count > 0:
+            return "strong"
+        elif weak_count > strong_count and weak_count > 0:
+            return "weak"
+        elif weak_count > 1:
+            return "very_weak"
+        else:
+            return "medium"
 
     def _apply_feedback_adjustments(self, result):
         """Apply feedback-based adjustments to role level classifications using targeted feedback"""

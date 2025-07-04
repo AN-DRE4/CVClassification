@@ -1690,6 +1690,32 @@ def main():
             # Show last updated
             if feedback_stats.get('last_updated'):
                 st.write(f"**Last updated:** {feedback_stats['last_updated']}")
+            
+            # Clear feedback button
+            st.write("---")
+            col1, col2 = st.columns([3, 1])
+            with col1:
+                st.write("### 🗑️ Feedback Management")
+                st.write("Clear all stored feedback to start fresh with feedback collection.")
+            with col2:
+                if st.button("🗑️ Clear All Feedback", type="secondary", help="This will permanently delete all feedback data"):
+                    # Show confirmation dialog in session state
+                    st.session_state.show_clear_confirm = True
+                
+                # Show confirmation if flag is set
+                if st.session_state.get("show_clear_confirm", False):
+                    st.warning("⚠️ **Are you sure?** This will permanently delete all feedback data!")
+                    col_yes, col_no = st.columns(2)
+                    with col_yes:
+                        if st.button("✅ Yes, Clear All", type="primary"):
+                            st.session_state.orchestrator.clear_feedback()
+                            st.session_state.show_clear_confirm = False
+                            st.success("✅ All feedback has been cleared!")
+                            st.rerun()
+                    with col_no:
+                        if st.button("❌ Cancel"):
+                            st.session_state.show_clear_confirm = False
+                            st.rerun()
         
         st.write("---")
         

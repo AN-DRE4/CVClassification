@@ -4,7 +4,7 @@ import os
 import json
 import time
 import logging
-from typing import Dict, Optional, Any
+from typing import Dict, Optional, Any, List
 
 class BaseAgent:
     def __init__(self, model_name="gpt-4o-mini-2024-07-18", temperature=0.1, max_retries=3, retry_delay=2, custom_config: Optional[Dict[str, Any]] = None):
@@ -23,6 +23,189 @@ class BaseAgent:
         from .utils.feedback_manager import FeedbackManager
         self.feedback_manager = FeedbackManager()
         
+        # Configuration for conversational validation
+        self.max_validation_iterations = 3  # Maximum iterations in conversation with validator
+        self.confidence_thresholds = {
+            'very_high': 0.95,  # 95%+ confidence
+            'high': 0.9,      # 90%-95% confidence
+            'medium_high': 0.8,  # 80-90% confidence
+            'medium': 0.6,    # 60-80% confidence
+            'low': 0.4,       # 40-60% confidence
+            'very_low': 0.0   # Below 40% confidence
+        }
+        
+    def process_with_validation(self, cv_data, validation_agent, agent_type: str):
+        """Process CV data with iterative validation until validator is satisfied"""
+        current_classification = None
+        iteration_count = 0
+        validation_history = []
+        
+        while iteration_count < self.max_validation_iterations:
+            print(f"Starting {agent_type} classification iteration {iteration_count + 1}")
+            
+            # Prepare input for this iteration
+            iteration_input = cv_data.copy()
+            
+            # If this is not the first iteration, include validation feedback
+            if current_classification and validation_history:
+                latest_feedback = validation_history[-1]
+                iteration_input['validation_feedback'] = latest_feedback
+                iteration_input['previous_classification'] = current_classification
+                iteration_input['iteration'] = iteration_count + 1
+            
+            # Get classification from this agent
+            current_classification = self.process(iteration_input)
+
+            # print("DEBUG: got here 3", current_classification)
+            
+            if current_classification.get("error"):
+                print(f"Error in {agent_type} agent classification: {current_classification}")
+                break
+            
+            # Gather available categories for this agent type
+            available_categories = self._get_available_categories_for_validation(agent_type)
+            
+            # Send classification to validation agent for review
+            validation_feedback = validation_agent.provide_feedback(
+                cv_data, agent_type, current_classification, iteration_count + 1, available_categories
+            )
+            
+            validation_history.append(validation_feedback)
+            
+            # Check if validator is satisfied
+            if validation_feedback.get("validator_satisfied", False):
+                print(f"{agent_type.capitalize()} agent classification approved by validator after {iteration_count + 1} iterations")
+                break
+            
+            print(f"Validator feedback for {agent_type}: {validation_feedback.get('feedback_summary', 'No summary provided')}")
+            # print(f"DEBUG: Validatior detailed feedback for {agent_type}: {validation_feedback.get('detailed_feedback', {})}")
+            iteration_count += 1
+        
+        # Add conversation metadata to final result
+        # print("DEBUG: got here 4: ", current_classification)
+        # print("DEBUG: got here 4.1: ", validation_history[-1].get("validator_satisfied", False))
+        
+        if current_classification and not current_classification.get("error"):
+            current_classification["validation_conversation"] = {
+                "iterations_completed": iteration_count + 1,
+                "validator_satisfied": validation_history[-1].get("validator_satisfied", False) if validation_history else False,
+                "conversation_history": validation_history,
+                "max_iterations_reached": iteration_count >= self.max_validation_iterations
+            }
+            # print("DEBUG: got here 4.2: ", current_classification)
+            
+            # Generate automatic feedback for learning if the conversation was useful
+            """if iteration_count > 0:  # Only if there was actual conversation
+                self._generate_conversation_feedback(cv_data.get("resume_id", "unknown"), current_classification, validation_history, agent_type)"""
+
+        # print("DEBUG: got here 5")
+
+        return current_classification
+    
+    def _generate_conversation_feedback(self, resume_id: str, final_classification: Dict, validation_history: List[Dict], agent_type: str):
+        """Generate automatic feedback based on the validation conversation"""
+        if not validation_history:
+            return
+        
+        last_feedback = validation_history[-1]
+        was_satisfied = last_feedback.get("validator_satisfied", False)
+
+        # print("DEBUG: got here 6: ", was_satisfied)
+        
+        # Create feedback entry
+        feedback_entry = {
+            "resume_id": resume_id,
+            "rating": "positive" if was_satisfied else "negative",
+            "source": "validation_conversation",
+            "conversation_iterations": len(validation_history),
+            "validator_satisfied": was_satisfied,
+            "improvements_made": len(validation_history) > 1
+        }
+        
+        # Add specific feedback for each classification item
+        reason_parts = []
+        
+        if agent_type == "expertise":
+            for exp in final_classification.get("expertise", []):
+                category = exp.get("category")
+                confidence = exp.get("confidence", 0)
+                if was_satisfied:
+                    reason_parts.append(f"expertise :: {category} :: Validated through conversation (final confidence: {confidence:.2f})")
+                else:
+                    reason_parts.append(f"expertise :: {category} :: Could not reach validation consensus (final confidence: {confidence:.2f})")
+            # print("DEBUG: got here 7: ", reason_parts)
+
+        elif agent_type == "role_levels":
+            for role in final_classification.get("role_levels", []):
+                expertise = role.get("expertise", "")
+                level = role.get("level", "")
+                confidence = role.get("confidence", 0)
+                key = f"{expertise}-{level}"
+                if was_satisfied:
+                    reason_parts.append(f"role_level :: {key} :: Validated through conversation (final confidence: {confidence:.2f})")
+                else:
+                    reason_parts.append(f"role_level :: {key} :: Could not reach validation consensus (final confidence: {confidence:.2f})")
+        
+        elif agent_type == "org_unit":
+            for unit in final_classification.get("org_units", []):
+                unit_name = unit.get("unit", "")
+                confidence = unit.get("confidence", 0)
+                if was_satisfied:
+                    reason_parts.append(f"org_unit :: {unit_name} :: Validated through conversation (final confidence: {confidence:.2f})")
+                else:
+                    reason_parts.append(f"org_unit :: {unit_name} :: Could not reach validation consensus (final confidence: {confidence:.2f})")
+        
+        # print("DEBUG: got here 8: ", reason_parts)
+        # print("DEBUG: got here 8.1: ", final_classification)
+        # print("DEBUG: got here 8.2: ", feedback_entry)
+        
+        if reason_parts:
+            feedback_entry["reason"] = "\n".join(reason_parts)
+            
+            # Add the feedback to the feedback manager
+            self.feedback_manager.add_feedback(
+                resume_id,
+                final_classification,
+                feedback_entry
+            )
+
+        # print("DEBUG: got here 9: ", feedback_entry)
+
+    def _get_confidence_tier(self, confidence: float) -> str: # TODO: eliminar isto
+        """Get confidence tier based on improved granularity"""
+        if confidence >= self.confidence_thresholds['very_high']:
+            return 'very_high'
+        elif confidence >= self.confidence_thresholds['high']:
+            return 'high'
+        elif confidence >= self.confidence_thresholds['medium_high']:
+            return 'medium_high'
+        elif confidence >= self.confidence_thresholds['medium']:
+            return 'medium'
+        elif confidence >= self.confidence_thresholds['low']:
+            return 'low'
+        else:
+            return 'very_low'
+    
+    def _adjust_confidence_scoring(self, initial_confidence: float, evidence_strength: str = "medium") -> float: # TODO: eliminar isto
+        """Adjust confidence scoring with improved granularity"""
+        # Map evidence strength to confidence adjustments
+        evidence_adjustments = {
+            "very_strong": 0.95,  # 95% confidence for very strong evidence
+            "strong": 0.85,       # 85% confidence for strong evidence
+            "medium": 0.70,       # 70% confidence for medium evidence
+            "weak": 0.50,         # 50% confidence for weak evidence
+            "very_weak": 0.30     # 30% confidence for very weak evidence
+        }
+        
+        # Get base confidence from evidence
+        base_confidence = evidence_adjustments.get(evidence_strength, initial_confidence)
+        
+        # Apply some randomness/adjustment based on specific factors
+        # This can be overridden by subclasses for more specific logic
+        adjusted = min(max(base_confidence, 0.1), 0.95)  # Keep between 10% and 95%
+        
+        return adjusted
+
     def process(self, cv_data):
         """Process a CV with the agent with automatic retries and feedback integration"""
         if not self.prompt:
@@ -33,10 +216,12 @@ class BaseAgent:
         
         # Format the prompt with CV data
         formatted_prompt = self.prompt.format_prompt(**cv_data)
+        
         # Initialize counters and tracking
         retries = 0
         result = None
         errors = []
+        
         # Try processing with retries
         while retries <= self.max_retries:
             try:
@@ -48,8 +233,17 @@ class BaseAgent:
                 # For additional validation, check if the result is somewhat valid
                 if self._validate_result(result):
                     # Apply feedback adjustments to the result
-                    print(f"Result before feedback adjustments: {result}")
+                    # print(f"Result before feedback adjustments: {result}")
                     result = self._apply_feedback_adjustments(result)
+
+                    # print("DEBUG: got here 1")
+                    
+                    # Apply improved confidence scoring
+                    # result = self._apply_improved_confidence_scoring(result)
+                    
+                    # print("DEBUG: got here 2")
+                    
+                    # print("DEBUG: Result before return: ", result)
                     return result
                 else:
                     error_msg = f"Invalid result format after parsing: {result}"
@@ -75,6 +269,11 @@ class BaseAgent:
         
         # Return a fallback result if we couldn't get a valid one
         return self._get_fallback_result(errors)
+    
+    '''def _apply_improved_confidence_scoring(self, result):
+        """Apply improved confidence scoring with better granularity
+        This should be overridden by subclasses for agent-specific improvements"""
+        return result'''
     
     def _apply_custom_config(self, cv_data):
         """Apply any custom configurations to the data before processing
@@ -125,6 +324,26 @@ class BaseAgent:
         """Hook called when configuration is updated
         Override in subclasses to rebuild prompt templates or other configuration-dependent components"""
         pass
+    
+    def _get_available_categories_for_validation(self, agent_type: str) -> Dict[str, Any]:
+        """Get available categories for validation based on agent type"""
+        categories = {}
+        
+        if agent_type == "expertise":
+            from cv_agents.expertise.agent import DEFAULT_EXPERTISE_CATEGORIES
+            categories["expertise_categories"] = self.custom_config.get("expertise_categories", DEFAULT_EXPERTISE_CATEGORIES)
+        
+        elif agent_type == "role_levels":
+            from cv_agents.role.agent import DEFAULT_ROLE_LEVELS
+            from cv_agents.expertise.agent import DEFAULT_EXPERTISE_CATEGORIES
+            categories["role_levels"] = self.custom_config.get("role_levels", DEFAULT_ROLE_LEVELS)
+            categories["expertise_categories"] = self.custom_config.get("expertise_categories", DEFAULT_EXPERTISE_CATEGORIES)
+        
+        elif agent_type == "org_unit":
+            from cv_agents.org_unit.agent import DEFAULT_ORG_UNITS
+            categories["org_units"] = self.custom_config.get("org_units", DEFAULT_ORG_UNITS)
+        
+        return categories
     
     def get_feedback_context(self, agent_type: str) -> str:
         """Get feedback context to include in prompts for learning from past feedback"""

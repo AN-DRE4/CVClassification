@@ -287,29 +287,17 @@ class CVClassificationOrchestrator:
         print("DEBUG: cv_sections: ", cv_sections.keys())
         
         try:
-            # Process with agents
-            print("Processing expertise areas...")
-            expertise_results = self.expertise_agent.process(cv_sections)
+            # Process with agents using conversational validation
+            print("Processing expertise areas with conversational validation...")
+            expertise_results = self.expertise_agent.process_with_validation(cv_sections, self.validation_agent, "expertise")
             
-            # Validate expertise classifications if needed
-            print("Validating expertise classifications...")
-            expertise_results = self.validation_agent.validate_classification(cv_sections, "expertise", expertise_results)
-            
-            print("Processing role levels...")
+            print("Processing role levels with conversational validation...")
             role_input = {**cv_sections, "expertise_results": expertise_results}
-            role_results = self.role_level_agent.process(role_input)
+            role_results = self.role_level_agent.process_with_validation(role_input, self.validation_agent, "role_levels")
             
-            # Validate role level classifications if needed  
-            print("Validating role level classifications...")
-            role_results = self.validation_agent.validate_classification(cv_sections, "role_levels", role_results)
-            
-            print("Processing organizational unit...")
+            print("Processing organizational unit with conversational validation...")
             org_input = {**cv_sections, "expertise_results": expertise_results, "role_results": role_results}
-            org_results = self.org_unit_agent.process(org_input)
-            
-            # Validate org unit classifications if needed
-            print("Validating organizational unit classifications...")
-            org_results = self.validation_agent.validate_classification(cv_sections, "org_unit", org_results)
+            org_results = self.org_unit_agent.process_with_validation(org_input, self.validation_agent, "org_unit")
             
             # Combine results
             result = {
@@ -321,16 +309,25 @@ class CVClassificationOrchestrator:
                 "org_unit": org_results
             }
             
-            # Collect validation feedback from all agents and add to feedback manager
-            all_validation_feedback = []
-            for agent_result in [expertise_results, role_results, org_results]:
-                if agent_result.get("validation_feedback"):
-                    all_validation_feedback.extend(agent_result["validation_feedback"])
+            # Collect conversational validation metadata from all agents
+            validation_conversations = []
+            total_iterations = 0
             
-            if all_validation_feedback: # Rever isto
-                print(f"Adding {len(all_validation_feedback)} validation feedback entries...")
-                self.feedback_manager.add_validation_feedback(cv_data.get("resume_id", ""), all_validation_feedback)
-                result["validation_feedback_count"] = len(all_validation_feedback)
+            for agent_type, agent_result in [("expertise", expertise_results), ("role_levels", role_results), ("org_unit", org_results)]:
+                if agent_result.get("validation_conversation"):
+                    conversation_data = agent_result["validation_conversation"]
+                    conversation_data["agent_type"] = agent_type
+                    validation_conversations.append(conversation_data)
+                    total_iterations += conversation_data.get("iterations_completed", 1)
+            
+            if validation_conversations:
+                print(f"Completed {len(validation_conversations)} validation conversations with {total_iterations} total iterations")
+                result["validation_conversations"] = validation_conversations
+                result["total_validation_iterations"] = total_iterations
+                
+                # Add summary of validation effectiveness
+                satisfied_count = sum(1 for conv in validation_conversations if conv.get("validator_satisfied", False))
+                result["validation_success_rate"] = satisfied_count / len(validation_conversations) if validation_conversations else 0
             
             # Store in memory
             self.memory["classifications"].append(result)
@@ -388,7 +385,7 @@ class CVClassificationOrchestrator:
         """Clear all feedback data"""
         self.feedback_manager.clear_feedback()
     
-    def process_cv_with_multiple_models(self, cv_data: Dict, model_names: List[str]) -> Dict: # Rever isto
+    def process_cv_with_multiple_models(self, cv_data: Dict, model_names: List[str]) -> Dict:
         """Process a CV with multiple models and compare results"""
         results = {}
         model_outputs = []

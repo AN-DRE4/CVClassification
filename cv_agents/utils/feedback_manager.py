@@ -105,6 +105,10 @@ class FeedbackManager:
         feedback_text = user_feedback.get("reason", "")
         rating = user_feedback.get("rating", "neutral")
         feedback_source = user_feedback.get("source", "human")  # New: track feedback source
+
+        print("DEBUG: got here 10: ", feedback_text)
+        print("DEBUG: got here 10.1: ", rating)
+        print("DEBUG: got here 10.2: ", feedback_source)
         
         # Try to parse structured feedback first
         parsed_feedback = self.parse_structured_feedback(feedback_text)
