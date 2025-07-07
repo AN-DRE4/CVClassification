@@ -132,26 +132,36 @@ def display_results(results):
                         st.write(f"**Justification for {exp.get('category')}:**")
                         st.write(exp.get("justification", "No justification provided"))
                         
+                        # Show initial values section
+                        original_conf = exp.get("original_confidence", exp.get("confidence", 0))
+                        current_conf = exp.get("confidence", 0)
+                        
+                        st.write("---")
+                        st.write("**📊 Initial Values:**")
+                        st.write(f"• **Initial Confidence:** {original_conf:.3f} ({int(original_conf * 100)}%)")
+                        if abs(current_conf - original_conf) > 0.001:  # Show if there was a change
+                            change = current_conf - original_conf
+                            change_symbol = "📈" if change > 0 else "📉"
+                            st.write(f"• **Current Confidence:** {current_conf:.3f} ({int(current_conf * 100)}%) {change_symbol}")
+                        
                         # Show validation info if available
                         if exp.get("validation_applied"):
                             validation_action = exp.get("validation_action", "unknown")
                             validation_reason = exp.get("validation_reason", "")
-                            original_conf = exp.get("original_confidence", exp.get("confidence", 0))
                             
+                            st.write("---")
                             if validation_action == "correct":
                                 st.warning(f"🤖 **Validation Agent Correction Applied**")
-                                st.write(f"Original confidence: {original_conf:.2f}")
                                 st.write(f"Correction reason: {validation_reason}")
                             else:
                                 st.success(f"🤖 **Validation Agent Confirmed**")
-                                st.write(f"Original confidence: {original_conf:.2f}")
                                 st.write(f"Validation reason: {validation_reason}")
                         
                         # Show feedback adjustment info if available
                         if exp.get("feedback_adjustment") is not None:
-                            original_conf = exp.get("original_confidence", exp.get("confidence", 0))
                             adjustment = exp.get("feedback_adjustment", 0)
-                            st.info(f"Original confidence: {original_conf:.2f}, Feedback adjustment: {adjustment:+.2f}")
+                            st.write("---")
+                            st.info(f"**📝 User Feedback Applied:** {adjustment:+.3f} confidence adjustment")
         else:
             st.write("No expertise areas identified")
     
@@ -178,26 +188,43 @@ def display_results(results):
                         st.write(f"**Justification for {role.get('expertise')} - {role.get('level')}:**")
                         st.write(role.get("justification", "No justification provided"))
                         
+                        # Show initial values section
+                        original_conf = role.get("original_confidence", role.get("confidence", 0))
+                        current_conf = role.get("confidence", 0)
+                        original_level = role.get("original_level", role.get("level", "unknown"))
+                        current_level = role.get("level", "unknown")
+                        
+                        st.write("---")
+                        st.write("**📊 Initial Values:**")
+                        st.write(f"• **Initial Level:** {original_level}")
+                        st.write(f"• **Initial Confidence:** {original_conf:.3f} ({int(original_conf * 100)}%)")
+                        
+                        # Show current values if they changed
+                        if current_level != original_level:
+                            st.write(f"• **Current Level:** {current_level} 🔄")
+                        if abs(current_conf - original_conf) > 0.001:
+                            change = current_conf - original_conf
+                            change_symbol = "📈" if change > 0 else "📉"
+                            st.write(f"• **Current Confidence:** {current_conf:.3f} ({int(current_conf * 100)}%) {change_symbol}")
+                        
                         # Show validation info if available
                         if role.get("validation_applied"):
                             validation_action = role.get("validation_action", "unknown")
                             validation_reason = role.get("validation_reason", "")
-                            original_conf = role.get("original_confidence", role.get("confidence", 0))
                             
+                            st.write("---")
                             if validation_action == "correct":
                                 st.warning(f"🤖 **Validation Agent Correction Applied**")
-                                st.write(f"Original confidence: {original_conf:.2f}")
                                 st.write(f"Correction reason: {validation_reason}")
                             else:
                                 st.success(f"🤖 **Validation Agent Confirmed**")
-                                st.write(f"Original confidence: {original_conf:.2f}")
                                 st.write(f"Validation reason: {validation_reason}")
                         
                         # Show feedback adjustment info if available
                         if role.get("feedback_adjustment") is not None:
-                            original_conf = role.get("original_confidence", role.get("confidence", 0))
                             adjustment = role.get("feedback_adjustment", 0)
-                            st.info(f"Original confidence: {original_conf:.2f}, Feedback adjustment: {adjustment:+.2f}")
+                            st.write("---")
+                            st.info(f"**📝 User Feedback Applied:** {adjustment:+.3f} confidence adjustment")
         else:
             st.write("No role levels identified")
     
@@ -224,26 +251,36 @@ def display_results(results):
                         st.write(f"**Justification for {unit.get('unit')}:**")
                         st.write(unit.get("justification", "No justification provided"))
                         
+                        # Show initial values section
+                        original_conf = unit.get("original_confidence", unit.get("confidence", 0))
+                        current_conf = unit.get("confidence", 0)
+                        
+                        st.write("---")
+                        st.write("**📊 Initial Values:**")
+                        st.write(f"• **Initial Confidence:** {original_conf:.3f} ({int(original_conf * 100)}%)")
+                        if abs(current_conf - original_conf) > 0.001:  # Show if there was a change
+                            change = current_conf - original_conf
+                            change_symbol = "📈" if change > 0 else "📉"
+                            st.write(f"• **Current Confidence:** {current_conf:.3f} ({int(current_conf * 100)}%) {change_symbol}")
+                        
                         # Show validation info if available
                         if unit.get("validation_applied"):
                             validation_action = unit.get("validation_action", "unknown")
                             validation_reason = unit.get("validation_reason", "")
-                            original_conf = unit.get("original_confidence", unit.get("confidence", 0))
                             
+                            st.write("---")
                             if validation_action == "correct":
                                 st.warning(f"🤖 **Validation Agent Correction Applied**")
-                                st.write(f"Original confidence: {original_conf:.2f}")
                                 st.write(f"Correction reason: {validation_reason}")
                             else:
                                 st.success(f"🤖 **Validation Agent Confirmed**")
-                                st.write(f"Original confidence: {original_conf:.2f}")
                                 st.write(f"Validation reason: {validation_reason}")
                         
                         # Show feedback adjustment info if available
                         if unit.get("feedback_adjustment") is not None:
-                            original_conf = unit.get("original_confidence", unit.get("confidence", 0))
                             adjustment = unit.get("feedback_adjustment", 0)
-                            st.info(f"Original confidence: {original_conf:.2f}, Feedback adjustment: {adjustment:+.2f}")
+                            st.write("---")
+                            st.info(f"**📝 User Feedback Applied:** {adjustment:+.3f} confidence adjustment")
         else:
             st.write("No organizational units identified")
 
@@ -1204,6 +1241,11 @@ def main():
                 else:
                     # Collect custom configuration from the customization tab
                     custom_config = {}
+                    
+                    # Add max validation iterations configuration
+                    if "max_validation_iterations" in st.session_state:
+                        custom_config["max_validation_iterations"] = st.session_state.max_validation_iterations
+                    
                     if "expertise_config" in st.session_state and st.session_state.expertise_config:
                         custom_config["expertise"] = st.session_state.expertise_config
                     
@@ -1327,6 +1369,11 @@ def main():
                 else:
                     # Collect custom configuration from session state
                     custom_config = {}
+                    
+                    # Add max validation iterations configuration
+                    if "max_validation_iterations" in st.session_state:
+                        custom_config["max_validation_iterations"] = st.session_state.max_validation_iterations
+                    
                     if "expertise_config" in st.session_state and st.session_state.expertise_config:
                         custom_config["expertise"] = st.session_state.expertise_config
                     
@@ -1471,6 +1518,11 @@ def main():
                 else:
                     # Collect custom configuration
                     custom_config = {}
+                    
+                    # Add max validation iterations configuration
+                    if "max_validation_iterations" in st.session_state:
+                        custom_config["max_validation_iterations"] = st.session_state.max_validation_iterations
+                    
                     if "expertise_config" in st.session_state and st.session_state.expertise_config:
                         custom_config["expertise"] = st.session_state.expertise_config
                     
@@ -1517,6 +1569,7 @@ def main():
             ## Classification Customization
             
             Use the options below to customize how CVs are classified. You can:
+            - Configure validation iterations (how many times the AI agents refine their results)
             - Define custom expertise categories
             - Define custom role levels
             - Define custom organizational units
@@ -1525,6 +1578,57 @@ def main():
             """)
             
             # Create expanders for each customization option
+            with st.expander("Configure Validation Iterations", expanded=False):
+                st.write("### Set Maximum Validation Iterations")
+                st.write("""
+                Control how many times the AI agents can refine their classifications through conversation with validation agents.
+                
+                **How it works:**
+                - **1 iteration**: No validation refinement (fastest)
+                - **2-3 iterations**: Balanced quality and speed (recommended)
+                - **4+ iterations**: Maximum quality but slower processing
+                
+                **Default:** 3 iterations
+                """)
+                
+                max_iterations = st.slider(
+                    "Maximum validation iterations:",
+                    min_value=1,
+                    max_value=10,
+                    value=st.session_state.get("max_validation_iterations", 3),
+                    step=1,
+                    help="Higher values mean more refinement but longer processing time"
+                )
+                
+                # Show estimated processing time
+                if max_iterations == 1:
+                    time_estimate = "Very fast (no validation)"
+                elif max_iterations <= 3:
+                    time_estimate = "Fast to moderate"
+                elif max_iterations <= 5:
+                    time_estimate = "Moderate"
+                else:
+                    time_estimate = "Slower but highest quality"
+                
+                st.info(f"**Estimated processing time:** {time_estimate}")
+                
+                # Save to session state
+                if max_iterations != st.session_state.get("max_validation_iterations", 3):
+                    st.session_state.max_validation_iterations = max_iterations
+                    if "max_validation_iterations_config" not in st.session_state:
+                        st.session_state.max_validation_iterations_config = {}
+                    st.session_state.max_validation_iterations_config["max_validation_iterations"] = max_iterations
+                    st.success(f"✅ Validation iterations set to {max_iterations}")
+                
+                # Option to download iteration config
+                if "max_validation_iterations_config" in st.session_state:
+                    st.download_button(
+                        label="Download Validation Iterations Configuration",
+                        data=json.dumps(st.session_state.max_validation_iterations_config, indent=2),
+                        file_name=f"validation_iterations_config_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
+                        mime="application/json"
+                    )
+            
             with st.expander("Customize Expertise Categories", expanded=False):
                 expertise_config = create_custom_expertise_config()
                 if expertise_config:
@@ -1569,6 +1673,7 @@ def main():
             
             # Option to combine all configurations into a single file
             if (
+                "max_validation_iterations_config" in st.session_state or
                 "expertise_config" in st.session_state or 
                 "role_levels_config" in st.session_state or 
                 "org_units_config" in st.session_state
@@ -1576,6 +1681,9 @@ def main():
                 st.write("### Download Complete Configuration")
                 
                 combined_config = {}
+                
+                if "max_validation_iterations_config" in st.session_state:
+                    combined_config.update(st.session_state.max_validation_iterations_config)
                 
                 if "expertise_config" in st.session_state:
                     combined_config["expertise"] = st.session_state.expertise_config

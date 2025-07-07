@@ -11,7 +11,8 @@ For each expertise area identified, determine the appropriate role level:
 {role_levels}
 
 Only use the role levels provided above. Do not make up your own role levels.
-Do not alter the expertise areas that are provided or create new ones.
+DO NOT IN ANY WAY alter the expertise areas that are provided.
+DO NOT IN ANY WAY create role levels for expertise areas that are not provided in the expertise results.
 
 Base your assessment on job titles, responsibilities, and duration of experience.
 Consider the level of the responsibilities the person has. If some of these responsibilities are at a higher level, then consider leveling up the role.
@@ -64,8 +65,8 @@ For each expertise area, determine the most appropriate role level with justific
 Your entire response/output is going to consist of a single JSON object, and you will NOT wrap it within JSON md markers.  This is very important since it will be parsed directly as JSON."""
 
 class RoleLevelAgent(BaseAgent):
-    def __init__(self, model_name="gpt-4o-mini-2024-07-18", temperature=0.1, max_retries=3, retry_delay=2, custom_config: Optional[Dict[str, Any]] = None):
-        super().__init__(model_name, temperature, max_retries, retry_delay, custom_config)
+    def __init__(self, model_name="gpt-4o-mini-2024-07-18", temperature=0.1, max_retries=3, retry_delay=2, custom_config: Optional[Dict[str, Any]] = None, max_validation_iterations: int = 3):
+        super().__init__(model_name, temperature, max_retries, retry_delay, custom_config, max_validation_iterations)
         self._build_prompt()
         
     def _build_prompt(self):
@@ -226,6 +227,7 @@ Please address the feedback points above when revising your classification.
                 "confidence": adjusted_confidence,
                 "justification": justification,
                 "original_confidence": confidence,
+                "original_level": level,  # Store original level assignment
                 "evidence_strength": evidence_strength,
                 "confidence_tier": confidence_tier
             })
@@ -311,6 +313,7 @@ Please address the feedback points above when revising your classification.
                 "confidence": adjusted_confidence,
                 "justification": justification,
                 "original_confidence": confidence,
+                "original_level": level,  # Store original level assignment
                 "feedback_adjustment": confidence_adjustment
             })
         

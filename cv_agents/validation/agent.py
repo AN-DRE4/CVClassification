@@ -34,11 +34,11 @@ When reviewing a classification, analyze:
 Provide feedback in this format:
 - Identify specific strengths in the classification
 - Point out specific issues that need addressing
-- Suggest improvements for problematic classifications
+- Suggest improvements for problematic classifications and/or other categories that are available but were not used and should be used
 - Verify that only available categories are being used
 - Indicate overall satisfaction level
 
-Response format: Return a JSON object with:
+Response format: Return a JSON object with the following fields:
 {{
 "validator_satisfied": True | False,
 "feedback_summary": "brief overview of your assessment",
@@ -131,8 +131,8 @@ If this is the final iteration (iteration == max_iterations), you should be more
 """
 
 class ValidationAgent(BaseAgent):
-    def __init__(self, model_name="gpt-4o-mini-2024-07-18", temperature=0.1, max_retries=3, retry_delay=2, custom_config: Optional[Dict[str, Any]] = None):
-        super().__init__(model_name, temperature, max_retries, retry_delay, custom_config)
+    def __init__(self, model_name="gpt-4o-mini-2024-07-18", temperature=0.1, max_retries=3, retry_delay=2, custom_config: Optional[Dict[str, Any]] = None, max_validation_iterations: int = 3):
+        super().__init__(model_name, temperature, max_retries, retry_delay, custom_config, max_validation_iterations)
         
         # Initialize the validation prompt
         self.prompt = ChatPromptTemplate.from_template(VALIDATION_FEEDBACK_SYSTEM_PROMPT)
@@ -148,8 +148,6 @@ class ValidationAgent(BaseAgent):
             # Format available categories for the prompt
             available_categories_text = self._format_available_categories(agent_type, available_categories)
 
-            print("DEBUG: available_categories_text: ", available_categories_text) if agent_type == "role_levels" else None
-            
             # Prepare input for the validation LLM
             validation_input = {
                 "cv_content": self._extract_cv_content(cv_data),

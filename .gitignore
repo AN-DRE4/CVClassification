@@ -6,3 +6,5 @@ cv_classifier_models/
 outputs/
 cv_classifier/
 thoughts.md
+agents_results/
+batch_results/

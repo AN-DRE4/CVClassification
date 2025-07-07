@@ -7,7 +7,7 @@ import logging
 from typing import Dict, Optional, Any, List
 
 class BaseAgent:
-    def __init__(self, model_name="gpt-4o-mini-2024-07-18", temperature=0.1, max_retries=3, retry_delay=2, custom_config: Optional[Dict[str, Any]] = None):
+    def __init__(self, model_name="gpt-4o-mini-2024-07-18", temperature=0.1, max_retries=3, retry_delay=2, custom_config: Optional[Dict[str, Any]] = None, max_validation_iterations: int = 3):
         self.model_name = model_name  # Store model name for reference
         self.llm = ChatOpenAI(
             model=model_name,
@@ -23,8 +23,10 @@ class BaseAgent:
         from .utils.feedback_manager import FeedbackManager
         self.feedback_manager = FeedbackManager()
         
-        # Configuration for conversational validation
-        self.max_validation_iterations = 3  # Maximum iterations in conversation with validator
+        # Configuration for conversational validation - can be overridden by custom_config
+        default_max_iterations = max_validation_iterations
+        self.max_validation_iterations = self.custom_config.get("max_validation_iterations", default_max_iterations)
+        
         self.confidence_thresholds = {
             'very_high': 0.95,  # 95%+ confidence
             'high': 0.9,      # 90%-95% confidence
@@ -306,6 +308,11 @@ class BaseAgent:
     def update_config(self, new_config: Dict[str, Any]):
         """Update the agent's custom configuration"""
         self.custom_config.update(new_config)
+        
+        # Update max_validation_iterations if provided in new_config
+        if "max_validation_iterations" in new_config:
+            self.max_validation_iterations = new_config["max_validation_iterations"]
+        
         # Optionally rebuild prompts or other components when config changes
         self._on_config_updated()
     

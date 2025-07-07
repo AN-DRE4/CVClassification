@@ -68,8 +68,8 @@ Your entire response/output is going to consist of a single JSON object, and you
 """
 
 class ExpertiseAgent(BaseAgent):
-    def __init__(self, model_name="gpt-4o-mini-2024-07-18", temperature=0.1, max_retries=3, retry_delay=2, custom_config: Optional[Dict[str, Any]] = None):
-        super().__init__(model_name, temperature, max_retries, retry_delay, custom_config)
+    def __init__(self, model_name="gpt-4o-mini-2024-07-18", temperature=0.1, max_retries=3, retry_delay=2, custom_config: Optional[Dict[str, Any]] = None, max_validation_iterations: int = 3):
+        super().__init__(model_name, temperature, max_retries, retry_delay, custom_config, max_validation_iterations)
         self._build_prompt()
     
     def _build_prompt(self):
