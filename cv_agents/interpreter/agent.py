@@ -95,6 +95,14 @@ class InterpreterAgent(BaseAgent):
             # Read the file content
             if file_path.endswith('.xlsx'):
                 file_content = pd.read_excel(file_path)
+            elif file_path.endswith('.csv'):
+                file_content = pd.read_csv(file_path)
+            elif file_path.endswith('.json'):
+                with open(file_path, 'r') as f:
+                    file_content = json.load(f)
+            elif file_path.endswith('.txt'):
+                with open(file_path, 'r') as f:
+                    file_content = f.read()
             else:
                 with open(file_path, 'r') as f:
                     file_content = f.read()
