@@ -42,6 +42,9 @@ class BaseAgent:
         iteration_count = 0
         validation_history = []
         
+        # Track original confidence values from first iteration when each key first appears
+        original_confidence_tracker = {}
+        
         while iteration_count < self.max_validation_iterations:
             print(f"Starting {agent_type} classification iteration {iteration_count + 1}")
             
@@ -64,6 +67,9 @@ class BaseAgent:
                 print(f"Error in {agent_type} agent classification: {current_classification}")
                 break
             
+            # Track original confidence values from first appearance
+            self._track_original_confidence(current_classification, original_confidence_tracker, agent_type, iteration_count)
+            
             # Gather available categories for this agent type
             available_categories = self._get_available_categories_for_validation(agent_type)
             
@@ -82,6 +88,10 @@ class BaseAgent:
             print(f"Validator feedback for {agent_type}: {validation_feedback.get('feedback_summary', 'No summary provided')}")
             # print(f"DEBUG: Validatior detailed feedback for {agent_type}: {validation_feedback.get('detailed_feedback', {})}")
             iteration_count += 1
+        
+        # Apply original confidence values to final result
+        if current_classification and not current_classification.get("error"):
+            self._apply_original_confidence_to_result(current_classification, original_confidence_tracker, agent_type)
         
         # Add conversation metadata to final result
         # print("DEBUG: got here 4: ", current_classification)
@@ -103,7 +113,99 @@ class BaseAgent:
         # print("DEBUG: got here 5")
 
         return current_classification
-    
+
+    def _track_original_confidence(self, classification, tracker, agent_type, iteration_count):
+        """Track original confidence values from first iteration when each key first appears"""
+        if agent_type == "expertise":
+            expertise_list = classification.get("expertise", [])
+            for exp in expertise_list:
+                key = exp.get("category")
+                if key and key not in tracker:
+                    tracker[key] = {
+                        "original_confidence": exp.get("confidence", 0),
+                        "first_iteration": iteration_count
+                    }
+        
+        elif agent_type == "role_levels":
+            role_levels = classification.get("role_levels", [])
+            for role in role_levels:
+                expertise = role.get("expertise", "")
+                level = role.get("level", "")
+                # Create unique key for expertise-level combination
+                key = f"{expertise}_{level}"
+                # Also track by just expertise for cases where level changes
+                expertise_key = expertise
+                
+                if key and key not in tracker:
+                    tracker[key] = {
+                        "original_confidence": role.get("confidence", 0),
+                        "original_level": level,
+                        "expertise": expertise,
+                        "first_iteration": iteration_count
+                    }
+                
+                # Also track the first time we see this expertise area (regardless of level)
+                if expertise_key and f"expertise_{expertise_key}" not in tracker:
+                    tracker[f"expertise_{expertise_key}"] = {
+                        "first_confidence": role.get("confidence", 0),
+                        "first_level": level,
+                        "first_iteration": iteration_count
+                    }
+        
+        elif agent_type == "org_unit":
+            org_units = classification.get("org_units", [])
+            for unit in org_units:
+                key = unit.get("unit")
+                if key and key not in tracker:
+                    tracker[key] = {
+                        "original_confidence": unit.get("confidence", 0),
+                        "first_iteration": iteration_count
+                    }
+
+    def _apply_original_confidence_to_result(self, classification, tracker, agent_type):
+        """Apply the tracked original confidence values to the final result"""
+        if agent_type == "expertise":
+            expertise_list = classification.get("expertise", [])
+            for exp in expertise_list:
+                key = exp.get("category")
+                if key in tracker:
+                    exp["original_confidence"] = tracker[key]["original_confidence"]
+        
+        elif agent_type == "role_levels":
+            role_levels = classification.get("role_levels", [])
+            for role in role_levels:
+                expertise = role.get("expertise", "")
+                level = role.get("level", "")
+                key = f"{expertise}_{level}"
+                expertise_key = expertise
+                
+                # First try to find exact expertise-level match
+                if key in tracker:
+                    role["original_confidence"] = tracker[key]["original_confidence"]
+                    role["original_level"] = tracker[key]["original_level"]
+                else:
+                    # If exact match not found, check if we have data for this expertise area
+                    # This handles the case where level changed but expertise stayed the same
+                    expertise_tracker_key = f"expertise_{expertise_key}"
+                    if expertise_tracker_key in tracker:
+                        role["original_confidence"] = tracker[expertise_tracker_key]["first_confidence"]
+                        role["original_level"] = tracker[expertise_tracker_key]["first_level"]
+                    else:
+                        # Fallback: look for any tracker entry with the same expertise
+                        print("DEBUG: didn't find exact match, looking for any tracker entry with the same expertise")
+                        for tracker_key, tracker_data in tracker.items():
+                            if tracker_data.get("expertise") == expertise:
+                                role["original_confidence"] = tracker_data["original_confidence"]
+                                role["original_level"] = tracker_data.get("original_level", level)
+                                break
+        
+        elif agent_type == "org_unit":
+            org_units = classification.get("org_units", [])
+            for unit in org_units:
+                key = unit.get("unit")
+                if key in tracker:
+                    unit["original_confidence"] = tracker[key]["original_confidence"]
+
     def _generate_conversation_feedback(self, resume_id: str, final_classification: Dict, validation_history: List[Dict], agent_type: str):
         """Generate automatic feedback based on the validation conversation"""
         if not validation_history:

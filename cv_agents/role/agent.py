@@ -191,6 +191,8 @@ CONFIDENCE ASSESSMENT:
 {feedback.get('confidence_assessment', 'No assessment')}
 
 Please address the feedback points above when revising your classification.
+Improve your classification based on the strengths and improvements needed.
+Think about the detailed feedback and make your classification more accurate with these points in mind.
 """
         cv_data["validation_feedback_section"] = validation_feedback_section
         
@@ -307,15 +309,27 @@ Please address the feedback points above when revising your classification.
                 
                 justification += feedback_info
             
-            adjusted_role_levels.append({
+            # Only set original_confidence and original_level if they haven't been set by the base agent's tracking
+            item_data = {
                 "expertise": expertise,
                 "level": level,
                 "confidence": adjusted_confidence,
                 "justification": justification,
-                "original_confidence": confidence,
-                "original_level": level,  # Store original level assignment
                 "feedback_adjustment": confidence_adjustment
-            })
+            }
+            
+            # Preserve original_confidence and original_level if they were already set by the validation tracker
+            if "original_confidence" not in role:
+                item_data["original_confidence"] = confidence
+            else:
+                item_data["original_confidence"] = role["original_confidence"]
+            
+            if "original_level" not in role:
+                item_data["original_level"] = level
+            else:
+                item_data["original_level"] = role["original_level"]
+            
+            adjusted_role_levels.append(item_data)
         
         result["role_levels"] = adjusted_role_levels
         return result

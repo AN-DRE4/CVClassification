@@ -1591,14 +1591,31 @@ def main():
                 **Default:** 3 iterations
                 """)
                 
-                max_iterations = st.slider(
-                    "Maximum validation iterations:",
-                    min_value=1,
-                    max_value=10,
-                    value=st.session_state.get("max_validation_iterations", 3),
-                    step=1,
-                    help="Higher values mean more refinement but longer processing time"
-                )
+                # Create two columns for slider and number input
+                col1, col2 = st.columns([3, 1])
+                
+                with col1:
+                    max_iterations_slider = st.slider(
+                        "Maximum validation iterations:",
+                        min_value=1,
+                        max_value=10,
+                        value=st.session_state.get("max_validation_iterations", 3),
+                        step=1,
+                        help="Higher values mean more refinement but longer processing time"
+                    )
+                
+                with col2:
+                    max_iterations_input = st.number_input(
+                        "Or enter value:",
+                        min_value=1,
+                        max_value=10,
+                        value=st.session_state.get("max_validation_iterations", 3),
+                        step=1,
+                        help="Enter a custom number of iterations"
+                    )
+                
+                # Use the value from number input if it's different from slider, otherwise use slider
+                max_iterations = max_iterations_input if max_iterations_input != st.session_state.get("max_validation_iterations", 3) else max_iterations_slider
                 
                 # Show estimated processing time
                 if max_iterations == 1:

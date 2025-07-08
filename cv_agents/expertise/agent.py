@@ -169,6 +169,8 @@ CONFIDENCE ASSESSMENT:
 {feedback.get('confidence_assessment', 'No assessment')}
 
 Please address the feedback points above when revising your classification.
+Improve your classification based on the strengths and improvements needed.
+Think about the detailed feedback and make your classification more accurate with these points in mind.
 """
         cv_data["validation_feedback_section"] = validation_feedback_section
         
@@ -278,13 +280,21 @@ Please address the feedback points above when revising your classification.
                 
                 justification += feedback_info
             
-            adjusted_expertise.append({
+            # Only set original_confidence if it hasn't been set by the base agent's tracking
+            item_data = {
                 "category": category,
                 "confidence": adjusted_confidence,
                 "justification": justification,
-                "original_confidence": confidence,
                 "feedback_adjustment": confidence_adjustment
-            })
+            }
+            
+            # Preserve original_confidence if it was already set by the validation tracker
+            if "original_confidence" not in exp:
+                item_data["original_confidence"] = confidence
+            else:
+                item_data["original_confidence"] = exp["original_confidence"]
+            
+            adjusted_expertise.append(item_data)
         
         result["expertise"] = adjusted_expertise
         return result
