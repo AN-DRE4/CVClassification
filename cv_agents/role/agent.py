@@ -11,7 +11,7 @@ For each expertise area identified, determine the appropriate role level:
 {role_levels}
 
 Only use the role levels provided above. Do not make up your own role levels.
-DO NOT IN ANY WAY alter the expertise areas that are provided.
+DO NOT IN ANY WAY alter or add to the expertise areas that are provided.
 DO NOT IN ANY WAY create role levels for expertise areas that are not provided in the expertise results.
 
 Base your assessment on job titles, responsibilities, and duration of experience.
@@ -62,6 +62,7 @@ Note that the duration in the work experience is in years.
 {validation_feedback_section}
 
 For each expertise area, determine the most appropriate role level with justification.
+Only evaluate the role level for the expertise areas that are provided in the expertise results and nothing else.
 Your entire response/output is going to consist of a single JSON object, and you will NOT wrap it within JSON md markers.  This is very important since it will be parsed directly as JSON."""
 
 class RoleLevelAgent(BaseAgent):

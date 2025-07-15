@@ -21,11 +21,12 @@ class CVClassificationOrchestrator:
         expertise_config = self.custom_config.get("expertise", {})
         role_config = self.custom_config.get("role_levels", {})
         org_unit_config = self.custom_config.get("org_units", {})
+        max_validation_iterations = self.custom_config.get("max_validation_iterations", 3)
         
-        self.expertise_agent = ExpertiseAgent(model_name=model_name, custom_config=expertise_config)
-        self.role_level_agent = RoleLevelAgent(model_name=model_name, custom_config=role_config)
-        self.org_unit_agent = OrgUnitAgent(model_name=model_name, custom_config=org_unit_config)
-        self.validation_agent = ValidationAgent(model_name=model_name)  # Add validation agent
+        self.expertise_agent = ExpertiseAgent(model_name=model_name, custom_config=expertise_config, max_validation_iterations=max_validation_iterations    )
+        self.role_level_agent = RoleLevelAgent(model_name=model_name, custom_config=role_config, max_validation_iterations=max_validation_iterations)
+        self.org_unit_agent = OrgUnitAgent(model_name=model_name, custom_config=org_unit_config, max_validation_iterations=max_validation_iterations)
+        self.validation_agent = ValidationAgent(model_name=model_name, max_validation_iterations=max_validation_iterations)  # Add validation agent
         
         self.memory_path = memory_path
         self.memory = self._load_memory()

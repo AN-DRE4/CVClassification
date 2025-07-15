@@ -73,7 +73,7 @@ Response format: Return a JSON object with the following fields:
             'confidence': 'appropriateness of the confidence score for the role level',
             'completeness': 'whether the role level assessment is comprehensive',
             'justifications': 'quality of reasoning for the role level determination',
-            'category_validity': 'whether this role level is in the available categories list'
+            'category_validity': 'whether this role level and/or expertise area is in the available categories list'
         }},
         '[another_expertise_area]-[another_role_level]' (Note: the key is a concatenation of the expertise area and its associated role level that the classification result returned): {{
             'accuracy': 'how well the role level matches the candidate\'s experience and responsibilities',
@@ -81,7 +81,7 @@ Response format: Return a JSON object with the following fields:
             'confidence': 'appropriateness of the confidence score for the role level',
             'completeness': 'whether the role level assessment is comprehensive',
             'justifications': 'quality of reasoning for the role level determination',
-            'category_validity': 'whether this role level is in the available categories list'
+            'category_validity': 'whether this role level and/or expertise area is in the available categories list'
         }}
         ...
     }},
